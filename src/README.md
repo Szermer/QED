@@ -2,7 +2,11 @@
 
 ## Why This Guide Exists
 
-I created this guide while in the final testing phase of my own coding agent. After diving deep into Claude Code and similar architectures, I realized there's a gap in practical, engineering-focused documentation on how these systems actually work. Most resources either stay at a theoretical level or skip to implementation details without covering the critical architectural decisions.
+I created this guide while building out highly specialized, vertical agents. I'll often start with a problem with a framework and then unbundle parts of it, which is why I immediately wanted to take an agent I was building in Go and see how an agent like Claude Code could improve it, with a bunch of other features like rich components, panes, effectively Devin for your terminal. More on that soon.
+
+After diving deep into Claude Code and similar architectures, I realized there's a gap in practical, engineering-focused documentation on how these systems actually work. Most resources either stay at a theoretical level or skip to implementation details without covering the critical architectural decisions. This is really a "how things work" book, and the software pieces themselves would be recognizable.
+
+In addition, I've provided documentation on every tool and command, and its implementation. This is where this documentation shines - combining those with the execution rules reveals a lot of why Claude Code works so well. Don't skip either section!
 
 This isn't just about Claude Code or anon-kode. It's about the underlying patterns that make real-time AI coding assistants feel responsive, safe, and genuinely useful—patterns I've found while building my own system.
 
