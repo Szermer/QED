@@ -4,6 +4,8 @@
 
 I created this guide while building out highly specialized, vertical agents. I'll often start with a problem with a framework and then unbundle parts of it, which is why I immediately wanted to take an agent I was building in Go and see how an agent like Claude Code could improve it, with a bunch of other features like rich components, panes, effectively Devin for your terminal. More on that soon.
 
+(Note to the reader, I did do the Rewrite it in Rust thing, and it originally was, but [Charm](https://charm.sh) is excellent. Ultimately, it came down to wanting to bind to [jujutsu](https://github.com/jj-vcs/jj) for handling safe, linearizable checkpoints and the ability for multiple agents and humans to work together)
+
 After diving deep into Claude Code and similar architectures, I realized there's a gap in practical, engineering-focused documentation on how these systems actually work. Most resources either stay at a theoretical level or skip to implementation details without covering the critical architectural decisions. This is really a "how things work" book, and the software pieces themselves would be recognizable.
 
 In addition, I've provided documentation on every tool and command, and its implementation. This is where this documentation shines - combining those with the execution rules reveals a lot of why Claude Code works so well. Don't skip either section!
