@@ -1,0 +1,72 @@
+# Building an Agentic System
+
+## Why This Guide Exists
+
+I created this guide while in the final testing phase of my own coding agent. After diving deep into Claude Code and similar architectures, I realized there's a gap in practical, engineering-focused documentation on how these systems actually work. Most resources either stay at a theoretical level or skip to implementation details without covering the critical architectural decisions.
+
+This isn't just about Claude Code or anon-kode. It's about the underlying patterns that make real-time AI coding assistants feel responsive, safe, and genuinely useful—patterns I've found while building my own system.
+
+## What You'll Find Inside
+
+This guide dissects a working agentic system architecture with a focus on:
+
+1. **Responsive Interactions** - How to build systems that stream partial results instead of making users wait for complete responses
+2. **Parallel Execution** - Techniques for running operations concurrently without sacrificing safety
+3. **Permission Systems** - Implementing guardrails that prevent agents from taking unauthorized actions
+4. **Tool Architecture** - Creating extensible frameworks for agents to interact with the environment
+
+I've deliberately focused on concrete engineering patterns rather than theoretical ML concepts. You'll find diagrams, code explanations, and architectural insights that apply regardless of which LLM you're using.
+
+## Who I Am
+
+I'm Gerred Dillon, a systems engineer who's been building distributed systems and developer tools for over a decade. My background includes:
+
+- Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)
+- Implementing AI systems in secure, regulated environments
+- Designing and deploying large-scale distributed systems
+- Currently developing frameworks for specialized agents with reinforcement learning
+
+My focus has always been on the intersection of developer experience and robust engineering—how to make powerful systems that are actually pleasant to use.
+
+## Why Build Your Own Agent?
+
+Commercial AI coding assistants are impressive but come with limitations:
+
+1. **Context boundaries** - Most are constrained by input/output limits
+2. **Extensibility challenges** - Limited ability to add specialized capabilities
+3. **Integration gaps** - Often struggle to connect with existing workflows and tools
+4. **Domain specificity** - General-purpose assistants miss nuances of specialized domains
+
+Building your own agent isn't just about technical independence—it's about creating assistants tailored to specific workflows, domains, and security requirements.
+
+## State of This Work
+
+This guide represents my analysis of several coding agent architectures, including Claude Code, anon-kode, and my own experimental system. It's currently in active development as my own agent enters final testing.
+
+The patterns documented here have proven effective in practical applications, but like any engineering approach, they continue to evolve. I'm sharing this now because these architectural insights solved real problems for me, and they might help you avoid similar challenges.
+
+## How to Use This Guide
+
+If you're building an AI coding assistant or any agentic system:
+
+- Start with the system architecture diagram for a high-level overview
+- Explore specific components based on your immediate challenges
+- Pay particular attention to the parallel execution and permission system sections, as these address common pain points
+
+For a deeper exploration of specific subsystems, the tool and command system deep dives provide implementation-level details.
+
+## Connect and Support
+
+I'm actively working on research and implementation in this space. If you're interested in:
+
+- Verticalized agents for specific domains
+- Agents in production environments
+- AI engineering consulting or research
+
+You can reach me at gerred@reasonedintelligence.com or on Twitter [@devgerred](https://x.com/devgerred).
+
+If you find this work valuable, consider supporting my ongoing research through [Ko-fi](https://ko-fi.com/gerred).
+
+---
+
+Let's dive into the architecture that makes these systems work.
