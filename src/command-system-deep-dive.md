@@ -4,77 +4,52 @@ The Claude Code command system provides a suite of slash commands that users can
 
 Commands are integrated into the CLI through the Commander.js library and follow a consistent structure for both CLI arguments and interactive slash commands. The command system allows Claude Code to extend beyond simple conversational capabilities into a fully-featured developer tool.
 
-### approvedTools Command
+### Command Categories
 
-The `approvedTools` command manages which tools Claude has permission to use in a given project.
+Claude Code's commands can be broadly categorized into several functional groups:
 
-#### Implementation
+#### Environment Management
+- [approvedtools](commands/approvedtools.md): Manage tool permissions
+- [commands](commands/commands.md): List available commands
+- [config](commands/config.md): Configure Claude Code settings
+- [init](commands/init.md): Create KODING.md for project setup
+- [terminalsetup](commands/terminalsetup.md): Configure terminal keybindings
+- [doctor](commands/doctor.md): Check installation health
 
-This command is implemented in `commands/approvedTools.ts` and provides functionality to list and remove tools from the approved list. The implementation uses a simple handler pattern with two key functions:
+#### Authentication
+- [login](commands/login.md): Authenticate with Anthropic
+- [logout](commands/logout.md): Sign out and remove credentials
+- [model](commands/model.md): Configure AI model settings
 
-1. `handleListApprovedTools`: Lists all tools that are approved for use in the current directory.
-2. `handleRemoveApprovedTool`: Removes a specific tool from the approved list.
+#### Context Management
+- [clear](commands/clear.md): Reset conversation and free context space
+- [compact](commands/compact.md): Summarize and condense conversation
+- [ctx-viz](commands/ctx-viz.md): Visualize token usage
+- [resume](commands/resume.md): Continue previous conversations
 
-The command follows a configurable pattern that supports dependency injection:
+#### User Experience
+- [help](commands/help.md): View available commands and usage
+- [onboarding](commands/onboarding.md): Guided first-run experience
+- [listen](commands/listen.md): Enable speech recognition
+- [bug](commands/bug.md): Submit feedback and bug reports
+- [release-notes](commands/release-notes.md): View version changes
 
-```typescript
-export type ProjectConfigHandler = {
-  getCurrentProjectConfig: () => ProjectConfig
-  saveCurrentProjectConfig: (config: ProjectConfig) => void
-}
+#### GitHub Integration
+- [pr-comments](commands/pr-comments.md): View GitHub pull request comments
+- [review](commands/review.md): Review GitHub pull requests
 
-// Default config handler using the real implementation
-const defaultConfigHandler: ProjectConfigHandler = {
-  getCurrentProjectConfig: getCurrentProjectConfigDefault,
-  saveCurrentProjectConfig: saveCurrentProjectConfigDefault,
-}
-```
+#### Analytics
+- [cost](commands/cost.md): Track API usage and expenses
 
-This design makes the command testable by allowing the injection of mock config handlers.
+### Command Implementation Structure
 
-#### CLI Integration
+Each command follows a consistent structure and typically falls into one of these implementation types:
 
-In `cli.tsx`, the command is registered as a subcommand under the main `claude` command:
+1. **Local Commands** (`type: 'local'`): Perform direct actions without rendering a UI
+2. **JSX Commands** (`type: 'local-jsx'`): Render interactive React components
+3. **Prompt Commands** (`type: 'prompt'`): Formulate specific requests to Claude
 
-```typescript
-const allowedTools = program
-  .command('approved-tools')
-  .description('Manage approved tools')
-
-allowedTools
-  .command('list')
-  .description('List all approved tools')
-  .action(async () => {
-    const result = handleListApprovedTools(getCwd())
-    console.log(result)
-    process.exit(0)
-  })
-
-allowedTools
-  .command('remove <tool>')
-  .description('Remove a tool from the list of approved tools')
-  .action(async (tool: string) => {
-    const result = handleRemoveApprovedTool(tool)
-    logEvent('tengu_approved_tool_remove', {
-      tool,
-      success: String(result.success),
-    })
-    console.log(result.message)
-    process.exit(result.success ? 0 : 1)
-  })
-```
-
-This allows users to use commands like:
-- `claude approved-tools list` - To list all approved tools
-- `claude approved-tools remove <tool>` - To remove a specific tool from the approved list
-
-#### Security Implications
-
-The `approvedTools` command plays an important security role in Claude Code's permission system. It allows users to revoke permissions for specific tools, providing a mechanism to limit what Claude can do in a project. This is particularly important for tools that have the potential to modify files or execute commands.
-
-### bug Command
-
-The `bug` command provides users with a way to submit bug reports and feedback directly from the CLI interface.
+Click on any command above to view its detailed implementation and functionality.
 
 #### Implementation
 
