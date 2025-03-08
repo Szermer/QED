@@ -1,6 +1,6 @@
 # Parallel Tool Execution
 
-One of Claude Code's key performance innovations is running tools concurrently. When Claude needs to search through multiple files or perform several read operations, it executes them simultaneously rather than waiting for each to finish before starting the next.
+Claude Code runs tools in parallel to speed up code operations. Getting parallel execution right is tricky in AI tools - you need to maintain result ordering while preventing race conditions on write operations. The system solves this by classifying operations as read-only or stateful, applying different execution strategies to each. This approach turns what could be minutes of sequential file operations into seconds of concurrent processing.
 
 ## Smart Scheduling Strategy
 
