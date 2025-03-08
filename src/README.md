@@ -57,15 +57,16 @@ For a deeper exploration of specific subsystems, the tool and command system dee
 
 ## Connect and Support
 
-I'm actively working on research and implementation in this space. If you're interested in:
+I'm actively building in this space and available for consulting. If you need help with:
 
 - Verticalized agents for specific domains
-- Agents in production environments
-- AI engineering consulting or research
+- Production agent deployments
+- Practical AI system architecture
+- Making this stuff actually work in real environments
 
-You can reach me at gerred@reasonedintelligence.com or on Twitter [@devgerred](https://x.com/devgerred).
+Reach out [by email](mailto:hello@gerred.org) or on X [@devgerred](https://x.com/devgerred).
 
-If you find this work valuable, consider supporting my ongoing research through [Ko-fi](https://ko-fi.com/gerred).
+If this work's valuable to you, you can support my ongoing research through [Ko-fi](https://ko-fi.com/gerred).
 
 ---
 

@@ -2,6 +2,24 @@
 
 The power of Claude Code comes from its extensive tool system that allows Claude to interact with your local environment. This section analyzes each key tool in detail, exploring their implementation, integration points, and technical nuances.
 
+Below you'll find detailed descriptions of each tool, with individual pages for each tool implementation:
+
+- [Agent](tools/agent.md): Delegated task execution
+- [Architect](tools/architect.md): Software architecture planning
+- [Bash](tools/bash.md): Command-line execution
+- [FileEdit](tools/fileedit.md): Precise file modifications
+- [FileRead](tools/fileread.md): Content examination
+- [FileWrite](tools/filewrite.md): File creation and updates
+- [Glob](tools/glob.md): Pattern-based file matching
+- [Grep](tools/grep.md): Content search across files
+- [LS](tools/ls.md): Directory listing
+- [MCP](tools/mcp.md): External tool integration
+- [MemoryRead](tools/memoryread.md): State persistence
+- [NotebookEdit](tools/notebookedit.md): Notebook modification
+- [NotebookRead](tools/notebookread.md): Jupyter notebook inspection
+- [StickerRequest](tools/stickerrequest.md): User engagement
+- [Think](tools/think.md): Structured reasoning
+
 ### Creating Your Own Tools
 
 Before diving into specific tools, here's how you'd build your own tool in TypeScript:
