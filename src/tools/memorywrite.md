@@ -2,6 +2,8 @@
 
 MemoryWrite saves information to a persistent storage system, enabling data preservation across conversations.
 
+> **Note**: This tool follows the same pattern as MemoryRead - part of "ANT_ONLY_TOOLS" with an empty prompt and disabled by default. It demonstrates how the system can prepare functionality while keeping it hidden until ready for release.
+
 ## Complete Prompt
 
 ```typescript

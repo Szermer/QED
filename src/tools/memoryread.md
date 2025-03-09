@@ -2,6 +2,8 @@
 
 MemoryRead retrieves information stored in a persistent memory system, enabling state preservation across conversations.
 
+> **Note**: An interesting pattern in this code - the tool is included in "ANT_ONLY_TOOLS" with an empty prompt. It's implemented but disabled by default, functioning as a system component rather than a user-facing feature. This approach lets developers add experimental features without changing core code.
+
 ## Complete Prompt
 
 ```typescript
