@@ -2,7 +2,9 @@
 
 MemoryRead retrieves information stored in a persistent memory system, enabling state preservation across conversations.
 
-> **Note**: An interesting pattern in this code - the tool is included in "ANT_ONLY_TOOLS" with an empty prompt. It's implemented but disabled by default, functioning as a system component rather than a user-facing feature. This approach lets developers add experimental features without changing core code.
+> **Note**: An interesting pattern in this code - the tool is included in an `ANT_ONLY_TOOLS` array in `tools.ts` with empty prompts defined in their respective `prompt.ts` files. The tools are disabled by default as evidenced by the `isEnabled()` method returning `false`. 
+>
+> When building an agentic system, persistent memory like this provides critical functionality. The filesystem-based approach shown here is straightforward to implement yet powerful - enabling agents to retain information across sessions without complex infrastructure. The tool's separation of read/write operations and simple directory-based structure makes it easy to debug and maintain.
 
 ## Complete Prompt
 
@@ -159,7 +161,12 @@ isReadOnly() {
 }
 ```
 
-Together, these tools provide a simple but effective persistent storage system that maintains state between conversations.
+Together, these tools provide a simple but effective persistent storage system that maintains state between conversations. If enabled, these tools would:
+
+1. Allow users to maintain persistent data across multiple sessions
+2. Not require permission prompts (`needsPermissions()` returns `false`)
+3. Store data files in the `~/.koding/memory` directory
+4. Support structured information organization with directories and an index file
 
 ## Usage Examples
 
@@ -186,5 +193,20 @@ Key benefits of the memory system:
 - Stores user preferences and settings
 - Builds knowledge specific to the user
 
-This allows building a progressively refined understanding of user context and preferences without requiring the same information to be provided repeatedly.
+## Memory System Design Patterns
+
+The memory implementation here offers several patterns useful for agentic systems:
+
+1. **Hierarchical Storage**: Using a directory structure creates natural organization for different types of memory (preferences, project context, etc.)
+
+2. **Index-based Access**: The root index.md provides a table of contents, making memory contents discoverable and self-documenting
+
+3. **Plain Text Storage**: Using Markdown files keeps data human-readable and easy to inspect/debug
+
+4. **Path Validation**: Security checks prevent directory traversal attacks while allowing flexible memory structures
+
+5. **Minimal Dependencies**: The filesystem-based approach works across platforms with no external databases
+
+For developers building similar systems, this demonstrates how to implement long-term memory with minimal overhead while maintaining security and extensibility.
+
 

@@ -10,6 +10,7 @@
 - [Execution Flow in Detail](execution-flow-in-detail.md)
 - [The Permission System](the-permission-system.md)
 - [Parallel Tool Execution](parallel-tool-execution.md)
+- [Feature Flag Integration](feature-flag-integration.md)
 - [Real-World Examples](real-world-examples.md)
 - [Lessons Learned and Implementation Challenges](lessons-learned-and-implementation-challenges.md)
 - [Tool System Deep Dive](tool-system-deep-dive.md)

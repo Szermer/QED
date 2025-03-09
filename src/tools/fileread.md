@@ -139,28 +139,27 @@ async function readImage(
 
 ## Key Features
 
-View provides specialized handling for different file types:
+View offers specialized handling for different file types:
 
 1. **Text Processing**
-   - Auto-detects encoding (UTF-8, UTF-16LE, ASCII)
-   - Limits output to 2000 lines by default
-   - Truncates long lines (over 2000 chars)
-   - Caps size at 0.25MB for text files
-   - Adds line numbers for context
+   - Encoding detection
+   - 2000-line default output limit
+   - Line truncation for excessive length
+   - Size cap for text files
+   - Line numbering
 
 2. **Image Processing**
-   - Handles standard formats (PNG, JPG, GIF, BMP, WEBP)
-   - Resizes images to fit max dimensions (2000x2000px)
-   - Preserves aspect ratios when resizing
-   - Reduces quality for oversized images
-   - Converts large files to JPEG format
-   - Encodes as base64 for display
+   - Support for common image formats
+   - Dynamic resizing for large images
+   - Aspect ratio preservation
+   - Quality reduction for oversized files
+   - Format conversion when needed
 
 3. **User Experience**
-   - Suggests similar files when not found
-   - Provides clear error messages with context
-   - Supports pagination for large files
-   - Includes line counts for orientation
+   - Similar file suggestions
+   - Contextual error messages
+   - Pagination for large files
+   - Line count display
 
 ## Architecture
 
@@ -211,5 +210,5 @@ Typical ways to use View:
    View(file_path: "/path/to/image.png")
    ```
 
-View is a foundational tool used in almost every task that requires understanding code structure or content. It handles both text and images with specialized processing for each type.
+View provides core functionality for reading code and content, with type-specific processing for both text and images.
 
