@@ -69,6 +69,48 @@ If you're building an AI coding assistant or any agentic system:
 
 For a deeper exploration of specific subsystems, the tool and command system deep dives provide implementation-level details.
 
+The code examples reference both Claude Code architecture and anon-kode (by Daniel Nakov - https://github.com/dnakov/anon-kode), which is included as a submodule. By examining the anon-kode implementation alongside this guide, you'll get hands-on experience with the concepts described here.
+
+## Getting Started
+
+To make the most of this guide and explore the code examples:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/gerred/building-an-agentic-system.git
+   cd building-an-agentic-system
+   ```
+
+2. **Initialize Submodules**
+   This repository includes anon-kode as a submodule, which is a reference implementation:
+   ```bash
+   git submodule update --init --recursive
+   ```
+
+3. **Explore the Code**
+   The `anon-kode` submodule contains the reference implementation by Daniel Nakov (https://github.com/dnakov/anon-kode). This is an excellent terminal-based AI coding tool that works similarly to Claude Code and provides a concrete example of the architecture described in this guide.
+
+## Guide Map
+
+Here's how this guide is organized:
+
+- **[Introduction](introduction.md)** - Overview of agentic systems and why they matter
+- **Core Architecture**
+  - **[System Architecture Diagram](system-architecture-diagram.md)** - Visual overview of the entire system
+  - **[Core Architecture](core-architecture.md)** - The fundamental building blocks
+  - **[Execution Flow](execution-flow-in-detail.md)** - How requests flow through the system
+  - **[Parallel Tool Execution](parallel-tool-execution.md)** - Running operations concurrently
+  - **[Permission System](the-permission-system.md)** - Security guardrails for agents
+- **Components**
+  - **[Tool System](tool-system-deep-dive.md)** - How tools are defined and executed
+  - **[Command System](command-system-deep-dive.md)** - How commands control the agent
+- **Reference**
+  - **[Tools](tools/)** - Detailed documentation of each tool
+  - **[Commands](commands/)** - Detailed documentation of each command
+- **Real-World Applications**
+  - **[Real-World Examples](real-world-examples.md)** - Case studies and practical applications
+  - **[Lessons Learned](lessons-learned-and-implementation-challenges.md)** - Challenges and solutions
+
 ## Connect and Support
 
 I'm actively building in this space and available for consulting. If you need help with:
