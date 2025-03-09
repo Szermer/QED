@@ -1,6 +1,6 @@
-# GrepTool: Content Searching
+# GrepTool: Search Inside Files
 
-GrepTool provides high-performance content searching across files using regular expressions. It's built on ripgrep, making it exceptionally fast even with large codebases.
+GrepTool searches through file contents using regex patterns. Built on ripgrep, it's blazing fast even in large codebases.
 
 ## Complete Prompt
 
@@ -27,21 +27,21 @@ export const DESCRIPTION = `
 > - Use this tool when you need to find files containing specific patterns
 > - When you are doing an open ended search that may require multiple rounds of globbing and grepping, use the Agent tool instead
 
-## Implementation Details
+## How It Works
 
-GrepTool is implemented with two main components:
+GrepTool has two main parts:
 
-1. **The GrepTool React component** (`GrepTool.tsx`)
-   - Handles user input validation with Zod schema
-   - Manages the permission system integration
-   - Formats results for the Claude UI and API
+1. **The UI component** (`GrepTool.tsx`)
+   - Validates your search params
+   - Handles permissions
+   - Formats the results nicely
 
 2. **The ripgrep wrapper** (`ripgrep.ts`)
-   - Wraps the Rust-based ripgrep CLI tool
-   - Handles platform-specific differences
-   - Manages binary distribution and execution
+   - Runs the super-fast Rust-based ripgrep tool
+   - Works across all platforms
+   - Handles the nitty-gritty details
 
-Let's look at the core implementation:
+Here's what the search function looks like:
 
 ```typescript
 // Core search implementation from GrepTool.tsx
@@ -83,7 +83,7 @@ async *call({ pattern, path, include }, { abortController }) {
 }
 ```
 
-The ripgrep integration is particularly interesting:
+And here's how it connects to ripgrep:
 
 ```typescript
 // From ripgrep.ts - platform-specific optimizations
@@ -120,49 +120,49 @@ export async function ripGrep(
 }
 ```
 
-## Key Components
+## What Makes It Special
 
-GrepTool has several critical features:
+GrepTool has some cool features:
 
-1. **Performance optimization**
-   - Uses ripgrep, a Rust-based tool that's significantly faster than traditional grep
-   - Limits result size with MAX_RESULTS constant (100)
-   - Implements result truncation notifications
-   - Supports abort signals for cancellation
+1. **Speed**
+   - Uses ripgrep (way faster than regular grep)
+   - Caps results at 100 files to stay snappy
+   - Tells you when there are too many matches
+   - Can be canceled if it's taking too long
 
-2. **Platform independence**
-   - Includes built-in ripgrep binaries for all platforms
-   - Implements macOS code signing to avoid security issues
-   - Handles platform-specific path differences
+2. **Works Everywhere**
+   - Comes with ripgrep for all platforms
+   - Sets up properly on macOS with code signing
+   - Deals with path differences between OSes
 
-3. **Advanced search capabilities**
-   - Full regex syntax support
-   - Case-insensitive searching by default
-   - File pattern filtering with glob syntax
-   - Only reports files with matches, not individual match lines
+3. **Power Searching**
+   - Full regex support for complex patterns
+   - Doesn't care about case by default
+   - Can filter by file types
+   - Shows just file names, not every matching line
 
-## Architecture
+## How It's Built
 
-The GrepTool architecture follows a layered approach:
+GrepTool is structured like this:
 
 ```
-GrepTool.tsx (React component)
+GrepTool.tsx (UI component)
   ↓
-ripGrep() in ripgrep.ts (Core functionality)
+ripGrep() in ripgrep.ts (Main logic)
   ↓
-ripgrep CLI binary (Native implementation)
+ripgrep CLI binary (The engine)
 ```
 
-Notable design decisions:
+Some smart decisions in the design:
 
-- Bundling ripgrep binaries for all platforms ensures consistent availability
-- The `-li` flag optimizes for file discovery rather than displaying matches
-- Like GlobTool, it's marked as read-only to enable parallel execution
-- Results are limited and sorted by modification time to prioritize recent changes
+- Includes ripgrep binaries so it works out of the box
+- Uses `-li` flags to just find files (not individual matches)
+- Marked as read-only so it can run in parallel with other tools
+- Shows newest files first so you see recent changes
 
-## Permission Handling
+## Permissions
 
-GrepTool uses the same simple permission model as GlobTool:
+GrepTool keeps permissions simple:
 
 ```typescript
 needsPermissions({ path }) {
@@ -170,26 +170,26 @@ needsPermissions({ path }) {
 }
 ```
 
-This checks if Claude has read access to the specified directory. The permission is granted once per directory, then applies to all grep operations within that directory.
+It just checks if Claude can read the directory you're searching in. Once you grant access to a directory, it applies to all searches in that directory.
 
-## Usage Examples
+## Examples
 
-Common usage patterns:
+Here are some common searches:
 
-1. **Finding function definitions**
+1. **Find function definitions**
    ```
    GrepTool(pattern: "function\\s+getUserData")
    ```
 
-2. **Searching with file type filtering**
+2. **Search just specific file types**
    ```
    GrepTool(pattern: "import.*React", include: "*.tsx")
    ```
 
-3. **Finding error handling**
+3. **Look for error handling**
    ```
    GrepTool(pattern: "catch.*Error", path: "/path/to/src")
    ```
 
-GrepTool is most powerful when combined with GlobTool or when searching for specific code patterns like function definitions, imports, or error handling.
+GrepTool works great with GlobTool - use Glob to find files by name, then Grep to search their contents. It's especially good for finding code patterns like functions, imports, or error handling.
 

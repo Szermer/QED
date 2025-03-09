@@ -1,6 +1,6 @@
-# FileEditTool: Precision File Modifications
+# Edit: Precise File Modifications
 
-FileEditTool performs targeted edits to files with strict validation to prevent unintended modifications. It requires unique matches within files to ensure changes are precise and intentional.
+Edit performs targeted changes to files with strict validation to prevent unintended modifications. It requires unique text matches to ensure changes are precise and intentional.
 
 ## Complete Prompt
 
@@ -107,91 +107,81 @@ Remember: when making multiple file edits in a row to the same file, you should 
 
 ## Key Components
 
-The FileEditTool is structured around several critical components:
+The Edit tool supports three main operations:
 
-1. **Operation Modes**
-   - **Update Mode**: Replace specific text while preserving the rest of the file
-   - **Create Mode**: Generate a new file with empty `old_string`
-   - **Delete Mode**: Remove text by providing empty `new_string`
+1. **Operation Types**
+   - **Update**: Replace specific text in an existing file
+   - **Create**: Generate a new file by using empty `old_string`
+   - **Delete**: Remove text by using empty `new_string`
 
-2. **Diff Generation System**
-   - Visual representation of changes for user feedback
+2. **Diff Generation**
+   - Shows visual representation of changes
    - Highlights additions and deletions
-   - Line number tracking for context
+   - Includes line numbers for context
 
-3. **Validation Pipeline**
-   - Parameter validation (file_path, old_string, new_string)
-   - File existence checking
-   - Uniqueness verification for old_string
-   - Timestamp validation to prevent race conditions
+3. **Validation Process**
+   - Checks parameters (file_path, old_string, new_string)
+   - Verifies file existence
+   - Confirms uniqueness of old_string
+   - Validates timestamps to prevent race conditions
 
-4. **File Handling System**
-   - Encoding detection and preservation
-   - Line ending preservation (CRLF/LF)
-   - Backup creation before modifications
-   - Parent directory creation for new files
+4. **File Handling**
+   - Detects and preserves file encoding
+   - Maintains line endings (CRLF/LF)
+   - Creates backups before modifications
+   - Creates parent directories for new files
 
-5. **Error Handling Framework**
-   - Descriptive error messages with remediation suggestions
-   - Custom error types for different validation failures
-   - Context-aware error reporting
+5. **Error Handling**
+   - Provides specific error messages with suggestions
+   - Uses custom error types for different validation issues
+   - Includes context in error reports
 
-## Architecture
+## Workflow
 
-FileEditTool's architecture follows a validation-first approach:
+Edit follows a validation-first approach:
 
 ```
-+-----------------------+
-| Parameter Validation  |
-+-----------------------+
-           ↓
-+-----------------------+
-| File Access Validation|
-+-----------------------+
-           ↓
-+-----------------------+
-| Uniqueness Validation |
-+-----------------------+
-           ↓
-+-----------------------+
-| Edit Application      |
-+-----------------------+
-           ↓
-+-----------------------+
-| Result Formatting     |
-+-----------------------+
+Parameter Validation
+        ↓
+File Access Validation
+        ↓
+Uniqueness Validation
+        ↓
+Edit Application
+        ↓
+Result Formatting
 ```
 
-The implementation follows these execution steps:
+The process follows these steps:
 
-1. **Parameter Preparation**
-   - Validate all parameters are provided
-   - Check that file_path is absolute
-   - Normalize paths for consistent handling
+1. **Parameter Check**
+   - Validates all required parameters
+   - Ensures file_path is absolute
+   - Normalizes paths for consistency
 
 2. **File Validation**
-   - Check if target file exists
-   - For new files, verify parent directory exists
-   - For Jupyter notebooks, redirect to appropriate tool
+   - Checks if target file exists
+   - For new files, verifies parent directory
+   - Redirects Jupyter notebooks to appropriate tool
 
 3. **Content Analysis**
-   - Read file with encoding detection
-   - Count occurrences of old_string
-   - Verify uniqueness to prevent unintended modifications
+   - Reads file with encoding detection
+   - Counts occurrences of old_string
+   - Verifies uniqueness to prevent unintended edits
 
 4. **Edit Application**
-   - Apply the replacement once
-   - Create parent directories if needed (for new files)
-   - Preserve file encoding and line endings
+   - Applies the replacement once
+   - Creates parent directories as needed
+   - Preserves file encoding and line endings
 
-5. **Result Reporting**
-   - Generate a diff of the changes
-   - Return snippet of edited file with line numbers
-   - Report status and changes made
+5. **Result Generation**
+   - Creates visual diff of changes
+   - Returns edited file snippet with line numbers
+   - Reports status and changes made
 
-## Permission Handling
+## Permissions
 
-FileEditTool uses the standard file permission system with special handling for directory creation:
+Edit uses the standard file permission system with special handling for directory creation:
 
 ```typescript
 needsPermission(params: Params): boolean {
@@ -207,40 +197,40 @@ needsPermission(params: Params): boolean {
 }
 ```
 
-Key permission aspects:
+Key permission features:
 
-1. **Explicit Permission Requirements**
+1. **Permission Requirements**
    - Always requires permission for existing files
    - For new files, checks parent directory permissions
    - Uses per-directory permission tracking
 
-2. **Permission UI**
-   - Shows file path and change preview
-   - Displays diff visualization of proposed changes
-   - Provides context for the permission request
+2. **Permission Interface**
+   - Displays file path and change preview
+   - Shows diff visualization of proposed changes
+   - Provides context for permission requests
 
-3. **Permission Caching**
+3. **Permission Optimization**
    - Caches directory write permissions
-   - Avoids repeated permission prompts for the same directory
-   - Maintains security while improving user experience
+   - Reduces permission prompts for the same directory
+   - Balances security with user experience
 
-## Implementation Details
+## Implementation
 
-Looking at the implementation, FileEditTool consists of several key components:
+The core implementation consists of these components:
 
-1. **The FileEditTool React component** (`FileEditTool.tsx`)
-   - TypeScript interface with strict parameter validation
-   - Schema validation to ensure required fields
+1. **FileEditTool React component**
+   - TypeScript interface with parameter validation
+   - Schema validation for required fields
    - Permission checking for file access
-   - Result formatting for Claude
+   - Result formatting for display
 
-2. **The edit utility functions** (`file.ts`)
+2. **Edit utility functions**
    - Core file manipulation with encoding preservation
-   - String replacement with uniqueness validation
-   - Error handling for various failure cases
+   - String replacement with uniqueness checks
+   - Error handling for various cases
    - Diff generation for visual feedback
 
-Here's a look at the core implementation:
+Core implementation:
 
 ```typescript
 // Simplified version of the core edit function

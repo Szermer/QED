@@ -1,6 +1,6 @@
 # BashTool: Command Execution
 
-BashTool executes bash commands in a persistent shell session, providing Claude with access to command-line capabilities while enforcing strict security boundaries. It maintains shell state between commands and includes sophisticated safety mechanisms.
+BashTool runs commands in a persistent shell session. It maintains state between commands and has security measures to keep things safe while still being useful.
 
 ## Complete Prompt
 
@@ -74,132 +74,129 @@ Use the gh command via the Bash tool for ALL GitHub-related tasks including work
 >   - IMPORTANT: All commands share the same shell session. Shell state (environment variables, virtual environments, current directory, etc.) persist between commands. For example, if you set an environment variable as part of a command, the environment variable will persist for subsequent commands.
 >   - Try to maintain your current working directory throughout the session by using absolute paths and avoiding usage of `cd`. You may use `cd` if the User explicitly requests it.
 
-## Key Components
+## How It Works
 
-The BashTool has several critical components:
+The BashTool has a few key parts:
 
-1. **PersistentShell Singleton**
-   - Maintains a single long-running shell session
-   - Manages working directory persistence
-   - Handles interactive shell initialization
-   - Tracks active processes with timeout capability
+1. **PersistentShell**
+   - Keeps one shell session running throughout your conversation
+   - Remembers working directory and environment variables
+   - Sets up a proper interactive shell
+   - Handles command timeouts
 
-2. **Security Enforcement System**
-   - Banned command list (`BANNED_COMMANDS`)
-   - Working directory boundary enforcement
-   - Command validation and sanitization
-   - Shell syntax checking before execution
+2. **Security**
+   - Blocks potentially dangerous commands
+   - Keeps operations within your project directories
+   - Validates commands before running them
+   - Checks shell syntax validity
 
-3. **Permission Framework**
-   - Three-tiered permission system:
-     - Temporary (single-use)
-     - Prefix-based (commands starting with same pattern)
-     - Full command (exact command string)
-   - Risk score assessment
-   - Command description generation using Haiku
+3. **Permission System**
+   - Three approval levels:
+     - One-time (temporary)
+     - Pattern-based (like all `git` commands)
+     - Exact command matches
+   - Evaluates command risk levels
+   - Explains what commands do in plain language
 
-4. **Output Processing**
-   - Separate stdout and stderr handling
-   - Character and line count tracking
-   - Truncation detection and notification
-   - HEREDOC handling for complex commands
+4. **Output Handling**
+   - Manages stdout and stderr
+   - Handles output truncation for large results
+   - Processes multi-line commands
+   - Preserves special formatting
 
-5. **Shell Command Management**
-   - Command queuing for sequential execution
-   - Process termination for timeouts
-   - Exit code tracking and propagation
-   - Child process monitoring and cleanup
+5. **Command Management**
+   - Runs commands sequentially
+   - Handles timeouts
+   - Tracks exit codes
+   - Cleans up processes and temporary files
 
-## Architecture
+## Under the Hood
 
-BashTool is structured as a multi-layered system:
+BashTool is built in layers:
 
 ```
-BashTool.tsx (Tool interface)
+BashTool.tsx (Interface)
   ↓
-PersistentShell (Core singleton)
+PersistentShell (Core)
   ↓
-Node child_process (Shell spawning)
+Node child_process (Execution)
 ```
 
-The tool works through five main phases:
+When you run a command, it goes through these steps:
 
-1. **Initialization Phase**
-   - Create PersistentShell singleton
-   - Initialize temporary files for IPC
-   - Load shell configuration files
-   - Set up shell environment
+1. **Setup**
+   - Initializes the shell
+   - Creates temp files for output
+   - Loads configurations
+   - Sets up environment
 
-2. **Command Validation Phase**
-   - Check against banned commands
-   - Validate working directory boundaries for `cd`
-   - Perform shell syntax checking
-   - Assess permission requirements
+2. **Validation**
+   - Checks against banned commands
+   - Ensures `cd` commands stay within bounds
+   - Validates shell syntax
+   - Determines required permissions
 
-3. **Execution Phase**
-   - Queue commands for sequential execution
-   - Redirect stdout/stderr to temp files
-   - Monitor for completion or timeout
-   - Handle process interruption
+3. **Execution**
+   - Runs commands in order
+   - Captures output
+   - Monitors for completion or timeout
+   - Handles interruptions
 
-4. **Output Processing Phase**
-   - Read from temp files
-   - Format and potentially truncate output
-   - Handle errors and exit codes
-   - Reset shell state if necessary
+4. **Processing**
+   - Reads output files
+   - Formats and truncates if needed
+   - Reports errors
+   - Preserves shell state
 
-5. **Cleanup Phase**
-   - Kill child processes if needed
-   - Update file timestamps for referenced files
-   - Return formatted results
-   - Reset stdout/stderr buffers
+5. **Cleanup**
+   - Terminates processes if needed
+   - Updates timestamps
+   - Returns results
+   - Clears buffers
 
-## Permission Handling
+## Permissions
 
-BashTool uses a sophisticated permission system:
+BashTool always requires permission:
 
 ```typescript
 needsPermissions(): boolean {
-  // Always check per-project permissions for BashTool
+  // Always check permissions for Bash
   return true
 }
 ```
 
-Unlike other tools that check permissions conditionally, BashTool always requires explicit permission.
+Unlike other tools that might skip permission checks, BashTool always asks.
 
-The BashPermissionRequest component implements a three-tiered approach:
+The permission system offers three options:
 
-1. **Temporary Permission**
-   - Allows the command once
-   - No persistence between sessions
-   - Used for one-off commands
+1. **Temporary**
+   - Just for this one command
+   - Doesn't persist between sessions
+   - Good for one-off commands
 
-2. **Prefix Permission**
-   - Allows all commands starting with a specific prefix
-   - Example: Approve `git status` to allow all `git` commands
-   - Persisted between sessions
+2. **Prefix**
+   - Allows all commands with a common prefix
+   - Example: approve all `git` commands with one permission
+   - Persists between sessions
 
-3. **Full Command Permission**
-   - Approves the exact command string
-   - Maximum precision but less convenience
-   - Persisted between sessions
+3. **Full Command**
+   - Approves only that exact command
+   - Most restrictive option
+   - Persists between sessions
 
-The permission system integrates with analytics:
-- Logs all permission requests
-- Tracks accept/reject decisions
-- Associates risk scores with commands
+The system tracks what gets approved or denied to help improve the tool.
 
-## Usage Examples
+## Examples
 
-Common usage patterns:
+Here's how to use BashTool for common tasks:
 
-1. **Environment Inspection**
+1. **Environment Info**
 ```typescript
 Bash({ command: "pwd" })
 Bash({ command: "env | grep PATH" })
 ```
 
-2. **Project Management**
+2. **Project Tasks**
 ```typescript
 Bash({ command: "git status" })
 Bash({ command: "npm install" })
@@ -217,10 +214,10 @@ Bash({ command: "npm run build" })
 Bash({ command: "pytest -xvs tests/" })
 ```
 
-5. **Complex Multi-part Commands**
+5. **Multi-step Commands**
 ```typescript
 Bash({ command: "export NODE_ENV=production && npm run build && node ./scripts/post-build.js" })
 ```
 
-BashTool is the most powerful but also most carefully guarded tool in Claude Code. Its persistent session enables complex workflows like compilation, testing, and git operations, while strict security boundaries and the permission system protect against potential misuse.
+BashTool lets Claude execute terminal commands safely. It handles everything from simple file operations to complex build pipelines while keeping security guardrails in place.
 

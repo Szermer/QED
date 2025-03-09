@@ -1,6 +1,6 @@
-# GlobTool: File Pattern Matching
+# GlobTool: Find Files Fast
 
-GlobTool is a fast file-finding tool that searches for files matching glob patterns. It's optimized for performance with large codebases and works with standard glob syntax.
+GlobTool finds files that match patterns. It works with any codebase size and sorts results by modification time so you see the most recently changed files first.
 
 ## Complete Prompt
 
@@ -22,21 +22,21 @@ export const DESCRIPTION = `- Fast file pattern matching tool that works with an
 > - Use this tool when you need to find files by name patterns
 > - When you are doing an open ended search that may require multiple rounds of globbing and grepping, use the Agent tool instead
 
-## Implementation Details
+## How It Works
 
-Looking at the implementation, GlobTool has two main components:
+GlobTool has two main parts:
 
-1. **The GlobTool React component** (`GlobTool.tsx`)
-   - Simple TypeScript interface with Zod schema validation
-   - Provides schema, permissions, and renderer functions
-   - Calls the underlying file utility function
+1. **Front-end component** (`GlobTool.tsx`)
+   - Handles the interface between Claude and the file system
+   - Validates inputs and formats results
+   - Manages permissions
 
-2. **The glob utility function** (`file.ts`)
-   - Wraps Node's `glob` library with smart options
-   - Implements sorting and result limiting
-   - Provides truncation information to prevent overwhelming the model
+2. **Glob function** (`file.ts`)
+   - Does the actual file matching with Node's glob library
+   - Sorts files by how recently they were changed
+   - Limits results to avoid overwhelming Claude
 
-Let's look at the core implementation more closely:
+Here's what the core function looks like:
 
 ```typescript
 // From file.ts - the core file matching function
@@ -62,21 +62,20 @@ export async function glob(
     files: sortedPaths
       .slice(offset, offset + limit)
       .map(path => path.fullpath()),
-    truncated,  // Important flag to let Claude know results were limited
+    truncated,  // Let Claude know if results were limited
   }
 }
 ```
 
-The tool's React component handles Claude-specific formatting:
+The results get formatted nicely for Claude:
 
 ```typescript
-// Formats results in a clean, readable format for Claude
+// Formats results in a clean, readable format
 renderResultForAssistant(output) {
   let result = output.filenames.join('\n')
   if (output.filenames.length === 0) {
     result = 'No files found'
   }
-  // Only add truncation message if results were actually truncated
   else if (output.truncated) {
     result +=
       '\n(Results are truncated. Consider using a more specific path or pattern.)'
@@ -85,46 +84,46 @@ renderResultForAssistant(output) {
 }
 ```
 
-## Key Components
+## What Makes It Special
 
-The GlobTool has several critical features:
+GlobTool has some nice features:
 
-1. **Performance optimization**
-   - Works efficiently with any codebase size via Node's glob library
-   - Results sorted by modification time (newest files first)
-   - Limited to 100 results to prevent overwhelming context
-   - Supports cancellation via AbortSignal
+1. **Speed and scale**
+   - Works with codebases of any size
+   - Shows newest files first
+   - Stops at 100 results to keep things manageable
+   - Can be canceled if it takes too long
 
-2. **Pattern matching**
-   - Supports standard glob syntax (**, *, ?, etc.)
-   - Case-insensitive matching by default
-   - Excludes directories from results (files only)
+2. **Pattern support**
+   - Uses familiar glob patterns like `**/*.js`
+   - Doesn't care about case by default
+   - Only returns files (not directories)
 
-3. **Safety mechanisms**
-   - Truncation detection and notification
-   - Clear warning to switch to Agent for complex searches
-   - Path safety validation via the filesystem permission system
+3. **Safety**
+   - Tells you when results get cut off
+   - Suggests using Agent for complex searches
+   - Checks permissions before accessing paths
 
-## Architecture
+## How It's Built
 
-GlobTool is structured as:
+GlobTool is pretty straightforward:
 
 ```
-GlobTool.tsx (Tool interface)
+GlobTool.tsx (Interface)
   ↓
-glob() in file.ts (Core functionality)
+glob() in file.ts (Main function)
   ↓
-Node's glob library (Underlying implementation)
+Node's glob library (Does the heavy lifting)
 ```
 
-The read-only designation is important - it enables:
-- Parallel execution with other tools
-- Simpler permission model
-- No risk of filesystem modifications
+Since it's read-only, it:
+- Can run at the same time as other tools
+- Has simple permissions
+- Can't accidentally modify files
 
-## Permission Handling
+## Permissions
 
-GlobTool uses a simple permission model:
+GlobTool just needs to check if it can read the directory:
 
 ```typescript
 needsPermissions({ path }) {
@@ -132,30 +131,30 @@ needsPermissions({ path }) {
 }
 ```
 
-This single check verifies if Claude has read access to the target directory. The filesystem permission system includes additional safeguards:
+The system also has these safety measures:
 
-- Path normalization to prevent directory traversal attacks
-- Rejection of paths containing null bytes or other potential exploits
-- Path comparison to ensure operations remain within allowed directories
+- Normalizes paths to prevent directory traversal
+- Rejects paths with null bytes or other weird stuff
+- Makes sure operations stay within allowed directories
 
-## Usage Examples
+## Examples
 
-Common usage patterns:
+Here's how to use it:
 
-1. **Finding all JavaScript files**
+1. **Find JavaScript files**
    ```
    GlobTool(pattern: "**/*.js")
    ```
 
-2. **Searching in a specific directory**
+2. **Look in a specific folder**
    ```
    GlobTool(pattern: "*.ts", path: "/path/to/src")
    ```
 
-3. **Finding configuration files**
+3. **Find config files**
    ```
    GlobTool(pattern: "**/config.{json,yaml,yml}")
    ```
 
-GlobTool is frequently used in conjunction with GrepTool - first finding files matching a pattern, then searching their contents.
+GlobTool pairs well with GrepTool - first find the files, then search their contents.
 

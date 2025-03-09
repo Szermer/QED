@@ -1,6 +1,6 @@
-# ArchitectTool (Architect): Software Architecture Planning
+# Architect: Software Design Planning
 
-ArchitectTool provides specialized planning assistance to break down technical requirements into clear, actionable implementation plans. It functions as a software architect that analyzes requests without writing actual code.
+Architect helps break down technical requirements into clear implementation plans. It analyzes requests and creates structured plans without writing actual code.
 
 ## Complete Prompt
 
@@ -26,9 +26,9 @@ export const DESCRIPTION =
 >
 > Your go-to tool for any technical or coding task. Analyzes requirements and breaks them down into clear, actionable implementation steps. Use this whenever you need help planning how to implement a feature, solve a technical problem, or structure your code.
 
-## Implementation Details
+## How It Works
 
-ArchitectTool creates a separate Claude instance with specialized architect instructions:
+Architect creates a specialized Claude instance with architect-specific instructions:
 
 ```typescript
 export const ArchitectTool = {
@@ -80,14 +80,14 @@ export const ArchitectTool = {
 
 ## Key Components
 
-ArchitectTool has several critical features:
+Architect includes these important features:
 
-1. **Input Schema**
-   - `prompt`: Required technical request to analyze
-   - `context`: Optional additional context from prior conversation
+1. **Input Parameters**
+   - `prompt`: The technical request to analyze
+   - `context`: Optional context from prior conversation
 
 2. **Limited Tool Access**
-   - Defines specific allowed tools for exploration:
+   - Only allows specific file exploration tools:
      ```typescript
      const FS_EXPLORATION_TOOLS: Tool[] = [
        BashTool,
@@ -100,21 +100,19 @@ ArchitectTool has several critical features:
      ```
 
 3. **Specialized System Prompt**
-   - Three-step process for requirement analysis
-   - Focus on planning over implementation
-   - Clear instructions to avoid writing code
+   - Three-step analysis process for requirements
+   - Planning-focused rather than implementation
+   - Instructions to avoid writing actual code
 
 4. **Context Handling**
-   - Formats optional context in XML tags
-   - Maintains separation between context and prompt
+   - Wraps context in XML tags
+   - Keeps context separate from the main prompt
 
 ## Architecture
 
-The ArchitectTool implements a simple query pattern:
+Architect follows a straightforward query pattern:
 
 ```
-ArchitectTool
-  ↓
 Input Processing → Format prompt and context
   ↓
 Tool Filtering → Limit to file exploration tools
@@ -124,15 +122,15 @@ Claude Query → Use specialized architect system prompt
 Result Processing → Extract and format text blocks
 ```
 
-The architecture prioritizes:
-- **Focus**: Specialized system prompt for architecture planning
-- **Simplicity**: Single query with clear instructions
-- **Limited scope**: Read-only operation with filtered tool access
-- **Clear presentation**: Markdown-formatted output
+Design priorities:
+- Focus on architecture planning with specialized prompt
+- Simple process with clear instructions
+- Read-only operation with limited tool access
+- Markdown output for clear presentation
 
-## Permission Handling
+## Permissions
 
-ArchitectTool is designed with a simplified permission model:
+Architect uses a simplified permission model:
 
 ```typescript
 needsPermissions() {
@@ -140,17 +138,17 @@ needsPermissions() {
 }
 ```
 
-This tool:
-- Requires no explicit permissions from the user
+The tool:
+- Needs no explicit user permissions
 - Operates in read-only mode
-- Is disabled by default and must be explicitly enabled
-- Filters available tools to maintain safe operation
+- Is disabled by default until explicitly enabled
+- Filters available tools for safe operation
 
 ## Usage Examples
 
-Common usage patterns:
+Typical use cases:
 
-1. **Feature implementation planning**
+1. **Planning feature implementation**
    ```
    Architect(prompt: "How should I implement a rate limiting middleware for our Express API?")
    ```
@@ -168,5 +166,5 @@ Common usage patterns:
    Architect(prompt: "How should we approach migrating from MongoDB to PostgreSQL in our Node.js app?")
    ```
 
-ArchitectTool is particularly valuable for planning complex implementation tasks, helping bridge the gap between high-level requirements and concrete code changes. It enables more thoughtful architecture decisions before writing any code.
+Architect helps bridge the gap between high-level requirements and concrete code changes, enabling thoughtful architecture decisions before implementation begins.
 
