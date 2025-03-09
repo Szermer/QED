@@ -25,9 +25,13 @@ I've deliberately focused on concrete engineering patterns rather than theoretic
 
 ## Who I Am
 
-I'm Gerred Dillon, a systems engineer who's been building distributed systems and developer tools for over a decade. My background includes:
+Hi! I'm Gerred. I'm a systems engineer, with a deep background in AI and Kubernetes at global scale, but overall I care deeply about everything from frontend UX to infrastructure and I have _opinions_. My background includes:
 
+- Early work on many CNCF projects and Kubernetes
 - Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)
+- Early deployment of GPUs onto Kubernetes for holoportation and humans in AR/VR
+- Data systems at scale at Mesosphere, including migration to Kubernetes
+- One of the initial engineers on the system that would grow to become [Platform One](https://p1.dso.mil/)
 - Implementing AI systems in secure, regulated environments
 - Designing and deploying large-scale distributed systems
 - Currently developing frameworks for specialized agents with reinforcement learning
