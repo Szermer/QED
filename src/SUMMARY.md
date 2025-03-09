@@ -24,6 +24,7 @@
   - [LS](tools/ls.md)
   - [MCP](tools/mcp.md)
   - [MemoryRead](tools/memoryread.md)
+  - [MemoryWrite](tools/memorywrite.md)
   - [NotebookEdit](tools/notebookedit.md)
   - [NotebookRead](tools/notebookread.md)
   - [StickerRequest](tools/stickerrequest.md)

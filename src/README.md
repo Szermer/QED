@@ -105,8 +105,8 @@ Here's how this guide is organized:
   - **[Tool System](tool-system-deep-dive.md)** - How tools are defined and executed
   - **[Command System](command-system-deep-dive.md)** - How commands control the agent
 - **Reference**
-  - **[Tools](tools/)** - Detailed documentation of each tool
-  - **[Commands](commands/)** - Detailed documentation of each command
+  - **[Tools](tool-system-deep-dive.md)** - Detailed documentation of each tool
+  - **[Commands](command-system-deep-dive.md)** - Detailed documentation of each command
 - **Real-World Applications**
   - **[Real-World Examples](real-world-examples.md)** - Case studies and practical applications
   - **[Lessons Learned](lessons-learned-and-implementation-challenges.md)** - Challenges and solutions
