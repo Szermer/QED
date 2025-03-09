@@ -1,5 +1,7 @@
 # Building an Agentic System
 
+A practical deep dive and code review into how to build a self-driving coding agent, execution engine, tools and commands. Rather than the prompts and AI engineering, this is the systems and design decisions that go into making agents that are real-time, self-corrective, and useful for productive work.
+
 ## Why This Guide Exists
 
 I created this guide while building out highly specialized, vertical agents. I'll often start with a problem with a framework and then unbundle parts of it, which is why I immediately wanted to take an agent I was building in Go and see how an agent like Claude Code could improve it, with a bunch of other features like rich components, panes, effectively Devin for your terminal. More on that soon.
@@ -34,7 +36,7 @@ Hi! I'm Gerred. I'm a systems engineer, with a deep background in AI and Kuberne
 - One of the initial engineers on the system that would grow to become [Platform One](https://p1.dso.mil/)
 - Implementing AI systems in secure, regulated environments
 - Designing and deploying large-scale distributed systems
-- Currently developing frameworks for specialized agents with reinforcement learning
+- Currently developing frameworks for specialized agents with reinforcement learning, especially with VLMs
 
 My focus has always been on the intersection of developer experience and robust engineering—how to make powerful systems that are actually pleasant to use.
 
