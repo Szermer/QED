@@ -1,5 +1,7 @@
 # Building an Agentic System
 
+There's been a lot of asking about how Claude Code works under the hood. Usually, people see the prompts, but they don't see how it all comes together. This is that book. All of the systems, tools, and commands that go into building one of these.
+
 A practical deep dive and code review into how to build a self-driving coding agent, execution engine, tools and commands. Rather than the prompts and AI engineering, this is the systems and design decisions that go into making agents that are real-time, self-corrective, and useful for productive work.
 
 ## Why This Guide Exists
