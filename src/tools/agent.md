@@ -1,6 +1,6 @@
-# AgentTool (dispatch_agent): Meta-Tool for Task Delegation
+# AgentTool: Your Research Assistant
 
-AgentTool enables launching autonomous sub-agents that can search, read files, and reason while maintaining security boundaries. It's optimized for parallel operations and offloading search-heavy tasks.
+AgentTool (dispatch_agent) lets you launch mini-Claudes to search and explore your codebase. This is great for finding things across multiple files or when you're not sure exactly where to look.
 
 ## Complete Prompt
 
@@ -44,9 +44,9 @@ Usage notes:
 > 4. The agent's outputs should generally be trusted
 > 5. IMPORTANT: The agent can not use Bash, Replace, Edit, NotebookEditCell, so can not modify files. If you want to use these tools, use them directly instead of going through the agent.
 
-## Implementation Details
+## How It Works
 
-AgentTool creates a separate Claude instance to perform delegated tasks with limited permissions:
+AgentTool creates a separate Claude to handle research tasks:
 
 ```typescript
 export const AgentTool = {
@@ -108,65 +108,65 @@ export const AgentTool = {
 }
 ```
 
-## Key Components
+## What Makes It Special
 
-AgentTool provides several critical features:
+AgentTool has some key features:
 
-1. **Tool Filtering and Security**
-   - Prevents recursive agent calls via tool filtering
-   - Enforces read-only access for agents
-   - Restricts access to modification tools
+1. **Safety First**
+   - Only gets read-only tools (no file editing or Bash)
+   - Can't create more agents (no recursion)
+   - Runs with clear boundaries
 
-2. **Progress Tracking**
-   - Real-time updates on tool execution
-   - Token usage tracking and reporting
-   - Execution time measurement
+2. **Progress Updates**
+   - Shows you what's happening in real time
+   - Tracks how many tools it's using
+   - Measures how long things take
 
-3. **Performance Optimization**
-   - Supports concurrent agent execution
-   - Separate query execution context
-   - Separate log chains for each agent
+3. **Parallel Power**
+   - Run multiple agents at once
+   - Each agent has its own space to work
+   - Separate logs keep things organized
 
-4. **Prompt Engineering**
-   - Tailored system prompt for agent tasks
-   - Clear usage guidance for effective delegation
-   - Stateless execution model
+4. **Clear Communication**
+   - Specialized prompting for search tasks
+   - One-and-done execution model
+   - Clean result formatting
 
-## Architecture
+## How It's Built
 
-The AgentTool implements a delegation pattern with clear boundaries:
+AgentTool follows this flow:
 
 ```
 AgentTool
   ↓
-getAgentTools() → Filters available tools, excluding recursive agents
+getAgentTools() → Gets the safe tools, no recursive agents
   ↓
-query() → Creates new Claude query context with agent prompt
+query() → Creates new Claude instance with search prompt
   ↓
-message stream → Processes messages with progress tracking
+message stream → Tracks progress and tool use
   ↓
-Tool execution → Handles each tool request in agent context
+Tool execution → Runs tools in isolated context
   ↓
-Result serialization → Extracts and formats final response
+Result formatting → Packages up the final answer
 ```
 
-The architecture prioritizes:
-- **Isolation**: Each agent operates in its own context
-- **Security**: Explicit permission boundaries for tool access
-- **Performance**: Parallel execution for read-only operations
-- **Usability**: Clear progress indicators and result formatting
+The design focuses on:
+- **Separation**: Each agent works in its own space
+- **Safety**: Clear boundaries for what tools are allowed
+- **Speed**: Do multiple searches at once
+- **Clarity**: Show progress and format results nicely
 
-## Permission Handling
+## Permissions
 
-AgentTool simplifies permission by operating in read-only mode:
+AgentTool keeps things simple with read-only mode:
 
 ```typescript
 needsPermissions() {
-  return false // No permissions needed for the tool itself
+  return false // Doesn't need its own permissions
 }
 
 async getAgentTools(dangerouslySkipPermissions) {
-  // Only expose read-only tools to agents
+  // Only give agents read-only tools
   return (
     await (dangerouslySkipPermissions ? getTools() : getReadOnlyTools())
   ).filter(_ => _.name !== AgentTool.name)
@@ -174,30 +174,30 @@ async getAgentTools(dangerouslySkipPermissions) {
 ```
 
 This approach:
-- Eliminates need for explicit permissions for agent launch
-- Restricts agents to safe, read-only operations by default
-- Prevents privilege escalation through recursive agent calls
-- Supports the principle of least privilege
+- Doesn't need to ask permission to start an agent
+- Only lets agents do safe, read-only things
+- Prevents agents from starting more agents
+- Follows the principle of least privilege
 
-## Usage Examples
+## Examples
 
-Common usage patterns:
+Here's how to use AgentTool:
 
-1. **Keyword searching across multiple files**
+1. **Find stuff across files**
    ```
-   dispatch_agent(prompt: "Find all files that use logging and identify the logger initialization pattern")
-   ```
-
-2. **Multiple parallel searches**
-   ```
-   dispatch_agent(prompt: "Find how error handling is implemented in this codebase")
-   dispatch_agent(prompt: "Locate all API endpoint definitions")
+   dispatch_agent(prompt: "Find all files that use logging and how they initialize it")
    ```
 
-3. **Delegated code exploration**
+2. **Run multiple searches at once**
    ```
-   dispatch_agent(prompt: "Analyze how authentication works in this codebase and summarize the approach")
+   dispatch_agent(prompt: "Find how error handling works in this codebase")
+   dispatch_agent(prompt: "Find all API endpoint definitions")
    ```
 
-AgentTool is particularly valuable for offloading search-heavy operations, especially in large codebases, allowing more efficient use of context window and reduced round-trip interactions when exploring unfamiliar code.
+3. **Explore code architecture**
+   ```
+   dispatch_agent(prompt: "Analyze how authentication works and summarize the approach")
+   ```
+
+AgentTool is great for exploring large codebases, saving context space, and cutting down on back-and-forth when you're hunting for information.
 

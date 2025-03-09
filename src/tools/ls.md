@@ -1,6 +1,6 @@
-# LSTool: Directory Listing
+# LS: Directory Listing
 
-LSTool provides directory listing functionality, displaying files and directories in a tree structure at a specified path. It helps Claude understand the filesystem before performing operations.
+LS displays files and directories in a tree structure at a specified path. It helps explore the filesystem structure before performing operations.
 
 ## Complete Prompt
 
@@ -13,18 +13,18 @@ export const DESCRIPTION = 'Lists files and directories in a given path. The pat
 >
 > Lists files and directories in a given path. The path parameter must be an absolute path, not a relative path. You should generally prefer the Glob and Grep tools, if you know which directories to search.
 
-## Implementation Details
+## How It Works
 
-LSTool implements directory listing through a breadth-first traversal approach with several key features:
+LS implements directory listing through a breadth-first traversal approach:
 
-1. **The LSTool React component** (`lsTool.tsx`)
-   - Simple interface with just one parameter (path)
-   - Custom tree rendering for user and assistant
-   - Safety checks and permission handling
+1. **Core Components**
+   - Simple interface with a single path parameter
+   - Tree-style rendering for clear visualization
+   - Safety checks and permission verification
 
-2. **The directory traversal functions**
-   - Breadth-first traversal to handle large directories efficiently
-   - Tree structure creation for hierarchical display
+2. **Directory Traversal**
+   - Breadth-first search for efficient directory processing
+   - Tree structure generation for hierarchical display
    - Filtering of hidden files and system directories
 
 Let's look at the core implementation:
@@ -130,30 +130,30 @@ function createFileTree(sortedPaths: string[]): TreeNode[] {
 }
 ```
 
-## Key Components
+## Key Features
 
-LSTool has several critical features:
+LS provides these important capabilities:
 
-1. **Directory traversal**
-   - Breadth-first search algorithm for efficient listing
-   - Automatic filtering of hidden files and system directories
-   - Directory/file type detection with proper representation
-   - Tree formatting for hierarchical display
+1. **Directory Analysis**
+   - Breadth-first search for efficient traversal
+   - Filtering of hidden files and system directories
+   - Type detection for files and directories
+   - Tree formatting for hierarchical visualization
 
-2. **Safety and optimization**
-   - 1000 file limit to prevent excessive output
-   - Truncation notification for large directories
-   - Error handling for access issues and edge cases
-   - Special warning for potentially malicious files (only shown to Claude)
+2. **Safety Measures**
+   - 1000 file limit to manage output size
+   - Truncation indicators for large directories
+   - Error handling for permission issues
+   - Security warnings for suspicious files (internal only)
 
-3. **UI considerations**
-   - Compact output mode for user interface (4 lines max)
-   - Verbose mode for fuller display when needed
-   - Tree-like format for intuitive directory structure visualization
+3. **Display Options**
+   - Compact mode for terminal display
+   - Verbose mode for detailed listing
+   - Tree structure for intuitive navigation
 
 ## Architecture
 
-The LSTool architecture has these main components:
+The LS tool has these main components:
 
 ```
 LSTool.tsx (React component)
@@ -165,11 +165,11 @@ createFileTree() (Hierarchical structure creation)
 printTree() (ASCII tree rendering)
 ```
 
-There's an interesting comment in the code: "TODO: Kill this tool and use bash instead" - suggesting that in a future refactoring, this functionality might be replaced by a more generic approach using the BashTool.
+There's an interesting comment in the code: "TODO: Kill this tool and use bash instead" - suggesting that in a future refactoring, this functionality might be replaced by the Bash tool.
 
-## Permission Handling
+## Permissions
 
-LSTool uses the standard read permission model:
+LS uses the standard read permission model:
 
 ```typescript
 needsPermissions({ path }) {
@@ -177,11 +177,11 @@ needsPermissions({ path }) {
 }
 ```
 
-This ensures Claude has read access to the specified directory before listing its contents. The permission system prevents access to sensitive system directories.
+This verifies read access to the specified directory before listing its contents. The permission system prevents access to sensitive system directories.
 
 ## Usage Examples
 
-Common usage patterns:
+Typical use cases:
 
 1. **Exploring project structure**
    ```
@@ -193,10 +193,10 @@ Common usage patterns:
    LS(path: "/path/to/project/assets")
    ```
 
-3. **Verifying directory existence before operations**
+3. **Verifying directory existence**
    ```
    LS(path: "/path/to/project/src") // Before creating files or running commands
    ```
 
-LSTool is particularly useful for initial exploration of unfamiliar codebases and for verifying directory contents before performing operations. It's often one of the first tools Claude uses when working with a new project.
+LS is useful for initial exploration of unfamiliar codebases and for verifying directory contents before performing operations. It's often one of the first tools used when working with a new project.
 

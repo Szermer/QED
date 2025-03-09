@@ -1,6 +1,6 @@
-# FileReadTool (View): Content Examination
+# View: Reading Files
 
-FileReadTool (named "View" in the interface) reads files from the filesystem with support for both text and images, providing Claude with direct access to file contents.
+View reads files from the filesystem with support for both text and images, providing direct access to file contents.
 
 ## Complete Prompt
 
@@ -16,19 +16,19 @@ export const PROMPT = `Reads a file from the local filesystem. The file_path par
 >
 > Reads a file from the local filesystem. The file_path parameter must be an absolute path, not a relative path. By default, it reads up to 2000 lines starting from the beginning of the file. You can optionally specify a line offset and limit (especially handy for long files), but it's recommended to read the whole file by not providing these parameters. Any lines longer than 2000 characters will be truncated. For image files, the tool will display the image for you. For Jupyter notebooks (.ipynb files), use the ReadNotebook instead.
 
-## Implementation Details
+## How It Works
 
-FileReadTool has sophisticated handling for different file types with several critical components:
+View handles different file types with specialized processing:
 
-1. **The FileReadTool React component** (`FileReadTool.tsx`)
-   - Input validation through a Zod schema
-   - Dynamic handling for different file types
-   - Size and access limitation enforcement
+1. **Core Components**
+   - Input validation using Zod schema
+   - Type-specific handlers for different file formats
+   - Size and access limits for safe operation
 
-2. **File reading mechanisms**
-   - Special handling for text vs. image files
-   - Support for pagination through offset/limit parameters
-   - Size restrictions and optimization
+2. **Reading Mechanisms**
+   - Different handlers for text and image files
+   - Pagination support with offset/limit parameters
+   - File size management and optimization
 
 Let's examine the key implementation sections:
 
@@ -137,34 +137,34 @@ async function readImage(
 }
 ```
 
-## Key Components
+## Key Features
 
-FileReadTool has several critical features:
+View provides specialized handling for different file types:
 
-1. **Text file handling**
-   - Automatic encoding detection (UTF-8, UTF-16LE, ASCII)
-   - Line limit enforcement (2000 lines default)
-   - Character length truncation (2000 chars per line)
-   - Size limiting (0.25MB max for text files)
-   - Line numbering for better context
+1. **Text Processing**
+   - Auto-detects encoding (UTF-8, UTF-16LE, ASCII)
+   - Limits output to 2000 lines by default
+   - Truncates long lines (over 2000 chars)
+   - Caps size at 0.25MB for text files
+   - Adds line numbers for context
 
-2. **Image handling**
-   - Support for common formats (PNG, JPG, GIF, BMP, WEBP)
-   - Dynamic resizing to max dimensions (2000x2000px)
-   - Aspect ratio preservation during resizing
-   - Quality reduction for oversized images
-   - Format conversion to JPEG for large files
-   - Base64 encoding for Claude's image display capability
+2. **Image Processing**
+   - Handles standard formats (PNG, JPG, GIF, BMP, WEBP)
+   - Resizes images to fit max dimensions (2000x2000px)
+   - Preserves aspect ratios when resizing
+   - Reduces quality for oversized images
+   - Converts large files to JPEG format
+   - Encodes as base64 for display
 
-3. **User experience enhancements**
-   - Similar file suggestion when file not found
-   - Helpful error messages with size information
-   - Pagination support for large files
-   - Line counting for context
+3. **User Experience**
+   - Suggests similar files when not found
+   - Provides clear error messages with context
+   - Supports pagination for large files
+   - Includes line counts for orientation
 
 ## Architecture
 
-The FileReadTool architecture follows a logical flow:
+The View tool architecture follows a logical flow:
 
 ```
 FileReadTool.tsx (React component)
@@ -178,11 +178,11 @@ readTextContent() or readImage() → Type-specific processing
 renderResultForAssistant() → Format for Claude's consumption
 ```
 
-The tool intelligently handles different file types through extension detection and applies appropriate processing strategies.
+The tool detects file types by extension and applies the appropriate processing strategy for each type.
 
-## Permission Handling
+## Permissions
 
-FileReadTool uses the standard read permission model:
+View uses a simple read permission model:
 
 ```typescript
 needsPermissions({ file_path }) {
@@ -190,18 +190,18 @@ needsPermissions({ file_path }) {
 }
 ```
 
-This ensures Claude has read access to the specified file before displaying its contents. The permission is requested only once per directory, making subsequent file reads more efficient.
+This verifies read access before displaying file contents. Permissions are requested per directory rather than per file, making multiple reads from the same location more efficient.
 
 ## Usage Examples
 
-Common usage patterns:
+Typical ways to use View:
 
-1. **Reading an entire file**
+1. **Reading a complete file**
    ```
    View(file_path: "/path/to/file.txt")
    ```
 
-2. **Reading specific portions of large files**
+2. **Reading part of a large file**
    ```
    View(file_path: "/path/to/large.log", offset: 1000, limit: 100)
    ```
@@ -211,5 +211,5 @@ Common usage patterns:
    View(file_path: "/path/to/image.png")
    ```
 
-FileReadTool is one of Claude's most frequently used tools, as examining file contents is fundamental to understanding code structure, debugging, and implementing changes. It's designed to be user-friendly while incorporating sophisticated handling for different file types and sizes.
+View is a foundational tool used in almost every task that requires understanding code structure or content. It handles both text and images with specialized processing for each type.
 

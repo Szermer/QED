@@ -16,7 +16,8 @@ Below you'll find detailed descriptions of each tool, with individual pages for 
 - [Grep](tools/grep.md): Content search across files
 - [LS](tools/ls.md): Directory listing
 - [MCP](tools/mcp.md): External tool integration
-- [MemoryRead](tools/memoryread.md): State persistence
+- [MemoryRead](tools/memoryread.md): State persistence reading
+- [MemoryWrite](tools/memorywrite.md): State persistence writing
 - [NotebookEdit](tools/notebookedit.md): Notebook modification
 - [NotebookRead](tools/notebookread.md): Jupyter notebook inspection
 - [StickerRequest](tools/stickerrequest.md): User engagement

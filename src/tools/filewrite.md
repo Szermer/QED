@@ -1,6 +1,6 @@
-# FileWriteTool (Replace): Complete File Creation and Updates
+# Replace: Creating and Updating Files
 
-FileWriteTool (exposed as "Replace" in the interface) enables writing or overwriting entire files on the filesystem, handling complete file creation or replacement rather than targeted edits.
+Replace writes or overwrites entire files on the filesystem, handling complete file creation or replacement rather than targeted edits.
 
 ## Complete Prompt
 
@@ -28,9 +28,9 @@ export const DESCRIPTION = 'Write a file to the local filesystem.'
 > 2. Directory Verification (only applicable when creating new files):
 >    - Use the LS tool to verify the parent directory exists and is the correct location
 
-## Implementation Details
+## How It Works
 
-FileWriteTool takes two required parameters and handles file operations with intelligent context awareness:
+Replace takes two required parameters and handles file operations with contextual awareness:
 
 ```typescript
 const inputSchema = z.strictObject({
@@ -43,7 +43,7 @@ const inputSchema = z.strictObject({
 })
 ```
 
-The core implementation handles both creating new files and updating existing ones with appropriate safety checks:
+The implementation handles both creating new files and updating existing ones with appropriate safety checks:
 
 ```typescript
 async *call({ file_path, content }, { readFileTimestamps }) {
@@ -103,33 +103,33 @@ async *call({ file_path, content }, { readFileTimestamps }) {
 }
 ```
 
-## Key Components
+## Key Features
 
-FileWriteTool has several critical features:
+Replace includes these important capabilities:
 
-1. **Input validation and safety**
-   - Strict validation of file paths
-   - Prevention of conflicts with file timestamps
-   - Directory creation for new files
+1. **Input Validation**
+   - Validates file paths
+   - Prevents timestamp conflicts
+   - Creates directories for new files
 
-2. **Content handling**
-   - Automatic encoding detection for existing files (UTF-8, UTF-16LE, ASCII)
-   - Line ending preservation (CRLF/LF)
-   - Consistent file format handling
+2. **Content Management**
+   - Detects encoding for existing files (UTF-8, UTF-16LE, ASCII)
+   - Preserves line endings (CRLF/LF)
+   - Maintains consistent formatting
 
-3. **Change visualization**
-   - Structured diffs for file updates
-   - Preview rendering for create operations
-   - Line counting and truncation for large files
+3. **Change Visualization**
+   - Shows diffs for file updates
+   - Provides previews for new files
+   - Truncates large files for display
 
-4. **Race condition prevention**
-   - Read timestamp tracking
-   - Modification detection
-   - Update prevention for files modified externally
+4. **Conflict Prevention**
+   - Tracks read timestamps
+   - Detects external modifications
+   - Prevents overwriting recently modified files
 
 ## Architecture
 
-The FileWriteTool follows a structured flow:
+The Replace tool follows a structured flow:
 
 ```
 FileWriteTool.tsx (React component)
@@ -143,13 +143,13 @@ renderToolResultMessage() → Shows changes to user
 renderResultForAssistant() → Returns formatted result for Claude
 ```
 
-The tool handles two primary operations with different visualization approaches:
-- **Create**: Shows the new file content with syntax highlighting
-- **Update**: Shows structured diffs between old and new content
+The tool handles two main operations with different display approaches:
+- **Create**: Shows complete file content with syntax highlighting
+- **Update**: Shows diff between old and new versions
 
-## Permission Handling
+## Permissions
 
-FileWriteTool enforces a strict permission model:
+Replace enforces a strict permission model:
 
 ```typescript
 needsPermissions({ file_path }) {
@@ -157,12 +157,12 @@ needsPermissions({ file_path }) {
 }
 ```
 
-This requires explicit user approval before writing to any location. The permission UI displays:
-- A preview of file contents for new files
-- A structured diff for file updates
+This requires explicit user approval before writing to any location. The permission UI shows:
+- Content preview for new files
+- Structured diff for file updates
 - The exact file path being modified
 
-When validating inputs, it also enforces additional safeguards:
+Additional validation safeguards include:
 
 ```typescript
 async validateInput({ file_path }, { readFileTimestamps }) {

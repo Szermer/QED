@@ -1,6 +1,6 @@
-# MemoryReadTool (MemoryRead): Session Memory Access
+# MemoryRead: Session Memory Access
 
-MemoryReadTool provides Claude with the ability to retrieve information stored in a persistent memory system, enabling state preservation across conversations.
+MemoryRead retrieves information stored in a persistent memory system, enabling state preservation across conversations.
 
 ## Complete Prompt
 
@@ -14,9 +14,9 @@ export const DESCRIPTION = ''
 >
 > Accesses the Claude memory system to retrieve stored information from previous sessions. The memory system allows Claude to maintain context and data across conversations. When called without a file path, lists all available memory files along with the contents of the root index.md file.
 
-## Implementation Details
+## How It Works
 
-MemoryReadTool provides a straightforward interface to access persistent memory:
+MemoryRead provides a simple interface to access persistent memory:
 
 ```typescript
 const inputSchema = z.strictObject({
@@ -27,7 +27,7 @@ const inputSchema = z.strictObject({
 })
 ```
 
-The core implementation enables two modes of operation - listing available memory files or reading a specific file:
+The implementation enables two modes of operation - listing available memory files or reading a specific file:
 
 ```typescript
 async *call({ file_path }) {
@@ -74,22 +74,22 @@ ${files}`
 }
 ```
 
-## Key Components
+## Key Features
 
-MemoryReadTool has several important features:
+MemoryRead provides these important capabilities:
 
-1. **Flexible Query Modes**
-   - Index listing: Returns a list of all memory files
-   - Specific file access: Reads a single memory file by path
-   - Index.md content: Automatically returns the main index file content
+1. **Query Modes**
+   - Index listing: Shows all available memory files
+   - File access: Reads a specific memory file
+   - Index content: Returns the main index.md content
 
-2. **Storage Structure**
-   - Files stored in `~/.koding/memory` by default
-   - Directory creation if needed (on first use)
-   - Support for subdirectories and hierarchy
+2. **Storage System**
+   - Files stored in `~/.koding/memory` directory
+   - Creates directory structure as needed
+   - Supports nested subdirectories
 
-3. **Security**
-   - Path validation to prevent directory traversal
+3. **Security Measures**
+   - Path validation to prevent traversal attacks
    ```typescript
    async validateInput({ file_path }) {
      if (file_path) {
@@ -104,10 +104,10 @@ MemoryReadTool has several important features:
      return { result: true }
    }
    ```
-   - Existence checks before file access
-   - Read-only operation (paired with MemoryWriteTool for writing)
+   - Existence verification before access
+   - Read-only operation (paired with MemoryWrite)
 
-4. **Tool Configuration**
+4. **Configuration**
    - Currently disabled by default
    ```typescript
    async isEnabled() {
@@ -116,12 +116,12 @@ MemoryReadTool has several important features:
      return false
    }
    ```
-   - Read-only operation
+   - Read-only functionality
    - No permissions required
 
 ## Architecture
 
-The MemoryReadTool follows a straightforward, filesystem-based approach:
+The MemoryRead tool follows a simple, filesystem-based architecture:
 
 ```
 MemoryReadTool
@@ -135,15 +135,15 @@ Content Formatting → Index listing or individual file content
 Result Generation → Well-formatted output for Claude
 ```
 
-This architecture prioritizes:
-- **Simplicity**: Direct filesystem access with no caching layer
+Design priorities include:
+- **Simplicity**: Direct filesystem access without caching
 - **Persistence**: Files stored on disk for longevity
 - **Flexibility**: Support for both listing and targeted reading
 - **Security**: Path validation to prevent directory traversal
 
-## Integration Approach
+## Integration
 
-MemoryReadTool is designed to work with MemoryWriteTool as a complementary pair:
+MemoryRead works with MemoryWrite as a complementary pair:
 
 ```typescript
 // No explicit permissions required
@@ -157,32 +157,32 @@ isReadOnly() {
 }
 ```
 
-These tools work together to provide a simple but effective persistent storage mechanism that Claude can use to maintain state between conversations.
+Together, these tools provide a simple but effective persistent storage system that maintains state between conversations.
 
 ## Usage Examples
 
-Common usage patterns:
+Typical use cases:
 
-1. **Retrieving the memory index**
+1. **Retrieving memory index**
    ```
    MemoryRead()
    ```
 
-2. **Reading a specific memory file**
+2. **Reading specific files**
    ```
    MemoryRead(file_path: "user_preferences.md")
    ```
 
-3. **Accessing notes in a subdirectory**
+3. **Accessing nested data**
    ```
    MemoryRead(file_path: "projects/my_project/notes.md")
    ```
 
-The memory system provides several key benefits:
-- Stores persistent information across sessions
-- Maintains context for long-running or recurring tasks
-- Serves as a simple database for user preferences and settings
-- Creates a knowledge base specific to the user's needs
+Key benefits of the memory system:
+- Persists information across different sessions
+- Maintains context for recurring tasks
+- Stores user preferences and settings
+- Builds knowledge specific to the user
 
-This allows Claude to build a progressively refined understanding of the user's context, preferences, and ongoing work without requiring the user to repeatedly provide the same information.
+This allows building a progressively refined understanding of user context and preferences without requiring the same information to be provided repeatedly.
 
