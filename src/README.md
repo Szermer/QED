@@ -40,7 +40,7 @@ Hi! I'm Gerred. I'm a systems engineer, with a deep background in AI and Kuberne
 - Designing and deploying large-scale distributed systems
 - Currently developing frameworks for specialized agents with reinforcement learning, especially with VLMs
 
-My focus has always been on the intersection of developer experience and robust engineering—how to make powerful systems that are actually pleasant to use.
+I like robust systems with awesome UX and interactive experiences, but that's beyond the scope of this book.
 
 ## Why Build Your Own Agent?
 
