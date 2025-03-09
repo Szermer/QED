@@ -25,7 +25,7 @@ This guide dissects a working agentic system architecture with a focus on:
 
 I've deliberately focused on concrete engineering patterns rather than theoretical ML concepts. You'll find diagrams, code explanations, and architectural insights that apply regardless of which LLM you're using.
 
-## Who I Am
+## Who am I?
 
 Hi! I'm Gerred. I'm a systems engineer, with a deep background in AI and Kubernetes at global scale, but overall I care deeply about everything from frontend UX to infrastructure and I have _opinions_. My background includes:
 
