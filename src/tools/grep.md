@@ -120,30 +120,30 @@ export async function ripGrep(
 }
 ```
 
-## What Makes It Special
+## Key Features
 
-GrepTool has some cool features:
+GrepTool provides:
 
-1. **Speed**
-   - Uses ripgrep (way faster than regular grep)
-   - Caps results at 100 files to stay snappy
-   - Tells you when there are too many matches
-   - Can be canceled if it's taking too long
+1. **Performance**
+   - ripgrep-powered search engine
+   - Result limit for responsiveness
+   - Truncation indicators
+   - Cancellation support
 
-2. **Works Everywhere**
-   - Comes with ripgrep for all platforms
-   - Sets up properly on macOS with code signing
-   - Deals with path differences between OSes
+2. **Cross-platform**
+   - Bundled ripgrep binaries
+   - macOS code signing
+   - OS-agnostic path handling
 
-3. **Power Searching**
-   - Full regex support for complex patterns
-   - Doesn't care about case by default
-   - Can filter by file types
-   - Shows just file names, not every matching line
+3. **Search capabilities**
+   - Regex pattern matching
+   - Case-insensitive by default
+   - File type filtering
+   - Filename-only results
 
-## How It's Built
+## Architecture
 
-GrepTool is structured like this:
+GrepTool follows this structure:
 
 ```
 GrepTool.tsx (UI component)
@@ -153,12 +153,12 @@ ripGrep() in ripgrep.ts (Main logic)
 ripgrep CLI binary (The engine)
 ```
 
-Some smart decisions in the design:
+Key design choices:
 
-- Includes ripgrep binaries so it works out of the box
-- Uses `-li` flags to just find files (not individual matches)
-- Marked as read-only so it can run in parallel with other tools
-- Shows newest files first so you see recent changes
+- Bundled ripgrep binaries for immediate use
+- `-li` flags for file-only matching
+- Read-only designation allowing parallel execution
+- Recency-based result sorting
 
 ## Permissions
 
@@ -191,5 +191,5 @@ Here are some common searches:
    GrepTool(pattern: "catch.*Error", path: "/path/to/src")
    ```
 
-GrepTool works great with GlobTool - use Glob to find files by name, then Grep to search their contents. It's especially good for finding code patterns like functions, imports, or error handling.
+GrepTool complements GlobTool - use Glob for file name patterns and Grep for content searching. Particularly effective for locating code patterns like function definitions, imports, and error handling.
 

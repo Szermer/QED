@@ -2,7 +2,9 @@
 
 MemoryWrite saves information to a persistent storage system, enabling data preservation across conversations.
 
-> **Note**: This tool follows the same pattern as MemoryRead - part of "ANT_ONLY_TOOLS" with an empty prompt and disabled by default. It demonstrates how the system can prepare functionality while keeping it hidden until ready for release.
+> **Note**: This tool follows the same pattern as MemoryRead - part of `ANT_ONLY_TOOLS` array in `tools.ts` with an empty prompt defined in its `prompt.ts` file. The tool is disabled by default with `isEnabled()` returning `false`.
+>
+> The separation of read and write operations into distinct tools follows good engineering practices. For agentic system developers, this pattern provides clear security boundaries and simpler permission models. The filesystem-based implementation requires minimal dependencies and offers a straightforward path to more sophisticated storage solutions as needs evolve.
 
 ## Complete Prompt
 
@@ -123,7 +125,13 @@ isReadOnly() {
 }
 ```
 
-Together, these tools provide a simple but effective persistent storage system that maintains state between conversations.
+Together, these tools provide a simple but effective persistent storage system that maintains state between conversations. If enabled, these tools would:
+
+1. Allow users to persistently store information that survives across sessions 
+2. Not require permission prompts (`needsPermissions()` returns `false`)
+3. Create and write files to the `~/.koding/memory` directory
+4. Support hierarchical data organization through directory structure
+5. Allow for creating structured knowledge bases that can be accessed later
 
 ## Usage Examples
 
@@ -144,4 +152,18 @@ Typical use cases:
    MemoryWrite(file_path: "index.md", content: "# Memory Index\n- [User Preferences](user_preferences.md)\n- [Projects](projects/)")
    ```
 
-The memory system enables storing information that persists across sessions, making it valuable for maintaining context, user preferences, and recurring task information without requiring users to repeat themselves.
+## Memory System Implementation Patterns
+
+This write tool demonstrates practical patterns for agentic system memory:
+
+1. **Fixed Storage Location**: Using a dedicated path (`~/.koding/memory`) isolates persistent data from application code
+
+2. **Automatic Path Creation**: The tool handles directory creation, letting developers focus on data structure rather than filesystem operations
+
+3. **Path Validation**: Security checks prevent writing outside the designated memory directory
+
+4. **Write-only Design**: Separation of read/write operations follows the principle of least privilege
+
+5. **Permissionless Operation**: By operating within a constrained scope, the tool avoids disrupting user flow with permission requests
+
+These patterns can be directly applied when implementing similar memory systems, balancing simplicity with security.

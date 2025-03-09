@@ -84,42 +84,42 @@ renderResultForAssistant(output) {
 }
 ```
 
-## What Makes It Special
+## Key Features
 
-GlobTool has some nice features:
+GlobTool provides:
 
 1. **Speed and scale**
-   - Works with codebases of any size
-   - Shows newest files first
-   - Stops at 100 results to keep things manageable
-   - Can be canceled if it takes too long
+   - Works with large codebases
+   - Sorts by modification time (newest first)
+   - Limits to 100 results
+   - Supports cancellation
 
 2. **Pattern support**
-   - Uses familiar glob patterns like `**/*.js`
-   - Doesn't care about case by default
-   - Only returns files (not directories)
+   - Standard glob patterns like `**/*.js`
+   - Case-insensitive matching
+   - File-only results (no directories)
 
 3. **Safety**
-   - Tells you when results get cut off
-   - Suggests using Agent for complex searches
-   - Checks permissions before accessing paths
+   - Indicates truncated results
+   - Recommends Agent for complex searches
+   - Path permission validation
 
-## How It's Built
+## Architecture
 
-GlobTool is pretty straightforward:
+GlobTool follows a simple structure:
 
 ```
 GlobTool.tsx (Interface)
   ↓
 glob() in file.ts (Main function)
   ↓
-Node's glob library (Does the heavy lifting)
+Node's glob library (Core implementation)
 ```
 
-Since it's read-only, it:
-- Can run at the same time as other tools
-- Has simple permissions
-- Can't accidentally modify files
+As a read-only tool, it:
+- Runs concurrently with other tools
+- Uses minimal permissions
+- Prevents file modifications
 
 ## Permissions
 

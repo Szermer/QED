@@ -171,10 +171,10 @@ ThinkTool is particularly valuable for complex reasoning tasks:
    Option 1 seems safest given the critical nature of auth...")
    ```
 
-ThinkTool enhances Claude Code's explainability by:
+ThinkTool enhances explainability by:
 - Making reasoning explicit rather than implicit
 - Creating space for thorough exploration of options
 - Separating analytical thinking from concrete actions
-- Providing insight into Claude's problem-solving approach
-- Building user trust through transparent reasoning
+- Showing the problem-solving approach
+- Making the reasoning process transparent
 

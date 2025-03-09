@@ -27,3 +27,11 @@ This repository contains documentation about Claude Code's architecture being st
 - Markdown-friendly: Well-structured for readability, cleanly organized headings and lists, avoiding unnecessary punctuation (especially em dashes)
 - IRC-inspired pragmatism: Direct and practical, straightforward phrasing reminiscent of a developer chat rather than corporate communication
 - Varied article usage: Diverse use of articles ("a", "the", "this", etc.) rather than repetitive patterns
+
+## Hard Rules
+- **NO speculation**: Only document what's observable in the code. Never speculate about intentions, roadmaps, or development status.
+- **NO prescriptive language**: Avoid "should", "must", "need to", "have to" when giving recommendations. Use "consider" or simply state options directly.
+- **NO obvious details**: Skip mentioning basic implementation details like UTF-8 encoding or standard language features that any developer would expect.
+- **NO LLM-like language**: Avoid flowery or overly formal descriptions. Write like a programmer talking to another programmer.
+- **NO weasel words**: Avoid hedging language like "perhaps", "seems to", "appears to", "might be", unless truly uncertain.
+- **Facts only**: Base all technical documentation on direct code evidence, not assumptions.
