@@ -19,7 +19,37 @@ Visit [gerred.github.io/building-an-agentic-system](https://gerred.github.io/bui
 
 ## Author
 
-By Gerred Dillon. Contact at gerred@reasonedintelligence.com or [@devgerred](https://x.com/devgerred).
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/gerred">
+        <img src="https://github.com/gerred.png" width="100px;" alt="Gerred Dillon"/>
+        <br />
+        <sub><b>Gerred Dillon</b></sub>
+      </a>
+      <br />
+      <a href="mailto:hello@gerred.org">hello@gerred.org</a>
+      <br />
+      <a href="https://x.com/devgerred">@devgerred</a>
+    </td>
+  </tr>
+</table>
+
+## Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/gphorvath">
+        <img src="https://github.com/gphorvath.png" width="100px;" alt="Gregory Horvath"/>
+        <br />
+        <sub><b>Gregory Horvath</b></sub>
+      </a>
+      <br />
+      <a href="mailto:gregory@horvath.ai">gregory@horvath.ai</a>
+    </td>
+  </tr>
+</table>
 
 ## License
 
