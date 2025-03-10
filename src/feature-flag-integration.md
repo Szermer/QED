@@ -107,10 +107,10 @@ flowchart LR
     FeatureFlags --> Models[Model Behavior]
     FeatureFlags --> UI[UI Components]
     
-    Tools -->|isEnabled()| ToolSystem[Tool System]
-    Variants -->|Experiments| SystemBehavior[System Behavior]
-    Models -->|Beta Headers| APIRequests[API Requests]
-    UI -->|Conditional Rendering| UserExperience[User Experience]
+    Tools --> ToolSystem[Tool System]
+    Variants --> SystemBehavior[System Behavior]
+    Models --> APIRequests[API Requests]
+    UI --> UserExperience[User Experience]
     
     classDef flag fill:#FFA07A,stroke:#FF6347,stroke-width:2px;
     classDef target fill:#87CEFA,stroke:#1E90FF,stroke-width:1px;
