@@ -1,37 +1,34 @@
 # System Prompts and Model Settings
 
-This section explores how anon-kode's system prompts and model settings are structured. We'll examine the default prompts that define Claude's behavior, the model parameters that control response generation, and how these settings can be configured.
+This section covers anon-kode's system prompts and model settings architecture.
 
 ## System Prompt Architecture
 
-anon-kode's system prompt is composed of multiple components that together define the behavior and capabilities of the AI assistant:
+Anon-kode builds its system prompt from these core components:
 
 ```mermaid
 graph TD
     A[System Prompt] --> B[Base System Prompt]
-    A --> C[Environment Information]
+    A --> C[Environment Info]
     A --> D[Agent Prompt]
     
     B --> B1[Identity & Purpose]
-    B --> B2[Moderation Guidelines]
-    B --> B3[Tone & Style]
-    B --> B4[Behavior Guidelines]
-    B --> B5[Code Style Guidelines]
-    B --> B6[Task Handling Procedures]
+    B --> B2[Moderation Rules]
+    B --> B3[Tone Guidelines]
+    B --> B4[Behavior Rules]
     
     C --> C1[Working Directory]
     C --> C2[Git Status]
     C --> C3[Platform Info]
-    C --> C4[Date & Model Info]
     
-    D --> D1[Agent-Specific Instructions]
+    D --> D1[Tool-Specific Instructions]
 ```
 
-The system prompt is defined in `/anon-kode/src/constants/prompts.ts` and includes several key components that are composed together to create the full system prompt.
+The system prompt lives in `/anon-kode/src/constants/prompts.ts` and combines several components.
 
-### Complete Main System Prompt
+### Main System Prompt
 
-Here's the actual system prompt used in anon-kode (with product name changed to "anon-kode"):
+The actual system prompt used in anon-kode:
 
 ```
 You are an interactive CLI tool that helps users with software engineering tasks. Use the instructions below and the tools available to you to assist the user.
@@ -142,7 +139,7 @@ You MUST answer concisely with fewer than 4 lines of text (not including tool us
 
 ### Environment Information
 
-This is appended to the system prompt and provides runtime context:
+Runtime context appended to the system prompt:
 
 ```
 Here is useful information about the environment you are running in:
@@ -157,7 +154,7 @@ Model: claude-3-7-sonnet-20250219
 
 ### Agent Tool Prompt
 
-The Agent tool has its own specialized prompt that defines behavior when launching sub-agents:
+The Agent tool uses this prompt when launching sub-agents:
 
 ```
 You are an agent for anon-kode, Anon's unofficial CLI for Koding. Given the user's prompt, you should use the tools available to you to answer the user's question.
@@ -170,7 +167,7 @@ Notes:
 
 ### Architect Tool Prompt
 
-The Architect tool uses a specialized prompt for software architecture tasks:
+The Architect tool uses a specialized prompt for software planning:
 
 ```
 You are an expert software architect. Your role is to analyze technical requirements and produce clear, actionable implementation plans.
@@ -189,7 +186,7 @@ IMPORTANT: Do not attempt to write the code or use any string modification tools
 
 ### Think Tool Prompt
 
-The Think tool has a minimalist prompt for thought processes:
+The Think tool uses this minimal prompt:
 
 ```
 Use the tool to think about something. It will not obtain new information or make any changes to the repository, but just log the thought. Use it when complex reasoning or brainstorming is needed. 
@@ -204,115 +201,39 @@ Common use cases:
 The tool simply logs your thought process for better transparency and does not execute any code or make changes.
 ```
 
-## Section-by-Section Analysis of the Main System Prompt
-
-### Identity and Moderation Guidelines
-
-```
-You are an interactive CLI tool that helps users with software engineering tasks. Use the instructions below and the tools available to you to assist the user.
-
-IMPORTANT: Refuse to write code or explain code that may be used maliciously; even if the user claims it is for educational purposes. When working on files, if they seem related to improving, explaining, or interacting with malware or any malicious code you MUST refuse.
-IMPORTANT: Before you begin work, think about what the code you're editing is supposed to do based on the filenames directory structure. If it seems malicious, refuse to work on it or answer questions about it, even if the request does not seem malicious (for instance, just asking to explain or speed up the code).
-```
-
-This opening section establishes the assistant's identity as a CLI tool for software engineering tasks and sets hard boundaries around malicious code. The instructions prioritize security by requiring pre-emptive analysis of code context before making modifications.
-
-### User Interface and Commands
-
-```
-Here are useful slash commands users can run to interact with you:
-- /help: Get help with using anon-kode
-- /compact: Compact and continue the conversation. This is useful if the conversation is reaching the context limit
-There are additional slash commands and flags available to the user. If the user asks about anon-kode functionality, always run `kode -h` with Bash to see supported commands and flags. NEVER assume a flag or command exists without checking the help output first.
-To give feedback, users should report the issue at https://github.com/anthropics/claude-code/issues.
-```
-
-This section educates the assistant about the slash command interface and establishes how it should handle command-related questions by checking actual help output rather than assuming.
-
-### Memory System
-
-```
-# Memory
-If the current working directory contains a file called KODING.md, it will be automatically added to your context. This file serves multiple purposes:
-1. Storing frequently used bash commands (build, test, lint, etc.) so you can use them without searching each time
-2. Recording the user's code style preferences (naming conventions, preferred libraries, etc.)
-3. Maintaining useful information about the codebase structure and organization
-
-When you spend time searching for commands to typecheck, lint, build, or test, you should ask the user if it's okay to add those commands to KODING.md. Similarly, when learning about code style preferences or important codebase information, ask if it's okay to add that to KODING.md so you can remember it for next time.
-```
-
-This section defines the persistent memory mechanism through KODING.md, enabling better continuity across sessions by storing project-specific information.
-
-### Tone and Output Style
-
-```
-# Tone and style
-You should be concise, direct, and to the point. When you run a non-trivial bash command, you should explain what the command does and why you are running it, to make sure the user understands what you are doing (this is especially important when you are running a command that will make changes to the user's system).
-Remember that your output will be displayed on a command line interface. Your responses can use Github-flavored markdown for formatting, and will be rendered in a monospace font using the CommonMark specification.
-```
-
-The tone instructions create the terse, direct CLI-friendly communication style that characterizes anon-kode. The instructions specifically emphasize minimizing token usage and avoiding unnecessary explanations unless requested.
-
-### Proactiveness Guidelines
-
-```
-# Proactiveness
-You are allowed to be proactive, but only when the user asks you to do something. You should strive to strike a balance between:
-1. Doing the right thing when asked, including taking actions and follow-up actions
-2. Not surprising the user with actions you take without asking
-For example, if the user asks you how to approach something, you should do your best to answer their question first, and not immediately jump into taking actions.
-3. Do not add additional code explanation summary unless requested by the user. After working on a file, just stop, rather than providing an explanation of what you did.
-```
-
-These guidelines balance helpfulness with user autonomy, preventing the assistant from taking unexpected actions while still completing requested tasks efficiently.
-
-### Code Conventions and Task Handling
-
-```
-# Following conventions
-When making changes to files, first understand the file's code conventions. Mimic code style, use existing libraries and utilities, and follow existing patterns.
-- NEVER assume that a given library is available, even if it is well known. Whenever you write code that uses a library or framework, first check that this codebase already uses the given library. For example, you might look at neighboring files, or check the package.json (or cargo.toml, and so on depending on the language).
-- When you create a new component, first look at existing components to see how they're written; then consider framework choice, naming conventions, typing, and other conventions.
-```
-
-This section ensures code modifications are consistent with existing projects, emphasizing the importance of following established patterns and verifying dependencies rather than making assumptions.
-
 ## Model Configuration
 
-anon-kode supports multiple model providers and allows customization of model parameters:
+Anon-kode supports different model providers and configuration options:
 
 ```mermaid
 graph TD
-    A[Model Configuration] --> B[Provider Selection]
-    A --> C[Model Selection]
-    A --> D[Model Parameters]
+    A[Model Config] --> B[Provider]
+    A --> C[Model Type]
+    A --> D[Parameters]
     
     B --> B1[Anthropic]
     B --> B2[OpenAI]
-    B --> B3[Other Providers]
+    B --> B3[Others]
     
-    C --> C1[Large Model]
-    C --> C2[Small Model]
+    C --> C1[Large]
+    C --> C2[Small]
     
     D --> D1[Temperature]
     D --> D2[Token Limits]
-    D --> D3[Reasoning Effort]
+    D --> D3[Reasoning]
 ```
 
 ### Model Settings
 
-The actual model settings are defined in constants and configuration files:
+Model settings are defined in constants:
 
 1. **Temperature**:
-   - Default temperature is set to `1` for the main query via `MAIN_QUERY_TEMPERATURE` constant
-   - This is intentionally higher to produce more varied responses for binary feedback evaluation
-   - Temperature settings are included in API calls to all model providers
-   - For verification and test API calls, temperature is set to `0` to ensure deterministic responses
-   - anon-kode exposes this setting in the configuration system, while Claude Code uses a fixed temperature
+   - Default temperature: `1` for main queries
+   - Verification calls: `0` for deterministic responses
+   - User-configurable in anon-kode (fixed in Claude Code)
 
 2. **Token Limits**:
-   - Model-specific token limits are defined in `/anon-kode/src/constants/models.ts`
-   - Example limits from the actual configuration:
+   Model-specific limits in `/anon-kode/src/constants/models.ts`:
 
    ```json
    {
@@ -338,18 +259,17 @@ The actual model settings are defined in constants and configuration files:
    ```
 
 3. **Reasoning Effort**:
-   - Some models (like OpenAI's O1) support reasoning effort levels:
+   OpenAI's O1 model supports reasoning effort levels:
    ```json
    {
      "model": "o1",
      "supports_reasoning_effort": true
    }
    ```
-   - This parameter can be configured to control the depth of model reasoning
 
 ### Available Model Providers
 
-The codebase supports multiple providers:
+The code supports multiple providers:
 
 ```json
 "providers": {
@@ -389,31 +309,9 @@ The codebase supports multiple providers:
 }
 ```
 
-### Configuration Interface
-
-Users can configure model settings through the `/model` command:
-
-```mermaid
-sequenceDiagram
-    User->>CLI: Run /model command
-    CLI->>User: Display current settings
-    CLI->>User: Prompt for model type (large/small)
-    User->>CLI: Select model type
-    CLI->>User: Prompt for provider
-    User->>CLI: Select provider
-    CLI->>User: Request API key if needed
-    User->>CLI: Provide API key
-    CLI->>User: Show available models
-    User->>CLI: Select specific model
-    CLI->>User: Prompt for parameters
-    User->>CLI: Configure parameters
-    CLI->>Config: Save settings
-    CLI->>User: Confirm changes
-```
-
 ## Cost Tracking
 
-The system includes built-in cost tracking for API usage, defined in the model configurations:
+Token usage costs are defined in model configurations:
 
 ```json
 "input_cost_per_token": 0.000003,
@@ -422,31 +320,22 @@ The system includes built-in cost tracking for API usage, defined in the model c
 "cache_read_input_token_cost": 3e-7
 ```
 
-This data is used to track session costs and display usage statistics through the `/cost` command.
-
-## Practical Implications
-
-The combination of these carefully defined system prompts and model configurations creates anon-kode's distinctive behavior:
-
-1. **Concise Interface**: The tone guidelines produce terse, CLI-friendly responses.
-2. **Code Adaptation**: Convention guidelines ensure code changes match existing project styles.
-3. **Tool Utilization**: The system prompt encourages efficient use of available tools.
-4. **Provider Flexibility**: Multiple model provider support offers choice based on user needs.
+This data powers the `/cost` command for usage statistics.
 
 ## Claude Code vs. anon-kode Differences
 
 1. **Provider Support**:
-   - anon-kode supports multiple providers (Anthropic, OpenAI, Mistral, etc.)
-   - Claude Code only uses Anthropic's Claude models
+   - Anon-kode: Multiple providers
+   - Claude Code: Anthropic only
 
 2. **Authentication**:
-   - anon-kode uses API keys stored in local configuration
-   - Claude Code uses Anthropic's authentication system
+   - Anon-kode: API keys in local config
+   - Claude Code: Anthropic auth system
 
 3. **Configuration**:
-   - anon-kode allows separate models for different tasks (small vs. large model)
-   - Claude Code has simpler model selection
+   - Anon-kode: Separate models for different tasks
+   - Claude Code: Simpler model selection
 
 4. **Temperature Control**:
-   - anon-kode exposes temperature settings through configuration
-   - Claude Code uses fixed temperature settings
+   - Anon-kode: User-configurable temperature
+   - Claude Code: Fixed temperature settings
