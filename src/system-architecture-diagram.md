@@ -47,13 +47,13 @@ flowchart TB
         PAR
     end
     
-    %% Distinct styling for each component
-    classDef uiStyle fill:#d9f7be,stroke:#389e0d,stroke-width:2px
-    classDef msgStyle fill:#d6e4ff,stroke:#1d39c4,stroke-width:2px
-    classDef queryStyle fill:#fff1b8,stroke:#d48806,stroke-width:2px
-    classDef apiStyle fill:#ffd6e7,stroke:#c41d7f,stroke-width:2px
-    classDef toolStyle fill:#fff2e8,stroke:#d4380d,stroke-width:2px
-    classDef parStyle fill:#f5f5f5,stroke:#434343,stroke-width:2px
+    %% Distinct styling for each component with improved text contrast
+    classDef uiStyle fill:#d9f7be,stroke:#389e0d,stroke-width:2px,color:#000000
+    classDef msgStyle fill:#d6e4ff,stroke:#1d39c4,stroke-width:2px,color:#000000
+    classDef queryStyle fill:#fff1b8,stroke:#d48806,stroke-width:2px,color:#000000
+    classDef apiStyle fill:#ffd6e7,stroke:#c41d7f,stroke-width:2px,color:#000000
+    classDef toolStyle fill:#fff2e8,stroke:#d4380d,stroke-width:2px,color:#000000
+    classDef parStyle fill:#f5f5f5,stroke:#434343,stroke-width:2px,color:#000000
     
     %% Apply styles to components
     class UI uiStyle
@@ -82,7 +82,7 @@ flowchart TB
     UI_REPL --> UI_Messages
     UI_Messages --> UI_REPL
     
-    classDef UI fill:#d9f7be,stroke:#389e0d
+    classDef UI fill:#d9f7be,stroke:#389e0d,color:#000000
     class UI_Input,UI_Messages,UI_REPL UI
 ```
 
@@ -105,7 +105,7 @@ flowchart TB
     MSG_Process --> MSG_Format
     MSG_Format --> MSG_State
     
-    classDef MSG fill:#d6e4ff,stroke:#1d39c4
+    classDef MSG fill:#d6e4ff,stroke:#1d39c4,color:#000000
     class MSG_Process,MSG_Format,MSG_State MSG
 ```
 
@@ -128,7 +128,7 @@ flowchart TB
     QRY_Main --> QRY_Format
     QRY_Format --> QRY_Generator
     
-    classDef QRY fill:#fff1b8,stroke:#d48806
+    classDef QRY fill:#fff1b8,stroke:#d48806,color:#000000
     class QRY_Main,QRY_Format,QRY_Generator QRY
 ```
 
@@ -166,7 +166,7 @@ flowchart TB
     TOOL_Permission --> Read-Only-Tools
     TOOL_Permission --> Non-Read-Only-Tools
     
-    classDef TOOL fill:#fff2e8,stroke:#d4380d
+    classDef TOOL fill:#fff2e8,stroke:#d4380d,color:#000000
     class TOOL_Manager,TOOL_Glob,TOOL_Grep,TOOL_View,TOOL_LS,TOOL_Edit,TOOL_Bash,TOOL_Write,TOOL_Permission TOOL
 ```
 
@@ -188,7 +188,7 @@ flowchart TB
     
     API_Claude --> API_Format
     
-    classDef API fill:#ffd6e7,stroke:#c41d7f
+    classDef API fill:#ffd6e7,stroke:#c41d7f,color:#000000
     class API_Claude,API_Format API
 ```
 
@@ -212,7 +212,7 @@ flowchart TB
     PAR_Concurrent & PAR_Serial --> PAR_Generator
     PAR_Generator --> PAR_Sort
     
-    classDef PAR fill:#f5f5f5,stroke:#434343
+    classDef PAR fill:#f5f5f5,stroke:#434343,color:#000000
     class PAR_Check,PAR_Concurrent,PAR_Serial,PAR_Generator,PAR_Sort PAR
 ```
 
@@ -257,8 +257,8 @@ flowchart TB
         TOOL -->|Provides results| API
     end
     
-    classDef system fill:#f9f9f9,stroke:#333333
-    classDef external fill:#e6f7ff,stroke:#1890ff,stroke-width:2px
+    classDef system fill:#f9f9f9,stroke:#333333,color:#000000
+    classDef external fill:#e6f7ff,stroke:#1890ff,stroke-width:2px,color:#000000
     class UI,MSG,QRY,API,TOOL,PAR system
     class User external
 ```
