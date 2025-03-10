@@ -12,8 +12,8 @@ flowchart TB
     StatsigClient -->|"Stores"| Storage["FileSystemStorageProvider"]
     User -->|"Provides"| UserContext["User Context\n- ID\n- Email\n- Platform\n- Session"]
     
-    classDef primary fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef secondary fill:#bbf,stroke:#333,stroke-width:1px;
+    classDef primary fill:#f9f,stroke:#333,stroke-width:2px,color:#000000;
+    classDef secondary fill:#bbf,stroke:#333,stroke-width:1px,color:#000000;
     
     class Tool,CheckGate primary;
     class User,StatsigClient,Storage,UserContext secondary;
@@ -80,8 +80,8 @@ graph TD
     AC --> |Restrict Features| Security[Security]
     RM --> |Control Resource Usage| Performance[Performance]
     
-    classDef benefit fill:#90EE90,stroke:#006400,stroke-width:1px;
-    classDef outcome fill:#ADD8E6,stroke:#00008B,stroke-width:1px;
+    classDef benefit fill:#90EE90,stroke:#006400,stroke-width:1px,color:#000000;
+    classDef outcome fill:#ADD8E6,stroke:#00008B,stroke-width:1px,color:#000000;
     
     class FF,SR,AB,AC,RM benefit;
     class Safety,Optimization,Security,Performance outcome;
@@ -112,9 +112,9 @@ flowchart LR
     Models --> APIRequests[API Requests]
     UI --> UserExperience[User Experience]
     
-    classDef flag fill:#FFA07A,stroke:#FF6347,stroke-width:2px;
-    classDef target fill:#87CEFA,stroke:#1E90FF,stroke-width:1px;
-    classDef effect fill:#98FB98,stroke:#228B22,stroke-width:1px;
+    classDef flag fill:#FFA07A,stroke:#FF6347,stroke-width:2px,color:#000000;
+    classDef target fill:#87CEFA,stroke:#1E90FF,stroke-width:1px,color:#000000;
+    classDef effect fill:#98FB98,stroke:#228B22,stroke-width:1px,color:#000000;
     
     class FeatureFlags flag;
     class Tools,Variants,Models,UI target;
