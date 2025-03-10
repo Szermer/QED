@@ -9,6 +9,7 @@
 - [System Architecture Diagram](system-architecture-diagram.md)
 - [System Prompts](system-prompts-and-model-settings.md)
 - [Initialization](initialization-process.md)
+- [Ink, Yoga, and Reactive UI System](ink-yoga-reactive-ui.md)
 - [Execution Flow](execution-flow-in-detail.md)
 - [Permissions](the-permission-system.md)
 - [Parallel Tools](parallel-tool-execution.md)
