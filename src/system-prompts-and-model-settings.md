@@ -6,23 +6,21 @@ This section covers anon-kode's system prompts and model settings architecture.
 
 Anon-kode builds its system prompt from these core components:
 
-```mermaid
-graph TD
-    A[System Prompt] --> B[Base System Prompt]
-    A --> C[Environment Info]
-    A --> D[Agent Prompt]
-    
-    B --> B1[Identity & Purpose]
-    B --> B2[Moderation Rules]
-    B --> B3[Tone Guidelines]
-    B --> B4[Behavior Rules]
-    
-    C --> C1[Working Directory]
-    C --> C2[Git Status]
-    C --> C3[Platform Info]
-    
-    D --> D1[Tool-Specific Instructions]
-```
+The system prompt is composed of three main parts:
+
+1. **Base System Prompt**
+   - Identity & Purpose
+   - Moderation Rules
+   - Tone Guidelines
+   - Behavior Rules
+
+2. **Environment Info**
+   - Working Directory
+   - Git Status
+   - Platform Info
+
+3. **Agent Prompt**
+   - Tool-Specific Instructions
 
 The system prompt lives in `/anon-kode/src/constants/prompts.ts` and combines several components.
 
@@ -205,23 +203,23 @@ The tool simply logs your thought process for better transparency and does not e
 
 Anon-kode supports different model providers and configuration options:
 
-```mermaid
-graph TD
-    A[Model Config] --> B[Provider]
-    A --> C[Model Type]
-    A --> D[Parameters]
-    
-    B --> B1[Anthropic]
-    B --> B2[OpenAI]
-    B --> B3[Others]
-    
-    C --> C1[Large]
-    C --> C2[Small]
-    
-    D --> D1[Temperature]
-    D --> D2[Token Limits]
-    D --> D3[Reasoning]
-```
+### Model Configuration Elements
+
+The model configuration has three main components:
+
+1. **Provider**
+   - Anthropic
+   - OpenAI
+   - Others (Mistral, DeepSeek, etc.)
+
+2. **Model Type**
+   - Large (for complex tasks)
+   - Small (for simpler tasks)
+
+3. **Parameters**
+   - Temperature
+   - Token Limits
+   - Reasoning Effort
 
 ### Model Settings
 

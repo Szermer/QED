@@ -6,29 +6,15 @@ This section explores anon-kode's initialization process from CLI invocation to 
 
 When a user runs anon-kode, this sequence triggers:
 
-```mermaid
-flowchart TD
-    A[CLI invocation] --> B[Parse args]
-    B --> C[Validate config]
-    C --> D[System checks]
-    D --> E[Setup environment]
-    E --> F[Load tools]
-    F --> G[Initialize REPL]
-    G --> H[Ready for input]
-    
-    subgraph "System Checks"
-    D1[Doctor] --> D2[Permissions]
-    D2 --> D3[Auto-updater]
-    end
-    
-    subgraph "Environment Setup"
-    E1[Set directory] --> E2[Load global config]
-    E2 --> E3[Load project config]
-    end
-    
-    D --> D1
-    E --> E1
-```
+The startup process follows these steps:
+1. CLI invocation
+2. Parse arguments
+3. Validate configuration
+4. Run system checks (Doctor, Permissions, Auto-updater)
+5. Setup environment (Set directory, Load global config, Load project config)
+6. Load tools
+7. Initialize REPL
+8. Ready for input
 
 ## Entry Points
 
@@ -108,17 +94,16 @@ main().catch(error => {
 })
 ```
 
-```mermaid
-sequenceDiagram
-    User->>cli.mjs: Execute command
-    cli.mjs->>cli.tsx: Parse args & bootstrap
-    cli.tsx->>Config: enableConfigs()
-    cli.tsx->>Setup: showSetupScreens()
-    cli.tsx->>Environment: setup(cwd)
-    cli.tsx->>Tools: getTools()
-    cli.tsx->>REPL: Render REPL
-    REPL->>User: Display interface
-```
+### Execution Sequence
+
+1. User executes command
+2. cli.mjs parses args & bootstraps
+3. cli.tsx calls enableConfigs()
+4. cli.tsx calls showSetupScreens()
+5. cli.tsx calls setup(cwd)
+6. cli.tsx calls getTools()
+7. cli.tsx renders REPL
+8. REPL displays interface to user
 
 ## Configuration Loading
 
@@ -176,20 +161,20 @@ const DEFAULT_GLOBAL_CONFIG = {
 
 Before the app starts, several checks run:
 
-```mermaid
-flowchart LR
-    A[System Checks] --> B[Doctor]
-    A --> C[Permissions]
-    A --> D[Auto-updater]
-    
-    B --> B1[Environment check]
-    B --> B2[Dependency check]
-    
-    C --> C1[Trust dialog]
-    C --> C2[File permissions]
-    
-    D --> D1[Updater config]
-```
+### System Checks Overview
+
+The system performs three main types of checks:
+
+1. **Doctor**
+   - Environment check
+   - Dependency check
+   
+2. **Permissions**
+   - Trust dialog
+   - File permissions
+   
+3. **Auto-updater**
+   - Updater configuration
 
 1. **Doctor Check**:
    ```javascript
@@ -271,25 +256,25 @@ This makes various tools available:
 
 The final step initializes the REPL interface:
 
-```mermaid
-flowchart TD
-    A[REPL Init] --> B[Load system prompt]
-    A --> C[Set up context]
-    A --> D[Configure model]
-    A --> E[Init message handlers]
-    
-    B --> B1[Base prompt]
-    B --> B2[Environment info]
-    
-    C --> C1[Working directory]
-    C --> C2[Git context]
-    
-    D --> D1[Model params]
-    D --> D2[Token limits]
-    
-    E --> E1[Message renderer]
-    E --> E2[Input handlers]
-```
+### REPL Initialization Components
+
+The REPL initialization process involves several parallel steps:
+
+1. **Load system prompt**
+   - Base prompt
+   - Environment info
+   
+2. **Set up context**
+   - Working directory
+   - Git context
+   
+3. **Configure model**
+   - Model parameters
+   - Token limits
+   
+4. **Initialize message handlers**
+   - Message renderer
+   - Input handlers
 
 The REPL component handles interactive sessions:
 
