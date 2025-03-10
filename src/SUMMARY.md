@@ -7,6 +7,8 @@
 - [Overview and Philosophy](overview-and-philosophy.md)
 - [Core Architecture](core-architecture.md)
 - [System Architecture Diagram](system-architecture-diagram.md)
+- [System Prompts and Model Settings](system-prompts-and-model-settings.md)
+- [Initialization Process](initialization-process.md)
 - [Execution Flow in Detail](execution-flow-in-detail.md)
 - [The Permission System](the-permission-system.md)
 - [Parallel Tool Execution](parallel-tool-execution.md)
