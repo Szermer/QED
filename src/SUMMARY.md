@@ -1,57 +1,68 @@
 # Summary
 
-- [Building an Agentic System](README.md)
+[The Agentic Systems Series](README.md)
+
+---
+
+# Book 1: Building an Agentic System
+
 - [Introduction](introduction.md)
-- [How can I use this guide?](how-can-i-use-this-guide.md)
-- [Claude Code vs. anon-kode](claude-code-vs-anon-kode.md)
+
+## Part I: Foundations
+
 - [Overview and Philosophy](overview-and-philosophy.md)
 - [Core Architecture](core-architecture.md)
-- [System Architecture Diagram](system-architecture-diagram.md)
-- [System Prompts](system-prompts-and-model-settings.md)
-- [Initialization](initialization-process.md)
-- [Ink, Yoga, and Reactive UI System](ink-yoga-reactive-ui.md)
+- [System Architecture Patterns](system-architecture-diagram.md)
+
+## Part II: Implementation
+
+- [System Prompts and Configuration](system-prompts-and-model-settings.md)
+- [Initialization Patterns](initialization-process.md)
+- [Reactive UI with Ink and Yoga](ink-yoga-reactive-ui.md)
 - [Execution Flow](execution-flow-in-detail.md)
-- [Permissions](the-permission-system.md)
-- [Parallel Tools](parallel-tool-execution.md)
-- [Feature Flags](feature-flag-integration.md)
-- [Examples](real-world-examples.md)
+- [Permission Systems](the-permission-system.md)
+- [Parallel Execution](parallel-tool-execution.md)
+- [Feature Management](feature-flag-integration.md)
+
+## Part III: Practical Application
+
+- [Real-World Patterns](real-world-examples.md)
 - [Lessons Learned](lessons-learned-and-implementation-challenges.md)
-- [Tools](tool-system-deep-dive.md)
-  - [Agent](tools/agent.md)
-  - [Architect](tools/architect.md)
-  - [Bash](tools/bash.md)
-  - [FileEdit](tools/fileedit.md)
-  - [FileRead](tools/fileread.md)
-  - [FileWrite](tools/filewrite.md)
-  - [Glob](tools/glob.md)
-  - [Grep](tools/grep.md)
-  - [LS](tools/ls.md)
-  - [MCP](tools/mcp.md)
-  - [MemoryRead](tools/memoryread.md)
-  - [MemoryWrite](tools/memorywrite.md)
-  - [NotebookEdit](tools/notebookedit.md)
-  - [NotebookRead](tools/notebookread.md)
-  - [StickerRequest](tools/stickerrequest.md)
-  - [Think](tools/think.md)
-- [Command System Deep Dive](command-system-deep-dive.md)
-  - [approvedtools](commands/approvedtools.md)
-  - [bug](commands/bug.md)
-  - [clear](commands/clear.md)
-  - [commands](commands/commands.md)
-  - [compact](commands/compact.md)
-  - [config](commands/config.md)
-  - [cost](commands/cost.md)
-  - [ctx-viz](commands/ctx-viz.md)
-  - [doctor](commands/doctor.md)
-  - [help](commands/help.md)
-  - [init](commands/init.md)
-  - [listen](commands/listen.md)
-  - [login](commands/login.md)
-  - [logout](commands/logout.md)
-  - [model](commands/model.md)
-  - [onboarding](commands/onboarding.md)
-  - [pr-comments](commands/pr-comments.md)
-  - [release-notes](commands/release-notes.md)
-  - [resume](commands/resume.md)
-  - [review](commands/review.md)
-  - [terminalsetup](commands/terminalsetup.md)
+
+# Book 2: Amping Up an Agentic System
+
+- [Introduction](second-edition/README.md)
+
+## Part I: Foundations
+
+- [From Local to Collaborative](second-edition/part-i-foundations/chapter-1-from-local-to-collaborative.md)
+- [Collaborative Architecture Overview](second-edition/part-i-foundations/chapter-2-amp-architecture-overview.md)
+- [Authentication and Identity](second-edition/part-i-foundations/chapter-3-authentication-and-identity.md)
+
+## Part II: Core Systems
+
+- [Conversation Management at Scale](second-edition/part-ii-core-systems/chapter-4-thread-management-at-scale.md)
+- [Real-Time Synchronization](second-edition/part-ii-core-systems/chapter-5-real-time-synchronization.md)
+- [Tool System Evolution](second-edition/part-ii-core-systems/chapter-6-tool-system-evolution.md)
+
+## Part III: Collaboration
+
+- [Sharing and Permissions](second-edition/part-iii-collaboration/chapter-7-sharing-and-permissions.md)
+- [Team Workflows](second-edition/part-iii-collaboration/chapter-8-team-workflows.md)
+- [Enterprise Integration](second-edition/part-iii-collaboration/chapter-9-enterprise-integration.md)
+
+## Part IV: Advanced Patterns
+
+- [Multi-Agent Orchestration](second-edition/part-iv-advanced-patterns/chapter-10-multi-agent-orchestration.md)
+- [Performance at Scale](second-edition/part-iv-advanced-patterns/chapter-11-performance-at-scale.md)
+- [Observability and Monitoring](second-edition/part-iv-advanced-patterns/chapter-12-observability-and-monitoring.md)
+
+# Book 3: Contextualizing an Agentic System
+
+- [Introduction to Tools and Commands](arming-introduction.md)
+- [Tool System Overview](tool-system-deep-dive.md)
+- [Command System Overview](command-system-deep-dive.md)
+
+## What's Next
+
+Future developments and patterns are evolving rapidly in the agentic systems space.

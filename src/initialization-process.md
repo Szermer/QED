@@ -1,10 +1,10 @@
 # Initialization Process
 
-This section explores anon-kode's initialization process from CLI invocation to application readiness.
+This section explores the initialization process of an AI coding assistant from CLI invocation to application readiness.
 
 ## Startup Flow
 
-When a user runs anon-kode, this sequence triggers:
+When a user runs the CLI tool, this sequence triggers:
 
 The startup process follows these steps:
 1. CLI invocation
@@ -18,14 +18,14 @@ The startup process follows these steps:
 
 ## Entry Points
 
-The initialization starts in two key files:
+The initialization typically starts in two key files:
 
-1. **CLI Entry**: `/anon-kode/cli.mjs`
+1. **CLI Entry**: `cli.mjs`
    - Main CLI entry point
    - Basic arg parsing
    - Delegates to application logic
 
-2. **App Bootstrap**: `/anon-kode/src/entrypoints/cli.tsx`
+2. **App Bootstrap**: `src/entrypoints/cli.tsx`
    - Contains `main()` function
    - Orchestrates initialization
    - Sets up React rendering
@@ -46,7 +46,7 @@ async function main(): Promise<void> {
   enableConfigs()
 
   program
-    .name('kode')
+    .name('cli-tool')
     .description(`${PRODUCT_NAME} - starts an interactive session by default...`)
     // Various command line options defined here
     .option('-c, --cwd <cwd>', 'set working directory')
@@ -336,7 +336,7 @@ async function getContext(): Promise<Record<string, unknown>> {
   // Git status
   const gitContext = await getGitContext()
   
-  // User context from KODING.md
+  // User context from project context file
   const userContext = await loadUserContext()
   
   return {
@@ -351,7 +351,7 @@ async function getContext(): Promise<Record<string, unknown>> {
 This includes:
 - Directory structure
 - Git repo status and history
-- User-defined context from KODING.md
+- User-defined context from project context file
 - Environment info
 
 ## Command Registration
