@@ -1,6 +1,6 @@
-## System Architecture Diagram
+## System Architecture Patterns
 
-Claude Code solves a core challenge: making an AI coding assistant responsive while handling complex operations. It's not just an API wrapper but a system where components work together for a natural coding experience.
+Modern AI coding assistants solve a core challenge: making interactions responsive while handling complex operations. They're not just API wrappers but systems where components work together for natural coding experiences.
 
 <div class="info-box">
 <strong>🏗️ Architectural Philosophy:</strong> A system designed for real-time interaction with large codebases where each component handles a specific responsibility within a consistent information flow.
@@ -8,14 +8,14 @@ Claude Code solves a core challenge: making an AI coding assistant responsive wh
 
 ### High-Level Architecture Overview
 
-The diagram below illustrates the core architecture of Claude Code, organized into four key domains that show how information flows through the system:
+The diagram below illustrates a typical architecture pattern for AI coding assistants, organized into four key domains that show how information flows through the system:
 
 1. **User-Facing Layer**: Where you interact with the system
 2. **Conversation Management**: Handles the flow of messages and maintains context
-3. **Claude AI Integration**: Connects with Claude's intelligence capabilities
-4. **External World Interaction**: Allows Claude to interact with files and your environment
+3. **LLM Integration**: Connects with language model intelligence capabilities
+4. **External World Interaction**: Allows the AI to interact with files and your environment
 
-This organization shows the journey of a user request: starting from the user interface, moving through conversation management to Claude's AI, then interacting with the external world if needed, and finally returning results back up the chain.
+This organization shows the journey of a user request: starting from the user interface, moving through conversation management to the AI engine, then interacting with the external world if needed, and finally returning results back up the chain.
 
 ```mermaid
 flowchart TB
