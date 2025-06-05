@@ -3,7 +3,7 @@ authors = ["Gerred Dillon"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Building an Agentic System"
+title = "The Agentic Systems Series"
 
 [output.html]
 mathjax-support = true
@@ -14,3 +14,10 @@ additional-css = ["custom.css"]
 
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
+
+[output.linkcheck]
+# Check for broken links in the book
+follow-web-links = false
+exclude = ["^https://github.com/.*/pull/.*", "^https://github.com/.*/issues/.*"]
+# Enable more thorough checking
+warning-policy = "error"

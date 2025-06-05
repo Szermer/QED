@@ -1,32 +1,32 @@
 # Core Architecture
 
-Claude Code's architecture consists of three primary components that work together to create an effective AI-powered CLI:
+Modern AI coding assistants typically organize around three primary architectural layers that work together to create effective developer experiences:
 
-## Terminal UI (React + Ink)
+## Terminal UI Layer (React Patterns)
 
-The UI layer leverages React Ink to deliver rich terminal interactions beyond standard CLI capabilities:
+Terminal-based AI assistants leverage React-like patterns to deliver rich interactions beyond standard CLI capabilities:
 
 - Interactive permission prompts for secure tool execution
 - Syntax-highlighted code snippets for better readability
 - Real-time status updates during tool operations
 - Markdown rendering directly within the terminal environment
 
-React hooks provide clean state management, enabling complex interactive experiences while maintaining a terminal-based interface.
+React hooks and state management patterns enable complex interactive experiences while maintaining a terminal-based interface. Popular implementations use libraries like Ink to bring React's component model to the terminal.
 
-## Intelligence Layer (Claude API)
+## Intelligence Layer (LLM Integration)
 
-The intelligence layer connects with Claude through a streaming API interface:
+The intelligence layer connects with Large Language Models through streaming interfaces:
 
 - Parses responses to identify intended tool executions
 - Extracts parameters from natural language instructions
-- Validates input using Zod schemas to ensure correctness
-- Handles errors gracefully when Claude provides invalid instructions
+- Validates input using schema validation to ensure correctness
+- Handles errors gracefully when the model provides invalid instructions
 
-Communication flows bidirectionally - Claude triggers tool execution, and structured results stream back into the conversation context.
+Communication flows bidirectionally - the LLM triggers tool execution, and structured results stream back into the conversation context. This creates a feedback loop that enables multi-step operations.
 
 ## Tools Layer
 
-Each tool in the system follows a consistent pattern:
+Effective tool systems follow consistent patterns across implementations:
 
 ```typescript
 const ExampleTool = {
@@ -41,11 +41,11 @@ const ExampleTool = {
 } satisfies Tool;
 ```
 
-This approach creates a plugin architecture where developers can add new capabilities by implementing the Tool interface. Available tools are dynamically loaded and presented to Claude, establishing an extensible capability framework.
+This approach creates a plugin architecture where developers can add new capabilities by implementing a standard interface. Available tools are dynamically loaded and presented to the LLM, establishing an extensible capability framework.
 
 ## Reactive Command Loop
 
-At its core, Claude Code operates through a reactive command loop - processing user input via Claude's intelligence, executing resulting actions, and displaying outcomes while streaming results in real-time.
+At the core of these systems lies a reactive command loop - processing user input through the LLM's intelligence, executing resulting actions, and displaying outcomes while streaming results in real-time.
 
 The fundamental pattern powering this flow uses generators:
 
@@ -73,11 +73,11 @@ async function* query(input: string): AsyncGenerator<Message> {
 }
 ```
 
-This recursive generator approach keeps Claude Code responsive during complex operations. Rather than freezing while waiting for operations to complete, the UI updates continuously with real-time progress.
+This recursive generator approach keeps the system responsive during complex operations. Rather than freezing while waiting for operations to complete, the UI updates continuously with real-time progress.
 
-## Query Implementation Details
+## Query Implementation Patterns
 
-The complete query function handles all aspects of the conversation flow:
+Complete query functions in production systems handle all aspects of the conversation flow:
 
 ```typescript
 async function* query(
@@ -89,7 +89,7 @@ async function* query(
   yield userMessage;
   
   // Get streaming AI response
-  const aiResponseGenerator = querySonnet(
+  const aiResponseGenerator = queryLLM(
     normalizeMessagesForAPI([...existingMessages, userMessage]),
     systemPrompt,
     context.maxTokens,
@@ -130,11 +130,11 @@ async function* query(
 }
 ```
 
-Key benefits of this implementation include:
+Key benefits of this implementation pattern include:
 
 1. **Immediate feedback**: Results appear as they become available through generator streaming.
 
-2. **Seamless tool execution**: When Claude invokes tools, the function recursively calls itself with updated context, maintaining conversation flow.
+2. **Natural tool execution**: When the LLM invokes tools, the function recursively calls itself with updated context, maintaining conversation flow.
 
 3. **Responsive cancellation**: Abort signals propagate throughout the system for fast, clean cancellation.
 
@@ -142,11 +142,11 @@ Key benefits of this implementation include:
 
 ## Parallel Execution Engine
 
-A distinctive feature of Claude Code is its parallel tool execution system. This capability dramatically improves performance when working with large codebases - tasks that might take minutes when executed sequentially often complete in seconds with parallel processing.
+A distinctive feature of advanced AI coding assistants is parallel tool execution. This capability dramatically improves performance when working with large codebases - tasks that might take minutes when executed sequentially often complete in seconds with parallel processing.
 
 ### Concurrent Generator Approach
 
-Claude Code implements an elegant solution using async generators to process multiple operations in parallel while streaming results as they become available.
+Production systems implement elegant solutions using async generators to process multiple operations in parallel while streaming results as they become available.
 
 The core implementation breaks down into several manageable concepts:
 
@@ -160,10 +160,10 @@ type GeneratorState<T> = {
   done: boolean                   // Whether it's finished
 }
 
-// We track all active generators in a map
+// Track all active generators in a map
 const generatorStates = new Map<number, GeneratorState<T>>()
 
-// We also track which generators are still running
+// Track which generators are still running
 const remaining = new Set(generators.map((_, i) => i))
 ```
 
@@ -252,23 +252,23 @@ if (signal?.aborted) {
 
 ### The Complete Picture
 
-These pieces work together to create a system that:
+These pieces work together to create systems that:
 
-1. Runs a controlled number of operations concurrently
-2. Returns results immediately as they become available from any operation
-3. Dynamically starts new operations as others complete
-4. Tracks which generator produced each result
-5. Supports clean cancellation at any point
+1. Run a controlled number of operations concurrently
+2. Return results immediately as they become available from any operation
+3. Dynamically start new operations as others complete
+4. Track which generator produced each result
+5. Support clean cancellation at any point
 
-This approach maximizes throughput while maintaining order tracking, enabling Claude Code to process large codebases efficiently.
+This approach maximizes throughput while maintaining order tracking, enabling efficient processing of large codebases.
 
 ## Tool Execution Strategy
 
-When Claude requests multiple tools, the system must decide how to execute them efficiently. A key insight drives this decision: read operations can run in parallel, but write operations need careful coordination.
+When an LLM requests multiple tools, the system must decide how to execute them efficiently. A key insight drives this decision: read operations can run in parallel, but write operations need careful coordination.
 
 ### Smart Execution Paths
 
-The tool executor makes an important distinction:
+Tool executors in production systems make important distinctions:
 
 ```typescript
 async function executeTools(toolUses: ToolUseRequest[], context: QueryContext) {
@@ -296,7 +296,7 @@ async function executeTools(toolUses: ToolUseRequest[], context: QueryContext) {
 
 ### Performance Optimizations
 
-This seemingly simple approach contains several sophisticated optimizations:
+This approach contains several sophisticated optimizations:
 
 #### Read vs. Write Classification
 
@@ -356,33 +356,37 @@ function sortToolResultsByRequestOrder(
 
 ### Real-World Impact
 
-The parallel execution strategy significantly improves performance for operations that would otherwise run sequentially, making Claude Code more responsive when working with multiple files or commands.
+The parallel execution strategy significantly improves performance for operations that would otherwise run sequentially, making AI assistants more responsive when working with multiple files or commands.
 
 ## Key Components and Design Patterns
 
-The Claude Code architecture relies on several foundational components that work together:
+Modern AI assistant architectures rely on several foundational patterns:
 
-### Core Files
-
-- `utils/generators.ts`: Contains the parallel execution engine and generator utilities
-- `query.ts`: Implements the reactive command loop and tool execution logic
-- `Tool.ts`: Defines the interface all tools must implement
-- `tools.ts`: Manages tool registration and discovery
-- `permissions.ts`: Handles the security layer for tool execution
-
-### UI Components
-
-- `screens/REPL.tsx`: Renders the main conversation interface
-- `PromptInput.tsx`: Manages user input and command history
-- `services/claude.ts`: Handles API communication with Claude
-- `utils/messages.tsx`: Processes message formatting and rendering
-
-### Architectural Patterns
-
-The codebase employs several consistent patterns:
+### Core Patterns
 
 - **Async Generators**: Enable streaming data throughout the system
 - **Recursive Functions**: Power multi-turn conversations and tool usage
-- **Plugin Architecture**: Allows extending the system with new tools
-- **State Isolation**: Keeps tool executions from interfering with each other
-- **Dynamic Concurrency**: Adjusts parallelism based on operation types
+- **Plugin Architecture**: Allow extending the system with new tools
+- **State Isolation**: Keep tool executions from interfering with each other
+- **Dynamic Concurrency**: Adjust parallelism based on operation types
+
+### Typical Component Organization
+
+Production systems often organize code around these concepts:
+
+- **Generator utilities**: Parallel execution engine and streaming helpers
+- **Query handlers**: Reactive command loop and tool execution logic
+- **Tool interfaces**: Standard contracts all tools implement
+- **Tool registry**: Dynamic tool discovery and management
+- **Permission layer**: Security boundaries for tool execution
+
+### UI Components
+
+Terminal-based systems typically include:
+
+- **REPL interface**: Main conversation loop
+- **Input handling**: Command history and user interaction
+- **LLM communication**: API integration and response streaming
+- **Message formatting**: Rich terminal output rendering
+
+These architectural patterns form the foundation of practical AI coding assistants. By understanding these core concepts, you can build systems that deliver responsive, safe, and extensible AI-powered development experiences.

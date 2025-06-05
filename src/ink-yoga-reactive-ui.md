@@ -1,6 +1,6 @@
 # Ink, Yoga, and Reactive UI System
 
-Claude Code uses a terminal-based reactive UI system built with Ink, Yoga, and React. The system renders rich, interactive components with responsive layouts in a text-based environment, showing how modern UI paradigms can work in terminal applications.
+A terminal-based reactive UI system can be built with Ink, Yoga, and React. This architecture renders rich, interactive components with responsive layouts in a text-based environment, showing how modern UI paradigms can work in terminal applications.
 
 ## Core UI Architecture
 
@@ -8,7 +8,7 @@ The UI architecture applies React component patterns to terminal rendering throu
 
 ### Entry Points and Initialization
 
-The main entry point is in `anon-kode/src/entrypoints/cli.tsx`, which initializes the application:
+A typical entry point initializes the application:
 
 ```tsx
 // Main render entry point
@@ -177,7 +177,7 @@ for await (const message of query([...messages, lastMessage], /* ... */)) {
 
 ## Integration with Other Systems
 
-The UI system integrates with other core components of Claude Code.
+The UI system integrates with other core components of an agentic system.
 
 ### Tool System Integration
 
@@ -220,4 +220,4 @@ Building similar terminal UI systems requires:
 3. Terminal-specific input handling
 4. Text rendering optimizations
 
-Combining these elements enables rich terminal interfaces for developer tools, CLI applications, and text-based programs.
+Combining these elements enables rich terminal interfaces for developer tools, CLI applications, and text-based programs that rival the sophistication of traditional GUI applications.

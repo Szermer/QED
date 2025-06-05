@@ -47,7 +47,7 @@ sequenceDiagram
 
 #### Phase 3: Tool Use Execution - Finding the File
 
-1. Claude decides to use `GlobTool` to locate the file
+1. Claude decides to use a pattern matching tool to locate the file
 2. The response contains a tool_use block:
    ```json
    {
@@ -58,12 +58,12 @@ sequenceDiagram
    }
    ```
 3. Generator system detects tool_use and calls `runToolsConcurrently()`
-4. `canUseTool()` checks permissions for GlobTool which can run without explicit user approval
-5. `GlobTool.call()` executes with parameters, running ripgrep on the filesystem
+4. `canUseTool()` checks permissions for the pattern matching tool which can run without explicit user approval
+5. The tool executes with parameters, running file search on the filesystem
 6. Results are returned:
    ```
    Found 1 file:
-   /Users/gerred/dev/anon-kode/src/components/Bug.tsx
+   /path/to/project/src/components/Bug.tsx
    ```
 
 #### Phase 4: Tool Use Execution - Reading the File
@@ -74,7 +74,7 @@ sequenceDiagram
    {
      "name": "View",
      "parameters": {
-       "file_path": "/Users/gerred/dev/anon-kode/src/components/Bug.tsx"
+       "file_path": "/path/to/project/src/components/Bug.tsx"
      }
    }
    ```
@@ -107,26 +107,26 @@ sequenceDiagram
    {
      "name": "Edit",
      "parameters": {
-       "file_path": "/Users/gerred/dev/anon-kode/src/components/Bug.tsx",
+       "file_path": "/path/to/project/src/components/Bug.tsx",
        "old_string": "export function Bug({ message }: BugProps) {\n  return (\n    <Box>\n      {message.toUpperCase()}\n      {undefinedProp.toString()} // This will cause an error\n    </Box>\n  );\n}",
        "new_string": "export function Bug({ message }: BugProps) {\n  return (\n    <Box>\n      {message.toUpperCase()}\n      {/* Removed reference to undefined prop */}\n    </Box>\n  );\n}"
      }
    }
    ```
 3. `Edit.needsPermissions` returns true, prompting user permission
-4. A permission request is displayed: "Claude wants to edit file /Users/gerred/dev/anon-kode/src/components/Bug.tsx"
+4. A permission request is displayed: "Claude wants to edit file /path/to/project/src/components/Bug.tsx"
 5. User approves the edit
 6. `Edit.call()` executes, modifying the file
 7. Results show successful edit:
    ```
-   The file /Users/gerred/dev/anon-kode/src/components/Bug.tsx has been updated. 
+   The file /path/to/project/src/components/Bug.tsx has been updated. 
    ```
 
 ```mermaid
 sequenceDiagram
-    Claude API-->>query.ts: Tool use: GlobTool
-    query.ts->>GlobTool: Execute with pattern "**/Bug.tsx"
-    GlobTool-->>query.ts: Return file location
+    Claude API-->>query.ts: Tool use: Pattern Matching
+    query.ts->>PatternTool: Execute with pattern "**/Bug.tsx"
+    PatternTool-->>query.ts: Return file location
     query.ts->>Claude API: Send tool result
     Claude API-->>query.ts: Tool use: View
     query.ts->>View: Execute with file_path
@@ -235,14 +235,14 @@ sequenceDiagram
     query.ts->>query.ts: Check if all tools are read-only
     
     par Parallel execution
-        query.ts->>GlobTool: Execute tool_use_1
-        query.ts->>GrepTool1: Execute tool_use_2
-        query.ts->>GrepTool2: Execute tool_use_3
+        query.ts->>PatternTool: Execute tool_use_1
+        query.ts->>SearchTool1: Execute tool_use_2
+        query.ts->>SearchTool2: Execute tool_use_3
     end
     
-    GrepTool1-->>query.ts: Return files importing useState
-    GlobTool-->>query.ts: Return all .tsx files
-    GrepTool2-->>query.ts: Return files using useState hook
+    SearchTool1-->>query.ts: Return files importing useState
+    PatternTool-->>query.ts: Return all .tsx files
+    SearchTool2-->>query.ts: Return files using useState hook
     
     query.ts->>query.ts: Sort results in original order
     query.ts->>Claude: Send all tool results
