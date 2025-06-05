@@ -1,6 +1,6 @@
 # Parallel Tool Execution
 
-Claude Code runs tools in parallel to speed up code operations. Getting parallel execution right is tricky in AI tools - you need to maintain result ordering while preventing race conditions on write operations. The system solves this by classifying operations as read-only or stateful, applying different execution strategies to each. This approach turns what could be minutes of sequential file operations into seconds of concurrent processing.
+An agentic system can run tools in parallel to speed up code operations. Getting parallel execution right is tricky in AI tools - you need to maintain result ordering while preventing race conditions on write operations. The system solves this by classifying operations as read-only or stateful, applying different execution strategies to each. This approach turns what could be minutes of sequential file operations into seconds of concurrent processing.
 
 ## Smart Scheduling Strategy
 
@@ -8,12 +8,12 @@ The architecture uses a simple but effective rule to determine execution strateg
 
 ```mermaid
 flowchart TD
-    A["Claude suggests multiple tools"] --> B{"Are ALL tools read-only?"}
+    A["AI suggests multiple tools"] --> B{"Are ALL tools read-only?"}
     B -->|"Yes"| C["Run tools concurrently"]
     B -->|"No"| D["Run tools serially"]
     C --> E["Sort results back to original order"]
     D --> E
-    E --> F["Send results back to Claude API"]
+    E --> F["Send results back to AI"]
 ```
 
 This approach balances performance with safety:
@@ -22,7 +22,7 @@ This approach balances performance with safety:
 
 ## Tool Categories
 
-Claude Code divides tools into two categories that determine their execution behavior:
+The system divides tools into two categories that determine their execution behavior:
 
 ### Read-Only Tools (Parallel-Safe)
 

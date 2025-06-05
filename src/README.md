@@ -1,129 +1,124 @@
-# Building an Agentic System
+# The Agentic Systems Series
 
-There's been a lot of asking about how Claude Code works under the hood. Usually, people see the prompts, but they don't see how it all comes together. This is that book. All of the systems, tools, and commands that go into building one of these.
+Welcome to the complete guide for building AI coding assistants that actually work in production. This comprehensive three-book series takes you from fundamental concepts to implementing enterprise-ready collaborative systems.
 
-A practical deep dive and code review into how to build a self-driving coding agent, execution engine, tools and commands. Rather than the prompts and AI engineering, this is the systems and design decisions that go into making agents that are real-time, self-corrective, and useful for productive work.
+## About This Series
 
-## Why This Guide Exists
+Ever wondered how modern AI coding assistants actually work? Beyond the prompts and demos, there's a rich ecosystem of patterns, architectures, and engineering decisions that make these systems effective.
 
-I created this guide while building out highly specialized, vertical agents. I'll often start with a problem with a framework and then unbundle parts of it, which is why I immediately wanted to take an agent I was building in Go and see how an agent like Claude Code could improve it, with a bunch of other features like rich components, panes, effectively Devin for your terminal. More on that soon.
+This series reveals those patterns. It's the missing documentation—a practical engineering guide based on real production systems, including deep analysis of [Amp](https://ampcode.com) (the collaborative platform), [Claude Code](https://claude.ai/chat) (Anthropic's local CLI), and open-source implementations like anon-kode.
 
-(Note to the reader, I did do the Rewrite it in Rust thing, and it originally was, but [Charm](https://charm.sh) is excellent. Ultimately, it came down to wanting to bind to [jujutsu](https://github.com/jj-vcs/jj) for handling safe, linearizable checkpoints and the ability for multiple agents and humans to work together)
+## The Three Books
 
-After diving deep into Claude Code and similar architectures, I realized there's a gap in practical, engineering-focused documentation on how these systems actually work. Most resources either stay at a theoretical level or skip to implementation details without covering the critical architectural decisions. This is really a "how things work" book, and the software pieces themselves would be recognizable.
+### Book 1: Building an Agentic System
+*The Foundation*
 
-In addition, I've provided documentation on every tool and command, and its implementation. This is where this documentation shines - combining those with the execution rules reveals a lot of why Claude Code works so well. Don't skip either section!
+A practical deep dive into building your first AI coding agent. This book analyzes real implementations to extract core patterns:
 
-This isn't just about Claude Code or anon-kode. It's about the underlying patterns that make real-time AI coding assistants feel responsive, safe, and genuinely useful—patterns I've found while building my own system.
+- **Core Architecture** - Reactive UI with Ink/Yoga, streaming responses, and state management
+- **Tool Systems** - Extensible architecture for file operations, code execution, and external integrations
+- **Permission Systems** - Security models that balance safety with productivity
+- **Parallel Execution** - Concurrent operations without race conditions
+- **Command Systems** - Slash commands, contextual help, and user configuration
+- **Implementation Patterns** - Lessons from Amp and Claude Code architectures
 
-## What You'll Find Inside
+Perfect for engineers ready to build beyond simple chatbots into production-grade coding assistants.
 
-This guide dissects a working agentic system architecture with a focus on:
+[**Start with Book 1 →**](introduction.md)
 
-1. **Responsive Interactions** - How to build systems that stream partial results instead of making users wait for complete responses
-2. **Parallel Execution** - Techniques for running operations concurrently without sacrificing safety
-3. **Permission Systems** - Implementing guardrails that prevent agents from taking unauthorized actions
-4. **Tool Architecture** - Creating extensible frameworks for agents to interact with the environment
+### Book 2: Amping Up an Agentic System  
+*From Local to Collaborative*
 
-I've deliberately focused on concrete engineering patterns rather than theoretical ML concepts. You'll find diagrams, code explanations, and architectural insights that apply regardless of which LLM you're using.
+Transforms single-user agents into enterprise-ready collaborative platforms. Based on extensive analysis of production systems:
 
-## Who am I?
+- **Scalable Architecture** - Conversation management, state synchronization, and performance at scale
+- **Authentication & Identity** - OAuth flows, credential management, and multi-environment support
+- **Collaboration Patterns** - Real-time sharing, team workflows, and concurrent editing strategies
+- **Enterprise Features** - SSO integration, usage analytics, and compliance frameworks
+- **Advanced Orchestration** - Multi-agent coordination, adaptive resource management, and cost optimization
+- **Production Strategies** - Deployment patterns, migration frameworks, and real-world case studies
 
-Hi! I'm Gerred. I'm a systems engineer, with a deep background in AI and Kubernetes at global scale, but overall I care deeply about everything from frontend UX to infrastructure and I have _opinions_. My background includes:
+Essential reading for teams scaling AI assistants from prototype to production collaborative environments.
 
-- Early work on many CNCF projects and Kubernetes
-- Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)
-- Early deployment of GPUs onto Kubernetes for holoportation and humans in AR/VR
-- Data systems at scale at Mesosphere, including migration to Kubernetes
-- One of the initial engineers on the system that would grow to become [Platform One](https://p1.dso.mil/)
+[**Continue with Book 2 →**](second-edition/README.md)
+
+### Book 3: Contextualizing an Agentic System
+*Advanced Tools and Context*
+
+Deep dive into advanced tool systems and context management for agentic systems. This book covers:
+
+- **Tool System Architecture** - Extensible frameworks for adding new capabilities
+- **Command System Design** - Slash commands, contextual help, and configuration
+- **Context Management** - Understanding and maintaining conversational context
+- **Implementation Deep Dives** - Real-world tool system implementations and patterns
+
+Perfect for engineers building sophisticated agent capabilities and context-aware systems.
+
+[**Explore Book 3 →**](arming-introduction.md)
+
+## Who This Is For
+
+- **Systems Engineers** building AI-powered development tools
+- **Platform Teams** integrating AI assistants into existing workflows  
+- **Technical Leaders** evaluating architectures for coding assistants
+- **Researchers** studying practical AI system implementation
+- **Anyone** curious about how production AI coding tools actually work
+
+## Prerequisites
+
+- Familiarity with system design concepts
+- Basic understanding of AI/LLM integration
+- Experience with either TypeScript/Node.js or similar backend technologies
+- Understanding of terminal/CLI applications (helpful but not required)
+
+## What's Inside
+
+This series provides:
+
+- **Architectural Patterns** - Proven designs from production AI coding assistants
+- **Implementation Strategies** - Practical approaches to common challenges
+- **Decision Frameworks** - When to use different patterns and trade-offs
+- **Code Examples** - Illustrative implementations (generalized for broad applicability)
+- **Case Studies** - Real-world deployment scenarios and lessons learned
+
+The content is based on extensive analysis of production systems, with patterns extracted and generalized for your own implementations.
+
+## About the Author
+
+Hi! I'm Gerred. I'm a systems engineer with deep experience in AI and infrastructure at global scale. My background includes:
+
+- Early work on CNCF projects and Kubernetes ecosystem
+- Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)  
+- Deploying GPU infrastructure for AI/AR applications
+- Building data systems at scale (Mesosphere → Kubernetes migrations)
+- Early work on [Platform One](https://p1.dso.mil/) (DoD DevSecOps platform)
 - Implementing AI systems in secure, regulated environments
-- Designing and deploying large-scale distributed systems
-- Currently developing frameworks for specialized agents with reinforcement learning, especially with VLMs
+- Currently developing specialized agent frameworks with reinforcement learning
 
-I like robust systems with awesome UX and interactive experiences, but that's beyond the scope of this book.
+I care deeply about building robust systems with excellent UX, from frontend interactions to infrastructure design.
 
-## Why Build Your Own Agent?
+## Support This Work
 
-Commercial AI coding assistants are impressive but come with limitations:
+I'm actively consulting in this space. If you need help with:
 
-1. **Context boundaries** - Most are constrained by input/output limits
-2. **Extensibility challenges** - Limited ability to add specialized capabilities
-3. **Integration gaps** - Often struggle to connect with existing workflows and tools
-4. **Domain specificity** - General-purpose assistants miss nuances of specialized domains
-
-Building your own agent isn't just about technical independence—it's about creating assistants tailored to specific workflows, domains, and security requirements.
-
-## State of This Work
-
-This guide represents my analysis of several coding agent architectures, including Claude Code, anon-kode, and my own experimental system. It's currently in active development as my own agent enters final testing.
-
-The patterns documented here have proven effective in practical applications, but like any engineering approach, they continue to evolve. I'm sharing this now because these architectural insights solved real problems for me, and they might help you avoid similar challenges.
-
-## How to Use This Guide
-
-If you're building an AI coding assistant or any agentic system:
-
-- Start with the system architecture diagram for a high-level overview
-- Explore specific components based on your immediate challenges
-- Pay particular attention to the parallel execution and permission system sections, as these address common pain points
-
-For a deeper exploration of specific subsystems, the tool and command system deep dives provide implementation-level details.
-
-The code examples reference both Claude Code architecture and anon-kode (by Daniel Nakov - https://github.com/dnakov/anon-kode), which is included as a submodule. By examining the anon-kode implementation alongside this guide, you'll get hands-on experience with the concepts described here.
-
-## Getting Started
-
-To make the most of this guide and explore the code examples:
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/gerred/building-an-agentic-system.git
-   cd building-an-agentic-system
-   ```
-
-2. **Initialize Submodules**
-   This repository includes anon-kode as a submodule, which is a reference implementation:
-   ```bash
-   git submodule update --init --recursive
-   ```
-
-3. **Explore the Code**
-   The `anon-kode` submodule contains the reference implementation by Daniel Nakov (https://github.com/dnakov/anon-kode). This is an excellent terminal-based AI coding tool that works similarly to Claude Code and provides a concrete example of the architecture described in this guide.
-
-## Guide Map
-
-Here's how this guide is organized:
-
-- **[Introduction](introduction.md)** - Overview of agentic systems and why they matter
-- **Core Architecture**
-  - **[System Architecture Diagram](system-architecture-diagram.md)** - Visual overview of the entire system
-  - **[Core Architecture](core-architecture.md)** - The fundamental building blocks
-  - **[Execution Flow](execution-flow-in-detail.md)** - How requests flow through the system
-  - **[Parallel Tool Execution](parallel-tool-execution.md)** - Running operations concurrently
-  - **[Permission System](the-permission-system.md)** - Security guardrails for agents
-- **Components**
-  - **[Tool System](tool-system-deep-dive.md)** - How tools are defined and executed
-  - **[Command System](command-system-deep-dive.md)** - How commands control the agent
-- **Reference**
-  - **[Tools](tool-system-deep-dive.md)** - Detailed documentation of each tool
-  - **[Commands](command-system-deep-dive.md)** - Detailed documentation of each command
-- **Real-World Applications**
-  - **[Real-World Examples](real-world-examples.md)** - Case studies and practical applications
-  - **[Lessons Learned](lessons-learned-and-implementation-challenges.md)** - Challenges and solutions
-
-## Connect and Support
-
-I'm actively building in this space and available for consulting. If you need help with:
-
-- Verticalized agents for specific domains
-- Production agent deployments
-- Practical AI system architecture
-- Making this stuff actually work in real environments
+- Building verticalized agents for specific domains
+- Production agent deployments and architecture
+- Making AI systems work in real enterprise environments
 
 Reach out [by email](mailto:hello@gerred.org) or on X [@devgerred](https://x.com/devgerred).
 
-If this work's valuable to you, you can support my ongoing research through [Ko-fi](https://ko-fi.com/gerred).
+If this work's valuable, you can support ongoing research through [Ko-fi](https://ko-fi.com/gerred).
 
 ---
 
-Let's dive into the architecture that makes these systems work.
+## Ready to Start?
+
+Choose your path based on where you are:
+
+**New to agentic systems?** → [Start with Book 1: Building an Agentic System](introduction.md)
+
+**Ready for collaboration & scale?** → [Jump to Book 2: Amping Up an Agentic System](second-edition/README.md)
+
+**Want the big picture first?** → [System Architecture Overview](core-architecture.md)
+
+Let's build systems that actually work.

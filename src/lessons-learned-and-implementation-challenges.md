@@ -1,6 +1,6 @@
 ## Lessons Learned and Implementation Challenges
 
-Taking apart Claude Code revealed some tricky engineering problems worth calling out:
+Building an agentic system reveals some tricky engineering problems worth calling out:
 
 ### Async Complexity
 
@@ -26,7 +26,7 @@ async function* generator(signal: AbortSignal): AsyncGenerator<Result> {
 
 ### Tool System Design
 
-Good tools need power without accidental footguns. Claude Code handles this by:
+Good tools need power without accidental footguns. The architecture handles this by:
 	•	Having clear but not overly granular permissions.
 	•	Making tools discoverable with structured definitions.
 
