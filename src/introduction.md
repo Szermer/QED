@@ -1,6 +1,6 @@
 ## Introduction
 
-Building AI coding assistants that actually work requires solving some hard technical problems. After analyzing several modern implementations, including production systems and open-source alternatives, I've identified patterns that separate practical tools from impressive demos.
+Building AI coding assistants that actually work requires solving some hard technical problems. After analyzing several modern implementations, including [Claude Code](https://claude.ai/code) (Anthropic's CLI), [Amp](https://ampcode.com) (Sourcegraph's collaborative platform), and open-source alternatives, I've identified patterns that separate practical tools from impressive demos.
 
 Modern AI coding assistants face three critical challenges: delivering instant feedback during long-running operations, preventing destructive actions through clear safety boundaries, and remaining extensible without becoming unwieldy. The best implementations tackle these through clever architecture choices rather than brute force.
 
