@@ -1,51 +1,87 @@
 ## Introduction
 
-Building AI coding assistants that actually work requires solving some hard technical problems. After analyzing several modern implementations, including [Claude Code](https://claude.ai/code) (Anthropic's CLI), [Amp](https://ampcode.com) (Sourcegraph's collaborative platform), and open-source alternatives, I've identified patterns that separate practical tools from impressive demos.
+When you're responsible for delivering AI solutions to clients, every pattern recommendation carries professional liability. This is QED: AI Development Patterns - a practitioner's knowledge base built on evidence-based methodology and systematic risk assessment.
 
-Modern AI coding assistants face three critical challenges: delivering instant feedback during long-running operations, preventing destructive actions through clear safety boundaries, and remaining extensible without becoming unwieldy. The best implementations tackle these through clever architecture choices rather than brute force.
+**QED** stands for "Quod Erat Demonstrandum" - *that which is demonstrated*. In mathematics, it marks the completion of a proof. In consulting practice, it represents patterns that have been tested in real client environments and proven to deliver measurable outcomes.
 
-This guide explores architectural patterns discovered through deep analysis of real-world agentic systems. We'll examine how reactive UI patterns enable responsive interactions, how permission systems prevent disasters, and how plugin architectures maintain clean extensibility. These aren't theoretical concepts - they're battle-tested patterns running in production tools today.
+This guide emerged from a critical gap in AI development resources: the disconnect between impressive demos and production-ready implementations that actually work in enterprise environments. While the internet overflows with AI tutorials and framework evangelism, practitioners need systematic guidance for making architecture decisions that won't compromise client projects.
 
-## Key Patterns We'll Explore
+## The Practitioner's Challenge
 
-**Streaming Architecture**: How async generators and reactive patterns create responsive UIs that update in real-time, even during complex multi-step operations.
+Building AI-powered systems for clients requires more than technical proficiency. You're accountable for:
 
-**Permission Systems**: Structured approaches to safety that go beyond simple confirmation dialogs, including contextual permissions and operation classification.
+- **Security decisions** that protect client data and intellectual property
+- **Architecture choices** that scale with business requirements  
+- **Risk assessments** that prevent costly implementation failures
+- **Framework selections** that maintain long-term viability
+- **Performance guarantees** that meet enterprise expectations
 
-**Tool Extensibility**: Plugin architectures that make adding new capabilities straightforward while maintaining consistency and type safety.
+Traditional AI content rarely addresses these constraints. QED fills that gap with systematic evaluation frameworks and evidence-based pattern recommendations.
 
-**Parallel Execution**: Smart strategies for running multiple operations concurrently without creating race conditions or corrupting state.
+## The QED Methodology: Three-Tier Knowledge Management
 
-**Command Loops**: Recursive patterns that enable natural multi-turn conversations while maintaining context and handling errors gracefully.
+QED employs a systematic approach to pattern validation that ensures every recommendation has been battle-tested:
 
-## What You'll Learn
+**Tier 1: Research Collection** - Comprehensive intake of industry patterns, frameworks, and case studies with systematic priority assessment based on client relevance.
 
-This guide provides practical insights for engineers building AI-powered development tools. You'll understand:
+**Tier 2: Critical Analysis** - Professional evaluation using risk assessment matrices, client context analysis (Conservative/Moderate/Aggressive profiles), and implementation feasibility studies.
 
-- How to stream results immediately instead of making users wait
-- Patterns for safe file and system operations with clear permission boundaries
-- Architectures that scale from simple scripts to complex multi-agent systems
-- Real implementation details from production codebases
+**Tier 3: Proven Practice** - Only patterns that have been successfully deployed in client environments with documented outcomes, metrics, and lessons learned.
 
-Whether you're building a coding assistant, extending an existing tool, or just curious about how these systems work under the hood, this guide offers concrete patterns you can apply.
+This approach guarantees that QED patterns carry the weight of real-world validation, not theoretical promise.
 
-## Using This Guide
+## Core Pattern Areas
 
-This is a technical guide for builders. Each chapter focuses on specific architectural patterns with real code examples. You can read sequentially to understand the full system architecture, or jump to specific topics relevant to your current challenges.
+**Foundation Patterns** - Client-safe AI integration strategies that minimize risk while maximizing capability. From basic API integration to sophisticated context management.
 
-For advanced users wanting to build their own AI coding assistants, this guide covers the complete technical stack: command loops, execution flows, tool systems, and UI patterns that make these systems practical.
+**Production Frameworks** - Battle-tested architectures for enterprise deployment. Risk assessment matrices for framework selection, security models, and performance optimization.
 
-## Contact and Attribution
+**Advanced Integration** - Sophisticated patterns for multi-agent systems, context engineering, and enterprise-scale implementations with documented ROI and risk profiles.
 
-You can reach me on X at [@devgerred](https://x.com/devgerred), or support my [Ko-fi](https://ko-fi.com/gerred).
+## What Makes QED Different
 
-This work is licensed under a [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/).
+Unlike typical AI development resources, QED provides:
 
-```bibtex
-@misc{building_an_agentic_system,
-  author = {Gerred Dillon},
-  title = {Building an Agentic System},
-  year = {2024},
-  howpublished = {https://gerred.github.io/building-an-agentic-system/}
-}
-```
+- **Evidence-based recommendations** with documented client outcomes
+- **Risk assessment frameworks** for enterprise architecture decisions  
+- **Client context considerations** (security, privacy, compliance requirements)
+- **Professional liability awareness** in every pattern recommendation
+- **Systematic evaluation methodology** rather than framework evangelism
+- **Transparent limitations** - we document failure modes and known constraints
+
+## How to Use This Guide
+
+QED is organized as a progressive knowledge base:
+
+- **Start with Foundation Patterns** if you're new to AI integration or working with conservative client requirements
+- **Jump to Production Frameworks** if you need enterprise architecture guidance and risk assessment
+- **Explore Advanced Integration** for sophisticated multi-agent systems and context engineering
+
+Each pattern includes:
+- **Risk assessment** for different client contexts
+- **Implementation considerations** with security implications
+- **Known limitations** and failure modes  
+- **ROI projections** and success metrics
+- **Client case studies** with documented outcomes
+
+## Target Audience
+
+QED serves practitioners who are accountable for AI implementation success:
+
+- **Technical consultants** delivering AI solutions to enterprise clients
+- **CTOs and technical leaders** evaluating AI integration strategies
+- **Senior engineers** responsible for production AI system architecture
+- **Systems integrators** building AI-powered client applications
+- **Anyone** who needs evidence-based guidance rather than framework marketing
+
+## Attribution and Sources
+
+QED builds upon extensive research and analysis of production systems. Key foundational work includes:
+
+**Gerred Dillon's "Building an Agentic System"** ([gerred.github.io/building-an-agentic-system](https://gerred.github.io/building-an-agentic-system)) provides exceptional technical analysis of real production systems including Claude Code and Amp. His systematic approach to analyzing implementation patterns forms a crucial foundation for QED's methodology.
+
+**Jason Liu's practitioner insights** on context engineering, RAG systems, and agentic architectures contribute evidence-based patterns tested in real client environments.
+
+All patterns in QED undergo systematic evaluation and client validation before inclusion. We maintain full attribution to original sources while adding our own analysis, risk assessment, and client deployment experience.
+
+QED is licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) to encourage knowledge sharing while maintaining attribution to contributing practitioners.
