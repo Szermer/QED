@@ -26,6 +26,17 @@ Examples:
 
 See `analysis-template.md` for the standard structure to follow.
 
+## Current Analysis Documents
+
+### Tool-Specific Evaluations
+- **[Google Gemini Nano Banana Evaluation](google-gemini-nano-banana-evaluation.md)** - AI image generation API analysis with cost and vendor lock-in considerations
+
+### Framework Assessments
+*Future analysis documents will be listed here*
+
+### Process Evaluations
+*Future analysis documents will be listed here*
+
 ## Lifecycle
 
 1. **Creation**: High-priority research items get analysis documents
