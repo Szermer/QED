@@ -33,6 +33,17 @@ Written for developers, consultants, and agencies using AI coding assistants, co
 
 Visit [szermer.github.io/QED](https://szermer.github.io/QED) for the rendered book.
 
+## Documentation Philosophy
+
+QED follows evidence-based knowledge management:
+
+- **Tier 1: Research** (`docs/`) - Raw material collection
+- **Tier 2: Analysis** (`src/analysis/`) - Professional evaluation  
+- **Tier 3: Practice** (`src/`) - Battle-tested guidance only
+- **Decision Records** (`decisions/`) - Architecture decisions with rationale
+
+See [KNOWLEDGE_INTAKE.md](KNOWLEDGE_INTAKE.md) for the complete framework.
+
 ## Author
 
 [Stephen Szermer](https://github.com/Szermer)

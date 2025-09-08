@@ -73,6 +73,9 @@
 
 # Appendices
 
+- [Decision Records](../decisions/DECISION_REGISTRY.md)
+- [Knowledge Intake Framework](../KNOWLEDGE_INTAKE.md)
+- [Knowledge Management Structure](../KNOWLEDGE_MANAGEMENT_STRUCTURE.md)
 - [Tool Evaluation Checklist](tool-evaluation-checklist.md)
 - [Client Onboarding Templates](client-onboarding-templates.md)
 - [Security Assessment Framework](security-assessment-framework.md)

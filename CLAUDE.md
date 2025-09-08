@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an mdBook documentation project - "The Agentic Systems Series" - a comprehensive two-book guide about building AI coding assistants. It analyzes architecture patterns from Claude Code, anon-kode, and Amp to provide practical insights for engineers building production AI development tools.
+This is QED ("Quod Erat Demonstrandum" - "that which is demonstrated") - a practitioner's knowledge base for AI-assisted development. It provides evidence-based patterns for integrating AI coding assistants like Claude Code into client projects and production environments.
 
-The series covers everything from single-user local tools (Book 1) to collaborative enterprise platforms (Book 2).
+QED follows a rigorous four-tier knowledge management system, promoting only proven patterns to authoritative guidance.
 
 ## Common Commands
 
@@ -22,52 +22,80 @@ mdbook test         # Test code examples in documentation
 
 ## Project Structure
 
-The documentation follows mdBook conventions:
-- `src/` - All markdown content files
-- `src/SUMMARY.md` - Navigation structure and chapter ordering
-- `book.toml` - mdBook configuration
-- `amp/` - Contains analyzed source code from amp/Claude Code
-- `src/second-edition/` - Book 2: Amping Up an Agentic System
+QED uses a structured knowledge management approach:
 
-Key content areas:
-- **Book 1**: Core architecture patterns (reactive UI, streaming, permissions), tool systems, command systems
-- **Book 2**: Collaborative architecture, enterprise features, scaling patterns, production deployment
+### Core Directories:
+- `src/` - Book content (Tier 3: Proven practices only)
+- `src/analysis/` - Critical analysis documents (Tier 2: Under evaluation)
+- `docs/` - Research collection (Tier 1: Raw material)
+- `decisions/` - Architecture Decision Records with full rationale
+
+### Key Files:
+- `src/SUMMARY.md` - Navigation structure for three-book series
+- `book.toml` - mdBook configuration for GitHub Pages
+- `KNOWLEDGE_INTAKE.md` - Framework for evaluating new patterns
+- `decisions/DECISION_REGISTRY.md` - Searchable index of all ADRs
+
+### Content Structure:
+- **Book 1**: Foundation Patterns - Client-safe AI integration strategies
+- **Book 2**: Production Frameworks - Risk assessment and selection guidance  
+- **Book 3**: Advanced Integration - Enterprise patterns and scaling
 
 ## Writing Guidelines
 
 ### Style
-- Technical but relaxed: Clear explanations without formal language, avoiding buzzwords or unnecessary complexity
-- Concise and direct: Minimal filler or extra detail; each sentence contributes meaningfully
-- Casual yet authoritative: Written as a peer talking to other engineers—approachable but clearly knowledgeable
-- No forced enthusiasm or marketing tone: Avoids phrases like "snappy," "seamless," or overly enthusiastic claims
-- Markdown-friendly: Well-structured for readability, cleanly organized headings and lists, avoiding unnecessary punctuation (especially em dashes)
-- IRC-inspired pragmatism: Direct and practical, straightforward phrasing reminiscent of a developer chat rather than corporate communication
-- Varied article usage: Diverse use of articles ("a", "the", "this", etc.) rather than repetitive patterns
+- **Practitioner-focused**: Written by consultants for consultants, addressing real client work constraints
+- **Evidence-based**: Every recommendation backed by documented client project outcomes
+- **Risk-aware**: Explicit discussion of trade-offs, limitations, and failure modes
+- **Client-safe**: Consider security, privacy, and professional liability in all guidance
+- **Direct and practical**: No marketing language or theoretical speculation
+- **Systematic**: Use established evaluation frameworks and decision matrices
+- **Transparent**: Document reasoning behind all framework choices and tool selections
 
 ### Hard Rules
-- **NO speculation**: Only document what's observable in the code. Never speculate about intentions, roadmaps, or development status.
-- **NO prescriptive language**: Avoid "should", "must", "need to", "have to" when giving recommendations. Use "consider" or simply state options directly.
-- **NO obvious details**: Skip mentioning basic implementation details like UTF-8 encoding or standard language features that any developer would expect.
-- **NO LLM-like language**: Avoid flowery or overly formal descriptions. Write like a programmer talking to another programmer.
-- **NO weasel words**: Avoid hedging language like "perhaps", "seems to", "appears to", "might be", "this approach", "this pattern", "this system", unless truly uncertain. Be direct and assertive.
-- **Facts only**: Base all technical documentation on direct code evidence, not assumptions.
+- **NO unproven claims**: Only document patterns successfully used in client projects
+- **NO framework evangelism**: Present objective analysis, not advocacy for specific tools
+- **NO theoretical patterns**: If it hasn't been tested with real clients, it doesn't belong in Tier 3
+- **NO vendor marketing**: Maintain independence from tool vendors and framework authors
+- **NO security handwaving**: Always address data privacy and code security implications
+- **NO false certainty**: Document known limitations and failure modes honestly
+- **Evidence required**: Every "proven practice" must include implementation outcomes and metrics
 
-## Architecture Notes
+## Knowledge Management Approach
 
-The series analyzes real implementations from multiple systems:
+QED uses a systematic four-tier approach to knowledge management:
 
-**Book 1 (Claude Code/anon-kode patterns):**
-- Reactive UI built with Ink and Yoga for terminal interfaces
-- Parallel tool execution for performance
-- Permission system for safe operations
-- Extensible tool architecture with standardized interfaces
-- Command system with slash commands and contextual help
+### Tier 1: Research Collection (`docs/`)
+- Raw articles, blog posts, framework documentation
+- No editorial filter - collect everything potentially relevant
+- Priority tagging for analysis queue management
+- Source attribution and capture context
 
-**Book 2 (Amp collaborative patterns):**
-- Conversation management and state synchronization
-- Enterprise authentication and identity management
-- Real-time collaboration and team workflows
-- Multi-agent orchestration and performance optimization
-- Production deployment and scaling strategies
+### Tier 2: Critical Analysis (`src/analysis/`)  
+- Professional evaluation using risk assessment matrices
+- Client context analysis (Conservative/Moderate/Aggressive profiles)
+- Implementation feasibility and ROI projections
+- Structured analysis templates with clear recommendations
 
-When documenting architecture patterns, reference actual source files in `amp/core/src/` for concrete examples, but generalize proprietary implementation details into reusable patterns.
+### Tier 3: Proven Practice (`src/` main content)
+- Only patterns successfully used in client projects
+- Documented outcomes, metrics, and lessons learned
+- Risk-mitigated approaches with known limitations
+- QED standard: "that which is demonstrated"
+
+### Decision Records (`decisions/`)
+- Architecture Decision Records (ADRs) for all framework choices
+- Full rationale including alternatives considered and rejected
+- Client context and risk assessment for each decision
+- Outcome tracking and lessons learned updates
+
+## Content Development Process
+
+1. **Research capture**: Save interesting patterns to `docs/` with priority tags
+2. **Analysis creation**: Evaluate high-priority items using structured templates
+3. **Experimental validation**: Test promising patterns on client projects
+4. **Decision documentation**: Create ADRs for significant framework choices
+5. **Practice promotion**: Move validated patterns to main content with evidence
+6. **Continuous review**: Update based on new project outcomes and client feedback
+
+When creating content, always consider the client impact and maintain the evidence-based standard that makes QED valuable to practitioners.
