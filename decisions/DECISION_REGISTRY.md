@@ -85,6 +85,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 - **ADR Template** (`adr-template.md`): Standard format for new decisions
 - **ADR README** (`README.md`): Process and guidelines for creating ADRs
+- **C4 Architecture** (`../C4_ARCHITECTURE.md`): System architecture context for all decisions
 
 ## Statistics
 

@@ -42,7 +42,7 @@ QED follows evidence-based knowledge management:
 - **Tier 3: Practice** (`src/`) - Battle-tested guidance only
 - **Decision Records** (`decisions/`) - Architecture decisions with rationale
 
-See [KNOWLEDGE_INTAKE.md](KNOWLEDGE_INTAKE.md) for the complete framework.
+See [KNOWLEDGE_INTAKE.md](KNOWLEDGE_INTAKE.md) for the complete framework and [C4_ARCHITECTURE.md](C4_ARCHITECTURE.md) for system architecture.
 
 ## Author
 
