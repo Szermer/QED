@@ -85,29 +85,30 @@ The content is based on extensive analysis of production systems, with patterns 
 
 ## About the Author
 
-Hi! I'm Gerred. I'm a systems engineer with deep experience in AI and infrastructure at global scale. My background includes:
+Hi! I'm Stephen Szermer, Chief Technology Officer with 15+ years of enterprise technology experience specializing in AI-assisted development and digital transformation. My background includes:
 
-- Early work on CNCF projects and Kubernetes ecosystem
-- Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)  
-- Deploying GPU infrastructure for AI/AR applications
-- Building data systems at scale (Mesosphere → Kubernetes migrations)
-- Early work on [Platform One](https://p1.dso.mil/) (DoD DevSecOps platform)
-- Implementing AI systems in secure, regulated environments
-- Currently developing specialized agent frameworks with reinforcement learning
+- **AI/ML Leadership** - Co-founder & CTO of Stage Zero Health, building AI-native platforms orchestrating 25+ clinical models
+- **Enterprise Digital Transformation** - Driving 10-20% EBITDA improvements through strategic technology initiatives in maritime, healthcare, and financial sectors
+- **AI Development Patterns** - Founder of PrivateLanguage.ai and creator of advanced AI workflow automation systems
+- **Cloud Architecture & DevOps** - Extensive experience with enterprise system integration and workflow automation at scale
+- **Regulated Industries Expertise** - Implementing AI solutions in healthcare and financial services with strict compliance requirements
+- **Google Developer Groups** - Leading the Providence chapter and contributing to developer community growth
+- **Technology Strategy** - Board-level technology guidance and innovation lab establishment across multiple industries
 
-I care deeply about building robust systems with excellent UX, from frontend interactions to infrastructure design.
+I'm passionate about transforming traditional industries by creating digital systems that amplify human expertise rather than replacing it. My approach combines deep technical knowledge with practical client delivery experience, focusing on patterns that work in real production environments.
 
 ## Support This Work
 
 I'm actively consulting in this space. If you need help with:
 
-- Building verticalized agents for specific domains
-- Production agent deployments and architecture
-- Making AI systems work in real enterprise environments
+- Building AI-assisted development workflows for enterprise environments
+- Digital transformation initiatives in regulated industries
+- Production AI agent deployments and architecture
+- Making AI systems work in real client environments with compliance requirements
 
-Reach out [by email](mailto:hello@gerred.org) or on X [@devgerred](https://x.com/devgerred).
+Reach out [by email](mailto:Info@StephenKeith.com) or connect on [LinkedIn](https://linkedin.com/in/szermer).
 
-If this work's valuable, you can support ongoing research through [Ko-fi](https://ko-fi.com/gerred).
+Learn more about my work and approach at [StephenKeith.com](https://www.stephenkeith.com).
 
 ---
 
