@@ -40,7 +40,7 @@ Transforms single-user agents into enterprise-ready collaborative platforms. Bas
 
 Essential reading for teams scaling AI assistants from prototype to production collaborative environments.
 
-[**Continue with Book 2 →**](second-edition/README.md)
+[**Continue with Book 2 →**](production-frameworks-intro.md)
 
 ### Book 3: Contextualizing an Agentic System
 *Advanced Tools and Context*
@@ -54,7 +54,7 @@ Deep dive into advanced tool systems and context management for agentic systems.
 
 Perfect for engineers building sophisticated agent capabilities and context-aware systems.
 
-[**Explore Book 3 →**](arming-introduction.md)
+[**Explore Book 3 →**](advanced-integration-intro.md)
 
 ## Who This Is For
 
@@ -117,7 +117,7 @@ Choose your path based on where you are:
 
 **New to agentic systems?** → [Start with Book 1: Building an Agentic System](introduction.md)
 
-**Ready for collaboration & scale?** → [Jump to Book 2: Amping Up an Agentic System](second-edition/README.md)
+**Ready for collaboration & scale?** → [Jump to Book 2: Amping Up an Agentic System](production-frameworks-intro.md)
 
 **Want the big picture first?** → [System Architecture Overview](core-architecture.md)
 
