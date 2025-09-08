@@ -1,68 +1,78 @@
 # Summary
 
-[The Agentic Systems Series](README.md)
+[AI Development Patterns: A Practitioner's Guide](README.md)
 
 ---
 
-# Book 1: Building an Agentic System
+# Book 1: Foundation Patterns
 
 - [Introduction](introduction.md)
 
-## Part I: Foundations
+## Part I: Understanding AI-Assisted Development
 
-- [Overview and Philosophy](overview-and-philosophy.md)
-- [Core Architecture](core-architecture.md)
-- [System Architecture Patterns](system-architecture-diagram.md)
+- [Philosophy and Mindset](overview-and-philosophy.md)
+- [Core Architecture Analysis](core-architecture.md)
+- [Framework Selection Criteria](framework-selection.md)
 
-## Part II: Implementation
+## Part II: Client-Safe Implementation
 
-- [System Prompts and Configuration](system-prompts-and-model-settings.md)
-- [Initialization Patterns](initialization-process.md)
-- [Reactive UI with Ink and Yoga](ink-yoga-reactive-ui.md)
-- [Execution Flow](execution-flow-in-detail.md)
+- [Context Management](system-prompts-and-model-settings.md)
+- [Security and Privacy Considerations](security-privacy.md)
 - [Permission Systems](the-permission-system.md)
-- [Parallel Execution](parallel-tool-execution.md)
-- [Feature Management](feature-flag-integration.md)
+- [Workflow Integration](execution-flow-in-detail.md)
 
-## Part III: Practical Application
+## Part III: Production Patterns
 
-- [Real-World Patterns](real-world-examples.md)
-- [Lessons Learned](lessons-learned-and-implementation-challenges.md)
+- [Parallel Execution Strategies](parallel-tool-execution.md)
+- [Quality Assurance](quality-assurance.md)
+- [Client Communication](client-communication.md)
 
-# Book 2: Amping Up an Agentic System
+# Book 2: Production Frameworks
 
-- [Introduction](second-edition/README.md)
+- [Introduction](production-frameworks-intro.md)
 
-## Part I: Foundations
+## Part I: Framework Wars Analysis
 
-- [From Local to Collaborative](second-edition/part-i-foundations/chapter-1-from-local-to-collaborative.md)
-- [Collaborative Architecture Overview](second-edition/part-i-foundations/chapter-2-amp-architecture-overview.md)
-- [Authentication and Identity](second-edition/part-i-foundations/chapter-3-authentication-and-identity.md)
+- [Current Landscape](framework-wars-analysis.md)
+- [Risk Assessment Matrix](risk-assessment.md)
+- [Selection Guidelines](framework-selection-guide.md)
 
-## Part II: Core Systems
+## Part II: Implementation Strategies
 
-- [Conversation Management at Scale](second-edition/part-ii-core-systems/chapter-4-thread-management-at-scale.md)
-- [Real-Time Synchronization](second-edition/part-ii-core-systems/chapter-5-real-time-synchronization.md)
-- [Tool System Evolution](second-edition/part-ii-core-systems/chapter-6-tool-system-evolution.md)
+- [Low-Risk Adoption Patterns](low-risk-adoption.md)
+- [Medium-Risk Evaluation](medium-risk-evaluation.md)
+- [High-Risk Considerations](high-risk-considerations.md)
 
-## Part III: Collaboration
+## Part III: Client-Focused Workflows
 
-- [Sharing and Permissions](second-edition/part-iii-collaboration/chapter-7-sharing-and-permissions.md)
-- [Team Workflows](second-edition/part-iii-collaboration/chapter-8-team-workflows.md)
-- [Enterprise Integration](second-edition/part-iii-collaboration/chapter-9-enterprise-integration.md)
+- [Billing and Time Tracking](billing-time-tracking.md)
+- [Project Documentation](project-documentation.md)
+- [Handoff and Maintenance](handoff-maintenance.md)
 
-## Part IV: Advanced Patterns
+# Book 3: Advanced Integration
+
+- [Introduction](advanced-integration-intro.md)
+
+## Part I: Tool System Architecture
+
+- [Custom Tool Development](tool-system-deep-dive.md)
+- [MCP Integration Patterns](mcp-integration.md)
+- [Command System Design](command-system-deep-dive.md)
+
+## Part II: Scaling and Performance
 
 - [Multi-Agent Orchestration](second-edition/part-iv-advanced-patterns/chapter-10-multi-agent-orchestration.md)
-- [Performance at Scale](second-edition/part-iv-advanced-patterns/chapter-11-performance-at-scale.md)
-- [Observability and Monitoring](second-edition/part-iv-advanced-patterns/chapter-12-observability-and-monitoring.md)
+- [Performance Optimization](second-edition/part-iv-advanced-patterns/chapter-11-performance-at-scale.md)
+- [Monitoring and Observability](second-edition/part-iv-advanced-patterns/chapter-12-observability-and-monitoring.md)
 
-# Book 3: Contextualizing an Agentic System
+## Part III: Enterprise Considerations
 
-- [Introduction to Tools and Commands](arming-introduction.md)
-- [Tool System Overview](tool-system-deep-dive.md)
-- [Command System Overview](command-system-deep-dive.md)
+- [Compliance and Governance](compliance-governance.md)
+- [Team Collaboration](second-edition/part-iii-collaboration/chapter-8-team-workflows.md)
+- [Integration Patterns](second-edition/part-iii-collaboration/chapter-9-enterprise-integration.md)
 
-## What's Next
+# Appendices
 
-Future developments and patterns are evolving rapidly in the agentic systems space.
+- [Tool Evaluation Checklist](tool-evaluation-checklist.md)
+- [Client Onboarding Templates](client-onboarding-templates.md)
+- [Security Assessment Framework](security-assessment-framework.md)
