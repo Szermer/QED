@@ -1,38 +1,41 @@
-# The Agentic Systems Series
+# AI Development Patterns: A Practitioner's Guide
 
-A comprehensive guide to building production-ready AI coding assistants, from local tools to enterprise platforms.
+A practical knowledge base for developers using AI coding assistants in client projects and production environments.
 
 ## Overview
 
-This two-book series provides practical engineering patterns for building AI coding assistants based on analysis of real production systems including Claude Code, Amp, and open-source implementations.
+This guide provides battle-tested patterns for integrating AI tools like Claude Code into real-world development workflows, with focus on client work, security, and production considerations.
 
-**Book 1: Building an Agentic System**
-- Core architecture patterns for AI coding assistants
-- Reactive terminal UIs with streaming responses
-- Tool systems and permission models
-- Parallel execution strategies
+**Book 1: Foundation Patterns**
+- Core architecture analysis from Claude Code and similar tools
+- Client-safe AI integration strategies
+- Context management and workflow optimization
 
-**Book 2: Amping Up an Agentic System**
-- Scaling from single-user to collaborative platforms
-- Enterprise authentication and team workflows
-- Real-time synchronization patterns
-- Production deployment strategies
+**Book 2: Production Frameworks**  
+- Framework selection and evaluation criteria
+- Risk assessment for client environments
+- Team workflows and collaboration patterns
 
-## For Engineers
+**Book 3: Advanced Integration**
+- Tool system architectures and custom implementations
+- Performance optimization and scaling
+- Security and compliance considerations
 
-Written for software engineers building AI-powered development tools, with focus on:
-- Practical patterns over theory
-- Real architectural decisions
-- Production-ready implementations
-- Scalable system design
+## For Practitioners
+
+Written for developers, consultants, and agencies using AI coding assistants, covering:
+- Client-focused best practices
+- Risk mitigation strategies  
+- ROI optimization
+- Production deployment patterns
 
 ## Read Online
 
-Visit [gerred.github.io/building-an-agentic-system](https://gerred.github.io/building-an-agentic-system) for the rendered book.
+Visit [szermer.github.io/QED](https://szermer.github.io/QED) for the rendered book.
 
 ## Author
 
-[Gerred Dillon](https://github.com/gerred) - [hello@gerred.org](mailto:hello@gerred.org) - [@devgerred](https://x.com/devgerred)
+[Stephen Szermer](https://github.com/Szermer)
 
 ## License
 
