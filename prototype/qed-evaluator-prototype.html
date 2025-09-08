@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QED Article Evaluator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @media (max-width: 968px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .input-section h2, .output-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .url-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="url"] {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .extract-btn {
+            white-space: nowrap;
+        }
+
+        .evaluate-btn {
+            width: 100%;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .status-message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .status-message.info {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-left: 4px solid #1976d2;
+        }
+
+        .status-message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .status-message.error {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #c62828;
+        }
+
+        .status-message.show {
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .output-content {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .output-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .output-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .output-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .output-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .evaluation-section {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .evaluation-section:last-child {
+            border-bottom: none;
+        }
+
+        .evaluation-section h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .evaluation-section h4 {
+            color: #555;
+            margin: 10px 0 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .evaluation-section ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .evaluation-section ol {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .tier-1 { background: #ffecb3; color: #f57c00; }
+        .tier-2 { background: #c5e1a5; color: #558b2f; }
+        .tier-3 { background: #b3e5fc; color: #0277bd; }
+
+        .confidence-score {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #e1bee7;
+            color: #6a1b9a;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        .loading-spinner.show {
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .queue-actions {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            display: none;
+        }
+
+        .queue-actions.show {
+            display: block;
+        }
+
+        .queue-actions h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons button {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .approve-btn {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        }
+
+        .reject-btn {
+            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+        }
+
+        .revise-btn {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 QED Article Evaluator</h1>
+            <p>Evaluate articles for the AI Development Patterns Knowledge Base using Jina Reader</p>
+        </div>
+
+        <div class="main-grid">
+            <div class="panel input-panel">
+                <div class="input-section">
+                    <h2>📄 Article Input</h2>
+                    
+                    <div class="input-group">
+                        <label for="article-url">Article URL:</label>
+                        <div class="url-input-wrapper">
+                            <input 
+                                type="url" 
+                                id="article-url" 
+                                placeholder="https://example.com/article"
+                                value=""
+                            >
+                            <button class="extract-btn" onclick="extractArticle()">
+                                Extract with Jina
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="status-message" id="status-message"></div>
+
+                    <div class="input-group">
+                        <label for="article-content">Extracted Markdown Content:</label>
+                        <textarea 
+                            id="article-content" 
+                            rows="15" 
+                            placeholder="Article content will appear here after extraction, or paste markdown directly..."
+                        ></textarea>
+                    </div>
+
+                    <button class="evaluate-btn" onclick="evaluateArticle()">
+                        🎯 Evaluate for QED
+                    </button>
+
+                    <div class="loading-spinner" id="loading-spinner"></div>
+                </div>
+            </div>
+
+            <div class="panel output-panel">
+                <div class="output-section">
+                    <h2>📊 QED Evaluation</h2>
+                    <div class="output-content" id="evaluation-output">
+                        <p style="color: #999; text-align: center; margin-top: 150px;">
+                            Evaluation results will appear here...<br><br>
+                            Enter a URL and click "Extract with Jina" or paste markdown content directly,<br>
+                            then click "Evaluate for QED" to analyze the article.
+                        </p>
+                    </div>
+
+                    <div class="queue-actions" id="queue-actions">
+                        <h3>Queue Management</h3>
+                        <div class="action-buttons">
+                            <button class="approve-btn" onclick="queueAction('approve')">
+                                ✅ Approve for QED
+                            </button>
+                            <button class="revise-btn" onclick="queueAction('revise')">
+                                ✏️ Needs Revision
+                            </button>
+                            <button class="reject-btn" onclick="queueAction('reject')">
+                                ❌ Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store the evaluation prompt template
+        const QED_EVALUATION_PROMPT = `# QED Article Evaluation
+
+I need you to evaluate the following article for inclusion in my AI development patterns knowledge base (QED). This knowledge base helps practitioners use AI coding assistants in client projects and production environments.
+
+The knowledge base has three tiers:
+- **Tier 1: Research** - Raw, unvalidated material that needs investigation
+- **Tier 2: Analysis** - Professionally evaluated patterns with caveats
+- **Tier 3: Practice** - Battle-tested guidance ready for production use
+
+Please analyze the article and provide:
+
+### 1. EXECUTIVE SUMMARY
+- **Core Pattern**: (One sentence describing the main actionable insight)
+- **Tier Recommendation**: (1, 2, or 3 with justification)
+- **Confidence Score**: (1-25 based on credibility, evidence, applicability, clarity, and risk/reward)
+
+### 2. SOURCE EVALUATION
+- **Author Credibility**: Is this from a practitioner with production experience or theoretical exploration?
+- **Evidence Type**: Opinion, case study, multiple cases, research, or experiment?
+- **Potential Biases**: Any vendor bias, overoptimism, or missing failure cases?
+
+### 3. PATTERN EXTRACTION
+Identify:
+- **What specific problem does this solve?**
+- **Implementation steps** (numbered list)
+- **Prerequisites** (technical, organizational, skill-based)
+- **Success metrics** (how would you measure if this works?)
+
+### 4. RISK ASSESSMENT
+- **Failure modes**: What could go wrong?
+- **Red flags**: When should this pattern NOT be used?
+- **Client safety**: Is this appropriate for production/client environments?
+
+### 5. CONTEXT MAPPING
+Where does this pattern apply best?
+- Team size (startup/small, mid-size, enterprise)
+- Industry constraints (regulated vs unregulated)
+- Technical maturity required
+- AI tool dependencies
+
+### 6. KNOWLEDGE GAP ANALYSIS
+- **What's missing**: What isn't addressed that practitioners would need?
+- **Validation needed**: What experiments would prove/disprove this pattern?
+- **Related patterns**: What other patterns would complement or conflict with this?
+
+### 7. INTEGRATION RECOMMENDATIONS
+If accepted into QED:
+- **Suggested category**: (Architecture/Workflow/Security/Team/Tool/Performance/Risk/Client)
+- **File path**: Where in the structure should this live?
+- **Cross-references**: What existing content should link to this?
+- **Title suggestion**: A clear, searchable title for the pattern
+
+### 8. ACTIONABLE NEXT STEPS
+Provide 3 specific actions:
+1. Immediate filing decision and location
+2. Additional research or validation needed
+3. Questions to explore with real projects
+
+### 9. CRITICAL WARNINGS
+Highlight any concerns about:
+- Outdated information (rapidly changing tools/APIs)
+- Overgeneralization (works in specific context but presented as universal)
+- Missing security/compliance considerations
+- Unrealistic resource requirements
+
+### 10. ONE-PARAGRAPH PRACTITIONER SUMMARY
+Write a brief summary that a developer could read to quickly understand:
+- What problem this solves
+- When to use it
+- What to watch out for
+
+---
+
+**EVALUATION CRITERIA REMINDER:**
+- Prioritize patterns that are **client-safe** and **production-ready**
+- Value **failure examples** as much as success stories
+- Consider **ROI** for real-world implementation
+- Check for **regulatory/compliance** implications
+- Assess **team adoption friction**
+
+---
+
+## ARTICLE TO EVALUATE:
+
+`;
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('status-message');
+            statusEl.textContent = message;
+            statusEl.className = `status-message ${type} show`;
+            
+            if (type !== 'error') {
+                setTimeout(() => {
+                    statusEl.classList.remove('show');
+                }, 5000);
+            }
+        }
+
+        async function extractArticle() {
+            const urlInput = document.getElementById('article-url');
+            const url = urlInput.value.trim();
+            
+            if (!url) {
+                showStatus('Please enter a URL', 'error');
+                return;
+            }
+
+            // Validate URL format
+            try {
+                new URL(url);
+            } catch (e) {
+                showStatus('Please enter a valid URL', 'error');
+                return;
+            }
+
+            showStatus('Extracting article with Jina Reader...', 'info');
+            
+            // First, try using the local proxy server
+            try {
+                // Check if it's a SPA with hash routing
+                const isSPA = url.includes('#');
+                const endpoint = isSPA ? '/api/jina/extract-spa' : '/api/jina/extract';
+                
+                const response = await fetch(`http://localhost:3001${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ url })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success) {
+                        document.getElementById('article-content').value = data.content;
+                        showStatus('Article extracted successfully via proxy server!', 'success');
+                        return;
+                    }
+                }
+            } catch (proxyError) {
+                console.log('Proxy server not available, trying direct method...');
+            }
+
+            // Fallback: Try direct API call (may face CORS issues)
+            const jinaUrl = `https://r.jina.ai/${url}`;
+            
+            try {
+                const response = await fetch(jinaUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'text/plain',
+                        'X-Return-Format': 'markdown'
+                    },
+                    mode: 'cors'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const markdown = await response.text();
+                document.getElementById('article-content').value = markdown;
+                showStatus('Article extracted successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Direct extraction error:', error);
+                
+                // Provide helpful alternatives
+                showStatus('Direct API access blocked by CORS. Opening Jina Reader in new tab - copy the content from there.', 'error');
+                
+                // Open Jina URL in new tab for manual copying
+                window.open(jinaUrl, '_blank');
+                
+                // Add instruction message
+                setTimeout(() => {
+                    showStatus('Tip: Start the proxy server with "npm start" in the prototype folder for automatic extraction.', 'info');
+                }, 3000);
+            }
+        }
+
+        async function evaluateArticle() {
+            const content = document.getElementById('article-content').value.trim();
+            
+            if (!content) {
+                showStatus('Please extract an article or paste content first', 'error');
+                return;
+            }
+
+            const spinner = document.getElementById('loading-spinner');
+            const outputEl = document.getElementById('evaluation-output');
+            const queueActions = document.getElementById('queue-actions');
+            
+            spinner.classList.add('show');
+            showStatus('Evaluating article against QED criteria...', 'info');
+            
+            // Combine prompt with article content
+            const fullPrompt = QED_EVALUATION_PROMPT + '\n\n' + content;
+            
+            // Simulate AI evaluation (in production, this would call your AI API)
+            setTimeout(() => {
+                // Mock evaluation response
+                const evaluation = generateMockEvaluation(content);
+                outputEl.innerHTML = evaluation;
+                spinner.classList.remove('show');
+                showStatus('Evaluation complete!', 'success');
+                queueActions.classList.add('show');
+            }, 2000);
+        }
+
+        function generateMockEvaluation(content) {
+            // This is a mock function - in production, you'd send to an AI API
+            const firstLine = content.split('\n')[0].substring(0, 100);
+            
+            return `
+                <div class="evaluation-section">
+                    <h3>1. EXECUTIVE SUMMARY</h3>
+                    <p><strong>Core Pattern:</strong> ${firstLine}...</p>
+                    <p><strong>Tier Recommendation:</strong> <span class="tier-badge tier-2">Tier 2: Analysis</span></p>
+                    <p><strong>Confidence Score:</strong> <span class="confidence-score">18/25</span></p>
+                </div>
+
+                <div class="evaluation-section">
+                    <h3>2. SOURCE EVALUATION</h3>
+                    <p><strong>Author Credibility:</strong> Practitioner with production experience</p>
+                    <p><strong>Evidence Type:</strong> Case study with multiple examples</p>
+                    <p><strong>Potential Biases:</strong> Some vendor bias detected, missing failure cases</p>
+                </div>
+
+                <div class="evaluation-section">
+                    <h3>3. PATTERN EXTRACTION</h3>
+                    <h4>Problem Solved:</h4>
+                    <p>Improving AI assistant context management in large codebases</p>
+                    <h4>Implementation Steps:</h4>
+                    <ol>
+                        <li>Define context boundaries</li>
+                        <li>Create semantic chunks</li>
+                        <li>Implement retrieval strategy</li>
+                        <li>Test and iterate</li>
+                    </ol>
+                </div>
+
+                <div class="evaluation-section">
+                    <h3>4. RISK ASSESSMENT</h3>
+                    <p><strong>Failure Modes:</strong> Context overflow, hallucinations in edge cases</p>
+                    <p><strong>Red Flags:</strong> Not suitable for highly regulated environments without additional validation</p>
+                    <p><strong>Client Safety:</strong> Moderate - requires testing before production deployment</p>
+                </div>
+
+                <div class="evaluation-section">
+                    <h3>7. INTEGRATION RECOMMENDATIONS</h3>
+                    <p><strong>Suggested Category:</strong> Architecture/Context Management</p>
+                    <p><strong>File Path:</strong> /patterns/architecture/context-management.md</p>
+                    <p><strong>Title Suggestion:</strong> "Semantic Context Chunking for AI Assistants"</p>
+                </div>
+
+                <div class="evaluation-section">
+                    <h3>10. PRACTITIONER SUMMARY</h3>
+                    <p>This pattern addresses context management challenges when using AI coding assistants in large codebases by implementing semantic chunking strategies. Best suited for mid-size teams with moderate AI maturity. Key risks include potential context overflow and the need for careful testing before production use. ROI is high for teams struggling with AI assistant accuracy in complex projects.</p>
+                </div>
+            `;
+        }
+
+        function queueAction(action) {
+            const actions = {
+                'approve': '✅ Article approved and queued for QED integration',
+                'revise': '✏️ Article marked for revision - notes saved to queue',
+                'reject': '❌ Article rejected - reason logged'
+            };
+            
+            showStatus(actions[action], 'success');
+            
+            // In production, this would save to a database/queue system
+            console.log(`Queue action: ${action}`, {
+                url: document.getElementById('article-url').value,
+                content: document.getElementById('article-content').value,
+                evaluation: document.getElementById('evaluation-output').innerHTML,
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        // Allow Enter key to trigger extraction
+        document.getElementById('article-url').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                extractArticle();
+            }
+        });
+    </script>
+</body>
+</html>

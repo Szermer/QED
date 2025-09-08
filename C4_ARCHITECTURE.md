@@ -77,9 +77,9 @@ C4Component
         Component(cross_linking, "Cross-Reference System", "Navigation", "Inter-content relationships")
         Component(quality_control, "Quality Assurance", "Review", "Content accuracy and consistency")
         
-        Component(book1, "Book 1: Foundation", "Content", "Core patterns and architecture")
-        Component(book2, "Book 2: Frameworks", "Content", "Risk assessment and selection")
-        Component(book3, "Book 3: Integration", "Content", "Advanced implementation patterns")
+        Component(patterns_domain, "Domain Patterns", "Content", "Organized by problem area")
+        Component(patterns_risk, "Risk Navigation", "Content", "Traffic light risk classification")
+        Component(patterns_context, "Context Guides", "Content", "Startup/Enterprise/Regulated specific")
         
         Component(risk_matrices, "Risk Assessment", "Tools", "Client-appropriate technology evaluation")
         Component(client_profiles, "Client Profiles", "Framework", "Conservative/Moderate/Aggressive patterns")
@@ -93,9 +93,9 @@ C4Component
     Rel(tier_progression, validation_system, "Requires evidence")
     Rel(validation_system, client_projects, "Validates against")
     Rel(decision_tracking, cross_linking, "Enables navigation")
-    Rel(quality_control, book1, "Reviews content")
-    Rel(quality_control, book2, "Reviews content") 
-    Rel(quality_control, book3, "Reviews content")
+    Rel(quality_control, patterns_domain, "Reviews content")
+    Rel(quality_control, patterns_risk, "Reviews content") 
+    Rel(quality_control, patterns_context, "Reviews content")
     Rel(risk_matrices, client_profiles, "Informs")
 ```
 

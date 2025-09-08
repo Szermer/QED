@@ -8,6 +8,13 @@
 - [x] Conduct appropriate tests (validated markdown structure, checked for build issues)
 - [x] Visual inspection with Playwright (verified live site rendering at szermer.github.io/QED)
 - [x] Update relevant README files (aligned main README and src/README with QED identity)
+- [x] **MAJOR: Migrated from 3-book structure to taxonomy-based organization** (2025-09-08)
+- [x] Created comprehensive pattern taxonomy with multi-dimensional classification
+- [x] Reorganized ~40 patterns into domain-based structure
+- [x] Added risk-based navigation (Low/Managed/High)
+- [x] Created context-specific guides (Startup/Enterprise/Regulated)
+- [x] Built learning paths and pattern template
+- [x] Created ADR for taxonomy migration decision
 
 ### In Progress 🔄
 - [ ] Update relevant ADRs (reviewing current ADR status)

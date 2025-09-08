@@ -1,3 +1,28 @@
+---
+pattern_id: core-architecture-layers
+title: Core Architecture for AI Coding Assistants
+domain: Architecture
+risk_profile: Managed
+maturity: Validated
+contexts:
+  scale: [Mid-market, Enterprise, Agency]
+  regulation: [Unregulated, Light]
+  prerequisites:
+    tools: [React, TypeScript, LLM API]
+    skills: [Senior Developer, System Architecture]
+    infrastructure: [Node.js runtime, API access]
+lifecycle_stage: [Implementation, Production]
+stability: Stable
+value_type: [Quality, Innovation, Efficiency]
+relationships:
+  requires: [llm-integration, terminal-ui-patterns]
+  enables: [parallel-execution, permission-system, tool-plugins]
+  conflicts: []
+  alternatives: [web-based-ui, cli-only]
+last_validated: 2025-09-08
+validation_context: "Multiple production implementations including Claude Code"
+---
+
 # Core Architecture
 
 Modern AI coding assistants typically organize around three primary architectural layers that work together to create effective developer experiences:
