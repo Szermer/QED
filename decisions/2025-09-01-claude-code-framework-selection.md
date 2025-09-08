@@ -203,8 +203,9 @@ Using QED Risk Assessment Matrix:
 ## Related Decisions
 
 - **Future ADRs**: Specific framework choices will reference this foundational decision
-- **QED Knowledge Tiers**: This decision bridges Tier 2 (analysis) and Tier 3 (practice)
+- **QED Knowledge Tiers**: This decision bridges Tier 2 (analysis) and Tier 3 (practice)  
 - **Risk Assessment Evolution**: May spawn additional ADRs on risk criteria refinement
+- **Architecture**: See [C4_ARCHITECTURE.md](../C4_ARCHITECTURE.md) for overall system architecture context
 
 ## References
 

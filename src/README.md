@@ -1,87 +1,89 @@
-# The Agentic Systems Series
+# QED: AI Development Patterns - A Practitioner's Guide
 
-Welcome to the complete guide for building AI coding assistants that actually work in production. This comprehensive three-book series takes you from fundamental concepts to implementing enterprise-ready collaborative systems.
+Welcome to QED ("Quod Erat Demonstrandum" - "that which is demonstrated"), the evidence-based knowledge base for AI-assisted development. This practitioner's guide provides battle-tested patterns for integrating AI coding assistants into client projects and production environments.
 
-## About This Series
+## About QED
 
-Ever wondered how modern AI coding assistants actually work? Beyond the prompts and demos, there's a rich ecosystem of patterns, architectures, and engineering decisions that make these systems effective.
+QED follows a rigorous evidence-based approach to AI development patterns. Every recommendation is backed by documented client project outcomes, with explicit discussion of trade-offs, limitations, and failure modes.
 
-This series reveals those patterns. It's the missing documentation—a practical engineering guide based on real production systems, including deep analysis of [Amp](https://ampcode.com) (the collaborative platform), [Claude Code](https://claude.ai/chat) (Anthropic's local CLI), and open-source implementations like anon-kode.
+This guide reveals proven patterns from real production environments, including deep analysis of successful client implementations with tools like [Claude Code](https://claude.ai/chat), [Cursor](https://cursor.sh), and enterprise AI-assisted development workflows.
 
 ## The Three Books
 
-### Book 1: Building an Agentic System
-*The Foundation*
+### Book 1: Foundation Patterns
+*Client-Safe AI Integration*
 
-A practical deep dive into building your first AI coding agent. This book analyzes real implementations to extract core patterns:
+Evidence-based patterns for integrating AI coding assistants into professional development workflows:
 
-- **Core Architecture** - Reactive UI with Ink/Yoga, streaming responses, and state management
-- **Tool Systems** - Extensible architecture for file operations, code execution, and external integrations
+- **Core Architecture Analysis** - Proven patterns from Claude Code and production systems
+- **Client Safety Frameworks** - Risk assessment, security considerations, and compliance approaches
+- **Integration Strategies** - Workflow optimization, context management, and team adoption
+- **Tool Selection Criteria** - Framework evaluation based on client project outcomes
 - **Permission Systems** - Security models that balance safety with productivity
-- **Parallel Execution** - Concurrent operations without race conditions
-- **Command Systems** - Slash commands, contextual help, and user configuration
-- **Implementation Patterns** - Lessons from Amp and Claude Code architectures
+- **Implementation Lessons** - Real-world deployment patterns and failure modes
 
-Perfect for engineers ready to build beyond simple chatbots into production-grade coding assistants.
+For developers and consultants implementing AI-assisted workflows in client environments.
 
 [**Start with Book 1 →**](introduction.md)
 
-### Book 2: Amping Up an Agentic System  
-*From Local to Collaborative*
+### Book 2: Production Frameworks
+*Risk Assessment and Selection*
 
-Transforms single-user agents into enterprise-ready collaborative platforms. Based on extensive analysis of production systems:
+Professional guidance for evaluating and implementing AI development frameworks:
 
-- **Scalable Architecture** - Conversation management, state synchronization, and performance at scale
-- **Authentication & Identity** - OAuth flows, credential management, and multi-environment support
-- **Collaboration Patterns** - Real-time sharing, team workflows, and concurrent editing strategies
-- **Enterprise Features** - SSO integration, usage analytics, and compliance frameworks
-- **Advanced Orchestration** - Multi-agent coordination, adaptive resource management, and cost optimization
-- **Production Strategies** - Deployment patterns, migration frameworks, and real-world case studies
+- **Framework Analysis** - Objective evaluation criteria based on client project outcomes
+- **Risk Assessment Matrices** - Systematic approaches to technology selection
+- **Client Profile Mapping** - Conservative, moderate, and aggressive adoption strategies
+- **ROI Measurement** - Quantifying AI assistant value in professional contexts
+- **Team Integration** - Collaboration patterns and workflow optimization
+- **Compliance Frameworks** - Meeting client security and regulatory requirements
 
-Essential reading for teams scaling AI assistants from prototype to production collaborative environments.
+Essential for technical leaders making framework decisions in client environments.
 
 [**Continue with Book 2 →**](production-frameworks-intro.md)
 
-### Book 3: Contextualizing an Agentic System
-*Advanced Tools and Context*
+### Book 3: Advanced Integration
+*Enterprise Patterns and Scaling*
 
-Deep dive into advanced tool systems and context management for agentic systems. This book covers:
+Advanced patterns for sophisticated AI development implementations:
 
-- **Tool System Architecture** - Extensible frameworks for adding new capabilities
-- **Command System Design** - Slash commands, contextual help, and configuration
-- **Context Management** - Understanding and maintaining conversational context
-- **Implementation Deep Dives** - Real-world tool system implementations and patterns
+- **Tool System Architecture** - Extensible frameworks based on production deployments
+- **Advanced Orchestration** - Multi-agent coordination with proven client outcomes
+- **Context Management** - Sophisticated context strategies for large codebases
+- **Performance Optimization** - Scaling patterns validated in enterprise environments
+- **Custom Implementation** - Building bespoke solutions with proven architectural patterns
+- **Enterprise Deployment** - Production-ready patterns for organizational rollouts
 
-Perfect for engineers building sophisticated agent capabilities and context-aware systems.
+For engineering teams building sophisticated AI-assisted development capabilities.
 
 [**Explore Book 3 →**](advanced-integration-intro.md)
 
 ## Who This Is For
 
-- **Systems Engineers** building AI-powered development tools
-- **Platform Teams** integrating AI assistants into existing workflows  
-- **Technical Leaders** evaluating architectures for coding assistants
-- **Researchers** studying practical AI system implementation
-- **Anyone** curious about how production AI coding tools actually work
+- **Developers** using AI coding assistants in client projects
+- **Consultants** evaluating AI tools for professional engagements
+- **Agencies** implementing AI-assisted development workflows
+- **Technical Leaders** making framework decisions in client environments
+- **Engineering Teams** scaling AI assistant usage in production
 
 ## Prerequisites
 
-- Familiarity with system design concepts
+- Professional development experience
+- Familiarity with client project constraints
 - Basic understanding of AI/LLM integration
-- Experience with either TypeScript/Node.js or similar backend technologies
-- Understanding of terminal/CLI applications (helpful but not required)
+- Interest in evidence-based technology adoption
 
 ## What's Inside
 
-This series provides:
+QED provides:
 
-- **Architectural Patterns** - Proven designs from production AI coding assistants
-- **Implementation Strategies** - Practical approaches to common challenges
-- **Decision Frameworks** - When to use different patterns and trade-offs
-- **Code Examples** - Illustrative implementations (generalized for broad applicability)
-- **Case Studies** - Real-world deployment scenarios and lessons learned
+- **Evidence-Based Patterns** - Proven approaches from successful client implementations
+- **Risk Assessment Frameworks** - Systematic approaches to technology evaluation
+- **Client Communication Strategies** - How to discuss AI tool usage professionally
+- **Implementation Guides** - Practical deployment patterns with known limitations
+- **Decision Documentation** - Complete rationale behind framework choices
 
-The content is based on extensive analysis of production systems, with patterns extracted and generalized for your own implementations.
+All content is based on documented client project outcomes, with transparent discussion of trade-offs and failure modes.
 
 ## About the Author
 
@@ -99,27 +101,27 @@ I'm passionate about transforming traditional industries by creating digital sys
 
 ## Support This Work
 
-I'm actively consulting in this space. If you need help with:
+I'm actively consulting on AI-assisted development for professional environments. If you need help with:
 
-- Building AI-assisted development workflows for enterprise environments
-- Digital transformation initiatives in regulated industries
-- Production AI agent deployments and architecture
-- Making AI systems work in real client environments with compliance requirements
+- AI coding assistant integration for client projects
+- Risk assessment frameworks for AI tool adoption
+- Digital transformation initiatives with AI components
+- Professional AI workflow implementation with compliance requirements
 
 Reach out [by email](mailto:Info@StephenKeith.com) or connect on [LinkedIn](https://linkedin.com/in/szermer).
 
-Learn more about my work and approach at [StephenKeith.com](https://www.stephenkeith.com).
+Learn more about my consulting approach at [StephenKeith.com](https://www.stephenkeith.com).
 
 ---
 
 ## Ready to Start?
 
-Choose your path based on where you are:
+Choose your path based on your needs:
 
-**New to agentic systems?** → [Start with Book 1: Building an Agentic System](introduction.md)
+**New to AI-assisted development?** → [Start with Book 1: Foundation Patterns](introduction.md)
 
-**Ready for collaboration & scale?** → [Jump to Book 2: Amping Up an Agentic System](production-frameworks-intro.md)
+**Evaluating frameworks for clients?** → [Jump to Book 2: Production Frameworks](production-frameworks-intro.md)
 
-**Want the big picture first?** → [System Architecture Overview](core-architecture.md)
+**Want the architecture overview first?** → [Core Architecture Analysis](core-architecture.md)
 
-Let's build systems that actually work.
+Let's implement AI patterns that actually work in professional environments.
