@@ -40,7 +40,7 @@ QED follows evidence-based knowledge management:
 - **Tier 1: Research** (`docs/`) - Raw material collection
 - **Tier 2: Analysis** (`src/analysis/`) - Professional evaluation  
 - **Tier 3: Practice** (`src/`) - Battle-tested guidance only
-- **Decision Records** (`decisions/`) - Architecture decisions with rationale
+- **Decision Records** (`decisions/`) - QED application architecture only (NOT content evaluation)
 
 See [KNOWLEDGE_INTAKE.md](KNOWLEDGE_INTAKE.md) for the complete framework and [C4_ARCHITECTURE.md](C4_ARCHITECTURE.md) for system architecture.
 

@@ -1,103 +1,111 @@
-# QED: AI Development Patterns - A Practitioner's Guide
+# QED: AI Development Patterns
 
-Welcome to QED ("Quod Erat Demonstrandum" - "that which is demonstrated"), the evidence-based knowledge base for AI-assisted development. This practitioner's guide provides battle-tested patterns for integrating AI coding assistants into client projects and production environments.
+A practitioner's knowledge base for AI-assisted development, organized by risk profile and context.
+
+## 🎯 Navigate by Your Needs
+
+### By Risk Level
+- 🟢 [**Low Risk Patterns**](by-risk/low-risk/index.md) - Start here for safe adoption
+- 🟡 [**Managed Risk Patterns**](by-risk/managed-risk/index.md) - Requires safeguards
+- 🔴 [**High Risk Patterns**](by-risk/high-risk/index.md) - Critical systems only
+
+### By Context
+- 🚀 [**Startup**](by-context/startup/index.md) - High agility, low process
+- 📈 [**Mid-Market**](by-context/mid-market/index.md) - Scaling patterns
+- 🏢 [**Enterprise**](by-context/enterprise/index.md) - Governance focus
+- 🏛️ [**Regulated**](by-context/regulated/index.md) - Compliance-first
+
+### By Domain
+- [**Architecture**](patterns/architecture/) - System design patterns
+- [**Implementation**](patterns/implementation/) - Development patterns
+- [**Operations**](patterns/operations/) - Deployment and maintenance
+- [**Security**](patterns/security/) - Access control and compliance
+- [**Team**](patterns/team/) - Collaboration and process
+- [**Quality**](patterns/quality/) - Validation and testing
+
+## 📚 Learning Paths
+
+- 🎓 [**Getting Started**](learning-paths/getting-started.md) - 4-week structured program
+- 🏢 [**Enterprise Adoption**](learning-paths/enterprise-adoption.md) - Organizational rollout
+- 🏗️ [**Agency Playbook**](learning-paths/agency-playbook.md) - Client project patterns
+
+## 🔍 Pattern Discovery
+
+### Multi-Dimensional Classification
+Each pattern is tagged with:
+- **Domain**: What problem area it addresses
+- **Risk Profile**: Safety level (Green/Yellow/Red)
+- **Maturity**: Experimental → Validated → Standard
+- **Context**: Where it works best
+- **Relationships**: Dependencies and conflicts
+
+### Pattern Template
+All patterns follow a [standard template](PATTERN_TEMPLATE.md) including:
+- Executive summary with risk assessment
+- Implementation guide with prerequisites
+- Trade-offs and failure modes
+- Validation criteria and metrics
+- Real-world case studies
+
+## 📊 Knowledge Management Tiers
+
+### Tier 1: Research Collection
+Raw articles and resources being evaluated
+
+### Tier 2: Critical Analysis  
+Patterns under professional evaluation with risk assessment
+
+### Tier 3: Proven Practice
+**QED Standard**: Only patterns validated in production with documented outcomes
+
+## 🎯 Who This Is For
+
+- **Individual Developers**: Start with [Getting Started](learning-paths/getting-started.md)
+- **Team Leads**: Focus on [Team Patterns](patterns/team/) and risk management
+- **Consultants**: Use [Context Guides](by-context/) for client-specific approaches
+- **Agencies**: See [Agency Playbook](learning-paths/agency-playbook.md)
+- **Enterprise Architects**: Review [High-Risk Patterns](by-risk/high-risk/index.md)
+
+## ⚖️ Core Principles
+
+1. **Risk-First Navigation**: Traffic light system for immediate risk recognition
+2. **Evidence-Based**: Only patterns proven in production environments
+3. **Context-Aware**: Multiple paths based on your specific situation
+4. **Relationship Mapping**: Understand dependencies before implementation
+5. **Evolutionary Tracking**: Patterns mature as they're validated
+
+## 🚀 Quick Start
+
+### For Safe Experimentation
+1. Browse [Low-Risk Patterns](by-risk/low-risk/index.md)
+2. Pick one pattern matching your context
+3. Follow the implementation guide
+4. Measure results
+5. Share learnings
+
+### For Production Systems
+1. Complete [Risk Assessment](patterns/quality/risk-assessment.md)
+2. Review patterns for your [Context](by-context/)
+3. Check all [Dependencies](PATTERN_TEMPLATE.md#relationships)
+4. Implement with safeguards
+5. Monitor continuously
 
 ## About QED
 
-QED follows a rigorous evidence-based approach to AI development patterns. Every recommendation is backed by documented client project outcomes, with explicit discussion of trade-offs, limitations, and failure modes.
+QED ("Quod Erat Demonstrandum" - "that which is demonstrated") follows a rigorous evidence-based approach. Every recommendation is backed by documented client project outcomes, with explicit discussion of trade-offs, limitations, and failure modes.
 
-This guide reveals proven patterns from real production environments, including deep analysis of successful client implementations with tools like [Claude Code](https://claude.ai/chat), [Cursor](https://cursor.sh), and enterprise AI-assisted development workflows.
-
-## The Three Books
-
-### Book 1: Foundation Patterns
-*Client-Safe AI Integration*
-
-Evidence-based patterns for integrating AI coding assistants into professional development workflows:
-
-- **Core Architecture Analysis** - Proven patterns from Claude Code and production systems
-- **Client Safety Frameworks** - Risk assessment, security considerations, and compliance approaches
-- **Integration Strategies** - Workflow optimization, context management, and team adoption
-- **Tool Selection Criteria** - Framework evaluation based on client project outcomes
-- **Permission Systems** - Security models that balance safety with productivity
-- **Implementation Lessons** - Real-world deployment patterns and failure modes
-
-For developers and consultants implementing AI-assisted workflows in client environments.
-
-[**Start with Book 1 →**](introduction.md)
-
-### Book 2: Production Frameworks
-*Risk Assessment and Selection*
-
-Professional guidance for evaluating and implementing AI development frameworks:
-
-- **Framework Analysis** - Objective evaluation criteria based on client project outcomes
-- **Risk Assessment Matrices** - Systematic approaches to technology selection
-- **Client Profile Mapping** - Conservative, moderate, and aggressive adoption strategies
-- **ROI Measurement** - Quantifying AI assistant value in professional contexts
-- **Team Integration** - Collaboration patterns and workflow optimization
-- **Compliance Frameworks** - Meeting client security and regulatory requirements
-
-Essential for technical leaders making framework decisions in client environments.
-
-[**Continue with Book 2 →**](production-frameworks-intro.md)
-
-### Book 3: Advanced Integration
-*Enterprise Patterns and Scaling*
-
-Advanced patterns for sophisticated AI development implementations:
-
-- **Tool System Architecture** - Extensible frameworks based on production deployments
-- **Advanced Orchestration** - Multi-agent coordination with proven client outcomes
-- **Context Management** - Sophisticated context strategies for large codebases
-- **Performance Optimization** - Scaling patterns validated in enterprise environments
-- **Custom Implementation** - Building bespoke solutions with proven architectural patterns
-- **Enterprise Deployment** - Production-ready patterns for organizational rollouts
-
-For engineering teams building sophisticated AI-assisted development capabilities.
-
-[**Explore Book 3 →**](advanced-integration-intro.md)
-
-## Who This Is For
-
-- **Developers** using AI coding assistants in client projects
-- **Consultants** evaluating AI tools for professional engagements
-- **Agencies** implementing AI-assisted development workflows
-- **Technical Leaders** making framework decisions in client environments
-- **Engineering Teams** scaling AI assistant usage in production
-
-## Prerequisites
-
-- Professional development experience
-- Familiarity with client project constraints
-- Basic understanding of AI/LLM integration
-- Interest in evidence-based technology adoption
-
-## What's Inside
-
-QED provides:
-
-- **Evidence-Based Patterns** - Proven approaches from successful client implementations
-- **Risk Assessment Frameworks** - Systematic approaches to technology evaluation
-- **Client Communication Strategies** - How to discuss AI tool usage professionally
-- **Implementation Guides** - Practical deployment patterns with known limitations
-- **Decision Documentation** - Complete rationale behind framework choices
-
-All content is based on documented client project outcomes, with transparent discussion of trade-offs and failure modes.
+This guide reveals proven patterns from real production environments, including deep analysis of successful implementations with tools like [Claude Code](https://claude.ai/code), [Cursor](https://cursor.sh), and enterprise AI-assisted development workflows.
 
 ## About the Author
 
 Hi! I'm Stephen Szermer, Chief Technology Officer with 15+ years of enterprise technology experience specializing in AI-assisted development and digital transformation. My background includes:
 
 - **AI/ML Leadership** - Co-founder & CTO of Stage Zero Health, building AI-native platforms orchestrating 25+ clinical models
-- **Enterprise Digital Transformation** - Driving 10-20% EBITDA improvements through strategic technology initiatives in maritime, healthcare, and financial sectors
+- **Enterprise Digital Transformation** - Driving 10-20% EBITDA improvements through strategic technology initiatives
 - **AI Development Patterns** - Founder of PrivateLanguage.ai and creator of advanced AI workflow automation systems
-- **Cloud Architecture & DevOps** - Extensive experience with enterprise system integration and workflow automation at scale
 - **Regulated Industries Expertise** - Implementing AI solutions in healthcare and financial services with strict compliance requirements
-- **Google Developer Groups** - Leading the Providence chapter and contributing to developer community growth
-- **Technology Strategy** - Board-level technology guidance and innovation lab establishment across multiple industries
 
-I'm passionate about transforming traditional industries by creating digital systems that amplify human expertise rather than replacing it. My approach combines deep technical knowledge with practical client delivery experience, focusing on patterns that work in real production environments.
+I'm passionate about transforming traditional industries by creating digital systems that amplify human expertise rather than replacing it.
 
 ## Support This Work
 
@@ -118,10 +126,12 @@ Learn more about my consulting approach at [StephenKeith.com](https://www.stephe
 
 Choose your path based on your needs:
 
-**New to AI-assisted development?** → [Start with Book 1: Foundation Patterns](introduction.md)
+**New to AI development?** → [Start with Getting Started Guide](learning-paths/getting-started.md)
 
-**Evaluating frameworks for clients?** → [Jump to Book 2: Production Frameworks](production-frameworks-intro.md)
+**Need safe patterns?** → [Browse Low-Risk Patterns](by-risk/low-risk/index.md)
 
-**Want the architecture overview first?** → [Core Architecture Analysis](core-architecture.md)
+**Building for enterprise?** → [Review Enterprise Context](by-context/enterprise/index.md)
+
+**Want the full taxonomy?** → [Explore the Taxonomy Guide](qed-taxonomy.md)
 
 Let's implement AI patterns that actually work in professional environments.

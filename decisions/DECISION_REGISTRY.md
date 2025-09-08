@@ -9,6 +9,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 |-----|------|-------|--------|----------------|---------|
 | **ADR-2025-09-01** | 2025-09-08 | Claude Code Framework Selection | Accepted | All profiles | High |
 | **ADR-2025-09-08** | 2025-09-08 | Tool-Specific Pattern Evaluation | Accepted | All profiles | High |
+| **ADR-2025-09-08-TAX** | 2025-09-08 | Taxonomy-Based Structure Migration | Implemented | QED Development | Critical |
 
 *Future ADRs will be added here as they are created*
 
@@ -17,6 +18,9 @@ Searchable index of all Architecture Decision Records for AI development pattern
 ### 🛠 Framework Selection
 - **ADR-2025-09-01**: Claude Code Framework Selection - Choosing framework patterns for client projects
 - **ADR-2025-09-08**: Tool-Specific Pattern Evaluation - Enhanced criteria for vendor-specific AI tools
+
+### 📚 Documentation Architecture
+- **ADR-2025-09-08-TAX**: Taxonomy-Based Structure Migration - Multi-dimensional pattern organization
 
 ### 👥 Client Workflow  
 *No ADRs yet - coming soon*

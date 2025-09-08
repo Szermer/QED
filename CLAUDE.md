@@ -84,18 +84,23 @@ QED uses a systematic four-tier approach to knowledge management:
 - QED standard: "that which is demonstrated"
 
 ### Decision Records (`decisions/`)
-- Architecture Decision Records (ADRs) for all framework choices
+- Architecture Decision Records (ADRs) for QED application development only
+- Decisions about mdBook, GitHub Pages, project structure, etc.
+- NOT for evaluating content (articles, frameworks, patterns) being documented
+- Content evaluation belongs in Tier 2 analysis files
 - Full rationale including alternatives considered and rejected
-- Client context and risk assessment for each decision
-- Outcome tracking and lessons learned updates
 
 ## Content Development Process
 
 1. **Research capture**: Save interesting patterns to `docs/` with priority tags
-2. **Analysis creation**: Evaluate high-priority items using structured templates
+2. **Analysis creation**: Evaluate high-priority items using structured templates in `src/analysis/`
 3. **Experimental validation**: Test promising patterns on client projects
-4. **Decision documentation**: Create ADRs for significant framework choices
-5. **Practice promotion**: Move validated patterns to main content with evidence
-6. **Continuous review**: Update based on new project outcomes and client feedback
+4. **Practice promotion**: Move validated patterns to main content with evidence
+5. **Continuous review**: Update based on new project outcomes and client feedback
+
+### Important Distinction
+- **ADRs** (`decisions/`): Only for QED application architecture (mdBook setup, CI/CD, project structure)
+- **Content evaluation**: Use Tier 2 analysis documents in `src/analysis/`
+- Example: Choosing mdBook = ADR; Evaluating Google Nano Banana = Analysis document
 
 When creating content, always consider the client impact and maintain the evidence-based standard that makes QED valuable to practitioners.
