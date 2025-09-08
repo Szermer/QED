@@ -7,9 +7,9 @@ Searchable index of all Architecture Decision Records for AI development pattern
 ### Framework & Tool Selection
 | ADR | Date | Title | Status | Client Context | Impact |
 |-----|------|-------|--------|----------------|---------|
-| [ADR-2025-09-01](2025-09-01-claude-code-framework-selection.md) | 2025-09-08 | Claude Code Framework Selection | Accepted | All profiles | High |
+| **ADR-2025-09-01** | 2025-09-08 | Claude Code Framework Selection | Accepted | All profiles | High |
 
-*[Future ADRs will be added here as they are created]*
+*Future ADRs will be added here as they are created*
 
 ## By Category
 
@@ -17,13 +17,13 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **ADR-2025-09-01**: Claude Code Framework Selection - Choosing framework patterns for client projects
 
 ### 👥 Client Workflow  
-*[No ADRs yet - coming soon]*
+*No ADRs yet - coming soon*
 
 ### 🔧 Tool Integration
-*[No ADRs yet - coming soon]*  
+*No ADRs yet - coming soon*
 
 ### 📋 Process Decisions
-*[No ADRs yet - coming soon]*
+*No ADRs yet - coming soon*
 
 ## By Client Risk Profile
 
@@ -42,16 +42,16 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - ADR-2025-09-01: Claude Code Framework Selection
 
 ### 🔄 Proposed
-*[None currently]*
+*None currently*
 
 ### 🔄 Under Review
-*[None currently]*
+*None currently*
 
 ### ❌ Superseded
-*[None yet]*
+*None yet*
 
 ### ⚠️ Deprecated  
-*[None yet]*
+*None yet*
 
 ## Search Index
 
@@ -83,8 +83,8 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ## Templates and Guides
 
-- **[ADR Template](adr-template.md)**: Standard format for new decisions
-- **[ADR README](README.md)**: Process and guidelines for creating ADRs
+- **ADR Template** (`adr-template.md`): Standard format for new decisions
+- **ADR README** (`README.md`): Process and guidelines for creating ADRs
 
 ## Statistics
 
@@ -97,7 +97,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 ## Contributing New ADRs
 
 1. Use next sequential number: `2025-09-02`
-2. Copy [ADR template](adr-template.md)
+2. Copy ADR template (`adr-template.md`)
 3. Document decision thoroughly with evidence
 4. Update this registry with new entry
 5. Cross-reference with related QED content
