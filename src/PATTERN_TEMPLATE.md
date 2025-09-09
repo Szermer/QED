@@ -1,5 +1,6 @@
----
-# QED Pattern Metadata (aligned with qed-taxonomy.md)
+<!-- 
+QED Pattern Metadata (aligned with qed-taxonomy.md)
+
 pattern_id: unique-identifier-here
 title: Pattern Title Here
 domain: Architecture|Implementation|Operations|Security|Team|Quality
@@ -22,7 +23,7 @@ relationships:
   alternatives: []
 last_validated: YYYY-MM-DD
 validation_context: "Client type and project description"
----
+-->
 
 # Pattern Title
 
