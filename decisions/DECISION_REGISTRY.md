@@ -51,6 +51,9 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - ADR-2025-09-01: Claude Code Framework Selection
 - ADR-2025-09-08: Tool-Specific Pattern Evaluation
 
+### ✅ Implemented
+- ADR-2025-09-08-TAX: Taxonomy-Based Structure Migration
+
 ### 🔄 Proposed
 *None currently*
 
@@ -71,6 +74,8 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **Risk Assessment**: ADR-2025-09-01, ADR-2025-09-08
 - **Google Gemini**: ADR-2025-09-08
 - **Vendor Tools**: ADR-2025-09-08
+- **mdBook**: ADR-2025-09-08-TAX
+- **Documentation Architecture**: ADR-2025-09-08-TAX
 
 ### By Problem Domain
 - **Framework Selection**: ADR-2025-09-01
@@ -79,6 +84,9 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **Tool Evaluation**: ADR-2025-09-08
 - **Vendor Assessment**: ADR-2025-09-08
 - **Cost Modeling**: ADR-2025-09-08
+- **Documentation Structure**: ADR-2025-09-08-TAX
+- **Information Architecture**: ADR-2025-09-08-TAX
+- **Pattern Organization**: ADR-2025-09-08-TAX
 
 ### By Outcome Type
 - **Tool Adoption**: ADR-2025-09-01
@@ -95,8 +103,11 @@ Searchable index of all Architecture Decision Records for AI development pattern
 ### Most Impactful Decisions
 1. **ADR-2025-09-01**: Defines risk-based approach to AI development patterns
 2. **ADR-2025-09-08**: Establishes vendor risk assessment for tool-specific evaluations
+3. **ADR-2025-09-08-TAX**: Transformed documentation structure for better practitioner usability
 
 ### Recent Updates
+- **2025-09-09**: Taxonomy migration completed and verified
+- **2025-09-08**: ADR-2025-09-08-TAX created - Taxonomy-based structure migration
 - **2025-09-08**: ADR-2025-09-01 created - Framework selection approach
 - **2025-09-08**: ADR-2025-09-08 created - Tool-specific pattern evaluation framework
 
@@ -108,8 +119,9 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ## Statistics
 
-- **Total ADRs**: 2
-- **Accepted**: 2 (100%)
+- **Total ADRs**: 3
+- **Accepted**: 2 (67%)
+- **Implemented**: 1 (33%)
 - **Under Review**: 0 (0%)
 - **Average Implementation Time**: 1 day (framework decisions)
 - **Client Satisfaction**: TBD (awaiting project completions)
@@ -124,5 +136,5 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ---
 
-**Registry Last Updated**: 2025-09-08  
-**Next ADR Number**: 2025-09-09
+**Registry Last Updated**: 2025-09-09  
+**Next ADR Number**: 2025-09-10
