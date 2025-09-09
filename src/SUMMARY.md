@@ -14,7 +14,7 @@
 
 # Patterns by Domain
 
-## Architecture & Design
+## [Architecture & Design](patterns/architecture/index.md)
 
 - [Core Architecture](patterns/architecture/core-architecture.md)
 - [System Architecture Diagram](patterns/architecture/system-architecture-diagram.md)
@@ -29,7 +29,7 @@
 - [Emerging Patterns](patterns/architecture/emerging-patterns.md)
 - [Collaborative AI Ecosystem](patterns/architecture/collaborative-ai-ecosystem.md)
 
-## Implementation & Development
+## [Implementation & Development](patterns/implementation/index.md)
 
 - [Execution Flow in Detail](patterns/implementation/execution-flow-in-detail.md)
 - [Initialization Process](patterns/implementation/initialization-process.md)
@@ -42,7 +42,7 @@
 - [Building Your Own AMP](patterns/implementation/building-amp.md)
 - [Migration Strategies](patterns/implementation/migration-strategies.md)
 
-## Operations & Maintenance
+## [Operations & Maintenance](patterns/operations/index.md)
 
 - [Parallel Tool Execution](patterns/operations/parallel-tool-execution.md)
 - [Lessons Learned](patterns/operations/lessons-learned-and-implementation-challenges.md)
@@ -51,20 +51,20 @@
 - [Deployment Guide](patterns/operations/deployment-guide.md)
 - [Performance Tuning](patterns/operations/performance-tuning.md)
 
-## Security & Compliance
+## [Security & Compliance](patterns/security/index.md)
 
 - [The Permission System](patterns/security/the-permission-system.md)
 - [Authentication and Identity](patterns/security/authentication-identity.md)
 - [Sharing and Permissions](patterns/security/sharing-permissions.md)
 
-## Team & Process
+## [Team & Process](patterns/team/index.md)
 
 - [Comments and Collaboration](patterns/team/comments.md)
 - [Team Workflows](patterns/team/team-workflows.md)
 - [Enterprise Integration](patterns/team/enterprise-integration.md)
 - [From Local to Collaborative](patterns/team/local-to-collaborative.md)
 
-## Quality & Validation
+## [Quality & Validation](patterns/quality/index.md)
 
 - [Risk Assessment](patterns/quality/risk-assessment.md)
 
@@ -83,7 +83,7 @@
 
 ---
 
-# Patterns by Context
+# [Patterns by Context](by-context/index.md)
 
 ## Startup Context
 - [Agile Patterns](by-context/startup/index.md)
