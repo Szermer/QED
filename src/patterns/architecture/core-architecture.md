@@ -1,4 +1,6 @@
----
+<!--
+QED Pattern Metadata
+
 pattern_id: core-architecture-layers
 title: Core Architecture for AI Coding Assistants
 domain: Architecture
@@ -21,7 +23,7 @@ relationships:
   alternatives: [web-based-ui, cli-only]
 last_validated: 2025-09-08
 validation_context: "Multiple production implementations including Claude Code"
----
+-->
 
 # Core Architecture
 
