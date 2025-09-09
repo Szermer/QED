@@ -207,8 +207,8 @@ config:
 
 ### Version History
 - **YYYY-MM-DD**: Initial pattern documented
-- **YYYY-MM-DD**: Updated based on [context]
-- **YYYY-MM-DD**: Validated in [environment]
+- **YYYY-MM-DD**: Updated based on {context}
+- **YYYY-MM-DD**: Validated in {environment}
 
 ### Future Improvements
 - [ ] Planned enhancement 1

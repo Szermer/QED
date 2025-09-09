@@ -14,8 +14,9 @@
 
 # Patterns by Domain
 
-## [Architecture & Design](patterns/architecture/index.md)
+## Architecture & Design
 
+- [Architecture Overview](patterns/architecture/index.md)
 - [Core Architecture](patterns/architecture/core-architecture.md)
 - [System Architecture Diagram](patterns/architecture/system-architecture-diagram.md)
 - [Command System Deep Dive](patterns/architecture/command-system-deep-dive.md)
@@ -29,8 +30,9 @@
 - [Emerging Patterns](patterns/architecture/emerging-patterns.md)
 - [Collaborative AI Ecosystem](patterns/architecture/collaborative-ai-ecosystem.md)
 
-## [Implementation & Development](patterns/implementation/index.md)
+## Implementation & Development
 
+- [Implementation Overview](patterns/implementation/index.md)
 - [Execution Flow in Detail](patterns/implementation/execution-flow-in-detail.md)
 - [Initialization Process](patterns/implementation/initialization-process.md)
 - [Real World Examples](patterns/implementation/real-world-examples.md)
@@ -42,8 +44,9 @@
 - [Building Your Own AMP](patterns/implementation/building-amp.md)
 - [Migration Strategies](patterns/implementation/migration-strategies.md)
 
-## [Operations & Maintenance](patterns/operations/index.md)
+## Operations & Maintenance
 
+- [Operations Overview](patterns/operations/index.md)
 - [Parallel Tool Execution](patterns/operations/parallel-tool-execution.md)
 - [Lessons Learned](patterns/operations/lessons-learned-and-implementation-challenges.md)
 - [Performance at Scale](patterns/operations/performance-at-scale.md)
@@ -51,21 +54,24 @@
 - [Deployment Guide](patterns/operations/deployment-guide.md)
 - [Performance Tuning](patterns/operations/performance-tuning.md)
 
-## [Security & Compliance](patterns/security/index.md)
+## Security & Compliance
 
+- [Security Overview](patterns/security/index.md)
 - [The Permission System](patterns/security/the-permission-system.md)
 - [Authentication and Identity](patterns/security/authentication-identity.md)
 - [Sharing and Permissions](patterns/security/sharing-permissions.md)
 
-## [Team & Process](patterns/team/index.md)
+## Team & Process
 
+- [Team Overview](patterns/team/index.md)
 - [Comments and Collaboration](patterns/team/comments.md)
 - [Team Workflows](patterns/team/team-workflows.md)
 - [Enterprise Integration](patterns/team/enterprise-integration.md)
 - [From Local to Collaborative](patterns/team/local-to-collaborative.md)
 
-## [Quality & Validation](patterns/quality/index.md)
+## Quality & Validation
 
+- [Quality Overview](patterns/quality/index.md)
 - [Risk Assessment](patterns/quality/risk-assessment.md)
 
 ---
@@ -83,7 +89,9 @@
 
 ---
 
-# [Patterns by Context](by-context/index.md)
+# Patterns by Context
+
+- [Context Overview](by-context/index.md)
 
 ## Startup Context
 - [Agile Patterns](by-context/startup/index.md)
