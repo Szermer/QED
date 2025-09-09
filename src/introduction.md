@@ -18,25 +18,51 @@ Building AI-powered systems for clients requires more than technical proficiency
 
 Traditional AI content rarely addresses these constraints. QED fills that gap with systematic evaluation frameworks and evidence-based pattern recommendations.
 
-## The QED Methodology: Three-Tier Knowledge Management
+## The QED Methodology: Evidence-Based Pattern Organization
 
 QED employs a systematic approach to pattern validation that ensures every recommendation has been battle-tested:
 
-**Tier 1: Research Collection** - Comprehensive intake of industry patterns, frameworks, and case studies with systematic priority assessment based on client relevance.
+**Tier 1: Research Collection** (`docs/`) - Comprehensive intake of industry patterns, frameworks, and case studies with systematic priority assessment based on client relevance.
 
-**Tier 2: Critical Analysis** - Professional evaluation using risk assessment matrices, client context analysis (Conservative/Moderate/Aggressive profiles), and implementation feasibility studies.
+**Tier 2: Critical Analysis** (`src/analysis/`) - Professional evaluation using risk assessment matrices, client context analysis, and implementation feasibility studies with structured evaluation frameworks.
 
-**Tier 3: Proven Practice** - Only patterns that have been successfully deployed in client environments with documented outcomes, metrics, and lessons learned.
+**Tier 3: Proven Practice** (`src/patterns/`) - Only patterns that have been successfully deployed in client environments with documented outcomes, metrics, and lessons learned.
 
-This approach guarantees that QED patterns carry the weight of real-world validation, not theoretical promise.
+### Taxonomy-Driven Organization
 
-## Core Pattern Areas
+Patterns are organized across multiple dimensions to support different decision-making contexts:
 
-**Foundation Patterns** - Client-safe AI integration strategies that minimize risk while maximizing capability. From basic API integration to sophisticated context management.
+**By Domain** - Technical implementation areas (Architecture, Implementation, Operations, Security, Team, Quality)
 
-**Production Frameworks** - Battle-tested architectures for enterprise deployment. Risk assessment matrices for framework selection, security models, and performance optimization.
+**By Risk Profile** - Assessment categories (Low Risk, Managed Risk, High Risk) based on implementation complexity and failure impact
 
-**Advanced Integration** - Sophisticated patterns for multi-agent systems, context engineering, and enterprise-scale implementations with documented ROI and risk profiles.
+**By Context** - Business environments (Startup, Mid-market, Enterprise, Regulated) with specific constraints and requirements
+
+**By Learning Path** - Structured journeys for different practitioner needs (Getting Started, Enterprise Adoption, Agency Playbook, Traditional Migration)
+
+This multidimensional approach ensures patterns can be discovered through the lens most relevant to your current decision-making context.
+
+## Navigation by Purpose
+
+**Domain-First Navigation** (`patterns/`) - When you know what technical area you're working on:
+- **Architecture** - System design, component structure, integration patterns
+- **Implementation** - Coding approaches, framework selection, development workflows  
+- **Operations** - Deployment, monitoring, performance optimization
+- **Security** - Authentication, permissions, data protection
+- **Team** - Collaboration patterns, enterprise integration, knowledge sharing
+- **Quality** - Testing strategies, risk assessment, validation approaches
+
+**Context-First Navigation** (`by-context/`, `by-risk/`) - When your constraints drive decisions:
+- **Startup** - Resource-conscious patterns for rapid iteration
+- **Enterprise** - Governance-compliant patterns for scale
+- **Regulated** - Compliance-first patterns for sensitive industries
+- **Low/Managed/High Risk** - Patterns categorized by implementation complexity
+
+**Learning-First Navigation** (`learning-paths/`) - When you need structured guidance:
+- **Getting Started** - Foundation patterns for AI development newcomers
+- **Enterprise Adoption** - Systematic rollout for large organizations
+- **Agency Playbook** - Client-focused patterns for consulting work
+- **Traditional Migration** - Moving from conventional to AI-augmented development
 
 ## What Makes QED Different
 
@@ -51,18 +77,34 @@ Unlike typical AI development resources, QED provides:
 
 ## How to Use This Guide
 
-QED is organized as a progressive knowledge base:
+Choose your entry point based on your current context:
 
-- **Start with Foundation Patterns** if you're new to AI integration or working with conservative client requirements
-- **Jump to Production Frameworks** if you need enterprise architecture guidance and risk assessment
-- **Explore Advanced Integration** for sophisticated multi-agent systems and context engineering
+### New to AI Development?
+Start with the [Getting Started Learning Path](learning-paths/getting-started.md) which provides:
+- Foundation concepts and philosophy
+- Step-by-step pattern implementation  
+- Progressive skill building over 4 weeks
+- Hands-on exercises with real projects
+
+### Have Specific Technical Questions?
+Navigate by domain in the [Patterns section](patterns/) to find:
+- Architecture patterns for system design
+- Implementation guides for specific frameworks
+- Security patterns for enterprise requirements
+- Team collaboration patterns for organizational adoption
+
+### Working Within Constraints?
+Use context-driven navigation:
+- [By Business Context](by-context/) - Find patterns for your organizational type
+- [By Risk Profile](by-risk/) - Match patterns to your risk tolerance
+- [Migration Guidance](migration-map.md) - Transition from current to AI-augmented workflows
 
 Each pattern includes:
-- **Risk assessment** for different client contexts
-- **Implementation considerations** with security implications
-- **Known limitations** and failure modes  
-- **ROI projections** and success metrics
-- **Client case studies** with documented outcomes
+- **Risk assessment** with specific mitigation strategies
+- **Context applicability** matrix showing best-fit scenarios  
+- **Implementation roadmap** with validation checkpoints
+- **Trade-off analysis** comparing alternatives
+- **Real deployment outcomes** with measurable results
 
 ## Target Audience
 
