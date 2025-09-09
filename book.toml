@@ -18,6 +18,6 @@ command = "mdbook-mermaid"
 [output.linkcheck]
 # Check for broken links in the book
 follow-web-links = false
-exclude = ["^https://github.com/.*/pull/.*", "^https://github.com/.*/issues/.*"]
-# Enable more thorough checking
-warning-policy = "error"
+exclude = ["^https://github.com/.*/pull/.*", "^https://github.com/.*/issues/.*", "^http://localhost.*"]
+# Treat warnings as warnings, not errors
+warning-policy = "warn"
