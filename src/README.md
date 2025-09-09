@@ -16,12 +16,12 @@ A practitioner's knowledge base for AI-assisted development, organized by risk p
 - 🏛️ [**Regulated**](by-context/regulated/index.md) - Compliance-first
 
 ### By Domain
-- [**Architecture**](patterns/architecture/) - System design patterns
-- [**Implementation**](patterns/implementation/) - Development patterns
-- [**Operations**](patterns/operations/) - Deployment and maintenance
-- [**Security**](patterns/security/) - Access control and compliance
-- [**Team**](patterns/team/) - Collaboration and process
-- [**Quality**](patterns/quality/) - Validation and testing
+- [**Architecture**](patterns/architecture/index.md) - System design patterns
+- [**Implementation**](patterns/implementation/index.md) - Development patterns
+- [**Operations**](patterns/operations/index.md) - Deployment and maintenance
+- [**Security**](patterns/security/index.md) - Access control and compliance
+- [**Team**](patterns/team/index.md) - Collaboration and process
+- [**Quality**](patterns/quality/index.md) - Validation and testing
 
 ## 📚 Learning Paths
 
@@ -61,8 +61,8 @@ Patterns under professional evaluation with risk assessment
 ## 🎯 Who This Is For
 
 - **Individual Developers**: Start with [Getting Started](learning-paths/getting-started.md)
-- **Team Leads**: Focus on [Team Patterns](patterns/team/) and risk management
-- **Consultants**: Use [Context Guides](by-context/) for client-specific approaches
+- **Team Leads**: Focus on [Team Patterns](patterns/team/index.md) and risk management
+- **Consultants**: Use [Context Guides](by-context/index.md) for client-specific approaches
 - **Agencies**: See [Agency Playbook](learning-paths/agency-playbook.md)
 - **Enterprise Architects**: Review [High-Risk Patterns](by-risk/high-risk/index.md)
 
@@ -85,7 +85,7 @@ Patterns under professional evaluation with risk assessment
 
 ### For Production Systems
 1. Complete [Risk Assessment](patterns/quality/risk-assessment.md)
-2. Review patterns for your [Context](by-context/)
+2. Review patterns for your [Context](by-context/index.md)
 3. Check all [Dependencies](PATTERN_TEMPLATE.md#relationships)
 4. Implement with safeguards
 5. Monitor continuously

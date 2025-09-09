@@ -29,10 +29,11 @@ See `analysis-template.md` for the standard structure to follow.
 ## Current Analysis Documents
 
 ### Tool-Specific Evaluations
-- **[Google Gemini Nano Banana Evaluation](google-gemini-nano-banana-evaluation.md)** - AI image generation API analysis with cost and vendor lock-in considerations
+- **Google Gemini Nano Banana Evaluation** - AI image generation API analysis with cost and vendor lock-in considerations
 
 ### Framework Assessments
-- **[2025-09-08-](2025-09-08-.md)** - Automated analysis from https: (requires evaluation completion)*Future analysis documents will be listed here*
+- Analysis documents are stored in this directory but not linked in the main navigation
+- See individual files for specific evaluations
 
 ### Process Evaluations
 *Future analysis documents will be listed here*
