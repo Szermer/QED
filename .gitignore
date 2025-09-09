@@ -1,3 +1,5 @@
 book
 .mcp.json
 anon-kode.DS_Store
+prototype/node_modules
+node_modules
