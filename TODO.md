@@ -3,6 +3,12 @@
 ## Current Status: Taxonomy Migration Complete (2025-09-09)
 
 ### Recently Completed ✅
+- [x] **MAJOR: Getting Started section taxonomy alignment** (2025-09-09)
+  - Updated Introduction page to reflect new multidimensional organization
+  - Completely rewrote Philosophy and Mindset with practitioner focus
+  - Enhanced Pattern Template with taxonomy metadata alignment
+  - Verified all changes with visual inspection via Playwright
+  - Updated README.md to show new navigation structure
 - [x] **MAJOR: Fixed mdbook-linkcheck build failures** (2025-09-09)
   - Removed accidentally committed node_modules from git
   - Fixed all broken links in SUMMARY.md after taxonomy migration
@@ -16,13 +22,6 @@
   - Created context-specific guides (Startup/Enterprise/Regulated)
   - Built learning paths and pattern template
   - Created ADR-2025-09-08-TAX for taxonomy migration
-- [x] Comprehensive project cleanup and verification (2025-09-09)
-  - Cleaned up code and removed dead code
-  - Verified architecture and ADR compliance
-  - Conducted tests (mdbook build and test)
-  - Visual inspection with Playwright (confirmed site at szermer.github.io/QED)
-  - Updated all relevant README files
-  - Cross-linked ADRs appropriately
 
 ### In Progress 🔄
 - [ ] Apply GitHub Issue labels for project management
