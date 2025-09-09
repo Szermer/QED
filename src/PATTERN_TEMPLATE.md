@@ -162,13 +162,13 @@ config:
 
 ## Case Studies
 
-### Case Study 1: [Context]
+### Case Study 1: {Context}
 - **Challenge**: What problem they faced
 - **Implementation**: How they applied this pattern
 - **Results**: Measurable outcomes
 - **Lessons**: Key takeaways
 
-### Case Study 2: [Context]
+### Case Study 2: {Context}
 - **Challenge**: What problem they faced
 - **Implementation**: How they applied this pattern
 - **Results**: Measurable outcomes
@@ -177,16 +177,16 @@ config:
 ## Related Patterns
 
 ### Dependencies
-- **[Pattern Name]**: Why it's required
-- **[Pattern Name]**: Why it's required
+- **{Pattern Name}**: Why it's required
+- **{Pattern Name 2}**: Why it's required
 
 ### Complements
-- **[Pattern Name]**: How they work together
-- **[Pattern Name]**: How they work together
+- **{Pattern Name}**: How they work together
+- **{Pattern Name 2}**: How they work together
 
 ### Alternatives
-- **[Pattern Name]**: When to use instead
-- **[Pattern Name]**: When to use instead
+- **{Pattern Name}**: When to use instead
+- **{Pattern Name 2}**: When to use instead
 
 ## References
 
