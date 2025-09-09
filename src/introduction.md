@@ -87,7 +87,7 @@ Start with the [Getting Started Learning Path](learning-paths/getting-started.md
 - Hands-on exercises with real projects
 
 ### Have Specific Technical Questions?
-Navigate by domain in the [Patterns section](patterns/) to find:
+Navigate by domain in the Patterns section to find:
 - Architecture patterns for system design
 - Implementation guides for specific frameworks
 - Security patterns for enterprise requirements
@@ -95,9 +95,9 @@ Navigate by domain in the [Patterns section](patterns/) to find:
 
 ### Working Within Constraints?
 Use context-driven navigation:
-- [By Business Context](by-context/) - Find patterns for your organizational type
-- [By Risk Profile](by-risk/) - Match patterns to your risk tolerance
-- [Migration Guidance](migration-map.md) - Transition from current to AI-augmented workflows
+- By Business Context - Find patterns for your organizational type
+- By Risk Profile - Match patterns to your risk tolerance  
+- Migration Guidance - Transition from current to AI-augmented workflows
 
 Each pattern includes:
 - **Risk assessment** with specific mitigation strategies
