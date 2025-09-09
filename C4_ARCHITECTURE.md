@@ -106,12 +106,13 @@ C4Component
 ```
 
 **Key Components**:
-- **Knowledge Intake Framework**: Systematic evaluation of new AI development patterns
+- **Knowledge Intake Framework**: Systematic evaluation of new AI development patterns with dated batch processing
 - **Four-Tier System**: Research → Analysis → Decision → Practice progression
 - **Taxonomy Organization**: Multi-dimensional classification (Domain, Risk, Context, Maturity)
 - **Evidence Validation**: All practices must be proven through client project outcomes
 - **Risk-Based Frameworks**: Traffic light system (Green/Yellow/Red) for immediate risk visibility
 - **Pattern Template**: Standardized format ensuring consistent documentation
+- **Intake Processing**: Dated folder structure (YYYY-MM-DD-intake/) for batch processing of new articles
 
 ## Deployment Diagram (Level 4)
 
@@ -157,7 +158,7 @@ C4Deployment
 2. **Four-Tier Knowledge Management**
    - **Rationale**: Evidence-based progression from research to proven practice
    - **Trade-offs**: Content creation overhead vs. practitioner trust and quality
-   - **Status**: Core architectural principle
+   - **Status**: Core architectural principle (detailed in [KNOWLEDGE_INTAKE.md](KNOWLEDGE_INTAKE.md))
 
 3. **Taxonomy-Based Structure**
    - **Rationale**: Multi-dimensional navigation better serves practitioner needs than linear book structure
@@ -208,7 +209,7 @@ C4Deployment
 
 ---
 
-**Architecture Document Version**: 1.1  
+**Architecture Document Version**: 1.2  
 **Last Updated**: 2025-09-09  
 **Review Cycle**: Quarterly or with major architectural changes  
-**Recent Changes**: Added taxonomy-based structure components and relationships
+**Recent Changes**: Added knowledge intake workflow components and dated batch processing structure

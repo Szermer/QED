@@ -84,6 +84,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **Tool Evaluation**: ADR-2025-09-08
 - **Vendor Assessment**: ADR-2025-09-08
 - **Cost Modeling**: ADR-2025-09-08
+- **Knowledge Management**: ADR-2025-09-08-TAX (integrated with intake framework)
 - **Documentation Structure**: ADR-2025-09-08-TAX
 - **Information Architecture**: ADR-2025-09-08-TAX
 - **Pattern Organization**: ADR-2025-09-08-TAX
@@ -106,6 +107,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 3. **ADR-2025-09-08-TAX**: Transformed documentation structure for better practitioner usability
 
 ### Recent Updates
+- **2025-09-09**: Knowledge intake workflow implemented, ADRs cross-linked with intake framework
 - **2025-09-09**: Taxonomy migration completed and verified
 - **2025-09-08**: ADR-2025-09-08-TAX created - Taxonomy-based structure migration
 - **2025-09-08**: ADR-2025-09-01 created - Framework selection approach

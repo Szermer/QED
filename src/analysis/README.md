@@ -28,6 +28,9 @@ See `analysis-template.md` for the standard structure to follow.
 
 ## Current Analysis Documents
 
+### AI Coding Optimization
+- **faraaz-ai-coding-efficiency-evaluation.md** - Vector embeddings and dependency graphs for AI agent optimization (September 2025)
+
 ### Tool-Specific Evaluations
 - **Google Gemini Nano Banana Evaluation** - AI image generation API analysis with cost and vendor lock-in considerations
 
@@ -35,8 +38,11 @@ See `analysis-template.md` for the standard structure to follow.
 - Analysis documents are stored in this directory but not linked in the main navigation
 - See individual files for specific evaluations
 
+### Strategic Analysis
+*Strategic positioning and market analysis documents from intake processing*
+
 ### Process Evaluations
-*Future analysis documents will be listed here*
+*Workflow and methodology evaluations from intake processing*
 
 ## Lifecycle
 

@@ -232,6 +232,7 @@ Using QED Risk Assessment Matrix:
 ## Related Decisions
 
 - **Foundational ADR**: References [ADR-2025-09-01](2025-09-01-claude-code-framework-selection.md) for base framework selection approach
+- **Structural Framework**: [2025-09-08-taxonomy-based-structure.md](2025-09-08-taxonomy-based-structure.md) - Taxonomy organization supporting systematic evaluation
 - **Framework Evolution**: This decision extends the general framework selection methodology
 - **Future ADRs**: Specific vendor tool implementations will reference this evaluation approach
 - **Architecture**: Links to [C4_ARCHITECTURE.md](../C4_ARCHITECTURE.md) knowledge management process

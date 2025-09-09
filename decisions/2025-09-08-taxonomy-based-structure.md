@@ -113,10 +113,12 @@ The new structure successfully:
 
 - [QED Taxonomy Framework](../qed-taxonomy.md)
 - [Pattern Template](../src/PATTERN_TEMPLATE.md)
+- [Knowledge Intake Framework](../KNOWLEDGE_INTAKE.md)
 - [Original 3-Book Structure](../src/archive/SUMMARY.md)
 
 ## Related ADRs
 
+- [2025-09-08-tool-specific-pattern-evaluation.md](2025-09-08-tool-specific-pattern-evaluation.md) - Enhanced evaluation criteria for vendor-specific tools
 - [2025-01-01-mdbook-selection.md](2025-01-01-mdbook-selection.md) - Documentation platform choice
 - [2025-01-02-github-pages-deployment.md](2025-01-02-github-pages-deployment.md) - Deployment strategy
 
