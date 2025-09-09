@@ -33,7 +33,7 @@ The three-book structure was replaced because:
 3. **Context was more important than progression** - Startups and enterprises needed different patterns regardless of "level"
 4. **Discovery was difficult** - Finding relevant patterns required checking multiple books
 
-See [ADR: Taxonomy-Based Structure](../decisions/2025-09-08-taxonomy-based-structure.md) for full details.
+See ADR: Taxonomy-Based Structure (decisions/2025-09-08-taxonomy-based-structure.md) for full details.
 
 ## Deprecated Patterns
 

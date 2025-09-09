@@ -191,8 +191,8 @@ config:
 ## References
 
 ### Internal Documentation
-- [Related Pattern 1](../category/pattern1.md)
-- [Related Pattern 2](../category/pattern2.md)
+- Related patterns should be linked here
+- Example: `[Pattern Name](../domain/pattern-file.md)`
 
 ### External Resources
 - [Resource 1](https://example.com)
