@@ -77,12 +77,15 @@ C4Component
         Component(cross_linking, "Cross-Reference System", "Navigation", "Inter-content relationships")
         Component(quality_control, "Quality Assurance", "Review", "Content accuracy and consistency")
         
-        Component(patterns_domain, "Domain Patterns", "Content", "Organized by problem area")
-        Component(patterns_risk, "Risk Navigation", "Content", "Traffic light risk classification")
-        Component(patterns_context, "Context Guides", "Content", "Startup/Enterprise/Regulated specific")
+        Component(taxonomy_system, "Taxonomy Organization", "Structure", "Multi-dimensional pattern classification")
+        Component(patterns_domain, "Domain Patterns", "Content", "Architecture/Implementation/Operations/Security/Team/Quality")
+        Component(patterns_risk, "Risk Navigation", "Content", "Green/Yellow/Red traffic light system")
+        Component(patterns_context, "Context Guides", "Content", "Startup/Mid-market/Enterprise/Regulated specific")
+        Component(patterns_maturity, "Maturity Tracking", "Content", "Experimental/Validated/Standard progression")
         
         Component(risk_matrices, "Risk Assessment", "Tools", "Client-appropriate technology evaluation")
         Component(client_profiles, "Client Profiles", "Framework", "Conservative/Moderate/Aggressive patterns")
+        Component(pattern_template, "Pattern Template", "Standard", "Consistent pattern documentation format")
     }
     
     Person(author, "Author/Maintainer", "Stephen Szermer - CTO and practitioner")
@@ -93,17 +96,22 @@ C4Component
     Rel(tier_progression, validation_system, "Requires evidence")
     Rel(validation_system, client_projects, "Validates against")
     Rel(decision_tracking, cross_linking, "Enables navigation")
-    Rel(quality_control, patterns_domain, "Reviews content")
-    Rel(quality_control, patterns_risk, "Reviews content") 
-    Rel(quality_control, patterns_context, "Reviews content")
+    Rel(taxonomy_system, patterns_domain, "Organizes")
+    Rel(taxonomy_system, patterns_risk, "Classifies")
+    Rel(taxonomy_system, patterns_context, "Contextualizes")
+    Rel(taxonomy_system, patterns_maturity, "Tracks evolution")
+    Rel(quality_control, taxonomy_system, "Reviews organization")
+    Rel(pattern_template, patterns_domain, "Standardizes format")
     Rel(risk_matrices, client_profiles, "Informs")
 ```
 
 **Key Components**:
 - **Knowledge Intake Framework**: Systematic evaluation of new AI development patterns
 - **Four-Tier System**: Research → Analysis → Decision → Practice progression
+- **Taxonomy Organization**: Multi-dimensional classification (Domain, Risk, Context, Maturity)
 - **Evidence Validation**: All practices must be proven through client project outcomes
-- **Risk-Based Frameworks**: Client profile mapping for appropriate technology adoption
+- **Risk-Based Frameworks**: Traffic light system (Green/Yellow/Red) for immediate risk visibility
+- **Pattern Template**: Standardized format ensuring consistent documentation
 
 ## Deployment Diagram (Level 4)
 
@@ -151,12 +159,17 @@ C4Deployment
    - **Trade-offs**: Content creation overhead vs. practitioner trust and quality
    - **Status**: Core architectural principle
 
-3. **GitHub-Based Workflow** 
+3. **Taxonomy-Based Structure**
+   - **Rationale**: Multi-dimensional navigation better serves practitioner needs than linear book structure
+   - **Trade-offs**: More complex organization vs. improved discoverability and context-awareness
+   - **Status**: Implemented (see [ADR-2025-09-08-TAX](decisions/2025-09-08-taxonomy-based-structure.md))
+
+4. **GitHub-Based Workflow** 
    - **Rationale**: Version control, automated deployment, practitioner-familiar tools
    - **Trade-offs**: GitHub dependency vs. workflow efficiency
    - **Status**: Accepted and implemented
 
-4. **Evidence-First Approach**
+5. **Evidence-First Approach**
    - **Rationale**: Practitioner credibility requires documented client outcomes
    - **Trade-offs**: Slower content creation vs. higher quality and trust
    - **Status**: Fundamental QED principle
@@ -174,8 +187,10 @@ C4Deployment
 - **Reliability**: Static deployment ensures maximum uptime
 - **Performance**: Fast loading through CDN and minimal dependencies
 - **Maintainability**: Clear separation of content tiers and decision documentation
-- **Usability**: Practitioner-focused navigation and search capabilities
+- **Discoverability**: Multi-dimensional taxonomy enables finding patterns through different lenses
+- **Usability**: Practitioner-focused navigation with risk-first visibility
 - **Security**: HTTPS by default, no server-side attack surface
+- **Consistency**: Pattern template ensures uniform documentation quality
 
 ## Future Architecture Considerations
 
@@ -193,6 +208,7 @@ C4Deployment
 
 ---
 
-**Architecture Document Version**: 1.0  
-**Last Updated**: September 8, 2025  
-**Review Cycle**: Quarterly or with major architectural changes
+**Architecture Document Version**: 1.1  
+**Last Updated**: 2025-09-09  
+**Review Cycle**: Quarterly or with major architectural changes  
+**Recent Changes**: Added taxonomy-based structure components and relationships

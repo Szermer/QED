@@ -1,32 +1,32 @@
 # QED Project TODO
 
-## Current Status: Project Review and Cleanup (September 2025)
+## Current Status: Taxonomy Migration Complete (2025-09-09)
 
-### Completed ✅
-- [x] Clean up code or dead code (removed .DS_Store files, updated .gitignore)
-- [x] Verify architecture and ADR compliance (confirmed alignment with existing ADRs)
-- [x] Conduct appropriate tests (validated markdown structure, checked for build issues)
-- [x] Visual inspection with Playwright (verified live site rendering at szermer.github.io/QED)
-- [x] Update relevant README files (aligned main README and src/README with QED identity)
+### Recently Completed ✅
+- [x] **MAJOR: Fixed mdbook-linkcheck build failures** (2025-09-09)
+  - Removed accidentally committed node_modules from git
+  - Fixed all broken links in SUMMARY.md after taxonomy migration
+  - Created missing index.md files for navigation sections
+  - Updated book.toml linkcheck configuration
+  - Verified successful GitHub Actions deployment
 - [x] **MAJOR: Migrated from 3-book structure to taxonomy-based organization** (2025-09-08)
-- [x] Created comprehensive pattern taxonomy with multi-dimensional classification
-- [x] Reorganized ~40 patterns into domain-based structure
-- [x] Added risk-based navigation (Low/Managed/High)
-- [x] Created context-specific guides (Startup/Enterprise/Regulated)
-- [x] Built learning paths and pattern template
-- [x] Created ADR for taxonomy migration decision
+  - Created comprehensive pattern taxonomy with multi-dimensional classification
+  - Reorganized ~40 patterns into domain-based structure
+  - Added risk-based navigation (Low/Managed/High)
+  - Created context-specific guides (Startup/Enterprise/Regulated)
+  - Built learning paths and pattern template
+  - Created ADR-2025-09-08-TAX for taxonomy migration
+- [x] Comprehensive project cleanup and verification (2025-09-09)
+  - Cleaned up code and removed dead code
+  - Verified architecture and ADR compliance
+  - Conducted tests (mdbook build and test)
+  - Visual inspection with Playwright (confirmed site at szermer.github.io/QED)
+  - Updated all relevant README files
+  - Cross-linked ADRs appropriately
 
 ### In Progress 🔄
-- [ ] Update relevant ADRs (reviewing current ADR status)
-- [ ] Update TODO.md (this file - creating project status documentation)
-- [ ] Review and update DECISION_REGISTRY.md (ensure all ADRs are properly indexed)
-- [ ] Review and update C4_ARCHITECTURE.md (verify architecture documentation is current)
-- [ ] Cross-link all relevant ADRs (ensure proper references between decisions)
-
-### Pending 📋
-- [ ] Apply GitHub Issue labels (create/update repository labels for project management)
-- [ ] Push to origin (commit and push all changes)
-- [ ] Monitor GitHub workflows (verify MCP and build workflows are functioning)
+- [ ] Apply GitHub Issue labels for project management
+- [ ] Monitor GitHub Actions workflows for stability
 
 ## Current Project Priorities
 
@@ -46,18 +46,26 @@
 3. **Community features** - Contribution guidelines, feedback mechanisms
 
 ## Recent Major Changes
-- Added automated analysis: ... (2025-09-08)- Established QED's unique practitioner identity (September 2025)
-- Integrated Gerred's "Building an Agentic System" knowledge into analysis tier
-- Fixed mdbook linkcheck errors throughout documentation
-- Reorganized knowledge management structure for clarity
-- Added first tool-specific evaluation: Google Gemini Nano Banana (Tier 2 analysis)
-- Demonstrated systematic knowledge intake process with risk assessment
+- **Taxonomy-based structure migration** (2025-09-08/09)
+  - Replaced linear 3-book structure with multi-dimensional navigation
+  - Implemented traffic light risk system (Green/Yellow/Red)
+  - Created domain-based organization (Architecture/Implementation/Operations/Security/Team/Quality)
+  - Fixed critical mdbook-linkcheck build failures
+  - Successfully deployed to GitHub Pages
+- **Knowledge intake automation** (2025-09-08)
+  - Established systematic evaluation pipeline with Jina Reader API
+  - Added Google Gemini Nano Banana as first Tier 2 analysis
+  - Demonstrated risk assessment framework in practice
+- **QED identity establishment** (September 2025)
+  - Positioned as practitioner's guide for AI development patterns
+  - Evidence-based approach with 4-tier knowledge management
+  - Client-safe patterns with explicit risk profiles
 
 ## Next Sprint Goals
-1. Complete current review checklist
-2. Ensure all documentation reflects QED practitioner focus
-3. Verify all cross-references and links are working
-4. Push stable version to production
+1. Expand Tier 2 analysis collection with more tool evaluations
+2. Add more validated patterns from recent client projects
+3. Enhance search and filtering capabilities
+4. Create interactive pattern relationship diagrams
 
 ## Architecture Notes
 - QED uses 4-tier knowledge management: Research → Analysis → Decision → Practice
@@ -72,4 +80,4 @@
 - Live site deployment to szermer.github.io/QED
 
 ---
-*Last updated: September 8, 2025*
+*Last updated: 2025-09-09*
