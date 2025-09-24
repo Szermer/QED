@@ -24,6 +24,28 @@ All patterns in this tier are evaluated using:
 
 ## Currently Under Evaluation
 
+### Recent Analyses
+
+#### [Psychology of Trust in AI Systems](psychology-trust-ai-analysis.md)
+**Status**: Framework evaluation complete
+**Risk Level**: Managed
+**Priority**: HIGH - Addresses critical user adoption challenges
+
+**Key Framework:**
+- Four-pillar trust model (Ability, Benevolence, Integrity, Predictability)
+- Calibrated trust approach (avoiding both under and over-trust)
+- Practical measurement methods for UX teams
+
+#### [ACE-FCA Context Engineering](ace-fca-context-engineering-analysis.md)
+**Status**: Technical evaluation complete
+**Risk Level**: Moderate
+**Priority**: HIGH - Addresses production codebase integration
+
+**Key Approach:**
+- Frequent Intentional Compaction methodology
+- Research-Plan-Implement workflow
+- Context window optimization for 300k+ LOC codebases
+
 ### Pattern: Autonomous Agent Orchestration
 **Status**: Testing in controlled environments
 **Risk Level**: High
