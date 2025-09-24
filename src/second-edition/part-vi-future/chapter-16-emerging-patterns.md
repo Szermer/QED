@@ -1,4 +1,4 @@
-# Chapter 16: Emerging Architecture Patterns
+# Emerging Architecture Patterns
 
 The landscape of AI-assisted development is shifting rapidly. What started as code completion has evolved into systems that can navigate UIs, coordinate across platforms, and learn from collective developer patterns while preserving privacy. This chapter examines the emerging patterns that are reshaping how we think about AI coding assistants.
 

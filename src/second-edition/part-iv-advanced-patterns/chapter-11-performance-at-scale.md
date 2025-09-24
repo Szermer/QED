@@ -1,4 +1,4 @@
-# Chapter 11: Performance Patterns at Scale
+# Performance Patterns at Scale
 
 Running an AI coding assistant for a handful of developers differs dramatically from serving thousands of concurrent users. When AI processes complex refactoring requests that spawn multiple sub-agents, each analyzing different parts of a codebase, the computational demands multiply quickly. Add real-time synchronization, file system operations, and LLM inference costs, and performance becomes the make-or-break factor for production viability.
 
@@ -1214,4 +1214,4 @@ The key insight is that AI coding assistants have unique performance characteris
 
 These performance patterns form the foundation for building AI coding assistants that can serve thousands of developers concurrently while maintaining the responsiveness that makes them useful in real development workflows.
 
-In the next chapter, we'll explore observability and monitoring strategies for understanding and optimizing these complex systems in production.
+The following section explores observability and monitoring strategies for understanding and optimizing these complex systems in production.

@@ -1,4 +1,4 @@
-# Chapter 17: Collaborative AI Ecosystem Patterns
+# Collaborative AI Ecosystem Patterns
 
 The journey through building agentic systems has brought us from local development assistants to sophisticated collaborative platforms. As we conclude, it's worth examining the broader ecosystem emerging around AI coding assistants—not just individual tools but the protocols, integrations, and ethical frameworks that will shape how we build software in the coming years.
 

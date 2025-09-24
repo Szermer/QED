@@ -1,4 +1,4 @@
-# Chapter 6: Tool System Architecture Evolution
+# Tool System Architecture Evolution
 
 Tools are the hands of an AI coding assistant. They transform conversations into concrete actions—reading files, running commands, searching codebases, and modifying code. As AI assistants evolved from single-user to collaborative systems, their tool architectures had to evolve as well.
 
@@ -1110,4 +1110,4 @@ This chapter explored the evolution from simple tool execution to sophisticated 
 
 The key insight: modern tool systems must balance expressive power with safety constraints, extensibility with security, and performance with correctness through architectural discipline.
 
-The next chapter examines collaboration and permission systems that enable secure multi-user workflows while preserving privacy and control.
+The following section examines collaboration and permission systems that enable secure multi-user workflows while preserving privacy and control.

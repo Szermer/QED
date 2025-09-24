@@ -1,4 +1,4 @@
-# Chapter 13: Building Your Own Collaborative AI Assistant
+# Building Your Own Collaborative AI Assistant
 
 So you want to build a collaborative AI coding assistant. Maybe you've been inspired by the architecture patterns we've explored, or perhaps your team has specific requirements that existing tools don't meet. This chapter provides a practical roadmap for building your own system, drawing from the lessons learned throughout this book.
 

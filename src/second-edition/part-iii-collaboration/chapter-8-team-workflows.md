@@ -1,4 +1,4 @@
-# Chapter 8: Team Workflow Patterns
+# Team Workflow Patterns
 
 When multiple developers work with AI coding assistants, coordination becomes critical. This chapter explores collaboration patterns for AI-assisted development, from concurrent editing strategies to enterprise audit requirements. We'll examine how individual-focused architectures extend naturally to team scenarios.
 
@@ -722,4 +722,4 @@ The AI assistant becomes a team member itself, one that never forgets context, a
 
 Team workflows in AI-assisted development are still evolving. As models become more capable and developers more comfortable with AI assistance, new patterns will emerge. The foundation Amp provides—reactive architecture, thread-based conversations, and robust synchronization—creates space for this evolution.
 
-The next chapter explores how these team features integrate with existing enterprise systems, from authentication providers to development toolchains. The boundaries between AI assistants and traditional development infrastructure continue to blur, creating new possibilities for how teams build software together.
+The following section explores how these team features integrate with existing enterprise systems, from authentication providers to development toolchains. The boundaries between AI assistants and traditional development infrastructure continue to blur, creating new possibilities for how teams build software together.

@@ -1,4 +1,4 @@
-# Chapter 3: Authentication and Identity for Developer Tools
+# Authentication and Identity for Developer Tools
 
 Authentication in collaborative AI systems presents unique challenges. Unlike traditional web applications with form-based login, AI coding assistants must authenticate seamlessly across CLIs, IDE extensions, and web interfaces while maintaining security and enabling team collaboration.
 
@@ -873,4 +873,4 @@ Amp's authentication system demonstrates how to build secure, user-friendly auth
 
 The key insight is that authentication for developer tools must adapt to developer workflows, not the other way around. By meeting developers where they work—in terminals, IDEs, and CI/CD pipelines—Amp creates an authentication experience that enhances rather than interrupts productivity.
 
-In the next chapter, we'll explore how Amp manages conversation threads at scale, handling synchronization, conflicts, and version control for collaborative AI interactions.
+The next pattern section explores how Amp manages conversation threads at scale, handling synchronization, conflicts, and version control for collaborative AI interactions.

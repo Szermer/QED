@@ -1,4 +1,4 @@
-# Chapter 2: Service-Oriented Architecture for AI Systems
+# Service-Oriented Architecture for AI Systems
 
 Building a collaborative AI coding assistant requires careful architectural decisions. How do you create a system that feels responsive to individual users while managing the complexity of distributed state, multi-user collaboration, and AI model interactions?
 
@@ -844,4 +844,4 @@ Amp's architecture demonstrates how to build a production-ready collaborative AI
 - **Security boundaries** protect user data
 - **Scaling considerations** support growth
 
-The combination of these patterns creates a foundation that can evolve from serving individual developers to supporting entire engineering organizations. In the next chapter, we'll explore how Amp's authentication and identity system enables secure multi-user collaboration while maintaining the simplicity users expect.
+The combination of these patterns creates a foundation that can evolve from serving individual developers to supporting entire engineering organizations. The next pattern section explores how Amp's authentication and identity system enables secure multi-user collaboration while maintaining the simplicity users expect.
