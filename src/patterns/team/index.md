@@ -5,7 +5,6 @@ Collaboration patterns and team processes for AI-assisted development.
 ## Collaboration Patterns
 
 - [Team Workflows](team-workflows.md) - Collaborative development processes
-- [Comments and Collaboration](comments.md) - Communication patterns
 - [From Local to Collaborative](local-to-collaborative.md) - Scaling from individual to team
 - [Enterprise Integration](enterprise-integration.md) - Organizational adoption
 

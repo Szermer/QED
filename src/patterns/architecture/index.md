@@ -6,8 +6,6 @@ Core system design patterns and architectural decisions for AI coding assistants
 
 - [Core Architecture](core-architecture.md) - Essential layers and components
 - [System Architecture Diagram](system-architecture-diagram.md) - Visual overview
-- [Command System Deep Dive](command-system-deep-dive.md) - Command processing architecture
-- [Tool System Deep Dive](tool-system-deep-dive.md) - Tool execution framework
 
 ## Advanced Architectures
 

@@ -13,8 +13,6 @@ Patterns requiring specific safeguards and approval processes.
 
 ### Architecture Patterns
 - [Core Architecture](../../patterns/architecture/core-architecture.md) - Full system implementation
-- [Tool System Deep Dive](../../patterns/architecture/tool-system-deep-dive.md) - Extensible capabilities
-- [Command System Deep Dive](../../patterns/architecture/command-system-deep-dive.md) - Command processing
 
 ### Operations Patterns
 - [Parallel Tool Execution](../../patterns/operations/parallel-tool-execution.md) - Performance optimization

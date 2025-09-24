@@ -3,8 +3,6 @@
 ## Architecture & Design
 - core-architecture.md → patterns/architecture/
 - system-architecture-diagram.md → patterns/architecture/
-- command-system-deep-dive.md → patterns/architecture/
-- tool-system-deep-dive.md → patterns/architecture/
 - second-edition/part-i-foundations/chapter-2-amp-architecture-overview.md → patterns/architecture/amp-architecture.md
 - second-edition/part-ii-core-systems/chapter-4-thread-management-at-scale.md → patterns/architecture/thread-management.md
 - second-edition/part-ii-core-systems/chapter-5-real-time-synchronization.md → patterns/architecture/real-time-sync.md
@@ -38,7 +36,6 @@
 - second-edition/part-iii-collaboration/chapter-7-sharing-and-permissions.md → patterns/security/sharing-permissions.md
 
 ## Team & Process
-- comments.md → patterns/team/
 - second-edition/part-iii-collaboration/chapter-8-team-workflows.md → patterns/team/team-workflows.md
 - second-edition/part-iii-collaboration/chapter-9-enterprise-integration.md → patterns/team/enterprise-integration.md
 - second-edition/part-i-foundations/chapter-1-from-local-to-collaborative.md → patterns/team/local-to-collaborative.md
