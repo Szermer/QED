@@ -19,8 +19,6 @@
 - [Architecture Overview](patterns/architecture/index.md)
 - [Core Architecture](patterns/architecture/core-architecture.md)
 - [System Architecture Diagram](patterns/architecture/system-architecture-diagram.md)
-- [Command System Deep Dive](patterns/architecture/command-system-deep-dive.md)
-- [Tool System Deep Dive](patterns/architecture/tool-system-deep-dive.md)
 - [AMP Architecture Overview](patterns/architecture/amp-architecture.md)
 - [Thread Management at Scale](patterns/architecture/thread-management.md)
 - [Real-Time Synchronization](patterns/architecture/real-time-sync.md)
@@ -64,7 +62,6 @@
 ## Team & Process
 
 - [Team Overview](patterns/team/index.md)
-- [Comments and Collaboration](patterns/team/comments.md)
 - [Team Workflows](patterns/team/team-workflows.md)
 - [Enterprise Integration](patterns/team/enterprise-integration.md)
 - [From Local to Collaborative](patterns/team/local-to-collaborative.md)
