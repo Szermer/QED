@@ -37,6 +37,13 @@ Written for developers, consultants, and agencies using AI coding assistants, co
 
 Visit [szermer.github.io/QED](https://szermer.github.io/QED) for the rendered book.
 
+### Deployment
+
+The site is deployed via GitHub Pages using GitHub Actions:
+- Built with mdBook on every push to main
+- Deployed automatically via the mdBook workflow
+- Configuration: GitHub Pages must be set to "Deploy from GitHub Actions" (not branch)
+
 ## Documentation Philosophy
 
 QED follows evidence-based knowledge management:

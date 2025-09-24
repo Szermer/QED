@@ -3,6 +3,21 @@
 ## Current Status: Taxonomy Migration Complete (2025-09-09)
 
 ### Recently Completed ✅
+- [x] **MAJOR: Fixed GitHub Pages deployment configuration** (2025-01-24)
+  - Switched from branch-based Jekyll deployment to GitHub Actions
+  - Resolved 404 errors by correcting build_type configuration
+  - Created ADR documenting deployment requirements
+  - Updated README with deployment configuration notes
+- [x] **MAJOR: Removed book-style chapter references** (2025-01-24)
+  - Transformed 34 files from chapter-based to pattern-based structure
+  - Updated all "next chapter" references to "next section/pattern"
+  - Aligned with QED's modular pattern library approach
+  - Created ADR documenting the transformation
+- [x] **MAJOR: Added high-priority analysis documents** (2025-01-24)
+  - Psychology of Trust in AI Systems (Tier 2 complete)
+  - ACE-FCA Context Engineering (Tier 2 complete)
+  - Updated SUMMARY.md to include analysis documents
+  - Fixed broken links in analysis documents
 - [x] **MAJOR: Knowledge intake processing and workflow implementation** (2025-09-09)
   - Processed three new articles through QED knowledge management workflow
   - Created comprehensive Faraaz AI coding efficiency analysis (Tier 2)
@@ -92,4 +107,4 @@
 - Live site deployment to szermer.github.io/QED
 
 ---
-*Last updated: 2025-09-09*
+*Last updated: 2025-01-24*

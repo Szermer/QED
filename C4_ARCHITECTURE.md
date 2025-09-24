@@ -35,7 +35,7 @@ C4Container
     
     Container(static_site, "Static Site", "HTML/CSS/JS", "Rendered knowledge base")
     Container(content_repo, "Content Repository", "Markdown/Git", "Source content and knowledge management")
-    Container(build_system, "Build System", "mdBook + GitHub Actions", "Content processing and deployment")
+    Container(build_system, "Build System", "mdBook + GitHub Actions", "Content processing and deployment - Actions source required")
     
     Container_Ext(github_pages, "GitHub Pages", "Static Hosting", "Site delivery")
     Container_Ext(github_actions, "GitHub Actions", "CI/CD", "Automated building and deployment")
@@ -209,7 +209,10 @@ C4Deployment
 
 ---
 
-**Architecture Document Version**: 1.2  
-**Last Updated**: 2025-09-09  
-**Review Cycle**: Quarterly or with major architectural changes  
-**Recent Changes**: Added knowledge intake workflow components and dated batch processing structure
+**Architecture Document Version**: 1.3
+**Last Updated**: 2025-01-24
+**Review Cycle**: Quarterly or with major architectural changes
+**Recent Changes**:
+- Updated deployment configuration (GitHub Actions source required)
+- Removed book-style chapter organization for pattern-focused structure
+- Added high-priority analysis documents to Tier 2
