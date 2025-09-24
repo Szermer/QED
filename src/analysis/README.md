@@ -28,21 +28,41 @@ See `analysis-template.md` for the standard structure to follow.
 
 ## Current Analysis Documents
 
+### 🔴 High Priority - User Adoption & Trust
+
+#### [Psychology of Trust in AI Systems](psychology-trust-ai-analysis.md)
+- **Focus**: Four-pillar trust framework for AI system design
+- **Value**: Critical for addressing user acceptance challenges
+- **Status**: Framework evaluation complete, awaiting field validation
+- **Next Steps**: Create trust assessment templates for client projects
+
+### 🔴 High Priority - Technical Implementation
+
+#### [ACE-FCA Context Engineering](ace-fca-context-engineering-analysis.md)
+- **Focus**: Frequent Intentional Compaction for complex codebases
+- **Value**: Enables AI coding in 300k+ LOC production systems
+- **Status**: Technical evaluation complete, ready for pilot
+- **Next Steps**: Test on internal project, measure productivity gains
+
 ### AI Coding Optimization
-- **faraaz-ai-coding-efficiency-evaluation.md** - Vector embeddings and dependency graphs for AI agent optimization (September 2025)
+
+#### [Faraaz AI Coding Efficiency Evaluation](faraaz-ai-coding-efficiency-evaluation.md)
+- Vector embeddings and dependency graphs for AI agent optimization
+- Performance metrics and ROI frameworks
 
 ### Tool-Specific Evaluations
-- **Google Gemini Nano Banana Evaluation** - AI image generation API analysis with cost and vendor lock-in considerations
 
-### Framework Assessments
-- Analysis documents are stored in this directory but not linked in the main navigation
-- See individual files for specific evaluations
+#### [Google Gemini Nano Banana Evaluation](google-gemini-nano-banana-evaluation.md)
+- On-device AI capabilities assessment
+- Privacy implications and performance trade-offs
+- Cost and vendor lock-in considerations
 
-### Strategic Analysis
-*Strategic positioning and market analysis documents from intake processing*
+### Distributed Systems Integration
 
-### Process Evaluations
-*Workflow and methodology evaluations from intake processing*
+#### [Martin Fowler Distributed Systems Patterns](martinfowler-distributed-systems-patterns-evaluation.md)
+- Architectural patterns for AI in distributed systems
+- Enterprise integration strategies
+- Scalability and reliability considerations
 
 ## Lifecycle
 
