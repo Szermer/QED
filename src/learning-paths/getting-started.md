@@ -80,7 +80,6 @@ graph LR
 **Exercise**: Diagram your current architecture and identify AI integration points
 
 ### Day 3-4: Tool Systems
-📖 **Read**: [Tool System Deep Dive](../patterns/architecture/tool-system-deep-dive.md)
 - Learn tool interface patterns
 - Understand permission models
 - Implement custom tools
@@ -98,7 +97,6 @@ graph LR
 ## Week 4: Team Adoption
 
 ### Day 1-2: Collaboration Patterns
-📖 **Read**: [Comments and Collaboration](../patterns/team/comments.md)
 - Set up team workflows
 - Establish conventions
 - Share knowledge effectively

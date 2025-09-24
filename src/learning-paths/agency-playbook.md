@@ -88,7 +88,6 @@ Before recommending patterns, evaluate:
 **Key Patterns:**
 1. [From Local to Collaborative](../patterns/team/local-to-collaborative.md) - Team adoption
 2. [Authentication and Identity](../patterns/security/authentication-identity.md) - Access management
-3. [Comments and Collaboration](../patterns/team/comments.md) - Team communication
 
 ### Enterprise Clients
 

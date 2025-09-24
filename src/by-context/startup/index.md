@@ -29,7 +29,6 @@ Patterns optimized for small teams (<10 developers) with high agility and low pr
 
 ### Building Foundations
 - [Execution Flow in Detail](../../patterns/implementation/execution-flow-in-detail.md) - Understand the basics
-- [Comments and Collaboration](../../patterns/team/comments.md) - Light collaboration
 - [Initialization Process](../../patterns/implementation/initialization-process.md) - Quick setup
 
 ## Anti-Patterns to Avoid

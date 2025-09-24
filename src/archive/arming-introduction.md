@@ -42,11 +42,9 @@ Each tool and command is documented with:
 ## Table of Contents
 
 ### Tool System Reference
-- [Tool System Overview](tool-system-deep-dive.md) - Architectural patterns and integration strategies
 - Individual tool documentation covering all core capabilities
 
 ### Command System Reference  
-- [Command System Overview](command-system-deep-dive.md) - User interface patterns and implementation
 - Complete command reference with usage examples and configuration options
 
 ---

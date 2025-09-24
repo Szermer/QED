@@ -52,8 +52,6 @@ A guide for teams transitioning from traditional development practices to AI-ass
 ### Week 3-4: Tool Proficiency
 
 **Master the Tools:**
-1. [Tool System Deep Dive](../patterns/architecture/tool-system-deep-dive.md) - Understanding capabilities
-2. [Command System Deep Dive](../patterns/architecture/command-system-deep-dive.md) - Effective commands
 3. [Execution Flow in Detail](../patterns/implementation/execution-flow-in-detail.md) - How it works
 
 **Practice Patterns:**
@@ -65,7 +63,6 @@ A guide for teams transitioning from traditional development practices to AI-ass
 
 **Collaborative Patterns:**
 1. [Team Workflows](../patterns/team/team-workflows.md) - Working together
-2. [Comments and Collaboration](../patterns/team/comments.md) - Communication patterns
 3. [From Local to Collaborative](../patterns/team/local-to-collaborative.md) - Sharing knowledge
 
 **Team Activities:**

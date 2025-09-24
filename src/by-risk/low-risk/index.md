@@ -19,7 +19,6 @@ Safe patterns for initial adoption with minimal client risk.
 - [Ink Yoga Reactive UI](../../patterns/architecture/ink-yoga-reactive-ui.md) - Terminal UI experimentation
 
 ### Team Patterns
-- [Comments and Collaboration](../../patterns/team/comments.md) - Low-risk collaboration features
 
 ## Adoption Strategy
 
