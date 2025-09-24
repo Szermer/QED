@@ -61,4 +61,4 @@ export class ThreadService {
 
 ## Getting Started
 
-Ready to build collaborative AI systems? Let's begin with Chapter 1, where we'll explore the journey from local-first Claude Code to server-based Amp, and why this evolution matters for the future of AI-assisted development.
+Ready to build collaborative AI systems? Let's begin with the foundational pattern on transitioning from local-first to collaborative systems, where we'll explore the journey from local-first Claude Code to server-based Amp, and why this evolution matters for the future of AI-assisted development.

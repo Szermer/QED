@@ -1,4 +1,4 @@
-# Chapter 14: Migration Strategy Patterns
+# Migration Strategy Patterns
 
 Moving from a local-first tool to a collaborative system isn't just a technical challenge—it's a delicate balance of preserving user workflows while introducing new capabilities. This chapter explores practical strategies for migrating users from individual tools like Claude Code to team-based systems, drawing from real implementation experiences.
 

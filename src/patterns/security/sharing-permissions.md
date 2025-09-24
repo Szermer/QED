@@ -1,4 +1,4 @@
-# Chapter 7: Sharing and Permissions Patterns
+# Sharing and Permissions Patterns
 
 When building collaborative AI coding assistants, one of the trickiest aspects isn't the AI itself—it's figuring out how to let people share their work without accidentally exposing something they shouldn't. This chapter explores patterns for implementing sharing and permissions that balance security, usability, and implementation complexity.
 

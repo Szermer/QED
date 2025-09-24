@@ -1,4 +1,4 @@
-# Chapter 10: Multi-Agent Orchestration Patterns
+# Multi-Agent Orchestration Patterns
 
 As AI coding assistants tackle increasingly complex tasks, a single agent often isn't enough. Refactoring an entire codebase, migrating frameworks, or implementing features across multiple services requires coordination between specialized agents. This chapter explores patterns for multi-agent workflows through hierarchical task delegation, parallel execution, and intelligent resource management.
 
@@ -1182,4 +1182,4 @@ These patterns provide a foundation for building systems that can tackle enterpr
 
 5. **Agent Orchestration Patterns**: [Dynamiq Documentation](https://www.getdynamiq.ai/post/agent-orchestration-patterns-in-multi-agent-systems-linear-and-adaptive-approaches-with-dynamiq) - Linear and adaptive coordination approaches
 
-In the next chapter, we'll explore how to maintain performance as these multi-agent systems scale to handle increasing workloads.
+The next pattern section explores how to maintain performance as these multi-agent systems scale to handle increasing workloads.

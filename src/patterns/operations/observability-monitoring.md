@@ -1,4 +1,4 @@
-# Chapter 12: Observability and Monitoring Patterns
+# Observability and Monitoring Patterns
 
 Building an AI coding assistant is one thing. Understanding what it's actually doing in production is another challenge entirely. Unlike traditional software where you can trace a clear execution path, AI systems make probabilistic decisions, spawn parallel operations, and interact with external models in ways that can be difficult to observe and debug.
 

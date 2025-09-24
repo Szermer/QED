@@ -1,4 +1,4 @@
-# Chapter 1: From Local to Collaborative
+# From Local to Collaborative
 
 As AI coding assistants became more capable, a fundamental architectural tension emerged: the tools that worked well for individual developers hit hard limits when teams tried to collaborate. What started as simple autocomplete evolved into autonomous agents capable of complex reasoning, but the single-user architecture that enabled rapid adoption became the bottleneck for team productivity.
 
@@ -460,4 +460,4 @@ The local-to-collaborative evolution demonstrates several key architectural patt
 
 Each pattern addresses specific collaboration needs while introducing complexity. Understanding when and how to apply them enables teams to build systems that scale with their organizational requirements.
 
-In the next chapter, we'll explore the foundational architecture patterns that enable these collaborative features while maintaining performance and reliability.
+The next pattern section explores the foundational architecture patterns that enable these collaborative features while maintaining performance and reliability.

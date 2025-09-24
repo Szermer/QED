@@ -1,4 +1,4 @@
-# Chapter 5: Real-Time Synchronization
+# Real-Time Synchronization
 
 Building a collaborative AI coding assistant requires keeping multiple clients synchronized in real-time. When one developer makes changes, their teammates need to see updates immediately. But unlike traditional real-time applications, AI assistants face unique challenges: long-running operations, large payloads, unreliable networks, and the need for eventual consistency.
 
@@ -1000,4 +1000,4 @@ This chapter demonstrated that real-time synchronization doesn't require WebSock
 
 This approach proves more reliable and debuggable than traditional WebSocket solutions while maintaining real-time user experience. The key insight: for AI systems, eventual consistency with intelligent conflict resolution often outperforms complex real-time protocols.
 
-The next chapter explores tool system architecture for distributed execution with safety and performance at scale.
+The next pattern section explores tool system architecture for distributed execution with safety and performance at scale.

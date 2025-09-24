@@ -1,4 +1,4 @@
-# Chapter 4: Thread Management at Scale
+# Thread Management at Scale
 
 Managing conversations between humans and AI at scale presents unique challenges. Unlike traditional chat applications where messages are simple text, AI coding assistants must handle complex interactions involving tool use, file modifications, sub-agent spawning, and collaborative editing—all while maintaining consistency across distributed systems.
 
@@ -1052,4 +1052,4 @@ This chapter explored the architectural patterns for building scalable thread ma
 - **Audit trail systems** enable rollback and accountability
 - **Performance optimizations** maintain responsiveness as data grows
 
-These patterns provide a foundation that scales from individual users to large teams while preserving data integrity and system performance. The next chapter examines real-time synchronization strategies that keep distributed clients coordinated without traditional WebSocket complexities.
+These patterns provide a foundation that scales from individual users to large teams while preserving data integrity and system performance. The next pattern section examines real-time synchronization strategies that keep distributed clients coordinated without traditional WebSocket complexities.

@@ -1,4 +1,4 @@
-# Chapter 9: Enterprise Integration Patterns
+# Enterprise Integration Patterns
 
 Enterprise adoption of AI coding assistants brings unique challenges. Organizations need centralized control over access, usage monitoring for cost management, compliance with security policies, and integration with existing infrastructure. This chapter explores patterns for scaling AI coding assistants from individual developers to enterprise deployments serving thousands of users.
 
