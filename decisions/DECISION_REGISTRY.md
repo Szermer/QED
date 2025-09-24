@@ -10,8 +10,8 @@ Searchable index of all Architecture Decision Records for AI development pattern
 | **ADR-2025-09-01** | 2025-09-08 | Claude Code Framework Selection | Accepted | All profiles | High |
 | **ADR-2025-09-08** | 2025-09-08 | Tool-Specific Pattern Evaluation | Accepted | All profiles | High |
 | **ADR-2025-09-08-TAX** | 2025-09-08 | Taxonomy-Based Structure Migration | Implemented | QED Development | Critical |
-
-*Future ADRs will be added here as they are created*
+| **ADR-2025-01-24-PAGES** | 2025-01-24 | GitHub Pages Deployment Configuration | Implemented | QED Development | Critical |
+| **ADR-2025-01-24-CHAPTERS** | 2025-01-24 | Remove Book-Style Chapter References | Implemented | QED Development | High |
 
 ## By Category
 
@@ -21,6 +21,8 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ### 📚 Documentation Architecture
 - **ADR-2025-09-08-TAX**: Taxonomy-Based Structure Migration - Multi-dimensional pattern organization
+- **ADR-2025-01-24-PAGES**: GitHub Pages Deployment Configuration - Actions-based deployment
+- **ADR-2025-01-24-CHAPTERS**: Remove Book-Style Chapter References - Pattern-focused structure
 
 ### 👥 Client Workflow  
 *No ADRs yet - coming soon*
@@ -53,6 +55,8 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ### ✅ Implemented
 - ADR-2025-09-08-TAX: Taxonomy-Based Structure Migration
+- ADR-2025-01-24-PAGES: GitHub Pages Deployment Configuration
+- ADR-2025-01-24-CHAPTERS: Remove Book-Style Chapter References
 
 ### 🔄 Proposed
 *None currently*
@@ -107,6 +111,8 @@ Searchable index of all Architecture Decision Records for AI development pattern
 3. **ADR-2025-09-08-TAX**: Transformed documentation structure for better practitioner usability
 
 ### Recent Updates
+- **2025-01-24**: ADR-2025-01-24-PAGES created - GitHub Pages deployment configuration fix
+- **2025-01-24**: ADR-2025-01-24-CHAPTERS created - Removed book-style chapter references
 - **2025-09-09**: Knowledge intake workflow implemented, ADRs cross-linked with intake framework
 - **2025-09-09**: Taxonomy migration completed and verified
 - **2025-09-08**: ADR-2025-09-08-TAX created - Taxonomy-based structure migration
@@ -121,9 +127,9 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ## Statistics
 
-- **Total ADRs**: 3
-- **Accepted**: 2 (67%)
-- **Implemented**: 1 (33%)
+- **Total ADRs**: 5
+- **Accepted**: 2 (40%)
+- **Implemented**: 3 (60%)
 - **Under Review**: 0 (0%)
 - **Average Implementation Time**: 1 day (framework decisions)
 - **Client Satisfaction**: TBD (awaiting project completions)
@@ -138,5 +144,5 @@ Searchable index of all Architecture Decision Records for AI development pattern
 
 ---
 
-**Registry Last Updated**: 2025-09-09  
-**Next ADR Number**: 2025-09-10
+**Registry Last Updated**: 2025-01-24
+**Next ADR Number**: 2025-01-25

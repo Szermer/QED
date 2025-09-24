@@ -119,8 +119,8 @@ The new structure successfully:
 ## Related ADRs
 
 - [2025-09-08-tool-specific-pattern-evaluation.md](2025-09-08-tool-specific-pattern-evaluation.md) - Enhanced evaluation criteria for vendor-specific tools
-- [2025-01-01-mdbook-selection.md](2025-01-01-mdbook-selection.md) - Documentation platform choice
-- [2025-01-02-github-pages-deployment.md](2025-01-02-github-pages-deployment.md) - Deployment strategy
+- [2025-01-24-github-pages-deployment-config.md](2025-01-24-github-pages-deployment-config.md) - GitHub Actions deployment configuration
+- [2025-01-24-remove-chapter-references.md](2025-01-24-remove-chapter-references.md) - Pattern-focused structure transformation
 
 ## Future Considerations
 
