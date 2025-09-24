@@ -15,7 +15,7 @@
 
 ## Source Analysis
 
-**Original Source**: [How to build with Nano Banana: Complete Developer Tutorial - DEV Community](../docs/process/How_to_build_with_Nano_Banana_Complete_Developer_Tutorial_-_DEV_Community.md)
+**Original Source**: How to build with Nano Banana: Complete Developer Tutorial - DEV Community
 
 **Author Credibility**: Patrick Loeber - appears to be a developer educator/advocate associated with Google AI. Well-structured documentation but reads more like official documentation than battle-tested practitioner guidance.
 
@@ -214,4 +214,4 @@ Nano Banana (Gemini 2.5 Flash Image) provides a straightforward API for image ge
 **Promotion Criteria**: Successful client project implementation with documented outcomes and production patterns  
 **Related ADRs**: To be created for specific client implementations  
 
-**Original Analysis Source**: [Summary.md](../docs/process/Summary.md)
+**Original Analysis Source**: Internal Summary Document
