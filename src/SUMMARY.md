@@ -131,6 +131,11 @@
 
 - [Tier 1: Research Collection](analysis/README.md)
 - [Tier 2: Under Evaluation](analysis/tier2-evaluation.md)
+  - [Psychology of Trust in AI](analysis/psychology-trust-ai-analysis.md)
+  - [ACE-FCA Context Engineering](analysis/ace-fca-context-engineering-analysis.md)
+  - [AI Coding Efficiency](analysis/faraaz-ai-coding-efficiency-evaluation.md)
+  - [Google Gemini Nano](analysis/google-gemini-nano-banana-evaluation.md)
+  - [Distributed Systems Patterns](analysis/martinfowler-distributed-systems-patterns-evaluation.md)
 
 ---
 
