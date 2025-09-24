@@ -179,3 +179,9 @@ The key is moving slowly and deliberately from research to practice, always with
   - Status: Tier 2 analysis complete (`src/analysis/ace-fca-context-engineering-analysis.md`)
   - Topic: Frequent Intentional Compaction for AI coding in complex codebases
   - Next: Experimental validation on client project
+
+- **Psychology of Trust in AI** (`docs/psychology-trust-ai-smashing-mag.md`)
+  - Priority: HIGH
+  - Status: Tier 2 analysis complete (`src/analysis/psychology-trust-ai-analysis.md`)
+  - Topic: Framework for understanding, measuring, and designing for trust in AI systems
+  - Next: Create trust assessment templates for client projects
