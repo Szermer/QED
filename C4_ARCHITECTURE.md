@@ -209,10 +209,12 @@ C4Deployment
 
 ---
 
-**Architecture Document Version**: 1.3
-**Last Updated**: 2025-01-24
+**Architecture Document Version**: 1.4
+**Last Updated**: 2025-09-29
 **Review Cycle**: Quarterly or with major architectural changes
 **Recent Changes**:
+- Moved Tier 1 research articles into src/tier1-research/ for mdBook accessibility
+- Converted YAML frontmatter to markdown headers for mdBook compatibility
 - Updated deployment configuration (GitHub Actions source required)
 - Removed book-style chapter organization for pattern-focused structure
 - Added high-priority analysis documents to Tier 2

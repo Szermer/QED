@@ -12,6 +12,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 | **ADR-2025-09-08-TAX** | 2025-09-08 | Taxonomy-Based Structure Migration | Implemented | QED Development | Critical |
 | **ADR-2025-01-24-PAGES** | 2025-01-24 | GitHub Pages Deployment Configuration | Implemented | QED Development | Critical |
 | **ADR-2025-01-24-CHAPTERS** | 2025-01-24 | Remove Book-Style Chapter References | Implemented | QED Development | High |
+| **ADR-2025-09-29-TIER1** | 2025-09-29 | Tier 1 Research mdBook Integration | Implemented | QED Development | High |
 
 ## By Category
 
@@ -23,6 +24,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **ADR-2025-09-08-TAX**: Taxonomy-Based Structure Migration - Multi-dimensional pattern organization
 - **ADR-2025-01-24-PAGES**: GitHub Pages Deployment Configuration - Actions-based deployment
 - **ADR-2025-01-24-CHAPTERS**: Remove Book-Style Chapter References - Pattern-focused structure
+- **ADR-2025-09-29-TIER1**: Tier 1 Research mdBook Integration - Making all research searchable
 
 ### 👥 Client Workflow  
 *No ADRs yet - coming soon*

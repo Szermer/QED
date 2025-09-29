@@ -3,6 +3,18 @@
 ## Current Status: Taxonomy Migration Complete (2025-09-09)
 
 ### Recently Completed ✅
+- [x] **MAJOR: Integrated Tier 1 research into mdBook** (2025-09-29)
+  - Moved all Tier 1 articles from docs/ to src/tier1-research/ for accessibility
+  - Converted YAML frontmatter to markdown headers for mdBook compatibility
+  - Fixed formatting issues including special characters and GitHub links
+  - Added source URLs to all research articles
+  - Created ADR-2025-09-29-TIER1-MDBOOK documenting the reorganization
+  - Updated SUMMARY.md to include all Tier 1 articles in Analysis Queue
+- [x] **MAJOR: Added PRewrite reinforcement learning analysis** (2025-09-29)
+  - Processed new article on reinforcement learning prompt optimization
+  - Created comprehensive Tier 2 analysis with risk assessment
+  - Updated knowledge intake registry with new entry
+  - Key finding: 8-10% improvements on complex tasks, failures on simple tasks
 - [x] **MAJOR: Fixed GitHub Pages deployment configuration** (2025-01-24)
   - Switched from branch-based Jekyll deployment to GitHub Actions
   - Resolved 404 errors by correcting build_type configuration
@@ -107,4 +119,4 @@
 - Live site deployment to szermer.github.io/QED
 
 ---
-*Last updated: 2025-01-24*
+*Last updated: 2025-09-29*
