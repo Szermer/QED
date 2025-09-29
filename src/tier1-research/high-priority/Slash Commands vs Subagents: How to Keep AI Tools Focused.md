@@ -37,7 +37,7 @@ Here's the uncomfortable truth: **bad context is cheap but toxic.** Loading 100,
 
 Coding agents like Claude Code are at the forefront of solving this problem. The patterns emerging here will make it to other domains—customer support, financial analysis, medical diagnosis—within months. Understanding these architectural choices now prepares you for what's coming.
 
-## The Slash Command Path (Prompts)[¶](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/#the-slash-command-path-prompts "Permanent link")
+## The Slash Command Path (Prompts)
 
 Take a simple example: you're building a feature, you touch a few files, and now you need to run tests.
 
@@ -180,7 +180,7 @@ Slash Command Token Economics
 
 **Main thread total:** 169,000 tokens (16k clean + 150k test noise + 3k continuing) **Context pollution:** 91% noise **Problem:** Test diagnostics flood your reasoning thread with massive logs
 
-## The Subagent Path[¶](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/#the-subagent-path "Permanent link")
+## The Subagent Path
 
 Now instead of using a slash command, you create a Test Runner helper.
 
@@ -217,7 +217,7 @@ I've watched a test runner subagent identify failing tests, run git bisect, and 
 
 A friend built a performance optimization subagent. Their main agent was busy implementing a UX feature, while the subagent ran scripts, parsed logs, did data analysis, and reported: "These three functions cause 70% of latency." The core stayed focused on the feature; the sidecar did the heavy lifting.
 
-## How This Actually Works in Claude Code[¶](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/#how-this-actually-works-in-claude-code "Permanent link")
+## How This Actually Works in Claude Code
 
 I've been diving into how Claude Code implements this stuff, and it's pretty clever.
 
@@ -246,7 +246,7 @@ I've watched this in action. A friend had a performance optimization subagent th
 
 That's exactly the kind of insight you need, without any of the noise.
 
-## Context Engineering Beyond Code[¶](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/#context-engineering-beyond-code "Permanent link")
+## Context Engineering Beyond Code
 
 This pattern applies far beyond coding assistants. The key insight is **read-only research models** that burn tokens exploring messy data while keeping your main reasoning thread clean.
 
@@ -262,7 +262,7 @@ The pattern is universal: **burn tokens in specialized workers, preserve focus i
 
 But recognize these systems are complicated. If you're building a product, you have to decide whether you want to manually orchestrate these workflows and educate users, or build for expert users who understand the complexity.
 
-## What's Next[¶](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/#whats-next "Permanent link")
+## What's Next
 
 This architectural choice will define how agent systems scale. Teams building production agents today are implementing these patterns now, while the tooling ecosystem catches up.
 

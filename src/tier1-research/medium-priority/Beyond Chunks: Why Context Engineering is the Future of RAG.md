@@ -30,7 +30,7 @@ Then we noticed something profound: these structured tool responses weren't just
 
 This is the fundamental problem with chunk-based RAG in agentic systems. Agents aren't just looking for answers—they're trying to understand what questions to ask next. They need peripheral vision of the data landscape, not just the highest-scoring chunks.
 
-## Four Levels of Context Engineering[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#four-levels-of-context-engineering "Permanent link")
+## Four Levels of Context Engineering
 
 I'll demonstrate this through four progressively complex levels:
 
@@ -42,7 +42,7 @@ This progression leads to two key predictions:
 1. **Tool results become prompt engineering** - Metadata teaches agents how to use tools in future calls
 2. **Databases become reasoning partners** - Facets surface patterns that agents leverage but humans wouldn't think to ask for
 
-## Search Quality is Your Ceiling[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#search-quality-is-your-ceiling "Permanent link")
+## Search Quality is Your Ceiling
 
 Hard Truth
 
@@ -54,7 +54,7 @@ Start Here: Audit Your Current Tools
 
 Before building new infrastructure, audit what your tools actually return. Most improvements are just better string formatting—wrapping results in XML, adding source metadata, including system instructions. No major architectural changes required.
 
-## The Complexity Tradeoff[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#the-complexity-tradeoff "Permanent link")
+## The Complexity Tradeoff
 
 Here's the uncomfortable truth: there's no single right answer for how much metadata to include. Every system has different needs, and the more complex you make your tools, the higher the likelihood of hallucinations and tool misuse.
 
@@ -72,7 +72,7 @@ Recognize when complexity pays for itself. Metadata that doesn't change agent be
 **The beauty of context engineering:** You don't need to redesign your tools or rebuild your infrastructure. Most improvements are XML structuring, source tracking, and system instructions—essentially better string formatting with potentially massive upside.
 ```
 
-### Level 1 — Minimal Chunks (No Metadata)[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#level-1-minimal-chunks-no-metadata "Permanent link")
+### Level 1 — Minimal Chunks (No Metadata)
 
 ```
 def search(query: str, n_chunks: int = 10) -> list[str]:
@@ -105,7 +105,7 @@ def search(query: str, n_chunks: int = 10) -> list[str]:
 
 **The limitation:** Without metadata, agents can't make strategic decisions about where to search next. They're flying blind.
 
-### Level 2 — Chunks with Basic Source Metadata[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#level-2-chunks-with-basic-source-metadata "Permanent link")
+### Level 2 — Chunks with Basic Source Metadata
 
 **Available tools:**
 
@@ -172,7 +172,7 @@ def load_pages(source: str, pages: list[int]) -> dict:
 
 **The breakthrough:** Agents now see document clustering patterns and can strategically load full pages instead of piecing together fragments. Citations become possible.
 
-### Level 3 — Multi-Modal Content Representation[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#level-3-multi-modal-content-representation "Permanent link")
+### Level 3 — Multi-Modal Content Representation
 
 Modern documents aren't just text - they contain tables, charts, diagrams, code blocks, and other structured content. Agents need appropriate representations for different content modalities to reason effectively.
 
@@ -261,7 +261,7 @@ But even with perfectly formatted multi-modal content, agents still face a funda
 
 This is where facets transform the game entirely. Instead of just returning results, we start returning the _landscape_ of results.
 
-### Level 4 — Facets and Query Refinement[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#level-4-facets-and-query-refinement "Permanent link")
+### Level 4 — Facets and Query Refinement
 
 At this level, we introduce facets - aggregated metadata that helps agents understand the data landscape and refine their queries iteratively, just like users do on e-commerce sites.
 
@@ -357,15 +357,15 @@ def search(
 
 **The transformation:** Agents gain peripheral vision of the entire data landscape. Facets reveal hidden documents that similarity search missed, enabling strategic exploration beyond the top-k cutoff.
 
-## Two Types of Facet Data Sources[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#two-types-of-facet-data-sources "Permanent link")
+## Two Types of Facet Data Sources
 
 Facets can come from two primary sources: existing structured systems and AI-extracted metadata from unstructured documents.
 
-### Structured Systems[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#structured-systems "Permanent link")
+### Structured Systems
 
 CRMs, ERPs, HR systems, and other business databases already contain rich structured data that can power faceted search. These systems track entities, relationships, and metadata that users often don't realize can be leveraged for search.
 
-#### Hypothetical Study: Linear Ticket Search[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#hypothetical-study-linear-ticket-search "Permanent link")
+#### Hypothetical Study: Linear Ticket Search
 
 ```
 def search(
@@ -456,7 +456,7 @@ All 3 returned tickets are "Done" but facets show 5 "Open" tickets exist. Resolv
 
 Companies like Extend and Reducto can perform structured data extraction over documents to create facets that don't naturally exist in the raw text.
 
-#### Hypothetical Study: Contract Analysis[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#hypothetical-study-contract-analysis "Permanent link")
+#### Hypothetical Study: Contract Analysis
 
 ```
 def search(
@@ -539,7 +539,7 @@ Critical Documents Missing
 
 All 3 returned contracts are signed, but facets reveal 12 unsigned contracts exist in the broader result set. Signed contracts have better-developed liability language (higher similarity scores), while unsigned contracts with liability provisions didn't make the top-k cut. The agent should call `search("liability", signature_status="Unsigned")` to examine those hidden contracts - they need attention before signing.
 
-## The Persistence Advantage: Why Agents Change Everything[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#the-persistence-advantage-why-agents-change-everything "Permanent link")
+## The Persistence Advantage: Why Agents Change Everything
 
 This is the paradigm shift most teams miss: agentic systems are incredibly persistent. Given enough budget and time, they'll keep searching until they find what they need. This fundamentally changes how we should think about search system design. This persistence enables continuous feedback loops that improve system performance over time.
 
@@ -553,7 +553,7 @@ Consider the contract example: the agent didn't need to find all liability provi
 
 This transforms the database from a passive responder to an active reasoning partner. Facets surface patterns and gaps that agents can leverage but humans would never think to ask for directly.
 
-## The Evolution from Chunks to Context[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#the-evolution-from-chunks-to-context "Permanent link")
+## The Evolution from Chunks to Context
 
 We've traced the evolution from basic chunks to sophisticated context engineering across four levels. Level 1 gives agents raw text but leaves them blind to metadata patterns. Level 2 adds source tracking, enabling strategic document loading and proper citations. Level 3 optimizes multi-modal content formatting so agents can reason about tables, images, and structured data. Level 4 introduces facets that reveal the complete data landscape, transforming search from similarity-based retrieval to exploration.
 
@@ -561,7 +561,7 @@ The progression shows a clear pattern: **each level adds peripheral vision about
 
 The business impacts are measurable: 90% reduction in clarification questions, 75% reduction in expert escalations, 95% reduction in 504 errors, 4x improvement in resolution times. But the deeper transformation is architectural—databases evolve from passive storage to active reasoning partners that surface patterns human users would never think to request.
 
-## What's Next[¶](https://jxnl.co/writing/2025/08/27/facets-context-engineering/#whats-next "Permanent link")
+## What's Next
 
 This is the first post in a series on context engineering. I started here because it's the most accessible entry point—something every team can experiment with today.
 
