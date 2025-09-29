@@ -173,6 +173,14 @@ The key is moving slowly and deliberately from research to practice, always with
 
 ## Recent Intake Log
 
+### 2025-09-29
+- **PRewrite: Reinforcement Learning for Prompt Optimization** (`docs/tier1-research/high-priority/2025-09-29-prewrite-reinforcement-learning-prompt-optimization.md`)
+  - Priority: HIGH
+  - Status: Tier 2 analysis complete (`src/analysis/2025-09-29-prewrite-reinforcement-learning-prompt-optimization.md`)
+  - Topic: Automated prompt optimization using RL to fine-tune prompt rewriter models
+  - Key Finding: 8-10% improvements on complex tasks, but ALL automated methods failed on simple tasks
+  - Next: Monitor for production case studies before experimental validation
+
 ### 2025-01-24
 - **ACE-FCA Context Engineering** (`docs/ace-fca-context-engineering.md`)
   - Priority: HIGH
