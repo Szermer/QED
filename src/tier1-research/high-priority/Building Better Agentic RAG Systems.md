@@ -11,7 +11,7 @@ I've been helping companies build agentic RAG systems and studying coding agents
 
 This series shares what I've learned from these teams and conversations with professional developers using these systems daily, exploring what we can apply to other industries.
 
-## What is Context Engineering?[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#what-is-context-engineering "Permanent link")
+## What is Context Engineering?
 
 We've moved far beyond prompt engineering. Now we're designing portfolios of tools (directory listing, file editing, web search), slash commands like `/pr-create` that inject prompts vs , specialized sub-agents `@pr-creation-agent`, vs having an `AGENT.md` with systems that work across IDEs, command lines, GitHub, and Slack.
 
@@ -84,7 +84,7 @@ Coding agents have become remarkably simple to implement. Check out [How to Buil
 
 The fundamental shift is this: **agents don't just consume information, they explore information spaces**. Context engineering is about designing systems that support this exploration—giving agents not just the right data, but the right understanding of what data exists and how to navigate it.
 
-## What This Series Covers[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#what-this-series-covers "Permanent link")
+## What This Series Covers
 
 This series explores practical approaches to context engineering across different domains and use cases. The focus is on implementation strategies, real-world examples, and measurable business outcomes from companies making this transition.
 
@@ -96,21 +96,21 @@ This series explores practical approaches to context engineering across differen
 * Performance optimization for agentic workloads
 * Business metrics and ROI measurement strategies
 
-## Posts in This Series[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#posts-in-this-series "Permanent link")
+## Posts in This Series
 
-### 1. [Beyond Chunks: Context Engineering Tool Response](https://jxnl.co/writing/2025/08/27/facets-context-engineering/)[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#1-beyond-chunks-context-engineering-tool-response "Permanent link")
+### 1. [Beyond Chunks: Context Engineering Tool Response](https://jxnl.co/writing/2025/08/27/facets-context-engineering/)
 
 **Core thesis:** Agent success depends on tool response structure, not just content. Shows how faceted search and metadata give agents "peripheral vision" of data landscapes, enabling strategic exploration beyond top-k similarity results.
 
 **Key insight:** Tool responses become prompt engineering—XML structure and system instructions in tool outputs directly influence how agents think about subsequent searches.
 
-### 2. [Slash Commands vs Subagents: How to Keep AI Tools Focused](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/)[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#2-slash-commands-vs-subagents-how-to-keep-ai-tools-focused "Permanent link")
+### 2. [Slash Commands vs Subagents: How to Keep AI Tools Focused](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/)
 
 **Core thesis:** Context pollution is killing agent performance, but subagent architecture solves it. Bad context is cheap but toxic—100k lines of logs cost nothing computationally but destroy valuable reasoning context.
 
 **Key insight:** Same diagnostic capability, dramatically different economics: slash commands flood main threads with 91% noise, subagents burn tokens off-thread and return 8x cleaner context with 76% signal.
 
-### 3. [Two Experiments We Need to Run on AI Agent Compaction](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/)[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#3-two-experiments-we-need-to-run-on-ai-agent-compaction "Permanent link")
+### 3. [Two Experiments We Need to Run on AI Agent Compaction](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/)
 
 **Core thesis:** If in-context learning is gradient descent, then compaction is momentum. We can use compaction as both an optimization technique and a lens for understanding agent behavior at scale.
 
@@ -118,7 +118,7 @@ This series explores practical approaches to context engineering across differen
 
 **Start Here:** If you're new to context engineering, begin with the foundational post above.
 
-## Who This Series Is For[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#who-this-series-is-for "Permanent link")
+## Who This Series Is For
 
 * **Engineering teams** building agentic RAG systems
 * **Product leaders** evaluating the ROI of agent implementations
@@ -127,7 +127,7 @@ This series explores practical approaches to context engineering across differen
 
 Each post includes practical code examples, implementation strategies, and real business metrics from companies that have made this transition.
 
-## Getting Started[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#getting-started "Permanent link")
+## Getting Started
 
 Start with the foundational post [Beyond Chunks: Why Context Engineering is the Future of RAG](https://jxnl.co/writing/2025/08/27/facets-context-engineering/) to understand the core thesis and four-level framework. From there, you can either read sequentially or jump to specific topics based on your current implementation needs.
 

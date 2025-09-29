@@ -18,7 +18,7 @@ Through my [consulting work](https://jxnl.co/services/), I help companies build 
 
 This builds on the foundational concepts I've explored in [context engineering](https://jxnl.co/writing/2025/08/27/facets-context-engineering/), where the structure of information flow becomes as critical as the information itself.
 
-## Glossary[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#glossary "Permanent link")
+## Glossary
 
 **Compaction**: Automatic summarization of conversation history when context windows approach limits, preserving essential information while freeing memory space.
 
@@ -28,7 +28,7 @@ This builds on the foundational concepts I've explored in [context engineering](
 
 **Momentum**: In gradient descent optimization, a component that accelerates convergence by incorporating the direction of previous updates to smooth out oscillations.
 
-## The Momentum Analogy[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#the-momentum-analogy "Permanent link")
+## The Momentum Analogy
 
 Traditional gradient descent with momentum:
 
@@ -46,7 +46,7 @@ Compaction isn't just storing facts—it's preserving the _learned optimization 
 
 This got me thinking: what if we could actually test this? What if we could run experiments that treat compaction as momentum and see what happens?
 
-## Experiment 1: Compaction as Momentum for Long-Running Tasks[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#experiment-1-compaction-as-momentum-for-long-running-tasks "Permanent link")
+## Experiment 1: Compaction as Momentum for Long-Running Tasks
 
 The first experiment is about momentum. If compaction preserves learning trajectories, then timing should matter for success rates.
 
@@ -73,7 +73,7 @@ But we do have examples of long trajectories. Take the [Claude plays Pokemon](ht
 
 Does compaction timing affect how well agents maintain their learning trajectory? Can agents learn to self-compact at optimal moments?
 
-## Experiment 2: Compaction for Trajectory Observability and Population-Level Analysis[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#experiment-2-compaction-for-trajectory-observability-and-population-level-analysis "Permanent link")
+## Experiment 2: Compaction for Trajectory Observability and Population-Level Analysis
 
 The second experiment is more tractable: can we use specialized compaction prompts to understand what's actually happening in agent trajectories?
 
@@ -100,7 +100,7 @@ Compact emphasizing: correction requests, preference statements,
 workflow interruptions, and satisfaction indicators.
 ```
 
-### Expected Discoveries[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#expected-discoveries "Permanent link")
+### Expected Discoveries
 
 I suspect we'd find things like:
 
@@ -115,7 +115,7 @@ Here's why this matters: [Clio](https://www.anthropic.com/research/clio) found t
 
 This type of systematic analysis aligns with the [data flywheel approaches](https://jxnl.co/writing/2024/03/28/data-flywheel/) that help AI systems improve through user feedback loops—but applied to multi-step reasoning rather than single predictions.
 
-### The Clustering Approach[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#the-clustering-approach "Permanent link")
+### The Clustering Approach
 
 1. **Compact trajectories** using specialized prompts
 2. **Cluster compacted summaries** using embedding similarity
@@ -126,7 +126,7 @@ This is trajectory-level observability. Instead of just knowing "agents do codin
 
 It's similar to the systematic improvement approaches I cover in [RAG system optimization](https://jxnl.co/writing/2024/08/19/rag-flywheel/), but focused on agent behavior patterns rather than search relevance.
 
-## The Missing Infrastructure[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#the-missing-infrastructure "Permanent link")
+## The Missing Infrastructure
 
 Context windows keep getting bigger, but we still hit limits on complex tasks. More importantly, we have no systematic understanding of how agents actually learn and fail over long interactions.
 
@@ -134,13 +134,13 @@ This connects to fundamental questions about [how AI engineering teams should ru
 
 Companies building agents could figure out why some trajectories work and others don't. Researchers could connect theory to practice. The field could move beyond single-turn benchmarks toward understanding actual agentic learning.
 
-## Getting Started[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#getting-started "Permanent link")
+## Getting Started
 
 The momentum experiment realistically needs a company already running coding agents at scale. The observability experiment could work for anyone with substantial agent usage data.
 
 Both need access to long trajectories and willingness to run controlled experiments.
 
-## Let's Collaborate[¶](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/#lets-collaborate "Permanent link")
+## Let's Collaborate
 
 If you're working with agents at scale and want to explore these directions, [I'd love to collaborate](https://jxnl.co/services/). These sit at the intersection of ML theory and practical deployment—exactly where the most interesting problems live.
 

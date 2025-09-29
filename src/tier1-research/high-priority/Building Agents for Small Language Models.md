@@ -11,7 +11,7 @@ The landscape of AI agents has been dominated by large language models (LLMs) li
 
 SLMs offer immense potential: privacy through local deployment, predictable costs, and full control thanks to open weights. However, they also present unique challenges that demand a shift in how we design agent architectures.
 
-### Key Takeaways [🔗](#key-takeaways)
+### Key Takeaways
 
 * **Embrace Constraints:** SLM agent design is driven by resource limitations (memory, CPU speed). Stability is more important than features.
 * **Simplicity is Key:** Move complex logic from prompts to external code. Use simple, direct prompts.
@@ -20,11 +20,11 @@ SLMs offer immense potential: privacy through local deployment, predictable cost
 * **Avoid Complex Reasoning:** Chain-of-Thought (CoT) prompting often fails with SLMs. Use alternative techniques like direct prompting with external verification or decomposed mini-chains.
 * **The 270M Sweet Spot:** Ultra-small models (around 270M parameters) are surprisingly capable for specific tasks and can run on edge devices.
 
-## Part 1: Fundamentals of SLM Agent Architecture [🔗](#part-1-fundamentals-of-slm-agent-architecture)
+## Part 1: Fundamentals of SLM Agent Architecture
 
-### Core Principles [🔗](#core-principles)
+### Core Principles
 
-#### 1. Resource-Driven Design [🔗](#1-resource-driven-design)
+#### 1. Resource-Driven Design
 
 ß Unlike cloud-based LLMs with near-infinite compute, SLMs operate within strict boundaries:
 
@@ -33,7 +33,7 @@ SLMs offer immense potential: privacy through local deployment, predictable cost
 * **Context Windows:** 4K-32K tokens is common, compared to 128K+ for large models.
 * **Batch Processing:** Small batch sizes (e.g., 512 tokens) are necessary to prevent crashes.
 
-#### 2. Stability Over Features [🔗](#2-stability-over-features)
+#### 2. Stability Over Features
 
 A stable, reliable agent is infinitely more valuable than a feature-rich one that crashes. This means:
 
@@ -42,7 +42,7 @@ A stable, reliable agent is infinitely more valuable than a feature-rich one tha
 * Conservative resource allocation.
 * Graceful degradation when limits are reached.
 
-#### 3. Model-Specific Optimizations [🔗](#3-model-specific-optimizations)
+#### 3. Model-Specific Optimizations
 
 Each model family (e.g., Llama, Qwen, Gemma) has unique characteristics:
 
@@ -50,7 +50,7 @@ Each model family (e.g., Llama, Qwen, Gemma) has unique characteristics:
 * Temperature and sampling parameters require model-specific tuning.
 * Context sizing must align with the model’s training.
 
-### Reference Architecture [🔗](#reference-architecture)
+### Reference Architecture
 
 Hardware Layer
 
@@ -92,16 +92,16 @@ CLI Interface
 
 HTTP API
 
-#### Core Components [🔗](#core-components)
+#### Core Components
 
 1. **Safety Layer**: Prevents terminal crashes through signal handlers and panic catching
 2. **Model Management**: Detects model type and applies appropriate configuration
 3. **Inference Engine**: Handles token generation with batch safety and UTF-8 compliance
 4. **Hardware Abstraction**: Manages CPU-only inference with memory constraints
 
-### Cloud vs Local: Fundamental Differences [🔗](#cloud-vs-local-fundamental-differences)
+### Cloud vs Local: Fundamental Differences
 
-#### Performance and Capability Trade-offs [🔗](#performance-and-capability-trade-offs)
+#### Performance and Capability Trade-offs
 
 | Aspect | Cloud LLMs | Local SLMs |
 | --- | --- | --- |
@@ -112,7 +112,7 @@ HTTP API
 | **Privacy** | Data leaves premises | Complete data control |
 | **Cost Model** | Per-token pricing | One-time hardware cost |
 
-#### Architectural Implications [🔗](#architectural-implications)
+#### Architectural Implications
 
 Local Architecture
 
@@ -131,9 +131,9 @@ Cloud architectures can rely on elastic scaling and retry logic, while local arc
 * Handle hardware limitations gracefully
 * Optimize for single-instance performance
 
-### Essential Tooling for Open Source SLM Development [🔗](#essential-tooling-for-open-source-slm-development)
+### Essential Tooling for Open Source SLM Development
 
-#### Required Tools and Frameworks [🔗](#required-tools-and-frameworks)
+#### Required Tools and Frameworks
 
 1. **Open Source Model Formats & Runtimes**
     
@@ -151,7 +151,7 @@ Cloud architectures can rely on elastic scaling and retry logic, while local arc
     * **VSCode Extensions**: Local model integration for code completion
     * **Neovim Plugins**: Direct model interaction within text editors
 
-#### Model Management Pipeline [🔗](#model-management-pipeline)
+#### Model Management Pipeline
 
 HuggingFace Hub  
 Open Models
@@ -168,9 +168,9 @@ Memory Cache
 
 Inference
 
-### Current Limitations and Challenges [🔗](#current-limitations-and-challenges)
+### Current Limitations and Challenges
 
-#### 1. Context Window Management [🔗](#1-context-window-management)
+#### 1. Context Window Management
 
 Small models struggle with limited context, requiring creative solutions:
 
@@ -178,7 +178,7 @@ Small models struggle with limited context, requiring creative solutions:
 * **Compression techniques**: Summarize older interactions
 * **Selective memory**: Store only critical information
 
-#### 2. Reasoning Capabilities [🔗](#2-reasoning-capabilities)
+#### 2. Reasoning Capabilities
 
 SLMs often lack the deep reasoning of larger models:
 
@@ -186,7 +186,7 @@ SLMs often lack the deep reasoning of larger models:
 * **Solution**: Break tasks into smaller, guided steps
 * **Trade-off**: More prompting overhead
 
-#### 3. Consistency and Hallucination [🔗](#3-consistency-and-hallucination)
+#### 3. Consistency and Hallucination
 
 Smaller models are more prone to inconsistent outputs:
 
@@ -194,7 +194,7 @@ Smaller models are more prone to inconsistent outputs:
 * **Solution**: Structured prompting and validation layers
 * **Reality**: Accept limitations for certain use cases
 
-#### 4. Performance vs Quality [🔗](#4-performance-vs-quality)
+#### 4. Performance vs Quality
 
 The fundamental tension in SLM agents:
 
@@ -218,7 +218,7 @@ Broader Knowledge
 
 13B-32B Models
 
-#### 5. Hardware Compatibility [🔗](#5-hardware-compatibility)
+#### 5. Hardware Compatibility
 
 Getting models to run reliably across different hardware:
 
@@ -227,7 +227,7 @@ Getting models to run reliably across different hardware:
 * **Windows**: Inconsistent BLAS support
 * **Solution**: CPU-only fallback for maximum compatibility
 
-#### 6. Error Recovery [🔗](#6-error-recovery)
+#### 6. Error Recovery
 
 Unlike cloud APIs with automatic retries, local agents must handle:
 
@@ -236,7 +236,7 @@ Unlike cloud APIs with automatic retries, local agents must handle:
 * Incomplete UTF-8 sequences
 * Model loading failures
 
-### Conclusion: Embracing Constraints [🔗](#conclusion-embracing-constraints)
+### Conclusion: Embracing Constraints
 
 Building agents for small language models requires embracing constraints and designing for reliability over raw capability. The key insights:
 
@@ -252,17 +252,17 @@ The future of AI agents isn’t just in the cloud - it’s also in the millions 
 
 * * *
 
-## Part 2: Practical Implementation with Ultra-Small Open Source Models [🔗](#part-2-practical-implementation-with-ultra-small-open-source-models)
+## Part 2: Practical Implementation with Ultra-Small Open Source Models
 
 With open source models like [Gemma](https://deepmind.google/gemma/), [TinyLlama](https://github.com/jzhang38/TinyLlama), and [Qwen](https://github.com/QwenLM/Qwen) at just 270M-1B parameters, we’re entering an era where AI agents can run on smartphones, IoT devices, and even embedded systems. These ultra-small open source models challenge every assumption about agent architecture - they’re 100x smaller than GPT-3.5 yet can still perform surprisingly well on focused tasks. The open source nature means you can inspect, modify, and deploy them without licensing constraints.
 
 The key insight: **stop trying to make small models behave like large ones**. Instead, embrace their constraints and design specifically for their strengths.
 
-### Architectural Philosophy: Simplicity and Externalized Logic [🔗](#architectural-philosophy-simplicity-and-externalized-logic)
+### Architectural Philosophy: Simplicity and Externalized Logic
 
 Unlike traditional LLM agents that rely on complex prompting strategies and thousands of tokens in system prompts, SLM agents require a fundamentally different approach:
 
-#### Externalize Logic from Prompts [🔗](#externalize-logic-from-prompts)
+#### Externalize Logic from Prompts
 
 Traditional LLM agents often embed complex logic in prompts:
 
@@ -302,7 +302,7 @@ impl AgentRouter {
 }
 ```
 
-#### Performance as a First-Class Concern [🔗](#performance-as-a-first-class-concern)
+#### Performance as a First-Class Concern
 
 Every millisecond matters when running on edge devices:
 
@@ -339,7 +339,7 @@ fn process_batch(queries: Vec<String>) -> Vec<Response> {
 }
 ```
 
-#### Minimal Context, Maximum Impact [🔗](#minimal-context-maximum-impact)
+#### Minimal Context, Maximum Impact
 
 With only 2-4K tokens of context, every token must count:
 
@@ -371,11 +371,11 @@ struct ContextOptimizer {
 }
 ```
 
-### Core Implementation Patterns [🔗](#core-implementation-patterns)
+### Core Implementation Patterns
 
 Here are battle-tested patterns for building robust SLM agents:
 
-#### 1. Multi-Layer Safety Architecture [🔗](#1-multi-layer-safety-architecture)
+#### 1. Multi-Layer Safety Architecture
 
 Crashes are inevitable. A defense-in-depth approach is crucial to keep agents running:
 
@@ -405,7 +405,7 @@ match load_result {
 
 This three-layer approach prevents terminal crashes, even when the underlying GGML library fails.
 
-#### 2. Dynamic Batch Management [🔗](#2-dynamic-batch-management)
+#### 2. Dynamic Batch Management
 
 Small models can’t handle large batches. Enforce strict, safe limits:
 
@@ -432,7 +432,7 @@ fn prepare_batch_with_safety(tokens: &[i32], context_size: usize) -> Result<(Lla
 }
 ```
 
-#### 3. Model-Specific Configuration [🔗](#3-model-specific-configuration)
+#### 3. Model-Specific Configuration
 
 Different model families require different configurations. Abstract this away with a unified config:
 
@@ -466,7 +466,7 @@ impl UnifiedModelConfig {
 }
 ```
 
-#### 4. Streaming with UTF-8 Safety [🔗](#4-streaming-with-utf-8-safety)
+#### 4. Streaming with UTF-8 Safety
 
 Small models often generate incomplete UTF-8 sequences. Buffer and validate the output stream to prevent errors:
 
@@ -498,11 +498,11 @@ impl Utf8Buffer {
 }
 ```
 
-### Advanced Prompting and Reasoning [🔗](#advanced-prompting-and-reasoning)
+### Advanced Prompting and Reasoning
 
 Small models require different prompting strategies than their larger counterparts. Here’s how to get the most out of them.
 
-#### 1. The Chain-of-Density Approach [🔗](#1-the-chain-of-density-approach)
+#### 1. The Chain-of-Density Approach
 
 Instead of long, complex reasoning chains, use a progressive compression technique:
 
@@ -518,7 +518,7 @@ Response
 
 This forces the model to focus on one simple task at a time.
 
-#### 2. Role Specialization with Micro-Agents [🔗](#2-role-specialization-with-micro-agents)
+#### 2. Role Specialization with Micro-Agents
 
 Deploy multiple specialized micro-agents instead of one generalist:
 
@@ -542,7 +542,7 @@ impl MicroAgent {
 }
 ```
 
-#### 3. Aggressive Context Management [🔗](#3-aggressive-context-management)
+#### 3. Aggressive Context Management
 
 With only 2-4K tokens, every token is precious:
 
@@ -575,11 +575,11 @@ impl ContextManager {
 }
 ```
 
-### Reasoning and Tool Calling [🔗](#reasoning-and-tool-calling)
+### Reasoning and Tool Calling
 
 Small models struggle with complex reasoning and tool selection. Here’s how to build reliable systems.
 
-#### Why Chain-of-Thought (CoT) Fails with Small Models [🔗](#why-chain-of-thought-cot-fails-with-small-models)
+#### Why Chain-of-Thought (CoT) Fails with Small Models
 
 Chain-of-Thought (CoT) prompting, which asks models to “think step-by-step,” is highly effective for large models but often fails with SLMs. Small models lack the working memory to maintain coherent reasoning chains, leading to:
 
@@ -589,7 +589,7 @@ Chain-of-Thought (CoT) prompting, which asks models to “think step-by-step,”
 
 Instead of CoT, use these alternatives:
 
-##### 1. Direct Prompting with External Verification [🔗](#1-direct-prompting-with-external-verification)
+##### 1. Direct Prompting with External Verification
 
 Don’t ask the model to reason. Get a direct answer and verify it externally.
 
@@ -610,7 +610,7 @@ fn solve_with_verification(question: &str) -> Result<Answer> {
 }
 ```
 
-##### 2. Decomposed Mini-Chains [🔗](#2-decomposed-mini-chains)
+##### 2. Decomposed Mini-Chains
 
 Break complex reasoning into tiny, focused steps orchestrated by external code.
 
@@ -638,11 +638,11 @@ impl MiniChainExecutor {
 }
 ```
 
-#### Tool Calling with Structured Outputs [🔗](#tool-calling-with-structured-outputs)
+#### Tool Calling with Structured Outputs
 
 Small models struggle with free-form JSON. Use structured formats like XML or guided templates for reliable tool calling.
 
-##### 1. Deterministic Tool Routing [🔗](#1-deterministic-tool-routing)
+##### 1. Deterministic Tool Routing
 
 Use pattern matching to route to tools instead of letting the model decide.
 
@@ -658,7 +658,7 @@ fn route_to_tool(input: &str) -> Option<Tool> {
 }
 ```
 
-##### 2. Structured Output with XML [🔗](#2-structured-output-with-xml)
+##### 2. Structured Output with XML
 
 XML is often more reliable than JSON for small models due to its explicit closing tags. The Qwen team has demonstrated this with their open-source models.
 
@@ -824,7 +824,7 @@ User: "Read the config file"
 "###;
 ```
 
-##### 3. Multi-Strategy Parsing [🔗](#3-multi-strategy-parsing)
+##### 3. Multi-Strategy Parsing
 
 For maximum robustness, try multiple parsing strategies in order of reliability:
 
@@ -852,7 +852,7 @@ fn parse_tool_call(response: &str) -> Result<ToolCall> {
 }
 ```
 
-#### Fallback Chains [🔗](#fallback-chains)
+#### Fallback Chains
 
 Always have a backup plan for when a model fails:
 
@@ -876,11 +876,11 @@ Success?
 
 Use Rule-Based Fallback
 
-### Deployment and Lessons Learned [🔗](#deployment-and-lessons-learned)
+### Deployment and Lessons Learned
 
 Deploying SLM agents in the real world requires a different mindset. Here are key patterns and takeaways.
 
-#### 1. Hybrid Deployment Architecture [🔗](#1-hybrid-deployment-architecture)
+#### 1. Hybrid Deployment Architecture
 
 For robust applications, combine the strengths of local and cloud models:
 
@@ -905,7 +905,7 @@ Fallback Rules
 
 This hybrid approach uses the local model for speed and privacy, escalating to a more powerful cloud model only when necessary.
 
-#### 2. Hybrid Processing Pipeline [🔗](#2-hybrid-processing-pipeline)
+#### 2. Hybrid Processing Pipeline
 
 Use a cascade of specialized small models to handle complex queries efficiently.
 
@@ -934,7 +934,7 @@ async fn hybrid_inference(query: &str) -> Result<String> {
 }
 ```
 
-#### 3. The 270M Parameter Sweet Spot [🔗](#3-the-270m-parameter-sweet-spot)
+#### 3. The 270M Parameter Sweet Spot
 
 Ultra-small open source models around 270M parameters (like Gemma 3, Qwen-Nano, and TinyLlama) are ideal for edge deployment:
 
@@ -943,7 +943,7 @@ Ultra-small open source models around 270M parameters (like Gemma 3, Qwen-Nano, 
 * **Low Power Consumption:** Suitable for battery-powered devices.
 * **Basic Capabilities:** Reliably handles completion, simple Q&A, and instruction following.
 
-#### Key Takeaways: What Works and What Doesn’t [🔗](#key-takeaways-what-works-and-what-doesnt)
+#### Key Takeaways: What Works and What Doesn’t
 
 **What Works:**
 
@@ -959,7 +959,7 @@ Ultra-small open source models around 270M parameters (like Gemma 3, Qwen-Nano, 
 * **Free-Form Tool Use:** Don’t let the model choose from many tools. Guide it.
 * **Nuanced Responses:** SLMs are not subtle. Be direct in your prompts.
 
-### Future Directions and Conclusion [🔗](#future-directions-and-conclusion)
+### Future Directions and Conclusion
 
 Building agents for small language models is about specialization, not compromise. By embracing their constraints, we can create agents that are reliable, fast, private, and efficient.
 
