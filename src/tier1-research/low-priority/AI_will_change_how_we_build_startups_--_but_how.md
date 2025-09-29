@@ -1,0 +1,62 @@
+# AI will change how we build startups -- but how?
+
+[
+
+![Https%3A%2F%2Fsubstack post media.s3.amazonaws.com%2Fpublic%2Fimages%2F8754af8f 52c3 41d4 9491 d5ecf82767e3 533x508](https://substackcdn.com/image/fetch/$s_!6amm!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8754af8f-52c3-41d4-9491-d5ecf82767e3_533x508.jpeg)
+
+](https://substackcdn.com/image/fetch/$s_!6amm!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8754af8f-52c3-41d4-9491-d5ecf82767e3_533x508.jpeg)
+
+**Hello!  
+**I’m back in sunny LA until the end of the year. Just announced that applications are now open for a16z speedrun 6 — [where we invest up to $1M in brand new startups](https://speedrun006.a16z.com/x). I’ll also be hosting a [ton of events at SF/LA Tech Week](https://www.tech-week.com/) in October. Register here for more info. And if you want to host too, [here’s more info](https://www.tech-week.com/host).
+
+**The Home Screen Test**  
+It's the golden age of AI, but it's still incredibly early. The "Home Screen Test" to make my point:
+
+> How many apps on your phone's home screen are AI-native? How many of those apps were created using AI coding tools?
+
+Weirdly, the answer for most of us might be a lot closer to zero than you’d think, particularly beyond the obvious LLM apps — ChatGPT, Grok, etc. Of course people are working on this, but for now, the Home Screen Test says that we have 4x7 grid of apps on our screen, and very few are AI-native. One day shouldn’t it be all 28? Where’s the AI-native Calendar app, or the AI-native Social network, and so on? I remember in the web-to-mobile shift how quickly my engagement went completely to the mobile app versions of messaging, social, email, etc. What’s going on here?
+
+This tells you that there's an enormous opportunity because we haven't yet started to really change the way we work by using AI. So far, I just Google a lot less and I prompt a lot more. But, certainly, there's a lot more to it than that. I’ve written more about [vibe coding here](https://andrewchen.substack.com/p/predictionsthoughts-on-vibe-coding) and [network effects in the AI world here](https://andrewchen.substack.com/p/revenge-of-the-gpt-wrappers-defensibility).
+
+**Other big questions on AI and how it’ll change the way we build startups  
+**And in addition to it being early on products, I think we’re also very early on the questions related to how we’ll build those products. That is, AI will change the way we build the startups that build the products, but it’s not yet clear how that’ll happen.
+
+A few examples of the open questions that you could have very reasonable differences in opinion on:
+
+-   **Will the startups of the future need fewer (or more) employees**? The argument is that AI might provide 1000x more leverage. As a result, what might have required a whole company to achieve can now be done by an individual. Naturally, this might mean that you have 1 person who supervises 1000 agents who code all day, and this becomes a billion dollar company. This would be amazing of course, but the counterpoint is this: if an AI-native startup can scale very fast, but some percentage of its capabilities still have to be done by humans because AI can't handle them yet, then you'd expect that they'd still hire a ton of people. Maybe the bottleneck ends up being “taste” (as some folks claim) and you end up needing a ton of designers. Or maybe you can prototype a lot of popular products well, but you
+    
+-   **How will defensibility work with fast-moving AI competitors**? If it becomes incredibly easy for a product to be copied instantly, how do you define a moat if AI commoditizes all capabilities? One easy answer is that the last decade of consumer apps has taught us that, in a low technical differentiation ecosystem, user growth and network effects are all that matter. On the other hand, maybe the pace of AI software creation will speed up so fast that the ability to constantly iterate, launch new features, and create new products becomes the differentiation in itself. One thought I have is that the only products worth building will be those with multiyear horizons and heavy CapEx requirements. Think space tech or B2B hardware—areas where you need deep intuition about today's markets to make the initial bet. Any software product that AI can build within a few years will be arbitraged away. The advantages there will be more like those in direct-to-consumer, where brand and temporal distribution insights matter most. But it's much harder to build a great business that way.
+    
+-   **Will AI make startups cheaper or more expensive to build**? Obviously, some infrastructure layers, like foundation models, are very CapEx heavy. And theoretically, some apps \*should\* be very easy to build. But growth and distribution cost a lot of money to get into customers' hands. One thing we've learned over the past decade is that even though it's relatively cheap to build a web app, acquiring users can still cost millions. The failure rate remains high because there are just so many products competing for people's attention, so maybe that’s the limiting factor.
+    
+-   **How will we organize the team of the future**? Does it still make sense to have separate functions like engineering, product, or design? Or, as building a product becomes fully multimodal with AI tech that can build software using a PRD/wireframe/whatever, will all of these disciplines collapse into one? As many amateur historians know, the structure of work has evolved significantly over recent centuries. We moved from cottage industries, where families made things in an artisanal fashion, to factories and corporations thanks to industrialization. More recently, software platforms have enabled the emergence of massive numbers of 1099s and part-time workers, like delivery drivers. It's unclear how AI may affect the next generation.
+    
+-   **Does it still make sense for the San Francisco Bay Area to be the central tech hub**? It used to be that Silicon Valley was the center for startups because of the network effects around talent, venture capital, and knowledge. I'd argue that while SF’s advantage has stayed strong, but has definitely weakened as a lot of that talent migrates to other hubs like New York, and as that knowledge gets shared more widely via podcasts and Substack. The argument for continued decentralization is that if building products becomes trivially easy, it's almost like a form of content creation. And as we've seen with content creators, there are local and global creators who can be based anywhere. If you don't need to scale with employees or venture capital, maybe the future entrepreneurs will be based everywhere, too.
+    
+-   **How will venture capital work in a world of startup fragmentation?** For a long time, venture capital worked simply by investing in the best spinouts out of Stanford and the adjoining towns full of tech workers. What happens when it becomes super easy to build a brand new product and test it in the market? If people are willing to pay for it, maybe these products will be super profitable from day one, especially if they can be built by just one or two people, keeping costs low. What happens if these kinds of products are being built all over the world? Perhaps venture capital itself gets more distributed, as it can be used as growth capital rather than risk capital. This makes it more obvious and accessible to a wider number of investors, even if those investors are located globally rather than just in the Bay Area.
+    
+-   **Related, does preseed versus seed versus Series A/B/C still exist?** We have these distinctions to group different phases of growth. But maybe more products will just jump from zero to Series A. And does it make sense to fund people to wander around experimenting, or will this just all happen as side projects.
+    
+
+What's great about these questions is that the contemporary tech industry is decades, not centuries, old. A lot of the modern constructs, like venture capital, mobile/internet, or building startups in SF (not the peninsula) have happened relatively recently. Because things have happened so fast you can easily imagine it changing over the next few years as well.
+
+**The historical precedent  
+**The aforementioned questions seem like obvious avenues once you start to think about how business structures have evolved alongside technology over time. Think back to the artisanal cottage industry of pre-industrialized Britain. In the 1700s, a blacksmith might work in a workshop attached to their home, with the entire family producing, and the end products would be made one-by-one and sold at the market in small batches. Fast forward into the 1800s, industrialization meant massive pools of labor working inside factories. At that point, you need corporations to organize the efforts of operating the businesses, shareholders to finance the expenditures, and layers of specialized professional management. (Check out Burnham’s Managerial Revolution as a fun discussion of these dynamics).
+
+Or you might look at the 1600s and the development of long-distance naval power in the form of merchant fleets and intercontinental trading networks, and the simultaneous invention of the limited liability corporation to weave it all together. The East India Company required both a technological and business innovation to build the largest corporation in the world, with a standing army of 260,000 soldiers.
+
+That's why, when you examine the potential impact of AI, it seems inevitable that the business structures we've created today will ultimately be insufficient to organize all the potential production that comes out of the technology. If we moved from “the family unit organizes labor” to “the factory organizes labor” then what will that mean in a world of agents, compute, and models?
+
+**The most optimistic view  
+**In the most positive version of the above, I think we want to see a world where AI enables fewer people to produce more. As such, it would be wonderful if AI-native startups need far fewer employees to build. Defensibility will be achieved through killer features and technologies, not by the simple strength of distribution and monopoly. (We want more new things, not the same old big guys to rule the next geneeration). We’d like for all these new technologies to make startups even cheaper to build. Ideally, the Bay Area will remain the central tech hub. Even if people can create companies anywhere, they'll still move to San Francisco to tap into the expertise and capital. And of course venture capital will evolve to figure out a way to make money out of the whole thing :) I hope that's right.
+
+But you could also make plausible arguments in the opposite direction for each of these. The biggest AI winners might be those with massive data centers, access to tons of data, and lots of compute. This implies centralization, where the big get bigger, creating an anti-startup world. Alternatively, AI could be an amazing feature set that doesn't actually help much with marketing and distribution. Incumbents could slowly convert their pre-AI products into AI-native feature sets, eventually outcompeting startups.
+
+As smart folks I know have said, the question is: “Will incumbents get innovation first? Or startups get distribution first?” Incumbents might win.
+
+The next few years in startupland are going to set the stage for a lot of what will happen in the future. The last few years have been eventful. We've seen a wave of high-end AI research teams building foundation models. But now that these models have absorbed all the data in the world, they're asymptoting in their effectiveness. The next few years will be about the folks who build the business logic that sits on top of these models. They won't do AI research or train their own foundation models. Instead, they'll be model-agnostic, creating a compelling UI that sits on top. We're seeing these kinds of products absorbed into every different kind of vertical industry, with approaches spanning from selling tools all the way to rolling up industries and implementing technology that way.
+
+It's gonna be a wild couple of years.
+
+---
+Source: [AI will change how we build startups -- but how?](https://andrewchen.substack.com/p/ai-will-change-how-we-build-startups?utm_source=tldrnewsletter)
