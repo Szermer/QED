@@ -10,6 +10,7 @@
   - Added source URLs to all research articles
   - Created ADR-2025-09-29-TIER1-MDBOOK documenting the reorganization
   - Updated SUMMARY.md to include all Tier 1 articles in Analysis Queue
+  - Fixed broken article links: renamed file with pipe character, removed empty placeholder
 - [x] **MAJOR: Added PRewrite reinforcement learning analysis** (2025-09-29)
   - Processed new article on reinforcement learning prompt optimization
   - Created comprehensive Tier 2 analysis with risk assessment
