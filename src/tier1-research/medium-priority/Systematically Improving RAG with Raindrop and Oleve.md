@@ -1,9 +1,9 @@
----
-title: "Systematically Improving RAG with Raindrop and Oleve - Jason Liu"
-description: "AI Consulting, RAG, and other personal notes."
-keywords: ""
-source: "https://jxnl.co/writing/2025/05/29/systematically-improving-rag-with-raindrop-and-oleve/"
----
+# Systematically Improving RAG with Raindrop and Oleve - Jason Liu
+
+**Source**: [https://jxnl.co/writing/2025/05/29/systematically-improving-rag-with-raindrop-and-oleve/](https://jxnl.co/writing/2025/05/29/systematically-improving-rag-with-raindrop-and-oleve/)
+
+> AI Consulting, RAG, and other personal notes.
+
 
 I hosted a lightning lesson featuring Ben from Raindrop and Sid from Oleve to discuss AI monitoring, production testing, and data analysis frameworks. This session explored how to effectively identify issues in AI systems, implement structured monitoring, and develop frameworks for improving AI products based on real user data.
 

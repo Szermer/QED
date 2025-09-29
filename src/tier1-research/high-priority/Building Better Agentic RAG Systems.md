@@ -1,11 +1,11 @@
----
-title: "Context Engineering Series: Building Better Agentic RAG Systems - Jason Liu"
-description: "A comprehensive guide to moving beyond chunks toward structured tool responses that teach agents how to navigate data landscapes. Learn from real implementations across coding agents and enterprise systems."
-keywords: ""
-source: "https://jxnl.co/writing/2025/08/28/context-engineering-index/#who-this-series-is-for?utm_source=tldrai"
----
+# Context Engineering Series: Building Better Agentic RAG Systems - Jason Liu
 
-[](https://github.com/jxnl/blog/edit/main/docs/writing/posts/context-engineering-index.md "Edit this page")[](https://github.com/jxnl/blog/raw/main/docs/writing/posts/context-engineering-index.md "View source of this page")
+**Source**: [https://jxnl.co/writing/2025/08/28/context-engineering-index/#who-this-series-is-for?utm_source=tldrai](https://jxnl.co/writing/2025/08/28/context-engineering-index/#who-this-series-is-for?utm_source=tldrai)
+
+> A comprehensive guide to moving beyond chunks toward structured tool responses that teach agents how to navigate data landscapes. Learn from real implementations across coding agents and enterprise systems.
+
+
+
 
 I've been helping companies build agentic RAG systems and studying coding agents from Cognition, Claude Code, Cursor, and others. These coding agents are probably unlocking a trillion-dollar industry—making them the most economically viable agents to date.
 

@@ -1,11 +1,11 @@
----
-title: "Beyond Chunks: Why Context Engineering is the Future of RAG - Jason Liu"
-description: "Learn how to move beyond traditional chunk-based RAG to context engineering that gives agents peripheral vision of data landscapes. Explore four levels from basic chunks to faceted search with business outcomes and practical implementation strategies."
-keywords: ""
-source: "https://jxnl.co/writing/2025/08/27/facets-context-engineering/"
----
+# Beyond Chunks: Why Context Engineering is the Future of RAG - Jason Liu
 
-[](https://github.com/jxnl/blog/edit/main/docs/writing/posts/context-engineering-tool-response.md "Edit this page")[](https://github.com/jxnl/blog/raw/main/docs/writing/posts/context-engineering-tool-response.md "View source of this page")
+**Source**: [https://jxnl.co/writing/2025/08/27/facets-context-engineering/](https://jxnl.co/writing/2025/08/27/facets-context-engineering/)
+
+> Learn how to move beyond traditional chunk-based RAG to context engineering that gives agents peripheral vision of data landscapes. Explore four levels from basic chunks to faceted search with business outcomes and practical implementation strategies.
+
+
+
 
 **The core insight:** In agentic systems, how we structure tool responses is as important as the information they contain.
 

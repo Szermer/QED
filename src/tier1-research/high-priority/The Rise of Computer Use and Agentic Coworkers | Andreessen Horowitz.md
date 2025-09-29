@@ -1,9 +1,9 @@
----
-title: "The Rise of Computer Use and Agentic Coworkers | Andreessen Horowitz"
-description: "Autonomous, task-oriented "AI agents" capable of working independently has long been the field’s north star. Yet despite considerable attention and effort, today's agents fall short of this vision."
-keywords: ""
-source: "https://a16z.com/the-rise-of-computer-use-and-agentic-coworkers/?utm_source=tldrproduct"
----
+# The Rise of Computer Use and Agentic Coworkers | Andreessen Horowitz
+
+**Source**: [https://a16z.com/the-rise-of-computer-use-and-agentic-coworkers/?utm_source=tldrproduct](https://a16z.com/the-rise-of-computer-use-and-agentic-coworkers/?utm_source=tldrproduct)
+
+> Autonomous, task-oriented "AI agents" capable of working independently has long been the field’s north star. Yet despite considerable attention and effort, today's agents fall short of this vision.
+
 
 Imagine being asked to find new office space for your company – a task you’d rather avoid. Now imagine delegating the entire process to an AI: identifying requirements, researching locations, scheduling tours, negotiating leases, even handling insurance and unexpected issues all without your involvement or explicit instructions. This vision of autonomous, task-oriented “[AI agents](https://a16z.com/podcast/what-is-an-ai-agent/)” capable of working independently has long been the field’s north star.
 
