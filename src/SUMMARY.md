@@ -146,8 +146,7 @@
 - [Slash Commands vs Subagents](tier1-research/high-priority/Slash%20Commands%20vs%20Subagents:%20How%20to%20Keep%20AI%20Tools%20Focused.md)
 - [The Lethal Trifecta for AI Agents](tier1-research/high-priority/The%20lethal%20trifecta%20for%20AI%20agents.md)
 - [The Permission System](tier1-research/high-priority/The%20Permission%20System%20-%20Security%20Models%20for%20Production%20AI%20Systems.md)
-- [The Rise of Computer Use and Agentic Coworkers](tier1-research/high-priority/The%20Rise%20of%20Computer%20Use%20and%20Agentic%20Coworkers%20%7C%20Andreessen%20Horowitz.md)
-- [Tool System Deep Dive](tier1-research/high-priority/Tool%20System%20Deep%20Dive%20-%20Plugin%20Architecture%20Patterns.md)
+- [The Rise of Computer Use and Agentic Coworkers](tier1-research/high-priority/The%20Rise%20of%20Computer%20Use%20and%20Agentic%20Coworkers%20-%20Andreessen%20Horowitz.md)
 - [Two Experiments on AI Agent Compaction](tier1-research/high-priority/Two%20Experiments%20We%20Need%20to%20Run%20on%20AI%20Agent%20Compaction.md)
 
 ### Medium Priority Research
