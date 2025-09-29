@@ -1,10 +1,9 @@
----
-title: "Understanding LLMs: Insights from Mechanistic Interpretability — LessWrong"
-description: "2 minute summary
- * At a high level, a transformer-based LLM is an autoregressive, next-token predictor. It takes a sequence of "tokens" (words or pa…"
-keywords: ""
-source: "https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic?utm_source=tldrai"
----
+# Understanding LLMs: Insights from Mechanistic Interpretability — LessWrong
+
+**Source**: [https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic?utm_source=tldrai](https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic?utm_source=tldrai)
+
+> 2 minute summary
+
 
 ## 2 minute summary
 

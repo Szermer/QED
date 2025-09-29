@@ -1,9 +1,9 @@
----
-title: "CauseNet"
-description: "Collecting All Causal Knowledge"
-keywords: ""
-source: "https://causenet.org/"
----
+# CauseNet
+
+**Source**: [https://causenet.org/](https://causenet.org/)
+
+> Collecting All Causal Knowledge
+
 
 ## Collecting All Causal Knowledge
 

@@ -1,11 +1,11 @@
----
-title: "Slash Commands vs Subagents: How to Keep AI Tools Focused - Jason Liu"
-description: "When AI tools get flooded with messy information, they lose focus. Should you use slash commands that add everything to the main chat, or subagents that work separately? A study using Claude Code."
-keywords: ""
-source: "https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/"
----
+# Slash Commands vs Subagents: How to Keep AI Tools Focused - Jason Liu
 
-[](https://github.com/jxnl/blog/edit/main/docs/writing/posts/context-engineering-slash-commands-subagents.md "Edit this page")[](https://github.com/jxnl/blog/raw/main/docs/writing/posts/context-engineering-slash-commands-subagents.md "View source of this page")
+**Source**: [https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/)
+
+> When AI tools get flooded with messy information, they lose focus. Should you use slash commands that add everything to the main chat, or subagents that work separately? A study using Claude Code.
+
+
+
 
 **The main idea:** When AI tools do messy tasks, they can either stay focused or get confused by too much information.
 

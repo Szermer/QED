@@ -1,9 +1,9 @@
----
-title: "Building Agents for Small Language Models: A Deep Dive into Lightweight AI | Matt Suiche"
-description: "Exploring the architecture, challenges, and implementation patterns for building AI agents with small language models (270M-32B parameters) that can run on consumer hardware"
-keywords: ""
-source: "https://www.msuiche.com/posts/building-agents-for-small-language-models-a-deep-dive-into-lightweight-ai/?utm_source=tldrai"
----
+# Building Agents for Small Language Models: A Deep Dive into Lightweight AI | Matt Suiche
+
+**Source**: [https://www.msuiche.com/posts/building-agents-for-small-language-models-a-deep-dive-into-lightweight-ai/?utm_source=tldrai](https://www.msuiche.com/posts/building-agents-for-small-language-models-a-deep-dive-into-lightweight-ai/?utm_source=tldrai)
+
+> Exploring the architecture, challenges, and implementation patterns for building AI agents with small language models (270M-32B parameters) that can run on consumer hardware
+
 
 Aug 27, 2025 · 3777 words · 18 minute read
 
@@ -26,7 +26,7 @@ SLMs offer immense potential: privacy through local deployment, predictable cost
 
 #### 1. Resource-Driven Design
 
-ß Unlike cloud-based LLMs with near-infinite compute, SLMs operate within strict boundaries:
+Unlike cloud-based LLMs with near-infinite compute, SLMs operate within strict boundaries:
 
 * **Memory:** Models must fit in RAM (typically 8-32GB).
 * **Inference Speed:** CPU-only inference is significantly slower than GPU.

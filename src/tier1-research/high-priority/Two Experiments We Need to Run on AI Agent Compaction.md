@@ -1,11 +1,11 @@
----
-title: "Two Experiments We Need to Run on AI Agent Compaction - Jason Liu"
-description: "If in-context learning is gradient descent, then compaction is momentum. Here are two research directions that could transform how we understand and optimize agentic systems."
-keywords: ""
-source: "https://jxnl.co/writing/2025/08/30/context-engineering-compaction/"
----
+# Two Experiments We Need to Run on AI Agent Compaction - Jason Liu
 
-[](https://github.com/jxnl/blog/edit/main/docs/writing/posts/context-engineering-compaction.md "Edit this page")[](https://github.com/jxnl/blog/raw/main/docs/writing/posts/context-engineering-compaction.md "View source of this page")
+**Source**: [https://jxnl.co/writing/2025/08/30/context-engineering-compaction/](https://jxnl.co/writing/2025/08/30/context-engineering-compaction/)
+
+> If in-context learning is gradient descent, then compaction is momentum. Here are two research directions that could transform how we understand and optimize agentic systems.
+
+
+
 
 **Two core insights:**
 

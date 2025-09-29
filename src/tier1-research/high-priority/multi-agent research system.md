@@ -1,9 +1,9 @@
----
-title: "How we built our multi-agent research system \ Anthropic"
-description: "On the the engineering challenges and lessons learned from building Claude's Research system"
-keywords: ""
-source: "https://www.anthropic.com/engineering/built-multi-agent-research-system"
----
+# How we built our multi-agent research system \ Anthropic
+
+**Source**: [https://www.anthropic.com/engineering/built-multi-agent-research-system](https://www.anthropic.com/engineering/built-multi-agent-research-system)
+
+> On the the engineering challenges and lessons learned from building Claude's Research system
+
 
 [Engineering at Anthropic](https://www.anthropic.com/engineering)
 
