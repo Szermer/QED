@@ -3,3 +3,6 @@ book
 anon-kode.DS_Store
 prototype/node_modules
 node_modules
+
+# Context Engineering (ephemeral)
+.agent-memory/
