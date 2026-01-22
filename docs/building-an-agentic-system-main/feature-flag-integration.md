@@ -11,10 +11,10 @@ flowchart TB
     CheckGate -->|"Uses"| StatsigClient["StatsigClient"]
     StatsigClient -->|"Stores"| Storage["FileSystemStorageProvider"]
     User -->|"Provides"| UserContext["User Context\n- ID\n- Email\n- Platform\n- Session"]
-    
+
     classDef primary fill:#f9f,stroke:#333,stroke-width:2px,color:#000000;
     classDef secondary fill:#bbf,stroke:#333,stroke-width:1px,color:#000000;
-    
+
     class Tool,CheckGate primary;
     class User,StatsigClient,Storage,UserContext secondary;
 ```
@@ -37,17 +37,17 @@ export const checkGate = memoize(async (gateName: string): Promise<boolean> => {
   // Gate checking logic - currently simplified
   return true;
   // Full implementation would initialize client and check actual flag value
-})
+});
 ```
 
 3. **User Context**: Flag evaluation includes user context from `utils/user.ts`:
 
 ```typescript
 export const getUser = memoize(async (): Promise<StatsigUser> => {
-  const userID = getOrCreateUserID()
+  const userID = getOrCreateUserID();
   // Collects user information including email, platform, session
   // ...
-})
+});
 ```
 
 4. **Persistence**: Flag states are cached using a custom storage provider:
@@ -74,15 +74,15 @@ graph TD
     FF --> AB[A/B Testing]
     FF --> AC[Access Control]
     FF --> RM[Resource Management]
-    
+
     SR --> |Detect Issues Early| Safety[Safety]
     AB --> |Compare Implementations| Optimization[Optimization]
     AC --> |Restrict Features| Security[Security]
     RM --> |Control Resource Usage| Performance[Performance]
-    
+
     classDef benefit fill:#90EE90,stroke:#006400,stroke-width:1px,color:#000000;
     classDef outcome fill:#ADD8E6,stroke:#00008B,stroke-width:1px,color:#000000;
-    
+
     class FF,SR,AB,AC,RM benefit;
     class Safety,Optimization,Security,Performance outcome;
 ```
@@ -106,16 +106,16 @@ flowchart LR
     FeatureFlags --> Variants[Feature Variants]
     FeatureFlags --> Models[Model Behavior]
     FeatureFlags --> UI[UI Components]
-    
+
     Tools --> ToolSystem[Tool System]
     Variants --> SystemBehavior[System Behavior]
     Models --> APIRequests[API Requests]
     UI --> UserExperience[User Experience]
-    
+
     classDef flag fill:#FFA07A,stroke:#FF6347,stroke-width:2px,color:#000000;
     classDef target fill:#87CEFA,stroke:#1E90FF,stroke-width:1px,color:#000000;
     classDef effect fill:#98FB98,stroke:#228B22,stroke-width:1px,color:#000000;
-    
+
     class FeatureFlags flag;
     class Tools,Variants,Models,UI target;
     class ToolSystem,SystemBehavior,APIRequests,UserExperience effect;

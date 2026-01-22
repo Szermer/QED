@@ -14,12 +14,14 @@ A web-based tool for evaluating articles for inclusion in the QED (AI Developmen
 ### Option 1: With Proxy Server (Recommended)
 
 1. Install dependencies:
+
 ```bash
 cd prototype
 npm install
 ```
 
 2. Start the proxy server:
+
 ```bash
 npm start
 ```
@@ -74,6 +76,7 @@ The tool uses Jina Reader (https://r.jina.ai) to extract clean content from web 
 To modify the evaluation prompt, edit the `QED_EVALUATION_PROMPT` constant in the HTML file.
 
 The proxy server (`server.js`) handles:
+
 - CORS bypass for Jina Reader API
 - Support for both standard and SPA extraction
 - Error handling and fallback options

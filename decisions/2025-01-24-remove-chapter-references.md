@@ -40,6 +40,7 @@ Remove all chapter references and transform to pattern-focused language througho
 ## Consequences
 
 ### Positive
+
 - Patterns are clearly standalone and reusable
 - Better alignment with QED's practitioner focus
 - Improved searchability (no meaningless chapter numbers)
@@ -47,6 +48,7 @@ Remove all chapter references and transform to pattern-focused language througho
 - Easier to reference specific patterns
 
 ### Negative
+
 - Lost explicit reading order for newcomers
 - Some patterns may still have implicit dependencies
 - Existing external links to chapters may break
@@ -54,6 +56,7 @@ Remove all chapter references and transform to pattern-focused language througho
 ## Examples
 
 Before:
+
 ```markdown
 # Chapter 2: Service-Oriented Architecture for AI Systems
 
@@ -61,6 +64,7 @@ In the next chapter, we'll explore authentication...
 ```
 
 After:
+
 ```markdown
 # Service-Oriented Architecture for AI Systems
 

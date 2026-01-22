@@ -19,8 +19,8 @@ render(
   {
     // Prevent Ink from exiting when no active components are rendered
     exitOnCtrlC: false,
-  }
-)
+  },
+);
 ```
 
 The application then mounts the REPL (Read-Eval-Print Loop) component, which serves as the primary container for the UI.
@@ -88,25 +88,25 @@ function useTextInput({
   // ...
 }: UseTextInputProps): UseTextInputResult {
   // Manage cursor position and text manipulation
-  const cursor = Cursor.fromText(originalValue, columns, offset)
-  
+  const cursor = Cursor.fromText(originalValue, columns, offset);
+
   function onInput(input: string, key: Key): void {
     // Handle special keys and input
-    const nextCursor = mapKey(key)(input)
+    const nextCursor = mapKey(key)(input);
     if (nextCursor) {
-      setOffset(nextCursor.offset)
+      setOffset(nextCursor.offset);
       if (cursor.text !== nextCursor.text) {
-        onChange(nextCursor.text)
+        onChange(nextCursor.text);
       }
     }
   }
-  
+
   return {
     onInput,
     renderedValue: cursor.render(cursorChar, mask, invert),
     offset,
     setOffset,
-  }
+  };
 }
 ```
 
@@ -148,10 +148,15 @@ Terminal rendering requires special performance techniques:
 The REPL component optimizes rendering by separating static from dynamic content:
 
 ```tsx
-<Static key={`static-messages-${forkNumber}`} items={messagesJSX.filter(_ => _.type === 'static')}>
-  {_ => _.jsx}
-</Static>
-{messagesJSX.filter(_ => _.type === 'transient').map(_ => _.jsx)}
+<Static
+  key={`static-messages-${forkNumber}`}
+  items={messagesJSX.filter((_) => _.type === "static")}
+>
+  {(_) => _.jsx}
+</Static>;
+{
+  messagesJSX.filter((_) => _.type === "transient").map((_) => _.jsx);
+}
 ```
 
 ### Memoization
@@ -161,8 +166,8 @@ Expensive operations are memoized to avoid recalculation:
 ```tsx
 const messagesJSX = useMemo(() => {
   // Complex message processing
-  return messages.map(/* ... */)
-}, [messages, /* dependencies */])
+  return messages.map(/* ... */);
+}, [messages /* dependencies */]);
 ```
 
 ### Content Streaming
@@ -170,8 +175,8 @@ const messagesJSX = useMemo(() => {
 Terminal output is streamed using generator functions:
 
 ```tsx
-for await (const message of query([...messages, lastMessage], /* ... */)) {
-  setMessages(oldMessages => [...oldMessages, message])
+for await (const message of query([...messages, lastMessage] /* ... */)) {
+  setMessages((oldMessages) => [...oldMessages, message]);
 }
 ```
 

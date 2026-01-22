@@ -9,7 +9,7 @@
 
 ---
 
-*Original article follows:*
+_Original article follows:_
 
 2025-09-26
 
@@ -26,9 +26,7 @@ We tried something different: Convert the MCP tools into a TypeScript API, and t
 The results are striking:
 
 1.  We found agents are able to handle many more tools, and more complex tools, when those tools are presented as a TypeScript API rather than directly. Perhaps this is because LLMs have an enormous amount of real-world TypeScript in their training set, but only a small set of contrived examples of tool calls.
-    
 2.  The approach really shines when an agent needs to string together multiple calls. With the traditional approach, the output of each tool call must feed into the LLM's neural network, just to be copied over to the inputs of the next call, wasting time, energy, and tokens. When the LLM can write code, it can skip all that, and only read back the final results it needs.
-    
 
 In short, LLMs are better at writing code to call MCP, than at calling MCP directly.
 
@@ -38,12 +36,9 @@ For those that aren't familiar: [Model Context Protocol](https://modelcontextpro
 
 Seen another way, MCP is a uniform way to:
 
--   expose an API for doing something,
-    
--   along with documentation needed for an LLM to understand it,
-    
--   with authorization handled out-of-band.
-    
+- expose an API for doing something,
+- along with documentation needed for an LLM to understand it,
+- with authorization handled out-of-band.
 
 MCP has been making waves throughout 2025 as it has suddenly greatly expanded the capabilities of AI agents.
 
@@ -53,7 +48,7 @@ The "API" exposed by an MCP server is expressed as a set of "tools". Each tool i
 
 Under the hood, an LLM generates a stream of "tokens" representing its output. A token might represent a word, a syllable, some sort of punctuation, or some other component of text.
 
-A tool call, though, involves a token that does *not* have any textual equivalent. The LLM is trained (or, more often, fine-tuned) to understand a special token that it can output that means "the following should be interpreted as a tool call," and another special token that means "this is the end of the tool call." Between these two tokens, the LLM will typically write tokens corresponding to some sort of JSON message that describes the call.
+A tool call, though, involves a token that does _not_ have any textual equivalent. The LLM is trained (or, more often, fine-tuned) to understand a special token that it can output that means "the following should be interpreted as a tool call," and another special token that means "this is the end of the tool call." Between these two tokens, the LLM will typically write tokens corresponding to some sort of JSON message that describes the call.
 
 For instance, imagine you have connected an agent to an MCP server that provides weather info, and you then ask the agent what the weather is like in Austin, TX. Under the hood, the LLM might generate output like the following. Note that here we've used words in `<|` and `|>` to represent our special tokens, but in fact, these tokens do not represent text at all; this is just for illustration.
 
@@ -97,13 +92,13 @@ Meanwhile, LLMs are getting really good at writing code. In fact, LLMs asked to 
 
 The answer is simple: LLMs have seen a lot of code. They have not seen a lot of "tool calls". In fact, the tool calls they have seen are probably limited to a contrived training set constructed by the LLM's own developers, in order to try to train it. Whereas they have seen real-world code from millions of open source projects.
 
-***Making an LLM perform tasks with tool calling is like putting Shakespeare through a month-long class in Mandarin and then asking him to write a play in it. It's just not going to be his best work.***
+**_Making an LLM perform tasks with tool calling is like putting Shakespeare through a month-long class in Mandarin and then asking him to write a play in it. It's just not going to be his best work._**
 
 ### But MCP is still useful, because it is uniform
 
-MCP is designed for tool-calling, but it doesn't actually *have to* be used that way.
+MCP is designed for tool-calling, but it doesn't actually _have to_ be used that way.
 
-The "tools" that an MCP server exposes are really just an RPC interface with attached documentation. We don't really *have to* present them as tools. We can take the tools, and turn them into a programming language API instead.
+The "tools" that an MCP server exposes are really just an RPC interface with attached documentation. We don't really _have to_ present them as tools. We can take the tools, and turn them into a programming language API instead.
 
 But why would we do that, when the programming language APIs already exist independently? Almost every MCP server is just a wrapper around an existing traditional API – why not expose those APIs?
 
@@ -127,7 +122,7 @@ const stream = streamText({
     { role: "user", content: "Write a function that adds two numbers" }
   ],
   tools: {
-    // tool definitions 
+    // tool definitions
   }
 })
 ```
@@ -140,7 +135,7 @@ import { codemode } from "agents/codemode/ai";
 const {system, tools} = codemode({
   system: "You are a helpful assistant",
   tools: {
-    // tool definitions 
+    // tool definitions
   },
   // ...config
 })
@@ -340,11 +335,11 @@ Workers are just better at handling isolation.
 
 In Code Mode, we prohibit the sandboxed worker from talking to the Internet. The global `fetch()` and `connect()` functions throw errors.
 
-But on most platforms, this would be a problem. On most platforms, the way you get access to private resources is, you *start* with general network access. Then, using that network access, you send requests to specific services, passing them some sort of API key to authorize private access.
+But on most platforms, this would be a problem. On most platforms, the way you get access to private resources is, you _start_ with general network access. Then, using that network access, you send requests to specific services, passing them some sort of API key to authorize private access.
 
 But Workers has always had a better answer. In Workers, the "environment" (`env` object) doesn't just contain strings, [it contains live objects](https://blog.cloudflare.com/workers-environment-live-object-bindings/), also known as "bindings". These objects can provide direct access to private resources without involving generic network requests.
 
-In Code Mode, we give the sandbox access to bindings representing the MCP servers it is connected to. Thus, the agent can specifically access those MCP servers *without* having network access in general.
+In Code Mode, we give the sandbox access to bindings representing the MCP servers it is connected to. Thus, the agent can specifically access those MCP servers _without_ having network access in general.
 
 Limiting access via bindings is much cleaner than doing it via, say, network-level filtering or HTTP proxies. Filtering is hard on both the LLM and the supervisor, because the boundaries are often unclear: the supervisor may have a hard time identifying exactly what traffic is legitimately necessary to talk to an API. Meanwhile, the LLM may have difficulty guessing what kinds of requests will be blocked. With the bindings approach, it's well-defined: the binding provides a JavaScript interface, and that interface is allowed to be used. It's just better this way.
 
@@ -373,4 +368,5 @@ To learn more about our mission to help build a better Internet, [start here](ht
 [AI](https://blog.cloudflare.com/tag/ai/)[Birthday Week](https://blog.cloudflare.com/tag/birthday-week/)[Cloudflare Workers](https://blog.cloudflare.com/tag/workers/)[Agents](https://blog.cloudflare.com/tag/agents/)[MCP](https://blog.cloudflare.com/tag/mcp/)
 
 ---
+
 Source: [Code Mode: the better way to use MCP](https://blog.cloudflare.com/code-mode/)

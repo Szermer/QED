@@ -13,11 +13,13 @@ AI systems require architecture that balances responsiveness, collaboration, and
 Each service owns a specific domain and communicates through well-defined interfaces. This prevents tight coupling between AI processing, state management, and collaboration features.
 
 **Recognition Pattern**: You need service isolation when:
+
 - Different parts of your system have distinct failure modes
 - Teams need to deploy features independently
 - You're mixing real-time collaboration with AI processing
 
 **Implementation Approach**:
+
 ```typescript
 // Service interface defines clear boundaries
 interface IThreadService {
@@ -29,7 +31,7 @@ interface IThreadService {
 class ThreadService implements IThreadService {
   constructor(
     private storage: IThreadStorage,
-    private syncService: ISyncService
+    private syncService: ISyncService,
   ) {}
 }
 ```
@@ -39,11 +41,13 @@ class ThreadService implements IThreadService {
 Replace callbacks and promises with reactive streams for state changes. This pattern handles the complex data flow between AI responses, user actions, and collaboration updates.
 
 **Recognition Pattern**: You need reactive communication when:
+
 - Multiple components need to react to the same state changes
 - You're handling real-time updates from multiple sources
 - UI needs to stay synchronized with rapidly changing AI output
 
 **Implementation Approach**:
+
 ```typescript
 // Services expose Observable interfaces
 interface IThreadService {
@@ -52,15 +56,17 @@ interface IThreadService {
 }
 
 // Consumers compose reactive streams
-threadService.observeActiveThread().pipe(
-  filter(thread => thread !== null),
-  switchMap(thread => combineLatest([
-    of(thread),
-    syncService.observeSyncStatus(thread.id)
-  ]))
-).subscribe(([thread, syncStatus]) => {
-  updateUI(thread, syncStatus);
-});
+threadService
+  .observeActiveThread()
+  .pipe(
+    filter((thread) => thread !== null),
+    switchMap((thread) =>
+      combineLatest([of(thread), syncService.observeSyncStatus(thread.id)]),
+    ),
+  )
+  .subscribe(([thread, syncStatus]) => {
+    updateUI(thread, syncStatus);
+  });
 ```
 
 ### 3. Optimistic Updates
@@ -68,21 +74,23 @@ threadService.observeActiveThread().pipe(
 Update local state immediately while syncing in the background. This provides responsive user experience even with high-latency AI operations or network issues.
 
 **Recognition Pattern**: You need optimistic updates when:
+
 - Users expect immediate feedback for their actions
 - Network latency affects user experience
 - AI operations take multiple seconds to complete
 
 **Implementation Approach**:
+
 ```typescript
 // Apply changes locally first, sync later
 class OptimisticUpdateService {
   async updateThread(id: string, update: ThreadUpdate): Promise<void> {
     // 1. Apply locally for immediate UI response
     this.applyLocalUpdate(id, update);
-    
+
     // 2. Queue for background synchronization
     this.syncQueue.add({ threadId: id, update, timestamp: Date.now() });
-    
+
     // 3. Process queue without blocking user
     this.processSyncQueue();
   }
@@ -94,11 +102,13 @@ class OptimisticUpdateService {
 Continue functioning even when external services are unavailable. AI systems depend on many external services (models, APIs, collaboration servers) that can fail independently.
 
 **Recognition Pattern**: You need graceful degradation when:
+
 - Your system depends on external AI APIs or collaboration servers
 - Users need to work during network outages
 - System components have different availability requirements
 
 **Implementation Approach**:
+
 ```typescript
 // Fallback patterns for service failures
 class ResilientService {
@@ -122,22 +132,24 @@ class ResilientService {
 Prevent memory leaks and resource exhaustion through consistent lifecycle patterns. AI systems often create many subscriptions, connections, and cached resources.
 
 **Recognition Pattern**: You need explicit resource management when:
+
 - Creating Observable subscriptions or WebSocket connections
 - Caching AI model responses or user data
 - Managing background processing tasks
 
 **Implementation Approach**:
+
 ```typescript
 // Base class ensures consistent cleanup
 abstract class BaseService implements IDisposable {
   protected disposables: IDisposable[] = [];
-  
+
   protected addDisposable(disposable: IDisposable): void {
     this.disposables.push(disposable);
   }
-  
+
   dispose(): void {
-    this.disposables.forEach(d => d.dispose());
+    this.disposables.forEach((d) => d.dispose());
     this.disposables.length = 0;
   }
 }
@@ -154,12 +166,12 @@ graph TB
         IDE[IDE Extension]
         Web[Web Interface]
     end
-    
+
     subgraph "Session Layer"
         Session[Session Management]
         Commands[Command Processing]
     end
-    
+
     subgraph "Core Services"
         State[State Management]
         Sync[Synchronization]
@@ -167,27 +179,27 @@ graph TB
         Tools[Tool Execution]
         Config[Configuration]
     end
-    
+
     subgraph "Infrastructure"
         Storage[Persistent Storage]
         Network[Network/API]
         External[External Services]
         Events[Event System]
     end
-    
+
     CLI --> Session
     IDE --> Session
     Web --> Session
-    
+
     Session --> State
     Session --> Tools
     Commands --> State
-    
+
     State --> Storage
     State --> Sync
     Sync --> Network
     Tools --> External
-    
+
     Events -.->|Reactive Updates| State
     Events -.->|Reactive Updates| Sync
 ```
@@ -204,6 +216,7 @@ graph TB
 The conversation state service demonstrates key patterns for managing AI conversation state with collaborative features.
 
 **Core Responsibilities**:
+
 - Maintain conversation state and history
 - Ensure single-writer semantics to prevent conflicts
 - Provide reactive updates to UI components
@@ -221,11 +234,13 @@ interface IStateManager<T> {
 // 2. Auto-save with throttling prevents excessive I/O
 class AutoSaveService {
   setupAutoSave(state$: Observable<State>): void {
-    state$.pipe(
-      skip(1), // Skip initial value
-      throttleTime(1000), // Limit saves to once per second
-      switchMap(state => this.storage.save(state))
-    ).subscribe();
+    state$
+      .pipe(
+        skip(1), // Skip initial value
+        throttleTime(1000), // Limit saves to once per second
+        switchMap((state) => this.storage.save(state)),
+      )
+      .subscribe();
   }
 }
 
@@ -249,35 +264,35 @@ export class ThreadSyncService extends BaseService {
   private syncQueue = new Map<string, SyncQueueItem>();
   private syncStatus$ = new Map<string, BehaviorSubject<SyncStatus>>();
   private socket?: WebSocket;
-  
+
   constructor(
     private api: ServerAPIClient,
-    private threadService: IThreadService
+    private threadService: IThreadService,
   ) {
     super();
     this.initializeWebSocket();
     this.startSyncLoop();
   }
-  
+
   private initializeWebSocket(): void {
     this.socket = new WebSocket(this.api.wsEndpoint);
-    
-    this.socket.on('message', (data) => {
+
+    this.socket.on("message", (data) => {
       const message = JSON.parse(data);
       this.handleServerMessage(message);
     });
-    
+
     // Reconnection logic
-    this.socket.on('close', () => {
+    this.socket.on("close", () => {
       setTimeout(() => this.initializeWebSocket(), 5000);
     });
   }
-  
+
   async queueSync(threadId: string, thread: Thread): Promise<void> {
     // Calculate changes from last known server state
     const serverVersion = await this.getServerVersion(threadId);
     const changes = this.calculateChanges(thread, serverVersion);
-    
+
     // Add to sync queue
     this.syncQueue.set(threadId, {
       threadId,
@@ -285,49 +300,49 @@ export class ThreadSyncService extends BaseService {
       localVersion: thread.version,
       serverVersion,
       attempts: 0,
-      lastAttempt: null
+      lastAttempt: null,
     });
-    
+
     // Update sync status
-    this.updateSyncStatus(threadId, 'pending');
+    this.updateSyncStatus(threadId, "pending");
   }
-  
+
   private async processSyncQueue(): Promise<void> {
     for (const [threadId, item] of this.syncQueue) {
       if (this.shouldSync(item)) {
         try {
           await this.syncThread(item);
           this.syncQueue.delete(threadId);
-          this.updateSyncStatus(threadId, 'synced');
+          this.updateSyncStatus(threadId, "synced");
         } catch (error) {
           this.handleSyncError(threadId, item, error);
         }
       }
     }
   }
-  
+
   private async syncThread(item: SyncQueueItem): Promise<void> {
     const response = await this.api.syncThread({
       threadId: item.threadId,
       changes: item.changes,
-      baseVersion: item.serverVersion
+      baseVersion: item.serverVersion,
     });
-    
+
     if (response.conflict) {
       // Handle conflict resolution using standard patterns
       await this.resolveConflict(item.threadId, response);
     }
   }
-  
+
   private handleServerMessage(message: ServerMessage): void {
     switch (message.type) {
-      case 'thread-updated':
+      case "thread-updated":
         this.handleRemoteUpdate(message);
         break;
-      case 'presence-update':
+      case "presence-update":
         this.handlePresenceUpdate(message);
         break;
-      case 'permission-changed':
+      case "permission-changed":
         this.handlePermissionChange(message);
         break;
     }
@@ -343,11 +358,11 @@ Amp's custom Observable implementation provides the foundation for reactive stat
 // Core Observable implementation
 export abstract class Observable<T> {
   abstract subscribe(observer: Observer<T>): Subscription;
-  
+
   pipe<R>(...operators: Operator<any, any>[]): Observable<R> {
     return operators.reduce(
       (source, operator) => operator(source),
-      this as Observable<any>
+      this as Observable<any>,
     );
   }
 }
@@ -357,16 +372,16 @@ export class BehaviorSubject<T> extends Subject<T> {
   constructor(private currentValue: T) {
     super();
   }
-  
+
   get value(): T {
     return this.currentValue;
   }
-  
+
   next(value: T): void {
     this.currentValue = value;
     super.next(value);
   }
-  
+
   subscribe(observer: Observer<T>): Subscription {
     // Emit current value immediately
     observer.next(this.currentValue);
@@ -376,21 +391,25 @@ export class BehaviorSubject<T> extends Subject<T> {
 
 // Rich operator library
 export const operators = {
-  map: <T, R>(fn: (value: T) => R) => 
-    (source: Observable<T>): Observable<R> => 
+  map:
+    <T, R>(fn: (value: T) => R) =>
+    (source: Observable<T>): Observable<R> =>
       new MapObservable(source, fn),
-      
-  filter: <T>(predicate: (value: T) => boolean) =>
+
+  filter:
+    <T>(predicate: (value: T) => boolean) =>
     (source: Observable<T>): Observable<T> =>
       new FilterObservable(source, predicate),
-      
-  switchMap: <T, R>(fn: (value: T) => Observable<R>) =>
+
+  switchMap:
+    <T, R>(fn: (value: T) => Observable<R>) =>
     (source: Observable<T>): Observable<R> =>
       new SwitchMapObservable(source, fn),
-      
-  throttleTime: <T>(ms: number) =>
+
+  throttleTime:
+    <T>(ms: number) =>
     (source: Observable<T>): Observable<T> =>
-      new ThrottleTimeObservable(source, ms)
+      new ThrottleTimeObservable(source, ms),
 };
 ```
 
@@ -400,35 +419,35 @@ Amp's thread model supports complex conversations with tool use, sub-agents, and
 
 ```typescript
 interface Thread {
-  id: string;                    // Unique identifier
-  version: number;               // Version for optimistic updates
-  title?: string;                // Thread title
-  createdAt: string;             // Creation timestamp
-  updatedAt: string;             // Last update timestamp
-  sharing?: ThreadSharing;       // Visibility scope
-  messages: Message[];           // Conversation history
-  metadata?: ThreadMetadata;     // Additional properties
-  
+  id: string; // Unique identifier
+  version: number; // Version for optimistic updates
+  title?: string; // Thread title
+  createdAt: string; // Creation timestamp
+  updatedAt: string; // Last update timestamp
+  sharing?: ThreadSharing; // Visibility scope
+  messages: Message[]; // Conversation history
+  metadata?: ThreadMetadata; // Additional properties
+
   // Thread relationships for hierarchical conversations
-  summaryThreadId?: string;      // Link to summary thread
-  parentThreadId?: string;       // Parent thread reference
-  childThreadIds?: string[];     // Child thread references
+  summaryThreadId?: string; // Link to summary thread
+  parentThreadId?: string; // Parent thread reference
+  childThreadIds?: string[]; // Child thread references
 }
 
 interface Message {
   id: string;
-  type: 'user' | 'assistant' | 'info';
+  type: "user" | "assistant" | "info";
   content: string;
   timestamp: string;
-  
+
   // Tool interactions
   toolUse?: ToolUseBlock[];
   toolResults?: ToolResultBlock[];
-  
+
   // Rich content
   attachments?: Attachment[];
   mentions?: FileMention[];
-  
+
   // Metadata
   model?: string;
   cost?: UsageCost;
@@ -449,7 +468,7 @@ sequenceDiagram
     participant LLMService
     participant SyncService
     participant Server
-    
+
     User->>UI: Type message
     UI->>ThreadService: addMessage()
     ThreadService->>ThreadService: Update thread state
@@ -477,7 +496,7 @@ export class ThreadSession {
     private threadService: IThreadService,
     private toolService: IToolService,
     private configService: IConfigService,
-    @optional private syncService?: IThreadSyncService
+    @optional private syncService?: IThreadSyncService,
   ) {
     // Services are injected, not created
     this.initialize();
@@ -517,11 +536,11 @@ Services communicate through Observable streams:
 ```typescript
 class ConfigService {
   private config$ = new BehaviorSubject<Config>(defaultConfig);
-  
+
   observeConfig(): Observable<Config> {
     return this.config$.asObservable();
   }
-  
+
   updateConfig(updates: Partial<Config>): void {
     const current = this.config$.value;
     const updated = { ...current, ...updates };
@@ -532,12 +551,15 @@ class ConfigService {
 // Other services react to config changes
 class ThemeService {
   constructor(private configService: ConfigService) {
-    configService.observeConfig().pipe(
-      map(config => config.theme),
-      distinctUntilChanged()
-    ).subscribe(theme => {
-      this.applyTheme(theme);
-    });
+    configService
+      .observeConfig()
+      .pipe(
+        map((config) => config.theme),
+        distinctUntilChanged(),
+      )
+      .subscribe((theme) => {
+        this.applyTheme(theme);
+      });
   }
 }
 ```
@@ -550,20 +572,20 @@ Services manage resources consistently:
 abstract class BaseService implements IDisposable {
   protected disposables: IDisposable[] = [];
   protected subscriptions: Subscription[] = [];
-  
+
   protected addDisposable(disposable: IDisposable): void {
     this.disposables.push(disposable);
   }
-  
+
   protected addSubscription(subscription: Subscription): void {
     this.subscriptions.push(subscription);
   }
-  
+
   dispose(): void {
     // Clean up in reverse order
-    [...this.subscriptions].reverse().forEach(s => s.unsubscribe());
-    [...this.disposables].reverse().forEach(d => d.dispose());
-    
+    [...this.subscriptions].reverse().forEach((s) => s.unsubscribe());
+    [...this.disposables].reverse().forEach((d) => d.dispose());
+
     this.subscriptions = [];
     this.disposables = [];
   }
@@ -581,26 +603,28 @@ Data is loaded on-demand and cached:
 ```typescript
 class LazyDataService {
   private cache = new Map<string, BehaviorSubject<Data | null>>();
-  
+
   observeData(id: string): Observable<Data | null> {
     if (!this.cache.has(id)) {
       const subject = new BehaviorSubject<Data | null>(null);
       this.cache.set(id, subject);
-      
+
       // Load data asynchronously
-      this.loadData(id).then(data => {
+      this.loadData(id).then((data) => {
         subject.next(data);
       });
     }
-    
+
     return this.cache.get(id)!.asObservable();
   }
-  
+
   private async loadData(id: string): Promise<Data> {
     // Check memory cache, disk cache, then network
-    return this.memCache.get(id) 
-        || await this.diskCache.get(id)
-        || await this.api.fetchData(id);
+    return (
+      this.memCache.get(id) ||
+      (await this.diskCache.get(id)) ||
+      (await this.api.fetchData(id))
+    );
   }
 }
 ```
@@ -611,21 +635,26 @@ Operators prevent overwhelming downstream consumers:
 
 ```typescript
 // Throttle rapid updates
-threadService.observeActiveThread().pipe(
-  throttleTime(100), // Max 10 updates per second
-  distinctUntilChanged((a, b) => a?.version === b?.version)
-).subscribe(thread => {
-  updateExpensiveUI(thread);
-});
+threadService
+  .observeActiveThread()
+  .pipe(
+    throttleTime(100), // Max 10 updates per second
+    distinctUntilChanged((a, b) => a?.version === b?.version),
+  )
+  .subscribe((thread) => {
+    updateExpensiveUI(thread);
+  });
 
 // Debounce user input
-searchInput$.pipe(
-  debounceTime(300), // Wait for typing to stop
-  distinctUntilChanged(),
-  switchMap(query => searchService.search(query))
-).subscribe(results => {
-  displayResults(results);
-});
+searchInput$
+  .pipe(
+    debounceTime(300), // Wait for typing to stop
+    distinctUntilChanged(),
+    switchMap((query) => searchService.search(query)),
+  )
+  .subscribe((results) => {
+    displayResults(results);
+  });
 ```
 
 ### 3. Optimistic Concurrency Control
@@ -637,19 +666,19 @@ class OptimisticUpdateService {
   async updateThread(id: string, updates: ThreadUpdate): Promise<Thread> {
     const maxRetries = 3;
     let attempts = 0;
-    
+
     while (attempts < maxRetries) {
       try {
         const current = await this.getThread(id);
         const updated = {
           ...current,
           ...updates,
-          version: current.version + 1
+          version: current.version + 1,
         };
-        
+
         return await this.api.updateThread(id, updated);
       } catch (error) {
-        if (error.code === 'VERSION_CONFLICT' && attempts < maxRetries - 1) {
+        if (error.code === "VERSION_CONFLICT" && attempts < maxRetries - 1) {
           attempts++;
           await this.delay(attempts * 100); // Exponential backoff
           continue;
@@ -671,21 +700,18 @@ Each service validates permissions independently:
 
 ```typescript
 class SecureThreadService extends ThreadService {
-  async modifyThread(
-    id: string, 
-    modifier: ThreadModifier
-  ): Promise<Thread> {
+  async modifyThread(id: string, modifier: ThreadModifier): Promise<Thread> {
     // Check permissions first
     const canModify = await this.permissionService.check({
       user: this.currentUser,
-      action: 'thread:modify',
-      resource: id
+      action: "thread:modify",
+      resource: id,
     });
-    
+
     if (!canModify) {
-      throw new PermissionError('Cannot modify thread');
+      throw new PermissionError("Cannot modify thread");
     }
-    
+
     return super.modifyThread(id, modifier);
   }
 }
@@ -699,22 +725,22 @@ Services maintain separate data stores per team:
 class TeamIsolatedStorage implements IThreadStorage {
   constructor(
     private teamId: string,
-    private baseStorage: IStorage
+    private baseStorage: IStorage,
   ) {}
-  
+
   private getTeamPath(threadId: string): string {
     return `teams/${this.teamId}/threads/${threadId}`;
   }
-  
+
   async loadThread(id: string): Promise<Thread> {
     const path = this.getTeamPath(id);
     const data = await this.baseStorage.read(path);
-    
+
     // Verify access permissions
     if (data.teamId !== this.teamId) {
-      throw new Error('Access denied: insufficient permissions');
+      throw new Error("Access denied: insufficient permissions");
     }
-    
+
     return data;
   }
 }
@@ -728,33 +754,33 @@ The server API client enforces authentication:
 class AuthenticatedAPIClient extends ServerAPIClient {
   constructor(
     endpoint: string,
-    private authService: IAuthService
+    private authService: IAuthService,
   ) {
     super(endpoint);
   }
-  
+
   protected async request<T>(
     method: string,
     path: string,
-    data?: any
+    data?: any,
   ): Promise<T> {
     const token = await this.authService.getAccessToken();
-    
+
     const response = await fetch(`${this.endpoint}${path}`, {
       method,
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: data ? JSON.stringify(data) : undefined
+      body: data ? JSON.stringify(data) : undefined,
     });
-    
+
     if (response.status === 401) {
       // Token expired, refresh and retry
       await this.authService.refreshToken();
       return this.request(method, path, data);
     }
-    
+
     return response.json();
   }
 }
@@ -773,20 +799,20 @@ Most services maintain no local state beyond caches:
 class StatelessThreadService {
   constructor(
     private storage: IThreadStorage,
-    private cache: ICache
+    private cache: ICache,
   ) {
     // No instance state maintained for scalability
   }
-  
+
   async getThread(id: string): Promise<Thread> {
     // Check cache first for performance
     const cached = await this.cache.get(`thread:${id}`);
     if (cached) return cached;
-    
+
     // Load from persistent storage
     const thread = await this.storage.load(id);
     await this.cache.set(`thread:${id}`, thread, { ttl: 300 });
-    
+
     return thread;
   }
 }
@@ -801,7 +827,7 @@ interface IDistributedCache {
   get<T>(key: string): Promise<T | null>;
   set<T>(key: string, value: T, options?: CacheOptions): Promise<void>;
   delete(key: string): Promise<void>;
-  
+
   // Pub/sub for cache invalidation
   subscribe(pattern: string, handler: (key: string) => void): void;
   publish(key: string, event: CacheEvent): void;
@@ -815,19 +841,19 @@ WebSocket connections support sticky sessions:
 ```typescript
 class WebSocketManager {
   private servers: string[] = [
-    'wss://server1.example.com',
-    'wss://server2.example.com',
-    'wss://server3.example.com'
+    "wss://server1.example.com",
+    "wss://server2.example.com",
+    "wss://server3.example.com",
   ];
-  
+
   async connect(sessionId: string): Promise<WebSocket> {
     // Use consistent hashing for session affinity
     const serverIndex = this.hash(sessionId) % this.servers.length;
     const server = this.servers[serverIndex];
-    
+
     const ws = new WebSocket(`${server}?session=${sessionId}`);
     await this.waitForConnection(ws);
-    
+
     return ws;
   }
 }

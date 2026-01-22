@@ -11,14 +11,16 @@ Building effective agentic systems requires understanding the tools at your disp
 ### Tools - The Building Blocks
 
 Tools represent the fundamental capabilities your agentic system can perform:
+
 - **File Operations**: Reading, writing, and editing code and documentation
-- **System Interaction**: Executing commands and interacting with the environment  
+- **System Interaction**: Executing commands and interacting with the environment
 - **Memory Management**: Persistent storage and retrieval of context
 - **Communication**: Interfacing with external systems and users
 
 ### Commands - The User Interface
 
 Commands provide structured ways for users to interact with and configure your agentic system:
+
 - **Configuration**: Model settings, authentication, and preferences
 - **Workflow**: Managing conversations, contexts, and collaboration
 - **Development**: Code review, debugging, and deployment assistance
@@ -27,6 +29,7 @@ Commands provide structured ways for users to interact with and configure your a
 ## How to Use This Reference
 
 Each tool and command is documented with:
+
 - **Purpose**: What the capability does and when to use it
 - **Implementation**: Technical details and patterns
 - **Examples**: Real-world usage scenarios
@@ -36,17 +39,19 @@ Each tool and command is documented with:
 
 > **⚠️ Deprecated Reference Format**  
 > The detailed tool and command references that follow represent documentation extracted from production systems. While comprehensive, they follow an older documentation format that will be superseded by future structured guides.
-> 
+>
 > Use these references for implementation details, but expect more curated guidance in future releases.
 
 ## Table of Contents
 
 ### Tool System Reference
+
 - Individual tool documentation covering all core capabilities
 
-### Command System Reference  
+### Command System Reference
+
 - Complete command reference with usage examples and configuration options
 
 ---
 
-*This reference represents the current state of tooling knowledge. As agentic systems evolve, expect these patterns to be refined and new capabilities to emerge.*
+_This reference represents the current state of tooling knowledge. As agentic systems evolve, expect these patterns to be refined and new capabilities to emerge._

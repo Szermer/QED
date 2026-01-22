@@ -5,6 +5,7 @@ So you want to build a collaborative AI coding assistant. Maybe you've been insp
 ## Starting with Why
 
 Before diving into technology choices, clarify your goals. Are you building for:
+
 - A small team that needs custom integrations?
 - An enterprise with specific security requirements?
 - A SaaS product for developers?
@@ -21,11 +22,13 @@ Let's work through the key architectural decisions you'll face, organized by imp
 **Decision**: Where will your system run?
 
 Options:
+
 - **Local-first with sync**: Like Amp's original architecture. Each developer runs their own instance with optional cloud sync.
 - **Cloud-native**: Everything runs in the cloud, accessed via web or thin clients.
 - **Hybrid**: Local execution with cloud-based features (storage, collaboration, compute).
 
 Trade-offs:
+
 - Local-first offers privacy and works offline but complicates collaboration
 - Cloud-native simplifies deployment but requires reliable connectivity
 - Hybrid balances both but increases complexity
@@ -37,12 +40,14 @@ For MVP: Start local-first if privacy matters, cloud-native if collaboration is 
 **Decision**: How will you integrate with LLMs?
 
 Options:
+
 - **Direct API integration**: Call OpenAI, Anthropic, etc. directly
 - **Gateway service**: Route through a unified API layer
 - **Local models**: Run open-source models on-premise
 - **Mixed approach**: Gateway with fallback options
 
 Trade-offs:
+
 - Direct integration is simple but locks you to providers
 - Gateway adds complexity but enables flexibility
 - Local models offer control but require significant resources
@@ -54,12 +59,14 @@ For MVP: Start with direct integration to one provider, design for abstraction.
 **Decision**: How will tools interact with the system?
 
 Options:
+
 - **Built-in tools only**: Fixed set of capabilities
 - **Plugin architecture**: Dynamic tool loading
 - **Process-based isolation**: Tools run in separate processes
 - **Language-agnostic protocols**: Support tools in any language
 
 Trade-offs:
+
 - Built-in is fastest to implement but limits extensibility
 - Plugins offer flexibility but require careful API design
 - Process isolation improves security but adds overhead
@@ -72,12 +79,14 @@ For MVP: Start with built-in tools, design interfaces for future extensibility.
 **Decision**: How will you manage conversation and system state?
 
 Options:
+
 - **In-memory only**: Simple but loses state on restart
 - **File-based persistence**: JSONLines, SQLite, or similar
 - **Database-backed**: PostgreSQL, MongoDB, etc.
 - **Event sourcing**: Full history with replay capability
 
 Trade-offs:
+
 - In-memory is trivial but impractical for real use
 - File-based works well for single-user scenarios
 - Databases enable multi-user but add operational complexity
@@ -90,6 +99,7 @@ For MVP: File-based for single-user, PostgreSQL for multi-user.
 **Decision**: How will components communicate?
 
 Options:
+
 - **REST APIs**: Simple request-response
 - **WebSockets**: Bidirectional streaming
 - **Server-Sent Events**: One-way streaming
@@ -97,6 +107,7 @@ Options:
 - **Message queues**: Async communication
 
 Trade-offs:
+
 - REST is universally supported but not real-time
 - WebSockets enable real-time but require connection management
 - SSE is simpler than WebSockets but one-directional
@@ -110,6 +121,7 @@ For MVP: REST + SSE for streaming responses.
 **Decision**: How will you handle identity and permissions?
 
 Options:
+
 - **None**: Single-user system
 - **Basic auth**: Simple username/password
 - **OAuth/OIDC**: Integrate with existing providers
@@ -117,6 +129,7 @@ Options:
 - **RBAC**: Role-based access control
 
 Trade-offs:
+
 - No auth only works for personal tools
 - Basic auth is simple but less secure
 - OAuth leverages existing identity but adds complexity
@@ -132,6 +145,7 @@ Based on your decisions above, here are recommended stacks for different scenari
 ### For a Small Team (1-10 developers)
 
 **Backend Stack**:
+
 ```
 Language: TypeScript/Node.js or Python
 Framework: Express + Socket.io or FastAPI
@@ -141,6 +155,7 @@ Queue: Bull (Node) or Celery (Python)
 ```
 
 **Frontend Stack**:
+
 ```
 CLI: Ink (React for terminals) or Click (Python)
 Web UI: React or Vue with Tailwind
@@ -149,6 +164,7 @@ Real-time: Socket.io client or native WebSocket
 ```
 
 **Infrastructure**:
+
 ```
 Deployment: Docker Compose
 CI/CD: GitHub Actions
@@ -159,6 +175,7 @@ Logging: Loki or ELK stack
 ### For a Medium Organization (10-100 developers)
 
 **Backend Stack**:
+
 ```
 Language: Go or Rust for performance
 Framework: Gin (Go) or Axum (Rust)
@@ -169,6 +186,7 @@ Search: Elasticsearch
 ```
 
 **Frontend Stack**:
+
 ```
 CLI: Distributed as binary
 Web UI: Next.js or SvelteKit
@@ -178,6 +196,7 @@ Mobile: React Native or Flutter
 ```
 
 **Infrastructure**:
+
 ```
 Orchestration: Kubernetes
 Service Mesh: Istio or Linkerd
@@ -189,6 +208,7 @@ Security: Vault for secrets
 ### For a SaaS Product (100+ developers)
 
 **Backend Stack**:
+
 ```
 Language: Multiple services in appropriate languages
 API Gateway: Kong or AWS API Gateway
@@ -199,6 +219,7 @@ Search: Algolia or Elasticsearch
 ```
 
 **Frontend Stack**:
+
 ```
 CLI: Multiple platform builds
 Web UI: Micro-frontends architecture
@@ -208,6 +229,7 @@ SDKs: Multiple language clients
 ```
 
 **Infrastructure**:
+
 ```
 Cloud: AWS, GCP, or Azure
 Orchestration: Managed Kubernetes (EKS, GKE, AKS)
@@ -317,17 +339,18 @@ const readFile: Tool = {
   parameters: {
     type: "object",
     properties: {
-      path: { type: "string" }
+      path: { type: "string" },
     },
-    required: ["path"]
+    required: ["path"],
   },
   async execute({ path }) {
     // Implementation
-  }
+  },
 };
 ```
 
 Key milestones:
+
 - Week 1: Basic chat loop with LLM integration
 - Week 2: File operations working
 - Week 3: Search and shell commands
@@ -370,12 +393,14 @@ Design for scale from day one, even if you don't need it immediately.
 ### Data Architecture
 
 **Conversation Storage**:
+
 - Partition by user/team from the start
 - Use UUIDs, not auto-increment IDs
 - Design for eventual sharding
 - Keep hot data separate from cold
 
 **File Handling**:
+
 - Stream large files, don't load into memory
 - Cache frequently accessed content
 - Use CDN for shared resources
@@ -384,28 +409,30 @@ Design for scale from day one, even if you don't need it immediately.
 ### Performance Patterns
 
 **Tool Execution**:
+
 ```typescript
 // Design for parallel execution from the start
 class ToolExecutor {
   async executeBatch(tools: ToolCall[]): Promise<ToolResult[]> {
     // Group by dependency
     const groups = this.groupByDependency(tools);
-    
+
     const results: ToolResult[] = [];
     for (const group of groups) {
       // Execute independent tools in parallel
       const groupResults = await Promise.all(
-        group.map(tool => this.execute(tool))
+        group.map((tool) => this.execute(tool)),
       );
       results.push(...groupResults);
     }
-    
+
     return results;
   }
 }
 ```
 
 **Response Streaming**:
+
 - Use server-sent events or WebSocket
 - Stream tokens as they arrive
 - Buffer for optimal chunk sizes
@@ -414,12 +441,14 @@ class ToolExecutor {
 ### Security Considerations
 
 **Input Validation**:
+
 - Sanitize all file paths
 - Validate command inputs
 - Rate limit by user and endpoint
 - Implement request signing
 
 **Isolation**:
+
 - Run tools in sandboxed environments
 - Use separate service accounts
 - Implement principle of least privilege
@@ -428,6 +457,7 @@ class ToolExecutor {
 ### Operational Excellence
 
 **Monitoring**:
+
 ```yaml
 # Key metrics to track from day one
 metrics:
@@ -440,6 +470,7 @@ metrics:
 ```
 
 **Deployment**:
+
 - Automate everything
 - Use feature flags
 - Implement gradual rollouts

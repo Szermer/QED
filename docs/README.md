@@ -5,17 +5,20 @@
 ## Current Structure
 
 ### Date-Based Intake Processing
+
 - `2025-09-09-intake/` - Latest batch of articles processed through QED intake workflow
   - See individual folder README for priority assessments and next actions
 
-### Organized Research Collection  
+### Organized Research Collection
+
 - `tier1-research/` - Systematic research organization by priority and topic
   - `high-priority/` - Items for immediate Tier 2 analysis
-  - `medium-priority/` - Interesting patterns worth exploring  
+  - `medium-priority/` - Interesting patterns worth exploring
   - `low-priority/` - Background reading and context
   - `archive/` - Processed or irrelevant items
 
 ### Reference Material
+
 - `qed-evaluation-prompt.md` - Evaluation criteria for knowledge intake
 - `web-coding-book.pdf`, `2508.16153v2.pdf` - Reference documents
 - `building-an-agentic-system-main/` - Archived material from earlier research
@@ -29,7 +32,7 @@
 
 ## Standards
 
-- **Capture everything** - No editorial filter at intake stage  
+- **Capture everything** - No editorial filter at intake stage
 - **Source attribution** - Always maintain original source and author information
 - **Priority tagging** - Clear assessment of relevance to client work
 - **Context notes** - Brief reasoning for why material was captured

@@ -8,23 +8,23 @@ source: "https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-in
 
 ## 2 minute summary
 
-* At a high level, a transformer-based LLM is an autoregressive, **next-token predictor**. It takes a sequence of "tokens" (words or parts of words) as input and produces a prediction for what the next token should be. This prediction takes the form of a probability distribution. Sampling from this distribution results in the next token. This newly selected token is appended to the sequence, and the entire process repeats to generate the next token. This loop is repeated until the full response is outputted.
-* The model processes text through a pipeline that involves the main components of the transformer:
-    * **Tokenizer:** Breaks the input sentence into a list of tokens (words or parts of words).
-    * **Embedding layer:** Converts each token into a high-dimensional vector representing its meaning in isolation.
-    * **Transformer blocks:** The core of the model, consisting of multiple layers that progressively refine the meaning of tokens in context. Each transformer layer is composed of a self-attention and MLP (multi-linear perceptron) sub-layer.
-    * **Unembedding layer & softmax:** Converts the final processed residual stream vectors back into a probability distribution over the entire vocabulary to select the next token.
-* **The residual stream:** This is the central backbone of the transformer. It's a list of vectors (one for each token) that flows through the model. Its shape is the same as the output of the embedding layer. The residual stream starts after the embedding layer and finishes at the unembedding layer.
-* **Attention sub-layers:** The primary mechanism for understanding context. Attention heads move information between token positions.
-    * They work by having a "query" at a destination token look for relevant information from the "keys" of all previous source tokens.
-    * Information from the source tokens' "values" is then copied to the destination, weighted by how much attention was paid.
-    * Specialized attention heads can form algorithms, like induction heads, which are crucial for in-context learning by recognizing and completing repeated patterns.
-* **MLP sub-layers** These layers form about two-thirds of the model's parameters and are considered its knowledge store.
-    * They function as vast key-value memories, where "keys" act as pattern detectors (e.g., "text is about TV shows") and "values" contain the likely next tokens associated with that pattern.
-* **The problem of superposition:** LLMs learn far more features (concepts, ideas, patterns) than they have neurons. This forces each neuron to be "polysemantic" and respond to multiple unrelated concepts. This makes it difficult to understand what any single neuron is doing.
-* **Solving superposition with sparse autoencoders (SAEs):** To make the model interpretable, SAEs are used to deconstruct the dense, polysemantic activations into a much larger set of sparse, monosemantic features. Each of these new features corresponds to a single, human-understandable concept (e.g., "The Golden Gate Bridge").
-* **Circuit tracing and attribution graphs:** This technique goes a step further, aiming to explain how the model reasons. The model's uninterpretable MLP sub-layers are replaced with interpretable transcoders. The process then traces the flow of information between the monosemantic features within these transcoders, producing an attribution graph. This graph is essentially a circuit diagram, showing the specific sub-network of interconnected features that causally work together to produce a particular output, revealing the "algorithm" the model uses for that task.
-* **How do LLMs work?:** Simple analogies like "it's just statistics" or "it's like a computer program" are inadequate explanations of how LLMs work. A better explanation is that LLMs perform tasks by forming emergent circuits. These circuits combine learned statistics, information-moving attention heads, and knowledge-storing MLP sub-layers into specialized sub-networks that collectively execute complex behaviors.
+- At a high level, a transformer-based LLM is an autoregressive, **next-token predictor**. It takes a sequence of "tokens" (words or parts of words) as input and produces a prediction for what the next token should be. This prediction takes the form of a probability distribution. Sampling from this distribution results in the next token. This newly selected token is appended to the sequence, and the entire process repeats to generate the next token. This loop is repeated until the full response is outputted.
+- The model processes text through a pipeline that involves the main components of the transformer:
+  - **Tokenizer:** Breaks the input sentence into a list of tokens (words or parts of words).
+  - **Embedding layer:** Converts each token into a high-dimensional vector representing its meaning in isolation.
+  - **Transformer blocks:** The core of the model, consisting of multiple layers that progressively refine the meaning of tokens in context. Each transformer layer is composed of a self-attention and MLP (multi-linear perceptron) sub-layer.
+  - **Unembedding layer & softmax:** Converts the final processed residual stream vectors back into a probability distribution over the entire vocabulary to select the next token.
+- **The residual stream:** This is the central backbone of the transformer. It's a list of vectors (one for each token) that flows through the model. Its shape is the same as the output of the embedding layer. The residual stream starts after the embedding layer and finishes at the unembedding layer.
+- **Attention sub-layers:** The primary mechanism for understanding context. Attention heads move information between token positions.
+  - They work by having a "query" at a destination token look for relevant information from the "keys" of all previous source tokens.
+  - Information from the source tokens' "values" is then copied to the destination, weighted by how much attention was paid.
+  - Specialized attention heads can form algorithms, like induction heads, which are crucial for in-context learning by recognizing and completing repeated patterns.
+- **MLP sub-layers** These layers form about two-thirds of the model's parameters and are considered its knowledge store.
+  - They function as vast key-value memories, where "keys" act as pattern detectors (e.g., "text is about TV shows") and "values" contain the likely next tokens associated with that pattern.
+- **The problem of superposition:** LLMs learn far more features (concepts, ideas, patterns) than they have neurons. This forces each neuron to be "polysemantic" and respond to multiple unrelated concepts. This makes it difficult to understand what any single neuron is doing.
+- **Solving superposition with sparse autoencoders (SAEs):** To make the model interpretable, SAEs are used to deconstruct the dense, polysemantic activations into a much larger set of sparse, monosemantic features. Each of these new features corresponds to a single, human-understandable concept (e.g., "The Golden Gate Bridge").
+- **Circuit tracing and attribution graphs:** This technique goes a step further, aiming to explain how the model reasons. The model's uninterpretable MLP sub-layers are replaced with interpretable transcoders. The process then traces the flow of information between the monosemantic features within these transcoders, producing an attribution graph. This graph is essentially a circuit diagram, showing the specific sub-network of interconnected features that causally work together to produce a particular output, revealing the "algorithm" the model uses for that task.
+- **How do LLMs work?:** Simple analogies like "it's just statistics" or "it's like a computer program" are inadequate explanations of how LLMs work. A better explanation is that LLMs perform tasks by forming emergent circuits. These circuits combine learned statistics, information-moving attention heads, and knowledge-storing MLP sub-layers into specialized sub-networks that collectively execute complex behaviors.
 
 ## Introduction
 
@@ -57,8 +57,8 @@ This two-phase approach is made possible by a crucial optimization called the KV
 
 The input and output tensor (matrix) shapes are different for the prefill and decode steps. Assuming a batch size of 1 for a single user interaction:
 
-* **Prefill:** The input tensor containing the prompt has a shape of [1, N], where N is the number of tokens in the prompt. The model processes this and produces an output logit tensor of shape [1, N, vocab_size] which is like a list of probability distributions where each distribution is a vector. We only need the last vector at position N to get the predicted token at position N + 1.
-* **Decode:** For all subsequent tokens, the input tensor’s shape is just [1, 1] and contains only the most recently generated token. The model leverages the KV cache for context and outputs a logits tensor of shape [1, 1, vocab_size] which is transformed into the probability distribution for predicting the next token.
+- **Prefill:** The input tensor containing the prompt has a shape of [1, N], where N is the number of tokens in the prompt. The model processes this and produces an output logit tensor of shape [1, N, vocab_size] which is like a list of probability distributions where each distribution is a vector. We only need the last vector at position N to get the predicted token at position N + 1.
+- **Decode:** For all subsequent tokens, the input tensor’s shape is just [1, 1] and contains only the most recently generated token. The model leverages the KV cache for context and outputs a logits tensor of shape [1, 1, vocab_size] which is transformed into the probability distribution for predicting the next token.
 
 ![](https://39669.cdn.cke-cs.com/rQvD3VnunXZu34m86e5f/images/fb08073a9c6a151e27a8d0fb25682d52ba1ac32bfaefd337.png)
 
@@ -88,17 +88,17 @@ The following steps describe the sequence of events needed for a transformer to 
 
 ## Step 1: tokenization: from text to tokens
 
-* Initially the LLM receives a sentence as input such as “The cat sat”.
-* This sentence is broken down into smaller pieces called tokens. A token might be a whole word (e.g., “hello”), a part of a word (e.g., “inter” and “pret” for “interpret”), or punctuation.
-* Each unique token in the model's vocabulary is assigned a specific number. So, “The cat sat” might become [10, 35, 800]. This list of numbers is the list of tokens and the output of the tokenizer.
-* Positional embeddings are also added to the embeddings to capture information about the position of tokens in the sentence.
-* Insight: This tokenization process can sometimes explain why LLMs might struggle with tasks like precise arithmetic, as numbers can be split into multiple tokens (e.g., "1,234" might become ["1", ",", "234"]) or counting the number of ‘r’s in the word ‘strawberry’.
+- Initially the LLM receives a sentence as input such as “The cat sat”.
+- This sentence is broken down into smaller pieces called tokens. A token might be a whole word (e.g., “hello”), a part of a word (e.g., “inter” and “pret” for “interpret”), or punctuation.
+- Each unique token in the model's vocabulary is assigned a specific number. So, “The cat sat” might become [10, 35, 800]. This list of numbers is the list of tokens and the output of the tokenizer.
+- Positional embeddings are also added to the embeddings to capture information about the position of tokens in the sentence.
+- Insight: This tokenization process can sometimes explain why LLMs might struggle with tasks like precise arithmetic, as numbers can be split into multiple tokens (e.g., "1,234" might become ["1", ",", "234"]) or counting the number of ‘r’s in the word ‘strawberry’.
 
 ## Step 2: embedding: giving meaning to tokens
 
-* The tokens are then converted into embedding vectors. An embedding vector is a list of numbers (often hundreds or thousands long) that represents each token's meaning.
-* The embedding layer involves multiplying the list of tokens (numbers) by the embedding matrix which has shape [d_vocab, d_model]. There is a row in the embedding matrix for every word in the vocabulary and each row is an embedding vector for a specific token. The embedding matrix essentially functions as a lookup table where each token is mapped to a specific learned embedding vector depending on its index in the vocabulary. For example, if our vocabulary has 50,000 tokens and our model uses 1000-dimensional embeddings, the embedding matrix would be a 50,000 x 1,000 matrix.
-* How do vectors represent the meaning of words? One intuition is that LLMs learn to create similar embedding vectors for words that have a similar meaning (e.g. the words see, look, watch). Similar vectors have a similar direction in the high-dimensional embedding space and there is a relatively small angle between them.
+- The tokens are then converted into embedding vectors. An embedding vector is a list of numbers (often hundreds or thousands long) that represents each token's meaning.
+- The embedding layer involves multiplying the list of tokens (numbers) by the embedding matrix which has shape [d_vocab, d_model]. There is a row in the embedding matrix for every word in the vocabulary and each row is an embedding vector for a specific token. The embedding matrix essentially functions as a lookup table where each token is mapped to a specific learned embedding vector depending on its index in the vocabulary. For example, if our vocabulary has 50,000 tokens and our model uses 1000-dimensional embeddings, the embedding matrix would be a 50,000 x 1,000 matrix.
+- How do vectors represent the meaning of words? One intuition is that LLMs learn to create similar embedding vectors for words that have a similar meaning (e.g. the words see, look, watch). Similar vectors have a similar direction in the high-dimensional embedding space and there is a relatively small angle between them.
 
 ![](https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/fcd7b79c4fd80f727d6303cec2c9fc746b801ac9a8196be961b4cd604b4e01f1/w0yzzqdaohpypvglce8w)
 
@@ -106,9 +106,9 @@ Figure 4: Word embeddings are high-dimensional (e.g. 1000 dimension) vectors. Th
 
 ## Step 3: The residual stream: the backbone of the transformer
 
-* Throughout the transformer, data flows through what's called the residual stream. This stream is a list of vectors, one for each token position. The shape of the residual stream is [seq_len, d_model] which is the same as the output of the embedding layer.
-* The residual stream is like a central communication channel or a shared workspace. Different components of the transformer read from and write to this stream, progressively refining the information at each token position.
-* Insight: the initial state of the residual stream (the output of the embedding layer) is the meaning of each word in isolation and without considering context. The transformer block layers iteratively refine the meaning of each vector depending on previous tokens (see the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens)).
+- Throughout the transformer, data flows through what's called the residual stream. This stream is a list of vectors, one for each token position. The shape of the residual stream is [seq_len, d_model] which is the same as the output of the embedding layer.
+- The residual stream is like a central communication channel or a shared workspace. Different components of the transformer read from and write to this stream, progressively refining the information at each token position.
+- Insight: the initial state of the residual stream (the output of the embedding layer) is the meaning of each word in isolation and without considering context. The transformer block layers iteratively refine the meaning of each vector depending on previous tokens (see the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens)).
 
 ![](https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/XGHf7EY3CK4KorBpw/keun4ufjb53o64jlgrak)
 
@@ -116,16 +116,16 @@ Figure 5: A single transformer block showing multiple attention heads and the ML
 
 ## Step 4: Attention heads: how transformers move information between positions and make use of context
 
-* The embedding matrix provides the initial meaning of each word in isolation.
-* Perhaps the most crucial innovation in transformers is the attention mechanism. Its role is to move information from earlier to later token positions and it’s therefore crucial for allowing LLMs to understand the meaning of words in the context of previous words.
-* For example, the word “bank” has a completely different meaning in the two sentences “I swam near the river bank” and “I got cash from the bank”. These two sentences illustrate the importance of context when reasoning about the meaning of words.
-* An attention layer usually consists of multiple attention heads, each operating independently and in parallel.
-* Each attention head can be thought of as having two main circuits:
-    * **QK (Query-Key) Circuit:** This circuit determines _where_ to move information from. For each destination token (query), it calculates an attention pattern for every source token (key) in the sequence so far. These scores are turned into probabilities, indicating how much attention the destination (query) token should pay to each source (key) token.
-    * **OV (Output-Value) Circuit:** This circuit determines _what_ information to move. For each source (key) token, a value vector is created. The output for a destination (query) token is then a weighted average of these value vectors, where the weights come from the attention pattern from the QK circuit. This result is then added back into the residual stream at the destination token's position.
-* Essentially, a high attention score means the source token (key) contains information that the destination token (query) is “looking for” and the value vector is the information that gets moved.
-* Key point: the query token (destination) always comes later in the sequence than the key tokens (source) as tokens only depend on past tokens and can’t depend on future tokens that haven’t been generated yet.
-* Intuition: each query is like a ‘question’ about all previous tokens and the keys and values provide the ‘answer’.
+- The embedding matrix provides the initial meaning of each word in isolation.
+- Perhaps the most crucial innovation in transformers is the attention mechanism. Its role is to move information from earlier to later token positions and it’s therefore crucial for allowing LLMs to understand the meaning of words in the context of previous words.
+- For example, the word “bank” has a completely different meaning in the two sentences “I swam near the river bank” and “I got cash from the bank”. These two sentences illustrate the importance of context when reasoning about the meaning of words.
+- An attention layer usually consists of multiple attention heads, each operating independently and in parallel.
+- Each attention head can be thought of as having two main circuits:
+  - **QK (Query-Key) Circuit:** This circuit determines *where* to move information from. For each destination token (query), it calculates an attention pattern for every source token (key) in the sequence so far. These scores are turned into probabilities, indicating how much attention the destination (query) token should pay to each source (key) token.
+  - **OV (Output-Value) Circuit:** This circuit determines *what* information to move. For each source (key) token, a value vector is created. The output for a destination (query) token is then a weighted average of these value vectors, where the weights come from the attention pattern from the QK circuit. This result is then added back into the residual stream at the destination token's position.
+- Essentially, a high attention score means the source token (key) contains information that the destination token (query) is “looking for” and the value vector is the information that gets moved.
+- Key point: the query token (destination) always comes later in the sequence than the key tokens (source) as tokens only depend on past tokens and can’t depend on future tokens that haven’t been generated yet.
+- Intuition: each query is like a ‘question’ about all previous tokens and the keys and values provide the ‘answer’.
 
 ![](https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/XGHf7EY3CK4KorBpw/utsdddg88edlh9etb57j)
 
@@ -178,9 +178,9 @@ The circuit implements a three-step process:
 
 This algorithm is carried out by three main groups of specialized attention heads working in sequence:
 
-* **Duplicate token heads:** are active at the second position where “John” (S2) and attend to the first position where “John” is (S1).
-* **S-inhibition heads:** remove duplicate tokens from name mover heads’ attention. They are active at the last token, attend to the S2 (second “John”) token, and write to the query of the name mover heads, inhibiting their attention to S1 and S2 tokens.
-* **Name mover heads:** attend to previous names and copy them to the final position. Since the duplicate “John” token is suppressed by the S-inhibition heads, the name mover heads attend to the remaining, non-duplicated name (“Mary”) and copy it, making it the predicted next token.
+- **Duplicate token heads:** are active at the second position where “John” (S2) and attend to the first position where “John” is (S1).
+- **S-inhibition heads:** remove duplicate tokens from name mover heads’ attention. They are active at the last token, attend to the S2 (second “John”) token, and write to the query of the name mover heads, inhibiting their attention to S1 and S2 tokens.
+- **Name mover heads:** attend to previous names and copy them to the final position. Since the duplicate “John” token is suppressed by the S-inhibition heads, the name mover heads attend to the remaining, non-duplicated name (“Mary”) and copy it, making it the predicted next token.
 
 ## Step 6: MLP layers: the knowledge store
 
@@ -202,10 +202,10 @@ The paper [Transformer Feed-Forward Layers Are Key-Value Memories](https://arxiv
 
 These patterns are often human-interpretable and range from simple to complex:
 
-* **Shallow patterns:** In the lower layers of the transformer (e.g., layers 1-9), keys tend to detect shallow, surface-level patterns, such as text ending with a specific word or n-gram. For instance, one key might activate strongly on sentences that end with the word "substitutes".
-* **Semantic patterns:** In the upper layers (e.g., layers 10-16), keys recognize more abstract, semantic concepts. A key might activate for text related to a specific topic like "TV shows" or for sentences that describe a time range, even if they don't share exact wording.
+- **Shallow patterns:** In the lower layers of the transformer (e.g., layers 1-9), keys tend to detect shallow, surface-level patterns, such as text ending with a specific word or n-gram. For instance, one key might activate strongly on sentences that end with the word "substitutes".
+- **Semantic patterns:** In the upper layers (e.g., layers 10-16), keys recognize more abstract, semantic concepts. A key might activate for text related to a specific topic like "TV shows" or for sentences that describe a time range, even if they don't share exact wording.
 
-2. **Values as next-token predictors:** Corresponding to each key is a value vector stored in the second MLP matrix. Each value vector effectively holds a probability distribution over the model's entire vocabulary. The distribution for the value represents the tokens that are most likely to appear immediately following the pattern detected by its corresponding key.
+  2. **Values as next-token predictors:** Corresponding to each key is a value vector stored in the second MLP matrix. Each value vector effectively holds a probability distribution over the model's entire vocabulary. The distribution for the value represents the tokens that are most likely to appear immediately following the pattern detected by its corresponding key.
 
 The output of the FFN layer for a given input is the weighted sum of all its value vectors, where the weights are determined by the activation of the keys:
 
@@ -227,10 +227,10 @@ The LayerNorm (layer normalization) step normalizes the activations of each laye
 
 ## Step 8.  Back to words: The unembedding layer
 
-* After passing through many layers of attention and MLPs, the final vectors in the residual stream (one for each token position) hold rich, contextualized information.
-* The unembedding layer takes these final residual stream vectors and transforms them back into scores (logits) for every token in the vocabulary. This is a linear transformation from shape [seq_len, d_model] to [seq_len, d_vocab].
-* The logits for the final token, with shape [d_vocab], are then passed through the softmax function and we sample from this distribution (or simply choose the most probable word in the case of greedy decoding) to produce the next output word.
-* Then the whole process is repeated on this longer sequence to produce more words. This is why LLMs are called ‘autoregressive’.
+- After passing through many layers of attention and MLPs, the final vectors in the residual stream (one for each token position) hold rich, contextualized information.
+- The unembedding layer takes these final residual stream vectors and transforms them back into scores (logits) for every token in the vocabulary. This is a linear transformation from shape [seq_len, d_model] to [seq_len, d_vocab].
+- The logits for the final token, with shape [d_vocab], are then passed through the softmax function and we sample from this distribution (or simply choose the most probable word in the case of greedy decoding) to produce the next output word.
+- Then the whole process is repeated on this longer sequence to produce more words. This is why LLMs are called ‘autoregressive’.
 
 ## LLM training insights
 
@@ -247,9 +247,9 @@ The transformer’s training run has several phases:
 
 1. **Initial state (high loss):** At the very beginning, the model's weights are random. Its predictions are essentially uniform across the entire vocabulary and the loss is high.
 2. **Learning unigram, bigram and n-gram frequencies:** The loss drops sharply as the model learns the most basic patterns in language.
-    1. **Unigram frequencies:** The first and easiest thing to learn is the frequency of individual tokens. The model quickly learns that common tokens like “the” and “a” are far more likely than rare ones, significantly improving its predictions.
-    2. **Bigram frequencies:** The next step is learning the frequency of adjacent token pairs. For instance, “Barack” is very often followed by “Obama”. Learning these bigrams causes another major drop in the loss.
-    3. **N-gram frequencies:** After mastering pairs, the model learns to recognize and memorize longer common sequences of three or more tokens (n-grams). To do this, it must first learn to understand the order of tokens, which it does by making use of its positional embeddings. Additionally, trigrams and n-grams require attention heads unlike bigrams since n-grams involve processing information from several previous tokens (rather than just the current token).
+   1. **Unigram frequencies:** The first and easiest thing to learn is the frequency of individual tokens. The model quickly learns that common tokens like “the” and “a” are far more likely than rare ones, significantly improving its predictions.
+   2. **Bigram frequencies:** The next step is learning the frequency of adjacent token pairs. For instance, “Barack” is very often followed by “Obama”. Learning these bigrams causes another major drop in the loss.
+   3. **N-gram frequencies:** After mastering pairs, the model learns to recognize and memorize longer common sequences of three or more tokens (n-grams). To do this, it must first learn to understand the order of tokens, which it does by making use of its positional embeddings. Additionally, trigrams and n-grams require attention heads unlike bigrams since n-grams involve processing information from several previous tokens (rather than just the current token).
 
 **3. Learning induction heads and more advanced algorithms:** After mastering simple frequencies, the improvements become more gradual. The model must learn more sophisticated, long-range dependencies and abstract rules. This is where complex circuits, like induction circuits, begin to form. The emergence of induction heads can cause a noticeable “bump” or sudden drop in the loss curve, as the model suddenly gains a new, powerful capability for in-context learning. This phase of training and beyond is where the model moves beyond simple statistics to generalizable algorithmic reasoning.
 
@@ -294,9 +294,9 @@ To see why SAEs are so valuable, we first need to understand the problem of supe
 
 LLMs exhibit a phenomenon called ‘[superposition](https://transformer-circuits.pub/2023/monosemantic-features)’ meaning the model learns many more features than it has neurons. By features we mean patterns in the input or concepts that the model might learn to detect. Examples of [features](https://transformer-circuits.pub/2024/scaling-monosemanticity/):
 
-* **Golden gate bridge feature:** Activated by sentences that mention or describe the golden gate bridge.
-* **Brain sciences feature:** Activated by sentences that mention or describe brain science concepts like neuroscience, consciousness, or learning.
-* **Monuments and popular tourist attractions feature:** Activated by sentences that mention or describe popular tourist attractions like the Mona Lisa or the Egyptian pyramids.
+- **Golden gate bridge feature:** Activated by sentences that mention or describe the golden gate bridge.
+- **Brain sciences feature:** Activated by sentences that mention or describe brain science concepts like neuroscience, consciousness, or learning.
+- **Monuments and popular tourist attractions feature:** Activated by sentences that mention or describe popular tourist attractions like the Mona Lisa or the Egyptian pyramids.
 
 For example, the residual stream of an LLM might have 8192 dimensions or neurons meaning that each vector in the residual stream is composed of 8192 numbers. However, real-world text is complex and there could be tens of thousands of hundreds or thousands of useful features needed to understand it.
 
@@ -316,9 +316,9 @@ The [superposition hypothesis](https://transformer-circuits.pub/2023/monosemanti
 
 The goal of sparse autoencoders (SAEs) is to learn a much larger sparse activation vector composed of monosemantic features. The goal is for the SAE’s features to have the following interpretable properties:
 
-* **Monsemanticity:** Each feature neuron learned by the SAE should respond to only one feature.
-* **Sparsity:** Since the SAE’s hidden vector is sparse, any given text input can be explained by a small number of active features and all other features are set to zero.
-* **Low reconstruction loss:** The weighted sum of features produced by the SAE faithfully explains the functionality of the original layer activations and the features it’s using.
+- **Monsemanticity:** Each feature neuron learned by the SAE should respond to only one feature.
+- **Sparsity:** Since the SAE’s hidden vector is sparse, any given text input can be explained by a small number of active features and all other features are set to zero.
+- **Low reconstruction loss:** The weighted sum of features produced by the SAE faithfully explains the functionality of the original layer activations and the features it’s using.
 
 The SAE is a neural network composed of two layers: the encoder and the decoder.
 
@@ -347,8 +347,8 @@ A key problem is that we need to identify which feature each feature vector corr
 
 Other ways to understand a feature include:
 
-* Look at the output logits that the feature increases or decreases (e.g. the feature increases the ‘golden’ logit).
-* Pin the feature to a high value and see how the LLM’s behavior changes. For example, when the Golden Gate Bridge feature is activated, the LLM obsessively talks about the Golden Gate Bridge (see [Golden Gate Claude](https://www.anthropic.com/news/golden-gate-claude)).
+- Look at the output logits that the feature increases or decreases (e.g. the feature increases the ‘golden’ logit).
+- Pin the feature to a high value and see how the LLM’s behavior changes. For example, when the Golden Gate Bridge feature is activated, the LLM obsessively talks about the Golden Gate Bridge (see [Golden Gate Claude](https://www.anthropic.com/news/golden-gate-claude)).
 
 ![](https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/1e740e16c67c94e80d0197031de9ffc4d180b180c5c00680c31a8f4f41cf3bdf/r9rmtabw7v4ngdeboodd)
 
@@ -356,9 +356,9 @@ Figure 11: [Neuronpedia](https://docs.neuronpedia.org/features) is an online pl
 
 What kind of insights have SAEs provided about LLMs? In the [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/) paper, researchers from Anthropic discovered the following insights:
 
-* The features found are often abstract, multilingual, and multimodal.
-* Features can be used to steer models.
-* Some features are relevant to AI safety concerns such as deception, sycophancy, bias, and dangerous content.
+- The features found are often abstract, multilingual, and multimodal.
+- Features can be used to steer models.
+- Some features are relevant to AI safety concerns such as deception, sycophancy, bias, and dangerous content.
 
 ## Circuit tracing
 
@@ -368,8 +368,8 @@ SAEs are useful for identifying what concepts are used internally by an LLM but 
 
 Circuit tracing uses a technique called transcoders rather than sparse autoencoders which are similar but different in important ways:
 
-* Sparse autoencoders (SAEs) use a sparse weighted sum of feature vectors to recreate a vector at a particular point in the model. For example, the input and output of an SAE could be the output of an MLP layer.
-* In contrast, transcoders take the input of the MLP layer as input and learn to recreate the output of the MLP layer. This means that unlike SAEs, transcoders can be used to replace the full MLP layer. Similar to SAEs, transcoders are composed of two layers: an encoder and decoder.
+- Sparse autoencoders (SAEs) use a sparse weighted sum of feature vectors to recreate a vector at a particular point in the model. For example, the input and output of an SAE could be the output of an MLP layer.
+- In contrast, transcoders take the input of the MLP layer as input and learn to recreate the output of the MLP layer. This means that unlike SAEs, transcoders can be used to replace the full MLP layer. Similar to SAEs, transcoders are composed of two layers: an encoder and decoder.
 
 The goal of transcoders is to replace uninterpretable MLP blocks with transcoders composed of sparse and interpretable monosemantic features.
 
@@ -395,10 +395,10 @@ The interpretable local replacement model can then be used to create an attribut
 
 At a high level, the attribution graphs are composed of nodes and edges. There are four types of nodes in the graph:
 
-* **Input nodes:** Correspond to embeddings of input tokens.
-* **Intermediate nodes:** Transcoder features that are active at a specific position in the prompt.
-* **Output nodes:** These correspond to candidate output tokens.
-* **Error nodes:** Corresponding to the difference between the MLP output and transcoder output.
+- **Input nodes:** Correspond to embeddings of input tokens.
+- **Intermediate nodes:** Transcoder features that are active at a specific position in the prompt.
+- **Output nodes:** These correspond to candidate output tokens.
+- **Error nodes:** Corresponding to the difference between the MLP output and transcoder output.
 
 An edge in the attribution graph quantifies how much one feature influences another in a later layer or position. A strong edge indicates that the activation of one feature is a significant causal factor for another. The calculation for an edge's strength depends on whether the connection is between two transcoder features or is mediated by an attention head. The flow of information in the attribution graph is up and to the right, as information flows from earlier to later layers and from earlier to later token positions. Note that the flow of information from earlier to later positions requires attention.
 
@@ -432,22 +432,22 @@ Figure 16: Simplified attribution graph for the prompt “calc: 36 + 59 =”.
 
 We can understand the attribution graph by starting with the answer node “95” and working backwards. First it's important to understand the difference between input and output features:
 
-* Output features: are found near the top of the graph in deeper layers and can best be understood by the output logits they increase the probability of.
-* Input features: are found in low layers at the bottom of the graph and can be understood based on the input texts that highly activate them.
+- Output features: are found near the top of the graph in deeper layers and can best be understood by the output logits they increase the probability of.
+- Input features: are found in low layers at the bottom of the graph and can be understood based on the input texts that highly activate them.
 
 Three separate pathways contribute to the final answer:
 
-* The left-most pathway is a low-precision pathway. The “~40 + ~50” feature is a low-precision look-up feature that is active when the left input is approximately 40 and the right output is approximately 50. The other “~36 + ~59” feature works in a similar way. These two features contribute to the “sum = ~92” that increases the probability of several output tokens around 90.
-* The middle top feature increases the probability of tokens that are 95 mod 100 (numbers that end in 95) like 95, 295, and 595 and it’s activated by features including the “sum = ~92” feature and “_6 + _9” feature.
-* The right pathway involves a “_5” feature that increases the probability of output tokens that end in 5. It’s activated by a “_6 + _9” feature that is active when input A ends in 6 and input B ends in 9.
+- The left-most pathway is a low-precision pathway. The “~40 + ~50” feature is a low-precision look-up feature that is active when the left input is approximately 40 and the right output is approximately 50. The other “~36 + ~59” feature works in a similar way. These two features contribute to the “sum = ~92” that increases the probability of several output tokens around 90.
+- The middle top feature increases the probability of tokens that are 95 mod 100 (numbers that end in 95) like 95, 295, and 595 and it’s activated by features including the “sum = ~92” feature and “\_6 + \_9” feature.
+- The right pathway involves a “\_5” feature that increases the probability of output tokens that end in 5. It’s activated by a “\_6 + \_9” feature that is active when input A ends in 6 and input B ends in 9.
 
 The overall graph is fairly complex but the basic idea is this:
 
-* A low precision output feature increases the probability of output tokens around 90 such as 88, 90, 94, 95 and 98.
-* A 95 mod 100 output feature increases the probability of output tokens that end in 95.
-* The two pathways work together to produce the correct answer: 95.
-* These output features are activated by intermediate features in middle layers like the “sum = ~92” features that are activated by input features such as the “36” and “59” features.
-* These input features fire on input tokens such as the exact token “36” or tokens that end in 9.
+- A low precision output feature increases the probability of output tokens around 90 such as 88, 90, 94, 95 and 98.
+- A 95 mod 100 output feature increases the probability of output tokens that end in 95.
+- The two pathways work together to produce the correct answer: 95.
+- These output features are activated by intermediate features in middle layers like the “sum = ~92” features that are activated by input features such as the “36” and “59” features.
+- These input features fire on input tokens such as the exact token “36” or tokens that end in 9.
 
 In conclusion, how does addition in LLMs work? One [paper](https://arxiv.org/pdf/2410.21272) on the subject offers a succinct high-level explanation:
 
@@ -465,9 +465,9 @@ The middle and later sections of this post explore the components of a transform
 
 Before offering an explanation of how LLMs work, it’s useful to first consider some common but imperfect analogies that could be used to explain LLMs:
 
-* **“LLMs are just statistics”:** While LLMs learn statistical patterns such as bigrams and n-grams, this simple hypothesis is falsified by phenomena such as induction heads which can operate on text patterns that weren’t in the training data and therefore have no statistical information about them.
-* **A computer program:** A program executes explicit, human-written instructions. LLMs learn their own behaviors and mix code and data. Additionally, LLMs can perform many tasks that are difficult or impossible to replicate using computer code such as text summarization. Therefore, given the substantial differences, it’s misleading to think of LLMs as traditional computer programs.
-* **The human brain:** This third explanation, that LLMs are like the human brain is probably closer to the truth than the rest as both LLMs and brains excel at learning and pattern recognition. However, LLMs today use the transformer architecture, a deep learning technique that’s effective but not based on how the brain works.
+- **“LLMs are just statistics”:** While LLMs learn statistical patterns such as bigrams and n-grams, this simple hypothesis is falsified by phenomena such as induction heads which can operate on text patterns that weren’t in the training data and therefore have no statistical information about them.
+- **A computer program:** A program executes explicit, human-written instructions. LLMs learn their own behaviors and mix code and data. Additionally, LLMs can perform many tasks that are difficult or impossible to replicate using computer code such as text summarization. Therefore, given the substantial differences, it’s misleading to think of LLMs as traditional computer programs.
+- **The human brain:** This third explanation, that LLMs are like the human brain is probably closer to the truth than the rest as both LLMs and brains excel at learning and pattern recognition. However, LLMs today use the transformer architecture, a deep learning technique that’s effective but not based on how the brain works.
 
 ## A better explanation: emergent circuits
 
@@ -475,10 +475,10 @@ So, what is a more accurate high-level explanation? From what I’ve read, ident
 
 During its training, the model learns to do several distinct things that are useful for predicting the next word and performing tasks:
 
-* Learning statistics of the training data such as bigrams and trigrams.
-* Using attention heads to move information between different parts of the input, enabling the use of contextual information, in-context learning and algorithms that involve several specialized attention heads.
-* Using MLP blocks to store useful knowledge about the world and recognize patterns and features in the input, which then influence the final prediction. The features are stored in superposition, allowing the model to learn many more features than it has neurons.
-* Processing information in a layered hierarchy, where each successive layer builds more complex and abstract features and concepts by combining simpler ones identified in earlier layers and incrementally moving towards the final solution.
+- Learning statistics of the training data such as bigrams and trigrams.
+- Using attention heads to move information between different parts of the input, enabling the use of contextual information, in-context learning and algorithms that involve several specialized attention heads.
+- Using MLP blocks to store useful knowledge about the world and recognize patterns and features in the input, which then influence the final prediction. The features are stored in superposition, allowing the model to learn many more features than it has neurons.
+- Processing information in a layered hierarchy, where each successive layer builds more complex and abstract features and concepts by combining simpler ones identified in earlier layers and incrementally moving towards the final solution.
 
 These different mechanisms are combined into complex circuits to execute sophisticated, high-level behaviors such as indirect object identification, addition, factual recall and others.
 
@@ -492,11 +492,11 @@ Much of the research described in this post was carried out on older models like
 
 Here is a summary of the post [From GPT-2 to gpt-oss: Analyzing the Architectural Advances](https://magazine.sebastianraschka.com/p/from-gpt-2-to-gpt-oss-analyzing-the) that describes the key differences between the older GPT-2 model and a GPT-OSS, a modern one:
 
-* **Attention mechanism:** Older models like GPT-2 used standard Multi-Head Attention (MHA), which is computationally intensive. Modern models use more efficient variants like Grouped-Query Attention (GQA) and Sliding Window Attention to drastically reduce memory usage and speed up inference for long prompts.
-* **Positional embeddings:** GPT-2 used learned Absolute Positional Embeddings, which struggled to generalize to longer sequences. Modern models use Rotary Position Embeddings (RoPE), which are far more effective at handling and understanding very long contexts.
-* **Model architecture:** GPT-2 used a "dense" architecture where all parameters were activated for every token. Many modern models use a "sparse" Mixture-of-Experts (MoE) architecture, which allows for a massive increase in knowledge capacity by having many specialized "expert" modules, but only activating a few of them for any given token to keep inference fast.
-* **Feed-forward layers:** Older models used the GELU activation function. Modern models typically use more advanced gated activation units like SwiGLU, which provide better performance and expressivity with a more efficient parameter count.
-* **Normalization:** GPT-2 used LayerNorm. Modern models have widely adopted RMSNorm (Root Mean Square Normalization), which is computationally simpler and more efficient on GPUs.
+- **Attention mechanism:** Older models like GPT-2 used standard Multi-Head Attention (MHA), which is computationally intensive. Modern models use more efficient variants like Grouped-Query Attention (GQA) and Sliding Window Attention to drastically reduce memory usage and speed up inference for long prompts.
+- **Positional embeddings:** GPT-2 used learned Absolute Positional Embeddings, which struggled to generalize to longer sequences. Modern models use Rotary Position Embeddings (RoPE), which are far more effective at handling and understanding very long contexts.
+- **Model architecture:** GPT-2 used a "dense" architecture where all parameters were activated for every token. Many modern models use a "sparse" Mixture-of-Experts (MoE) architecture, which allows for a massive increase in knowledge capacity by having many specialized "expert" modules, but only activating a few of them for any given token to keep inference fast.
+- **Feed-forward layers:** Older models used the GELU activation function. Modern models typically use more advanced gated activation units like SwiGLU, which provide better performance and expressivity with a more efficient parameter count.
+- **Normalization:** GPT-2 used LayerNorm. Modern models have widely adopted RMSNorm (Root Mean Square Normalization), which is computationally simpler and more efficient on GPUs.
 
 Despite the differences, in 2025 the transformer architecture and its core components such as the embedding, self-attention and feed-forward layers are still used and therefore I think any interpretability research on transformers (introduced in 2017) is still relevant.
 
@@ -520,16 +520,16 @@ Post sources:
 
 Interpretability tools:
 
-* [Transformer Explainer](https://poloclub.github.io/transformer-explainer/)
-* [Neuronpedia](https://www.neuronpedia.org/)
-* [attribution-graphs-frontend](https://github.com/anthropics/attribution-graphs-frontend)
+- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/)
+- [Neuronpedia](https://www.neuronpedia.org/)
+- [attribution-graphs-frontend](https://github.com/anthropics/attribution-graphs-frontend)
 
 Related posts and further reading:
 
-* [An Extremely Opinionated Annotated List of My Favourite Mechanistic Interpretability Papers v2](https://www.lesswrong.com/posts/NfFST5Mio7BCAQHPA/an-extremely-opinionated-annotated-list-of-my-favourite-1)
-* [Gears-Level Mental Models of Transformer Interpretability](https://www.lesswrong.com/posts/X26ksz4p3wSyycKNB/gears-level-mental-models-of-transformer-interpretability)
-* [LLM Basics: Embedding Spaces - Transformer Token Vectors Are Not Points in Space](https://www.lesswrong.com/posts/pHPmMGEMYefk9jLeh/llm-basics-embedding-spaces-transformer-token-vectors-are)
-* [Mech interp is not pre-paradigmatic](https://www.lesswrong.com/posts/beREnXhBnzxbJtr8k/mech-interp-is-not-pre-paradigmatic)
-* [Explaining ChatGPT to Anyone in <20 Minutes](https://cameronrwolfe.substack.com/p/explaining-chatgpt-to-anyone-in-20)
-* [What is ChatGPT Doing ... and Why Does It Work?](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/)
-* [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+- [An Extremely Opinionated Annotated List of My Favourite Mechanistic Interpretability Papers v2](https://www.lesswrong.com/posts/NfFST5Mio7BCAQHPA/an-extremely-opinionated-annotated-list-of-my-favourite-1)
+- [Gears-Level Mental Models of Transformer Interpretability](https://www.lesswrong.com/posts/X26ksz4p3wSyycKNB/gears-level-mental-models-of-transformer-interpretability)
+- [LLM Basics: Embedding Spaces - Transformer Token Vectors Are Not Points in Space](https://www.lesswrong.com/posts/pHPmMGEMYefk9jLeh/llm-basics-embedding-spaces-transformer-token-vectors-are)
+- [Mech interp is not pre-paradigmatic](https://www.lesswrong.com/posts/beREnXhBnzxbJtr8k/mech-interp-is-not-pre-paradigmatic)
+- [Explaining ChatGPT to Anyone in <20 Minutes](https://cameronrwolfe.substack.com/p/explaining-chatgpt-to-anyone-in-20)
+- [What is ChatGPT Doing ... and Why Does It Work?](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/)
+- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)

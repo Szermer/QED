@@ -34,18 +34,16 @@ Everybody points out that Code is a **verifiable domain**, so it progresses fast
 
 > note: you may be frustrated that I shy away from a proper definition of “Agent Lab”. More on that in future…
 
-From 2015 (when OpenAI was founded) to 2025, the right place to work was clearly at model labs, seeing through the 3 paradigms of [pretraining, scaling, and reasoning](https://x.com/swyx/status/1963122452546060748). With OpenAI now at $500B valuation, burning up to [$45B a year](https://x.com/jukanlosreve/status/1964142046551384249?s=46), and Anthropic now at $200B, with GDM and Xai and the Chinese labs and more and more scaling up with competitive models, **model diversity** is a real thing, providing a new optimization surface area for app-layer builders. While exploiting best-of models is in theory a nice win for agent labs, the *business* justification for agent labs is simple: “I cant keep up with all this AI stuff, let me hire guys who nerd out about this all day to keep us on top of things”. That is about the level of abstraction the lower 90% of the AI bell curve can deal with.
+From 2015 (when OpenAI was founded) to 2025, the right place to work was clearly at model labs, seeing through the 3 paradigms of [pretraining, scaling, and reasoning](https://x.com/swyx/status/1963122452546060748). With OpenAI now at $500B valuation, burning up to [$45B a year](https://x.com/jukanlosreve/status/1964142046551384249?s=46), and Anthropic now at $200B, with GDM and Xai and the Chinese labs and more and more scaling up with competitive models, **model diversity** is a real thing, providing a new optimization surface area for app-layer builders. While exploiting best-of models is in theory a nice win for agent labs, the _business_ justification for agent labs is simple: “I cant keep up with all this AI stuff, let me hire guys who nerd out about this all day to keep us on top of things”. That is about the level of abstraction the lower 90% of the AI bell curve can deal with.
 
 In the [Decade of Agents](https://www.latent.space/i/166191505/closing-recap) from 2025-?, the nonconsensus view is perhaps that working at ”**agent labs**” will have the relative alpha instead.
 
--   **Model labs are product-last, Agent labs are product-first**: In 2023 the go to move was for AI startups to raise tons of money to buy their own GPU farms, build their own models and somehow profit. This covers the likes of Inflection and Stability and Magic.dev, and those companies flamed out pretty quickly and the metagame moved on. In 2025 there has been a stronger wave of new Model Labs, and while their outcomes are TBD, again they are product-last, from Poolside to Thinking Machines. Safe Superintelligence even proudly proclaims they will not ship any product until they ship the Last Product. Cool, but meanwhile customers are waiting. Agent labs ship product first, and then work their way down as they get data, revenue and conviction and deep understanding of their problem domain. But that is not to say that Agent Labs are antagonistic to Model Labs, because…
-    
--   **Model labs create frontier models, Agent Labs adapt them to domains that they don’t fully solve yet**: The future is here, but it is not evenly distributed. In interestingly opposite ways, Agent Labs either serve to “distribute” the frontier to markets that it hasn’t yet reached, or they serve to “pull forward” the future (by either burning vc money ahead of [the 1000x/1.5yrs price drop](https://www.latent.space/p/reasoning-price-war) per unit intelligence that is happening broadly in AI, or burning VC cash to get more out of current models using tricks like [self-consistency](https://x.com/swyx/status/1963153810844455025) to simulate having a future model. Because of the economic incentives of effectively being a “thick GPT Wrapper”, Agent Labs are far more incentivized to sniff out high value frontiers that the Model Labs are not yet focused on, staying ahead of that curve until the Model Labs wake up to it (as happened to Cognition)
-    
--   **Agent Engineering will survive the bitter lesson**: I am obviously pro [Agent Engineering](https://www.latent.space/p/agent), but yes the Bitter Lesson pilled folks will find it very very hard to get [the Hyung Won inductive bias chart](https://www.latent.space/p/icml-2024-video-robots) out of their minds.
-    
-    ![Image](https://github.com/user-attachments/assets/173dca32-cce0-46d2-b1e9-c0eff66834a5)
-    -   but you can [engineer your way above the Bitter Lesson](https://www.youtube.com/watch?v=qdmxApz3EJI), and harnesses can [survive even reasoning paradigm changes](https://www.qodo.ai/blog/system-2-thinking-alphacodium-outperforms-direct-prompting-of-openai-o1/#alphacodium-o1-an-incremental-step-towards-system-ii):
+- **Model labs are product-last, Agent labs are product-first**: In 2023 the go to move was for AI startups to raise tons of money to buy their own GPU farms, build their own models and somehow profit. This covers the likes of Inflection and Stability and Magic.dev, and those companies flamed out pretty quickly and the metagame moved on. In 2025 there has been a stronger wave of new Model Labs, and while their outcomes are TBD, again they are product-last, from Poolside to Thinking Machines. Safe Superintelligence even proudly proclaims they will not ship any product until they ship the Last Product. Cool, but meanwhile customers are waiting. Agent labs ship product first, and then work their way down as they get data, revenue and conviction and deep understanding of their problem domain. But that is not to say that Agent Labs are antagonistic to Model Labs, because…
+- **Model labs create frontier models, Agent Labs adapt them to domains that they don’t fully solve yet**: The future is here, but it is not evenly distributed. In interestingly opposite ways, Agent Labs either serve to “distribute” the frontier to markets that it hasn’t yet reached, or they serve to “pull forward” the future (by either burning vc money ahead of [the 1000x/1.5yrs price drop](https://www.latent.space/p/reasoning-price-war) per unit intelligence that is happening broadly in AI, or burning VC cash to get more out of current models using tricks like [self-consistency](https://x.com/swyx/status/1963153810844455025) to simulate having a future model. Because of the economic incentives of effectively being a “thick GPT Wrapper”, Agent Labs are far more incentivized to sniff out high value frontiers that the Model Labs are not yet focused on, staying ahead of that curve until the Model Labs wake up to it (as happened to Cognition)
+- **Agent Engineering will survive the bitter lesson**: I am obviously pro [Agent Engineering](https://www.latent.space/p/agent), but yes the Bitter Lesson pilled folks will find it very very hard to get [the Hyung Won inductive bias chart](https://www.latent.space/p/icml-2024-video-robots) out of their minds.
+
+  ![Image](https://github.com/user-attachments/assets/173dca32-cce0-46d2-b1e9-c0eff66834a5)
+  - but you can [engineer your way above the Bitter Lesson](https://www.youtube.com/watch?v=qdmxApz3EJI), and harnesses can [survive even reasoning paradigm changes](https://www.qodo.ai/blog/system-2-thinking-alphacodium-outperforms-direct-prompting-of-openai-o1/#alphacodium-o1-an-incremental-step-towards-system-ii):
 
 ![Image](https://github.com/user-attachments/assets/e36e168b-1700-42fb-bf71-002236382c41)
 
@@ -55,10 +53,10 @@ I don’t feel I have as compelling an argument in this section as in the others
 
 ### [The Devin is in the Details](https://www.swyx.io/cognition?utm_source=tldrai#the-devin-is-in-the-details)
 
--   The difference between ”[unreasonably effective](https://sketch.dev/blog/agent-loop)” “[LLM in a Loop](https://x.com/swyx/status/1964473164127490095)” oversimplification and agents like Devin and Cascade is the “remaining 10%” that developers chronically underestimate.
+- The difference between ”[unreasonably effective](https://sketch.dev/blog/agent-loop)” “[LLM in a Loop](https://x.com/swyx/status/1964473164127490095)” oversimplification and agents like Devin and Cascade is the “remaining 10%” that developers chronically underestimate.
 
--   Building the best AI coding agents and IDEs takes a ton of integration work and dozens of improvements every month, all tracked in our [release notes](https://docs.devinenterprise.com/release-notes/overview), everything from our [MCP Marketplace](https://cognition.ai/blog/mcp-marketplace) (including official Datadog, Sentry, Figma, Supabase, Vercel, Stripe, Playwright MCPs) to UI improvements to very long tail Enterprise integration polish from Linear to Slack to Azure DevOps and Self-Hosted GitLab.
--   10 months after launch, Windsurf is now actively used by many hundreds of thousands of developers (have you seen [the meetups?!?](https://luma.com/windsurf?period=past)), and we are investing extremely aggressively to further polish, integrate, and innovate on both our sync and async agentic coding surface areas with integrations and compliance/ security/ privacy/ observability/ deployment/ scalability requirements that are battletested from the smallest teams to the largest enterprises in the world.
+- Building the best AI coding agents and IDEs takes a ton of integration work and dozens of improvements every month, all tracked in our [release notes](https://docs.devinenterprise.com/release-notes/overview), everything from our [MCP Marketplace](https://cognition.ai/blog/mcp-marketplace) (including official Datadog, Sentry, Figma, Supabase, Vercel, Stripe, Playwright MCPs) to UI improvements to very long tail Enterprise integration polish from Linear to Slack to Azure DevOps and Self-Hosted GitLab.
+- 10 months after launch, Windsurf is now actively used by many hundreds of thousands of developers (have you seen [the meetups?!?](https://luma.com/windsurf?period=past)), and we are investing extremely aggressively to further polish, integrate, and innovate on both our sync and async agentic coding surface areas with integrations and compliance/ security/ privacy/ observability/ deployment/ scalability requirements that are battletested from the smallest teams to the largest enterprises in the world.
 
 The [sheer surface area of enterprise integrations is something Windsurf’s Anshul wrote about](https://www.latent.space/p/enterprise) on LS and while of course the Model Labs care about serving the enterprise, stuff like this is not high on their list:
 
@@ -70,17 +68,17 @@ The [sheer surface area of enterprise integrations is something Windsurf’s Ans
 
 The question of which part of AI Coding to focus on is also a very important one. Pick the wrong one and you spin your wheels. Pick your mental framework:
 
--   **The AI Software Development Lifecycle** (SDLC, or even [ADLC](https://www.youtube.com/watch?v=0vBKv9yAQi4&t=18s)): this is [mine](https://www.latent.space/i/150108358/the-ai-sdlc) - if you pick this, you end up working on [testing](https://www.latent.space/p/codium-agents), [evals](https://x.com/swyx/status/1963725773355057249), or maybe a [gateway](https://www.latent.space/p/gateway). Cool, cool, obviously valuable.
+- **The AI Software Development Lifecycle** (SDLC, or even [ADLC](https://www.youtube.com/watch?v=0vBKv9yAQi4&t=18s)): this is [mine](https://www.latent.space/i/150108358/the-ai-sdlc) - if you pick this, you end up working on [testing](https://www.latent.space/p/codium-agents), [evals](https://x.com/swyx/status/1963725773355057249), or maybe a [gateway](https://www.latent.space/p/gateway). Cool, cool, obviously valuable.
 
--   **Software personas**: there’s the:
-    -   Nontechnical Vibe Coder
-    -   Professional Software Engineer Architect
-    -   Professional Software Engineer Peon
-    -   Semitechnical Engineering Manager/PM/Designer
-    -   SRE/Pager Duty Carrier
-    -   Data/Business Analyst
-    -   etc. Again, they’re all great, and everyone is going to make ridiculous amounts of money, but when I think through who has the most budget and highest quality of revenue, you basically go down the same path I did.
--   **Levels of autonomy**: the Karpathy [autonomy sliders](https://www.latent.space/i/166191505/part-a-autonomy-sliders) - too little and you’re uninteresting, too much and you fail.
+- **Software personas**: there’s the:
+  - Nontechnical Vibe Coder
+  - Professional Software Engineer Architect
+  - Professional Software Engineer Peon
+  - Semitechnical Engineering Manager/PM/Designer
+  - SRE/Pager Duty Carrier
+  - Data/Business Analyst
+  - etc. Again, they’re all great, and everyone is going to make ridiculous amounts of money, but when I think through who has the most budget and highest quality of revenue, you basically go down the same path I did.
+- **Levels of autonomy**: the Karpathy [autonomy sliders](https://www.latent.space/i/166191505/part-a-autonomy-sliders) - too little and you’re uninteresting, too much and you fail.
 
 Here again Cognition impressed me by picking the right points on the landscape, and the superfast acquisition of Windsurf:
 
@@ -102,13 +100,13 @@ The other pushback that I get on the other side of the spectrum is that “oh ma
 
 Here is where I take my AIE hat off and put my CFA hat on. Let me excerpt some disclosures that made it to the [final blogpost](https://cognition.ai/blog/funding-growth-and-the-next-frontier-of-ai-coding-agents):
 
-> -   Before acquiring Windsurf, Cognition’s **Devin ARR grew from $1M ARR in September 2024 to $73M ARR in June 2025**, as usage increased exponentially. Our growth remained efficient throughout, with total **net burn under $20M** across the company’s entire history.
+> - Before acquiring Windsurf, Cognition’s **Devin ARR grew from $1M ARR in September 2024 to $73M ARR in June 2025**, as usage increased exponentially. Our growth remained efficient throughout, with total **net burn under $20M** across the company’s entire history.
 
 There’s more info that will come out in the next month, but I think there’s a lot to unpack even in those sentences. I’ll just emphasize this: **The large majority of the revenue base is positive margin**, which we feel is important to build a sustainable business model that engineers and enterprises can plan valuable work around, while **still getting orders of magnitude more value** from their agents.
 
 So unlike what has been rumored in the industry of wildly negative margins, Cognition somehow has created a remarkably efficient business model, meaning it will likely stick around and pricing is sustainable. This comes from having set the right initial conditions of starting with a $500 a month subscription (to allocate some baseline capacity), but priced based on [Agent Compute Units](https://devin.ai/pricing) - NO SEATS! This means business is very aligned with customers - you grow when usage grows. Establish a healthy positive margin business doing this for enterprise, and you [THEN can indefinitely fund cheap $20 self serve seats for individual devs](https://cognition.ai/blog/devin-2), including taking on Windsurf’s entire user base in a weekend. Businesses built the other way round are much less robust. Pricing is sticky upwards and when you start low, it’s really hard to go higher, and you often become hostage to your own userbase who was drawn for one value prop and is now presented with another.
 
-> -   Growth has accelerated post-acquisition: **combined enterprise ARR at Cognition is up over 30% in the seven weeks post buying Windsurf**. We had <5% overlap in enterprise customers pre-acquisition, and combining the rapid adoption of Devin with Windsurf’s IDE product and scaled GTM machine has been a massive unlock. Devin and Windsurf now power category-defining customers including Goldman Sachs, Citi, Dell, Cisco, Ramp, Palantir, Nubank, and Mercado Libre.
+> - Growth has accelerated post-acquisition: **combined enterprise ARR at Cognition is up over 30% in the seven weeks post buying Windsurf**. We had <5% overlap in enterprise customers pre-acquisition, and combining the rapid adoption of Devin with Windsurf’s IDE product and scaled GTM machine has been a massive unlock. Devin and Windsurf now power category-defining customers including Goldman Sachs, Citi, Dell, Cisco, Ramp, Palantir, Nubank, and Mercado Libre.
 
 The cross-sell opportunity at CogSurf (still my preferred pet name for the combined entity) is still enormous, and if you’ve met the Windsurf GTM folks in Austin and Mountain View you’d know that this is a formidable team that could sell the ever loving shit out of freaking Apple Siri if you gave them a quota and a battle card. And of course there’s the cross-**build** - first the Cog engineers taking Windsurf’s decent traction over the past year and leveling it up to be even more compelling (more soon!), then Windsurf-Devin integrations as they become a more seamless agentic coding toolkit.
 
@@ -128,7 +126,7 @@ That leaves of course, the Team. You already know there are a bunch of IOI gold 
 
 I haven’t figured out how yet, but somehow, it works. People get in to passionate fights in [the late hours](https://www.sfgate.com/tech/article/sf-tech-ceo-buyouts-culture-20805250.php) about migrations. They celebrate little UI bugfixes and dedicate an inordinate amount of time to thinking through Jetbrains support and [Jenkins migrations](https://cognition.ai/blog/from-jenkins-to-github-actions) and working through a neverending list of [MCP integrations](https://docs.devin.ai/work-with-devin/mcp). this is balanced with working on more exotic things like [Blockdiff](https://cognition.ai/blog/blockdiff) and [DeepWiki](https://cognition.ai/blog/deepwiki) and [Kevin 32B](https://cognition.ai/blog/kevin-32b) and much more alpha than revealed in [Don’t Build Multiagents](https://news.ycombinator.com/item?id=45096962). There’s all sorts of reasons this [Tiny Team](https://www.latent.space/p/tiny) should -NOT- work, but somehow it has so far.
 
-I’m still not full ramped up on things of course, but I think the best way I’d advise thinking about it is that these are not “a bunch of guys who do programming competitions”, but rather ”*competitive* programmers”, emphasis on **competitive**. They compete on everything from running to climbing to GTM sales to poker to Smash Bros, and they will compete with you for dominance of the AI coding agent wars. To be sure, there’s a lot of great AI coding teams, and the ocean is so large that multiple teams can “win”, but that’s how I’d explain this culture. The way this team works is similar to the insight of Transformers - instead of having too much hierarchy and structure, bias towards being “fully connected” — try to have everyone know everyone, have a low barrier for asking whats going on, high sense of urgency, have a great deal of internal transparency over everything, and let individual smart nodes organize for the good of the whole (and prune often).
+I’m still not full ramped up on things of course, but I think the best way I’d advise thinking about it is that these are not “a bunch of guys who do programming competitions”, but rather ”_competitive_ programmers”, emphasis on **competitive**. They compete on everything from running to climbing to GTM sales to poker to Smash Bros, and they will compete with you for dominance of the AI coding agent wars. To be sure, there’s a lot of great AI coding teams, and the ocean is so large that multiple teams can “win”, but that’s how I’d explain this culture. The way this team works is similar to the insight of Transformers - instead of having too much hierarchy and structure, bias towards being “fully connected” — try to have everyone know everyone, have a low barrier for asking whats going on, high sense of urgency, have a great deal of internal transparency over everything, and let individual smart nodes organize for the good of the whole (and prune often).
 
 If anything, this culture is more valuable than the actual source code of Cognition itself.
 
@@ -150,7 +148,7 @@ Obviously very personal situation and skillset based, but I want to guide you th
 
 ![Image](https://github.com/user-attachments/assets/b39d1da5-7f48-4916-9a8c-513d8d71d895)
 
-with Smol, AIE, and LS going on, I was never actually looking for a job, but was always mindful of [the Metacreator Ceiling](https://www.swyx.io/meta-creator-ceiling) I faced. As offers came inbound and then word got out, I think the team, the eyebrow raising traction, and finally the product and it’s superior positioning in the market kept lodged in my mind. *this is what smol developer should have become if i had the skills/believed in it hard enough*.
+with Smol, AIE, and LS going on, I was never actually looking for a job, but was always mindful of [the Metacreator Ceiling](https://www.swyx.io/meta-creator-ceiling) I faced. As offers came inbound and then word got out, I think the team, the eyebrow raising traction, and finally the product and it’s superior positioning in the market kept lodged in my mind. _this is what smol developer should have become if i had the skills/believed in it hard enough_.
 
 I failed to believe then, but I won’t make that mistake again now.
 
@@ -167,4 +165,5 @@ Cog definitely has a culture of “show don’t tell”. I don’t have anything
 \[1\]: I retain the Smol AI domain with my existing code IP and AINews.
 
 ---
+
 Source: [Cognition: The Devin is in the Details](https://www.swyx.io/cognition?utm_source=tldrai)

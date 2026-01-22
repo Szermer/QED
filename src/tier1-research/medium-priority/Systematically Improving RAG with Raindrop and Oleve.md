@@ -4,7 +4,6 @@
 
 > AI Consulting, RAG, and other personal notes.
 
-
 I hosted a lightning lesson featuring Ben from Raindrop and Sid from Oleve to discuss AI monitoring, production testing, and data analysis frameworks. This session explored how to effectively identify issues in AI systems, implement structured monitoring, and develop frameworks for improving AI products based on real user data.
 
 IF you want to see the whole video checkout our [lesson](https://maven.com/p/d792aa/online-evals-and-production-monitoring?utm_medium=ll_share_link&utm_source=instructor)
@@ -15,9 +14,9 @@ The foundation of AI monitoring begins with evals, which function similarly to u
 
 "The naive solution that people reach for is to run evals on some small percentage of production traffic," Ben explained. "But this can be extremely expensive, especially if you're using larger models as judges." Beyond cost concerns, there are deeper issues with relying solely on LLM judges for evaluation:
 
-* They're difficult to set up accurately and require detailed definitions of what constitutes "good" or "bad" performance
-* They only evaluate what you already know to look for, missing novel failure modes
-* They struggle to identify emerging problem patterns
+- They're difficult to set up accurately and require detailed definitions of what constitutes "good" or "bad" performance
+- They only evaluate what you already know to look for, missing novel failure modes
+- They struggle to identify emerging problem patterns
 
 I've seen this challenge firsthand with clients who implement sophisticated eval systems but still miss critical issues that only emerge in production. The fundamental problem is that in AI applications, unlike traditional software, there's often no exception being thrown when something goes wrong - the model simply produces an inadequate response.
 
@@ -28,18 +27,13 @@ I've seen this challenge firsthand with clients who implement sophisticated eval
 Ben introduced what he calls "the anatomy of an AI issue," which consists of two main components: signals and intents. Signals come in two varieties:
 
 1. Implicit signals - Signs from the data itself that something is wrong:
-    
 2. User frustration ("Wait, no, you should be able to do that")
-    
 3. Task failures (when the model says it can't do something)
 4. NSFW content (users trying to hack the system)
 5. Laziness (model not completing requested tasks)
 6. Forgetting (model losing context of previous interactions)
-    
 7. Explicit signals - Trackable user actions that indicate satisfaction or dissatisfaction:
-    
 8. Thumbs up/down ratings
-    
 9. Regeneration requests (suggesting the first response was inadequate)
 10. Search abandonment
 11. Code errors (especially valuable for coding assistants)
@@ -89,10 +83,10 @@ Once you've identified and categorized issues, Ben outlined several approaches t
 
 Ben shared several examples of high-profile AI failures that traditional testing might have missed:
 
-* Virgin Money's chatbot threatening users because they kept using the word "Virgin" (the company's name)
-* Grok responding to unrelated questions with statements about "white genocide in South Africa"
-* Google Gemini Cloud Console misinterpreting basic questions about account credits
-* OpenAI's model encouraging harmful user behaviors after being optimized too heavily on user preferences What's particularly telling is OpenAI's admission that "our evals didn't catch it" and their statement that "evals won't catch everything. Real world use helps us spot problems and understand what matters most to users." These examples highlight why production monitoring is essential - the real world introduces edge cases and user behaviors that even the most comprehensive testing regimes will miss.
+- Virgin Money's chatbot threatening users because they kept using the word "Virgin" (the company's name)
+- Grok responding to unrelated questions with statements about "white genocide in South Africa"
+- Google Gemini Cloud Console misinterpreting basic questions about account credits
+- OpenAI's model encouraging harmful user behaviors after being optimized too heavily on user preferences What's particularly telling is OpenAI's admission that "our evals didn't catch it" and their statement that "evals won't catch everything. Real world use helps us spot problems and understand what matters most to users." These examples highlight why production monitoring is essential - the real world introduces edge cases and user behaviors that even the most comprehensive testing regimes will miss.
 
 **Key Takeaway:** Even the largest AI companies with sophisticated testing infrastructure experience unexpected failures in production. This underscores the importance of robust monitoring systems that can detect novel issues as they emerge in real-world usage.
 

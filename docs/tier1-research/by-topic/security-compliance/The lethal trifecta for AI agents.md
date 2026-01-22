@@ -11,9 +11,9 @@ If you are a user of LLM systems that use tools (you can call them “AI agents�
 
 The **lethal trifecta** of capabilities is:
 
-* **Access to your private data**—one of the most common purposes of tools in the first place!
-* **Exposure to untrusted content**—any mechanism by which text (or images) controlled by a malicious attacker could become available to your LLM
-* **The ability to externally communicate** in a way that could be used to steal your data (I often call this “exfiltration” but I’m not confident that term is widely understood.)
+- **Access to your private data**—one of the most common purposes of tools in the first place!
+- **Exposure to untrusted content**—any mechanism by which text (or images) controlled by a malicious attacker could become available to your LLM
+- **The ability to externally communicate** in a way that could be used to steal your data (I often call this “exfiltration” but I’m not confident that term is widely understood.)
 
 If your agent combines these three features, an attacker can **easily trick it** into accessing your private data and sending it to that attacker.
 
@@ -69,8 +69,8 @@ Plenty of vendors will sell you “guardrail” products that claim to be able t
 
 I’ve written recently about a couple of papers that describe approaches application developers can take to help mitigate this class of attacks:
 
-* [Design Patterns for Securing LLM Agents against Prompt Injections](https://simonwillison.net/2025/Jun/13/prompt-injection-design-patterns/) reviews a paper that describes six patterns that can help. That paper also includes this succinct summary if the core problem: “once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions.”
-* [CaMeL offers a promising new direction for mitigating prompt injection attacks](https://simonwillison.net/2025/Apr/11/camel/) describes the Google DeepMind CaMeL paper in depth.
+- [Design Patterns for Securing LLM Agents against Prompt Injections](https://simonwillison.net/2025/Jun/13/prompt-injection-design-patterns/) reviews a paper that describes six patterns that can help. That paper also includes this succinct summary if the core problem: “once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions.”
+- [CaMeL offers a promising new direction for mitigating prompt injection attacks](https://simonwillison.net/2025/Apr/11/camel/) describes the Google DeepMind CaMeL paper in depth.
 
 Sadly neither of these are any help to end users who are mixing and matching tools together. The only way to stay safe there is to **avoid that lethal trifecta** combination entirely.
 

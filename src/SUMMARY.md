@@ -76,12 +76,15 @@
 # Patterns by Risk Profile
 
 ## Low Risk (Green)
+
 - [Safe Starting Points](by-risk/low-risk/index.md)
 
 ## Managed Risk (Yellow)
+
 - [Patterns Requiring Safeguards](by-risk/managed-risk/index.md)
 
 ## High Risk (Red)
+
 - [Critical Patterns](by-risk/high-risk/index.md)
 
 ---
@@ -91,15 +94,19 @@
 - [Context Overview](by-context/index.md)
 
 ## Startup Context
+
 - [Agile Patterns](by-context/startup/index.md)
 
 ## Mid-Market Context
+
 - [Scaling Patterns](by-context/mid-market/index.md)
 
 ## Enterprise Context
+
 - [Governance Patterns](by-context/enterprise/index.md)
 
 ## Regulated Industries
+
 - [Compliance Patterns](by-context/regulated/index.md)
 
 ---
@@ -134,6 +141,7 @@
 - [Research Overview](analysis/README.md)
 
 ### High Priority Research
+
 - [PRewrite: Reinforcement Learning Prompt Optimization](tier1-research/high-priority/2025-09-29-prewrite-reinforcement-learning-prompt-optimization.md)
 - [Cloudflare Code Mode MCP](tier1-research/high-priority/2025-09-26-cloudflare-code-mode-mcp.md)
 - [Building Agents for Small Language Models](tier1-research/high-priority/Building%20Agents%20for%20Small%20Language%20Models.md)
@@ -150,6 +158,7 @@
 - [Two Experiments on AI Agent Compaction](tier1-research/high-priority/Two%20Experiments%20We%20Need%20to%20Run%20on%20AI%20Agent%20Compaction.md)
 
 ### Medium Priority Research
+
 - [Beyond Chunks: Context Engineering](tier1-research/medium-priority/Beyond%20Chunks:%20Why%20Context%20Engineering%20is%20the%20Future%20of%20RAG.md)
 - [Collecting All Causal Knowledge](tier1-research/medium-priority/Collecting%20All%20Causal%20Knowledge.md)
 - [Command System Deep Dive](tier1-research/medium-priority/Command%20System%20Deep%20Dive%20-%20Slash%20Commands%20and%20Configuration.md)
@@ -159,6 +168,7 @@
 - [Systematically Improving RAG](tier1-research/medium-priority/Systematically%20Improving%20RAG%20with%20Raindrop%20and%20Oleve.md)
 
 ### Low Priority Research
+
 - [AI Will Change How We Build Startups](tier1-research/low-priority/AI_will_change_how_we_build_startups_--_but_how.md)
 - [How To Become A Mechanistic Interpretability Researcher](tier1-research/low-priority/How_To_Become_A_Mechanistic_Interpretability_Researcher_—_LessWrong.md)
 - [Understanding LLMs: Mechanistic Interpretability](tier1-research/low-priority/Understanding%20LLMs:%20Insights%20from%20Mechanistic%20Interpretability.md)

@@ -20,6 +20,7 @@ interface ComputerUseCapability {
 ```
 
 The practical implications are significant. An AI assistant can now:
+
 - Navigate through IDE menus to access features not exposed via APIs
 - Interact with web-based tools and dashboards
 - Debug UI issues by actually seeing what the user sees
@@ -33,17 +34,17 @@ Early implementations follow a few key patterns. Most systems use a combination 
 class UIAutomationAgent {
   private visionModel: VisionLLM;
   private accessibilityTree: AccessibilityNode;
-  
+
   async findElement(description: string): Promise<UIElement> {
     const screenshot = await this.captureScreen();
     const elements = await this.visionModel.detectElements(screenshot);
-    
+
     // Combine visual detection with accessibility data
-    const enrichedElements = elements.map(elem => ({
+    const enrichedElements = elements.map((elem) => ({
       ...elem,
-      accessible: this.accessibilityTree.findNode(elem.bounds)
+      accessible: this.accessibilityTree.findNode(elem.bounds),
     }));
-    
+
     return this.matchDescription(enrichedElements, description);
   }
 }
@@ -75,9 +76,9 @@ Cross-platform systems rely on standardized protocols for communication. The Mod
 
 ```typescript
 interface MCPTransport {
-  platform: 'vscode' | 'terminal' | 'browser' | 'mobile';
+  platform: "vscode" | "terminal" | "browser" | "mobile";
   capabilities: string[];
-  
+
   sendMessage(message: MCPMessage): Promise<void>;
   onMessage(handler: MessageHandler): void;
 }
@@ -96,7 +97,7 @@ class VSCodeAdapter implements PlatformAdapter {
     const content = await vscode.workspace.fs.readFile(uri);
     return new TextDecoder().decode(content);
   }
-  
+
   async executeCommand(command: string): Promise<string> {
     // Translate to VS Code's command palette
     return vscode.commands.executeCommand(command);
@@ -110,7 +111,7 @@ class BrowserAdapter implements PlatformAdapter {
     const file = await handle[0].getFile();
     return file.text();
   }
-  
+
   async executeCommand(command: string): Promise<string> {
     // Browser-specific implementation
     return this.executeInDevTools(command);
@@ -130,14 +131,14 @@ Cross-platform systems must maintain consistent state across environments. This 
 class CrossPlatformState {
   private stateStore: DistributedKV;
   private conflictResolver: ConflictStrategy;
-  
+
   async syncState(platform: Platform, localState: State): Promise<State> {
     const remoteState = await this.stateStore.get(platform.id);
-    
+
     if (this.hasConflicts(localState, remoteState)) {
       return this.conflictResolver.resolve(localState, remoteState);
     }
-    
+
     return this.merge(localState, remoteState);
   }
 }
@@ -163,19 +164,19 @@ Instead of sending code to centralized servers, federated approaches train local
 class FederatedLearner {
   private localModel: LocalLLM;
   private baseModel: RemoteLLM;
-  
+
   async trainOnLocal(examples: CodeExample[]): Promise<ModelDelta> {
     // Train adapter layers locally
     const adapter = await this.localModel.createAdapter();
-    
+
     for (const example of examples) {
       await adapter.train(example);
     }
-    
+
     // Extract only the weight updates, not the training data
     return adapter.extractDelta();
   }
-  
+
   async contributeToGlobal(delta: ModelDelta): Promise<void> {
     // Send only aggregated updates
     const privateDelta = this.addNoise(delta);
@@ -207,11 +208,11 @@ interface CodePattern {
 class PatternExtractor {
   extractPatterns(code: string): CodePattern[] {
     const ast = this.parser.parse(code);
-    
-    return this.findPatterns(ast).map(pattern => ({
+
+    return this.findPatterns(ast).map((pattern) => ({
       structure: this.abstractify(pattern),
       frequency: this.countOccurrences(pattern, ast),
-      context: this.embedContext(pattern)
+      context: this.embedContext(pattern),
     }));
   }
 }
@@ -231,14 +232,14 @@ Instead of sharing raw code, developers can share semantic representations:
 class SemanticShare {
   async shareFunction(func: Function): Promise<ShareableRepresentation> {
     const ast = this.parse(func);
-    
+
     return {
       // High-level intent, not implementation
       purpose: this.extractPurpose(ast),
       inputs: this.abstractifyTypes(func.parameters),
       outputs: this.abstractifyTypes(func.returnType),
       complexity: this.measureComplexity(ast),
-      patterns: this.extractPatterns(ast)
+      patterns: this.extractPatterns(ast),
     };
   }
 }
@@ -253,18 +254,24 @@ When teams need to share more detailed context, encryption schemes allow selecti
 ```typescript
 class EncryptedContext {
   private keyManager: KeyManagement;
-  
+
   async shareWithTeam(context: DevelopmentContext): Promise<EncryptedShare> {
     // Different encryption keys for different sensitivity levels
-    const publicData = await this.encrypt(context.public, this.keyManager.publicKey);
+    const publicData = await this.encrypt(
+      context.public,
+      this.keyManager.publicKey,
+    );
     const teamData = await this.encrypt(context.team, this.keyManager.teamKey);
-    const sensitiveData = await this.encrypt(context.sensitive, this.keyManager.userKey);
-    
+    const sensitiveData = await this.encrypt(
+      context.sensitive,
+      this.keyManager.userKey,
+    );
+
     return {
       public: publicData,
       team: teamData,
       sensitive: sensitiveData,
-      permissions: this.generatePermissionMatrix()
+      permissions: this.generatePermissionMatrix(),
     };
   }
 }
@@ -278,15 +285,15 @@ An emerging pattern uses zero-knowledge proofs to verify code quality without re
 class CodeQualityProof {
   async generateProof(code: string): Promise<ZKProof> {
     const metrics = this.analyzeCode(code);
-    
+
     // Prove that code meets quality standards without revealing it
     return this.zkSystem.prove({
       statement: "Code has >80% test coverage and no security vulnerabilities",
       witness: metrics,
-      code: code  // Never leaves local system
+      code: code, // Never leaves local system
     });
   }
-  
+
   async verifyProof(proof: ZKProof): Promise<boolean> {
     // Verify the proof without seeing the code
     return this.zkSystem.verify(proof);
@@ -308,20 +315,20 @@ class UnifiedAgent {
   private crossPlatform: CrossPlatformSync;
   private federated: FederatedLearner;
   private privacy: PrivacyPreserver;
-  
+
   async executeTask(task: DevelopmentTask): Promise<Result> {
     // Use computer vision to understand current context
     const uiContext = await this.computerUse.analyzeScreen();
-    
+
     // Sync state across platforms
     const projectState = await this.crossPlatform.syncAll();
-    
+
     // Learn from the task without exposing code
     const learnings = await this.federated.extractLearnings(task);
-    
+
     // Share insights while preserving privacy
     await this.privacy.shareInsights(learnings);
-    
+
     return this.executeWithFullContext(task, uiContext, projectState);
   }
 }
@@ -334,20 +341,20 @@ These systems coordinate through event-driven architectures:
 ```typescript
 class AgentCoordinator {
   private eventBus: EventBus;
-  
+
   constructor() {
-    this.eventBus.on('ui.interaction', this.handleUIEvent);
-    this.eventBus.on('platform.sync', this.handlePlatformSync);
-    this.eventBus.on('learning.update', this.handleLearningUpdate);
-    this.eventBus.on('privacy.request', this.handlePrivacyRequest);
+    this.eventBus.on("ui.interaction", this.handleUIEvent);
+    this.eventBus.on("platform.sync", this.handlePlatformSync);
+    this.eventBus.on("learning.update", this.handleLearningUpdate);
+    this.eventBus.on("privacy.request", this.handlePrivacyRequest);
   }
-  
+
   async handleUIEvent(event: UIEvent): Promise<void> {
     // Coordinate UI automation with other systems
-    if (event.type === 'screenshot.captured') {
-      await this.eventBus.emit('context.updated', {
+    if (event.type === "screenshot.captured") {
+      await this.eventBus.emit("context.updated", {
         visual: event.data,
-        platform: event.platform
+        platform: event.platform,
       });
     }
   }
@@ -361,6 +368,7 @@ These emerging patterns introduce new performance challenges:
 ### Latency Management
 
 Computer use and cross-platform coordination add latency:
+
 - Screenshot analysis takes 100-500ms
 - Cross-platform sync can take seconds for large projects
 - Federated learning updates happen asynchronously
@@ -375,16 +383,16 @@ Running vision models and encryption locally requires careful resource managemen
 class ResourceManager {
   private gpuScheduler: GPUScheduler;
   private cpuThrottler: CPUThrottler;
-  
+
   async allocateForVision(task: VisionTask): Promise<Resources> {
     // Balance between AI model needs and development tool performance
     const available = await this.gpuScheduler.checkAvailability();
-    
+
     if (available.gpu < task.requirements.gpu) {
       // Fall back to CPU with reduced model
       return this.cpuThrottler.allocate(task.cpuFallback);
     }
-    
+
     return this.gpuScheduler.allocate(task.requirements);
   }
 }

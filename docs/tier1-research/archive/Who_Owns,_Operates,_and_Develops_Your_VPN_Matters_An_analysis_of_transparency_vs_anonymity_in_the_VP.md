@@ -1,12 +1,12 @@
 # Who Owns, Operates, and Develops Your VPN Matters: An analysis of transparency vs. anonymity in the VPN ecosystem, and implications for users | OTF
 
-*New research from ICFP Fellow Benjamin Mixon-Baca finds that eight providers of popular, commercial VPN applications appear to hide the ownership and operations of their services, and contain serious privacy and security issues that put more than 700 million users at risk of authoritarian surveillance. Three of these providers are linked to the PLA and there is evidence that a Chinese national owns all eight.*
+_New research from ICFP Fellow Benjamin Mixon-Baca finds that eight providers of popular, commercial VPN applications appear to hide the ownership and operations of their services, and contain serious privacy and security issues that put more than 700 million users at risk of authoritarian surveillance. Three of these providers are linked to the PLA and there is evidence that a Chinese national owns all eight._
 
 **Key Findings:**
 
--   Commercial VPNs serving over 700 million users with poor transparency standards permit attackers to remove encryption, a glaring security and privacy vulnerability.
+- Commercial VPNs serving over 700 million users with poor transparency standards permit attackers to remove encryption, a glaring security and privacy vulnerability.
 
--   A first group of VPNs has established links to China’s People’s Liberation Army (PLA) and a second group—with similarly deceptive practices—was newly discovered.
+- A first group of VPNs has established links to China’s People’s Liberation Army (PLA) and a second group—with similarly deceptive practices—was newly discovered.
 
 ## Why VPN Transparency Matters
 
@@ -24,7 +24,7 @@ A VPN provider that operates anonymously (so less transparently) cannot be easil
 
 Information about a provider’s operations, ownership, and development is key for users to make informed decisions, but these details are often hard to find. In addition, some VPN providers—particularly the free services that monetize user data and serve ads—use ethically questionable practices when developing, marketing, and operating their VPNs. They take advantage of legal loopholes and attempt to hide who controls their services. For example, there are VPNs who cite Singapore (a country with strong privacy laws) as their country of origin on app stories—yet they are actually linked to China (a country with highly invasive privacy laws).
 
-When VPN provider information such as this is not easy to find or the provider actively tries to hide this information, users risk entrusting their data to a provider that they might not have chosen otherwise. In contexts where individuals are prosecuted for expressing themselves online or accessing information that authorities blacklist, these types of VPNs put their users at great risk.   
+When VPN provider information such as this is not easy to find or the provider actively tries to hide this information, users risk entrusting their data to a provider that they might not have chosen otherwise. In contexts where individuals are prosecuted for expressing themselves online or accessing information that authorities blacklist, these types of VPNs put their users at great risk. 
 
 ## Project Overview
 
@@ -51,13 +51,13 @@ The second cluster of concerning VPN providers, which previous research has not 
 
 The vulnerabilities include:
 
--   The use of Shadowsocks for tunneling: Shadowsocks (an open source proxy project designed to bypass internet censorship and geo-restrictions) was designed for *access* to the open internet only, and not for confidentiality—this is problematic as these apps are advertised as providing user security. 
+- The use of Shadowsocks for tunneling: Shadowsocks (an open source proxy project designed to bypass internet censorship and geo-restrictions) was designed for _access_ to the open internet only, and not for confidentiality—this is problematic as these apps are advertised as providing user security. 
 
--   Hard-coded passwords in their configuration that are shared across all users: The password is embedded within the source code, instead of stored securely elsewhere and retrieved at runtime. The fact that the password credentials are in the app code itself, makes them easily accessible to anyone who can view the code. An attacker who knows the password can decrypt the VPN’s encryption for all users, exposing the content they are accessing. This significantly compromises user security and privacy.
+- Hard-coded passwords in their configuration that are shared across all users: The password is embedded within the source code, instead of stored securely elsewhere and retrieved at runtime. The fact that the password credentials are in the app code itself, makes them easily accessible to anyone who can view the code. An attacker who knows the password can decrypt the VPN’s encryption for all users, exposing the content they are accessing. This significantly compromises user security and privacy.
 
--   Susceptibility to blind-in/on-path client/server-side attacks (client side confirmed, server side implied): An attacker can intercept and even modify communication without the knowledge of the user, a serious violation of their privacy and security. 
+- Susceptibility to blind-in/on-path client/server-side attacks (client side confirmed, server side implied): An attacker can intercept and even modify communication without the knowledge of the user, a serious violation of their privacy and security. 
 
--   Extraction of user location information, despite claiming that this is not collected.
+- Extraction of user location information, despite claiming that this is not collected.
 
 These software issues are alarming, especially for the providers with links to the Chinese cybersecurity firm Qihoo 360. It calls into question the providers’ intentions when they are connected to the biggest cybersecurity firm in China, yet offer security-critical applications with glaring vulnerabilities.
 
@@ -81,7 +81,8 @@ While not all free commercial VPN apps operate in poor faith, using products suc
 
 ---
 
-*Open Technology Fund (OTF)’s* [*Information Controls Fellowship Program*](https://www.opentech.fund/fellowships/icfp/) *supports examination into how governments in countries, regions, or areas of OTF’s core focus are restricting the free flow of information, impeding access to the open internet, and implementing censorship mechanisms, thereby threatening the ability of global citizens to exercise basic human rights and democracy. The program supports fellows to work within host organizations that are established centers of expertise by offering competitively paid fellowships for three, six, nine, or twelve months in duration.*
+_Open Technology Fund (OTF)’s_ [_Information Controls Fellowship Program_](https://www.opentech.fund/fellowships/icfp/) _supports examination into how governments in countries, regions, or areas of OTF’s core focus are restricting the free flow of information, impeding access to the open internet, and implementing censorship mechanisms, thereby threatening the ability of global citizens to exercise basic human rights and democracy. The program supports fellows to work within host organizations that are established centers of expertise by offering competitively paid fellowships for three, six, nine, or twelve months in duration._
 
 ---
+
 Source: [Who Owns, Operates, and Develops Your VPN Matters: An analysis of transparency vs. anonymity in the VPN ecosystem, and implications for users | OTF](https://www.opentech.fund/news/who-owns-operates-and-develops-your-vpn-matters-an-analysis-of-transparency-vs-anonymity-in-the-vpn-ecosystem-and-implications-for-users/)

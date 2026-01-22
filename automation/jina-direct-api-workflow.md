@@ -109,10 +109,10 @@ mkdir -p "$(dirname "$ANALYSIS_FILE")"
 cat > "$ANALYSIS_FILE" << EOF
 # Automated Analysis: $(basename "$URL")
 
-**Source**: [$URL]($URL)  
-**Processing Date**: $TIMESTAMP  
-**Priority**: $PRIORITY  
-**Status**: Automated Tier 2 Analysis  
+**Source**: [$URL]($URL)
+**Processing Date**: $TIMESTAMP
+**Priority**: $PRIORITY
+**Status**: Automated Tier 2 Analysis
 
 ## Content Summary
 
@@ -146,8 +146,8 @@ $(echo "$CONTENT" | head -100)
 
 ---
 
-**Processing Status**: Automated extraction complete  
-**Manual Review**: Required for full evaluation  
+**Processing Status**: Automated extraction complete
+**Manual Review**: Required for full evaluation
 **Created**: $TIMESTAMP
 EOF
 
@@ -209,7 +209,7 @@ rm -f "$EVALUATION_FILE"
 echo ""
 echo "🔗 Next steps:"
 echo "1. Review generated analysis file"
-echo "2. Apply full QED evaluation framework"  
+echo "2. Apply full QED evaluation framework"
 echo "3. Assign confidence score and final tier"
 echo "4. Create cross-references as appropriate"
 ```
@@ -238,10 +238,10 @@ while IFS= read -r line; do
         # Parse URL and optional priority
         read -r url priority <<< "$line"
         priority=${priority:-medium}
-        
+
         echo ""
         echo "📍 Processing ($((PROCESSED + 1))): $url"
-        
+
         if ./automation/qed-auto-intake.sh "$url" "$priority"; then
             PROCESSED=$((PROCESSED + 1))
             echo "✅ Success"
@@ -249,7 +249,7 @@ while IFS= read -r line; do
             FAILED=$((FAILED + 1))
             echo "❌ Failed"
         fi
-        
+
         # Rate limiting
         sleep 3
     fi
@@ -329,12 +329,14 @@ echo "✅ Content validation passed"
 ## Demo Usage
 
 ### Single URL Processing
+
 ```bash
 # Process a Martin Fowler article
 ./automation/qed-auto-intake.sh "https://martinfowler.com/articles/patterns-of-distributed-systems/" high
 ```
 
 ### Batch Processing
+
 ```bash
 # Create URL list
 cat > sample-urls.txt << EOF
@@ -350,6 +352,7 @@ EOF
 ## Benefits of Direct API Approach
 
 ### Advantages Over MCP
+
 - **Simpler Setup**: No MCP server configuration required
 - **More Reliable**: Direct HTTP API calls are more stable
 - **Better Error Handling**: Clearer error responses and debugging
@@ -357,12 +360,14 @@ EOF
 - **No Dependencies**: Works with any system that can make HTTP requests
 
 ### Performance Characteristics
+
 - **Speed**: ~3-5 seconds per URL extraction
 - **Rate Limits**: Respect Jina's API limits with built-in delays
 - **Reliability**: HTTP timeouts and retry logic
 - **Cost**: Uses existing Jina API key credits
 
 ### Quality Assurance
+
 - **Content Length Validation**: Ensures meaningful extraction
 - **Technical Relevance Filtering**: AI/development content focus
 - **Marketing Content Flagging**: Identifies promotional material

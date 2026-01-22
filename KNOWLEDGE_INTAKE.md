@@ -3,16 +3,19 @@
 ## The Three-Tier System
 
 ### Tier 1: Research Collection (`docs/`)
+
 **Status**: Raw research material  
 **Standard**: Capture everything potentially relevant
 
 **Process:**
+
 1. Save articles with original filename + source attribution
 2. Add brief note about why it caught your attention
 3. Tag with evaluation priority (High/Medium/Low/Archive)
 4. No editorial filter - collect liberally
 
 **Example workflow:**
+
 ```bash
 # Save article
 cp "Framework_Wars_Article.md" docs/
@@ -21,10 +24,12 @@ echo "Priority: High - Framework selection directly relevant to client work" >> 
 ```
 
 ### Tier 2: Critical Analysis (`src/analysis/`)
+
 **Status**: Under professional evaluation  
 **Standard**: Your expert assessment with client context
 
 **Process:**
+
 1. Create analysis document: `analysis-[topic]-[YYYY-MM].md`
 2. Use structured template:
    - **Source material**: What you're analyzing
@@ -34,6 +39,7 @@ echo "Priority: High - Framework selection directly relevant to client work" >> 
    - **Recommendation**: Experiment/Adopt/Monitor/Reject
 
 **Example:**
+
 ```markdown
 # Analysis: Claude Code Framework Selection (2025-01)
 
@@ -44,10 +50,12 @@ echo "Priority: High - Framework selection directly relevant to client work" >> 
 ```
 
 ### Tier 3: Proven Practice (`src/` main content)
+
 **Status**: QED - "that which is demonstrated"  
 **Standard**: Battle-tested with documented client success
 
 **Promotion criteria:**
+
 - Successfully used in real client project
 - Measurable positive outcomes
 - Reproducible by others
@@ -56,21 +64,27 @@ echo "Priority: High - Framework selection directly relevant to client work" >> 
 ## Evaluation Process
 
 ### Quick Assessment (5 minutes)
+
 For each new piece of research:
+
 - **Relevance**: Does this apply to client work?
 - **Novelty**: Is this genuinely new or rehashing known patterns?
 - **Authority**: Is the source credible and experienced?
 - **Actionability**: Can this be implemented practically?
 
 ### Deep Analysis (30-60 minutes)
+
 For high-priority items:
+
 - **Client fit analysis**: Conservative/Moderate/Aggressive risk profiles
 - **Implementation analysis**: What would adoption actually require?
 - **ROI projection**: Time savings vs. implementation costs
 - **Risk mitigation**: How to minimize downside if it doesn't work
 
 ### Experimental Validation (Project-based)
+
 For promising patterns:
+
 - **Controlled testing**: Try on internal project first
 - **Metrics collection**: Before/after measurements
 - **Client feedback**: If used on client work
@@ -79,21 +93,24 @@ For promising patterns:
 ## Practical Workflows
 
 ### Daily Research Collection
+
 ```bash
 # Morning reading - save anything interesting
 cp "New_AI_Pattern_Article.md" docs/
 echo "$(date): Potential relevance to current React project" >> docs/research-log.md
 ```
 
-### Weekly Analysis Review  
+### Weekly Analysis Review
+
 ```bash
 # Review docs/ folder for high-priority items
-ls docs/ | grep -v "analyzed" 
+ls docs/ | grep -v "analyzed"
 # Create analysis for top items
 touch src/analysis/analysis-new-pattern-$(date +%Y-%m).md
 ```
 
 ### Monthly Practice Updates
+
 ```bash
 # Review successful experiments
 # Update main content with proven patterns
@@ -103,6 +120,7 @@ touch src/analysis/analysis-new-pattern-$(date +%Y-%m).md
 ## Content Templates
 
 ### Research Capture Template
+
 ```markdown
 # [Article Title]
 
@@ -116,54 +134,68 @@ touch src/analysis/analysis-new-pattern-$(date +%Y-%m).md
 [Original content follows...]
 ```
 
-### Analysis Template  
+### Analysis Template
+
 ```markdown
 # Analysis: [Topic] ([YYYY-MM])
 
 ## Source Material
+
 [What you're analyzing]
 
 ## Client Context Assessment
+
 - **Conservative clients**: [Fit/concerns]
-- **Moderate risk clients**: [Applications]  
+- **Moderate risk clients**: [Applications]
 - **Aggressive innovation**: [Opportunities]
 
 ## Risk/Benefit Analysis
+
 [Using your established matrices]
 
 ## Implementation Considerations
-- **Team skills required**: 
+
+- **Team skills required**:
 - **Time investment**:
 - **Tool/infrastructure needs**:
 
 ## Recommendation
+
 [Experiment/Adopt/Monitor/Reject] + reasoning
 
 ## Next Steps
+
 [Specific actions to take]
 ```
 
 ### Practice Integration Template
+
 ```markdown
 # [Pattern Name]: Client-Tested Implementation
 
 ## Context
+
 [Where/when you used this successfully]
 
 ## Implementation
+
 [Step-by-step guidance based on real experience]
 
 ## Results
+
 [Quantitative metrics + qualitative outcomes]
 
 ## Client Communication
+
 [How to explain this to clients]
 
 ## Lessons Learned
+
 [What you'd do differently next time]
 ```
 
 This framework lets you:
+
 1. **Capture everything** without commitment pressure
 2. **Analyze systematically** using your professional judgment
 3. **Commit only to proven patterns** that serve clients well
@@ -174,6 +206,7 @@ The key is moving slowly and deliberately from research to practice, always with
 ## Recent Intake Log
 
 ### 2025-09-29
+
 - **PRewrite: Reinforcement Learning for Prompt Optimization** (`docs/tier1-research/high-priority/2025-09-29-prewrite-reinforcement-learning-prompt-optimization.md`)
   - Priority: HIGH
   - Status: Tier 2 analysis complete (`src/analysis/2025-09-29-prewrite-reinforcement-learning-prompt-optimization.md`)
@@ -182,6 +215,7 @@ The key is moving slowly and deliberately from research to practice, always with
   - Next: Monitor for production case studies before experimental validation
 
 ### 2025-01-24
+
 - **ACE-FCA Context Engineering** (`docs/ace-fca-context-engineering.md`)
   - Priority: HIGH
   - Status: Tier 2 analysis complete (`src/analysis/ace-fca-context-engineering-analysis.md`)

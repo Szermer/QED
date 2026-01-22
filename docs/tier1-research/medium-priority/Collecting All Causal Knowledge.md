@@ -15,17 +15,17 @@ Causal knowledge is seen as one of the key ingredients to advance artificial int
 
 We provide three versions of our causality graph CauseNet:
 
-* [CauseNet-Full](https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-full.jsonl.bz2): The complete dataset
-* [CauseNet-Precision](https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-precision.jsonl.bz2): A subset of CauseNet-Full with higher precision
-* [CauseNet-Sample](https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-sample.json): A small sample dataset for first explorations and experiments without provenance data
+- [CauseNet-Full](https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-full.jsonl.bz2): The complete dataset
+- [CauseNet-Precision](https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-precision.jsonl.bz2): A subset of CauseNet-Full with higher precision
+- [CauseNet-Sample](https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-sample.json): A small sample dataset for first explorations and experiments without provenance data
 
 ## Statistics
 
-|   | Relations | Concepts | File Size |
-| --- | --- | --- | --- |
-| CauseNet-Full | 11,609,890 | 12,186,195 | 1.8GB |
-| CauseNet-Precision | 199,806 | 80,223 | 135MB |
-| CauseNet-Sample | 264 | 524 | 54KB |
+|                    | Relations  | Concepts   | File Size |
+| ------------------ | ---------- | ---------- | --------- |
+| CauseNet-Full      | 11,609,890 | 12,186,195 | 1.8GB     |
+| CauseNet-Precision | 199,806    | 80,223     | 135MB     |
+| CauseNet-Sample    | 264        | 524        | 54KB      |
 
 ## Data Model
 
@@ -54,14 +54,14 @@ For CauseNet-Full and CauseNet-Precision, we include comprehensive provenance da
 
 For relations extracted from natural language sentences we provide:
 
-* `surface`: the surface form of the sentence, i.e., the original string
-* `path_pattern`: the linguistic path pattern used for extraction
+- `surface`: the surface form of the sentence, i.e., the original string
+- `path_pattern`: the linguistic path pattern used for extraction
 
 ### ClueWeb12 Sentences
 
-* `clueweb12_page_id`: page id as provided in the ClueWeb12 corpus
-* `clueweb12_page_reference`: page reference as provided in the ClueWeb12 corpus
-* `clueweb12_page_timestamp`: page access data as stated in the ClueWeb12 corpus
+- `clueweb12_page_id`: page id as provided in the ClueWeb12 corpus
+- `clueweb12_page_reference`: page reference as provided in the ClueWeb12 corpus
+- `clueweb12_page_timestamp`: page access data as stated in the ClueWeb12 corpus
 
 ```
 {
@@ -90,12 +90,12 @@ For relations extracted from natural language sentences we provide:
 
 ### Wikipedia Sentences
 
-* `wikipedia_page_id`: the Wikipedia page id
-* `wikipedia_page_title`: the Wikipedia page title
-* `wikipedia_revision_id`: the Wikipedia revision id of the last edit
-* `wikipedia_revision_timestamp`: the timestamp of the Wikipedia revision id of the last edit
-* `sentence_section_heading`: the section heading where the sentence comes from
-* `sentence_section_level`: the level where the section heading comes from
+- `wikipedia_page_id`: the Wikipedia page id
+- `wikipedia_page_title`: the Wikipedia page title
+- `wikipedia_revision_id`: the Wikipedia revision id of the last edit
+- `wikipedia_revision_timestamp`: the timestamp of the Wikipedia revision id of the last edit
+- `sentence_section_heading`: the section heading where the sentence comes from
+- `sentence_section_level`: the level where the section heading comes from
 
 ```
 {
@@ -127,9 +127,9 @@ For relations extracted from natural language sentences we provide:
 
 ### Wikipedia Lists
 
-* `list_toc_parent_title`: The heading of the parent section the list appears in
-* `list_toc_section_heading`: The heading of the section the list appears in
-* `list_toc_section_level`: The nesting level of the section within the table of content (toc)
+- `list_toc_parent_title`: The heading of the parent section the list appears in
+- `list_toc_section_heading`: The heading of the section the list appears in
+- `list_toc_section_level`: The nesting level of the section within the table of content (toc)
 
 ```
 {
@@ -160,9 +160,9 @@ For relations extracted from natural language sentences we provide:
 
 ### Wikipedia Infoboxes
 
-* `infobox_template`: The Wikipedia template of the infobox
-* `infobox_title`: The title of the Wikipedia infobox
-* `infobox_argument`: The argument of the infobox (the key of the key-value pair)
+- `infobox_template`: The Wikipedia template of the infobox
+- `infobox_title`: The title of the Wikipedia infobox
+- `infobox_argument`: The argument of the infobox (the key of the key-value pair)
 
 ```
 {

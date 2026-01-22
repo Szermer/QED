@@ -80,14 +80,15 @@ sequenceDiagram
    ```
 3. `View.call()` executes, reading the file content
 4. Results contain the file content with a potential bug:
+
    ```tsx
-   import React from 'react';
-   import { Box } from 'ink';
-   
+   import React from "react";
+   import { Box } from "ink";
+
    interface BugProps {
      message: string;
    }
-   
+
    // Bug: This component tries to access undefinedProp which doesn't exist
    export function Bug({ message }: BugProps) {
      return (
@@ -119,7 +120,7 @@ sequenceDiagram
 6. `Edit.call()` executes, modifying the file
 7. Results show successful edit:
    ```
-   The file /path/to/project/src/components/Bug.tsx has been updated. 
+   The file /path/to/project/src/components/Bug.tsx has been updated.
    ```
 
 ```mermaid
@@ -172,10 +173,11 @@ Just as in Example 1, the input is captured, processed, and passed to the query 
 #### Phase 2: Claude's Response with Multiple Tool Uses
 
 Claude analyzes the request and determines it needs to:
+
 - Find all React component files
 - Search for useState hook usage
 - Read relevant files to show the components
-   
+
 Instead of responding with a single tool use, Claude returns multiple tool uses in one response:
 
 ```json
@@ -190,7 +192,7 @@ Instead of responding with a single tool use, Claude returns multiple tool uses 
       }
     },
     {
-      "type": "tool_use", 
+      "type": "tool_use",
       "id": "tool_use_2",
       "name": "GrepTool",
       "parameters": {
@@ -226,24 +228,24 @@ sequenceDiagram
     participant GlobTool
     participant GrepTool1 as GrepTool (import)
     participant GrepTool2 as GrepTool (useState)
-    
+
     User->>REPL: "Show me all React components using useState hooks"
     REPL->>query.ts: Process input
     query.ts->>Claude: Make API request
     Claude-->>query.ts: Response with 3 tool_use blocks
-    
+
     query.ts->>query.ts: Check if all tools are read-only
-    
+
     par Parallel execution
         query.ts->>PatternTool: Execute tool_use_1
         query.ts->>SearchTool1: Execute tool_use_2
         query.ts->>SearchTool2: Execute tool_use_3
     end
-    
+
     SearchTool1-->>query.ts: Return files importing useState
     PatternTool-->>query.ts: Return all .tsx files
     SearchTool2-->>query.ts: Return files using useState hook
-    
+
     query.ts->>query.ts: Sort results in original order
     query.ts->>Claude: Send all tool results
     Claude-->>query.ts: Request file content
@@ -252,8 +254,8 @@ sequenceDiagram
 The results are collected from all three tools, sorted back to the original order, and sent back to Claude. Claude then requests to read specific files, which are again executed in parallel, and finally produces an analysis of the useState usage patterns.
 
 This parallel execution significantly speeds up response time by:
+
 1. Running all file search operations concurrently
 2. Running all file read operations concurrently
 3. Maintaining correct ordering of results
 4. Streaming all results back as soon as they're available
-

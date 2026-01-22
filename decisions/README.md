@@ -7,7 +7,7 @@ This directory contains Architecture Decision Records adapted for AI-assisted de
 ADRs help maintain institutional knowledge about **why** specific AI development patterns were chosen, not just what was implemented. This is crucial for:
 
 - **Client communication**: Explaining AI tool choices and risk mitigation
-- **Team consistency**: Ensuring framework decisions persist across projects  
+- **Team consistency**: Ensuring framework decisions persist across projects
 - **Future decisions**: Learning from past successes and failures
 - **QED integrity**: Documenting the evidence behind "proven practices"
 
@@ -27,6 +27,7 @@ Each ADR follows this template adapted for AI development contexts:
 `YYYY-MM-NN-descriptive-title.md`
 
 Examples:
+
 - `2025-01-01-claude-code-framework-selection.md`
 - `2025-01-02-mcp-integration-approach.md`
 - `2025-01-03-multi-agent-rejection-decision.md`
@@ -34,21 +35,25 @@ Examples:
 ## Decision Categories
 
 ### Framework Selection ADRs
+
 - AI coding assistant tool choices (Claude Code, Cursor, etc.)
 - Framework pattern adoption (command systems, multi-agent, etc.)
 - Integration architecture decisions
 
-### Client Workflow ADRs  
+### Client Workflow ADRs
+
 - Risk tolerance assessment approaches
 - Communication patterns with clients about AI usage
 - Quality assurance and review processes
 
 ### Tool Integration ADRs
+
 - MCP server selections and configurations
 - Custom tool development vs. off-the-shelf
 - Testing and validation frameworks
 
 ### Process ADRs
+
 - Knowledge intake and evaluation workflows
 - Experimental validation approaches
 - Documentation and handoff standards
@@ -68,12 +73,14 @@ See [DECISION_REGISTRY.md](DECISION_REGISTRY.md) for a searchable index of all d
 ## ADR Lifecycle
 
 ### Status Values
+
 - **Proposed**: Decision under consideration
-- **Accepted**: Decision implemented and validated  
+- **Accepted**: Decision implemented and validated
 - **Superseded**: Replaced by newer decision (with reference)
 - **Deprecated**: No longer recommended but still documented
 
 ### Review Process
+
 - **Quarterly reviews**: Assess ADR currency and relevance
 - **Project retrospectives**: Update with actual outcomes
 - **Client feedback**: Incorporate lessons learned from implementations

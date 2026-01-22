@@ -13,10 +13,10 @@ _This is part of the [Context Engineering Series](https://jxnl.co/writing/2025/0
 
 **Key Terms:**
 
-* **Context Engineering:** Building dynamic systems to provide the right information and tools in the right format so agents can accomplish tasks reliably
-* **Context Pollution:** When valuable reasoning context gets flooded with irrelevant but computationally cheap information (logs, error traces, diagnostic output)
-* **Context Rot:** The degradation of AI performance as input length increases, where models process context less reliably in longer conversations
-* **Subagents:** Specialized AI workers that handle messy, token-intensive tasks in isolation and return only distilled insights to the main reasoning thread
+- **Context Engineering:** Building dynamic systems to provide the right information and tools in the right format so agents can accomplish tasks reliably
+- **Context Pollution:** When valuable reasoning context gets flooded with irrelevant but computationally cheap information (logs, error traces, diagnostic output)
+- **Context Rot:** The degradation of AI performance as input length increases, where models process context less reliably in longer conversations
+- **Subagents:** Specialized AI workers that handle messy, token-intensive tasks in isolation and return only distilled insights to the main reasoning thread
 
 Through my [consulting work](https://jxnl.co/consulting/), I help companies build better AI systems. AI tools often waste huge amounts of processing power on messy information. Their main thinking gets clouded. **Most of what they process is junk** like test results, error logs, and long outputs that make it hard for the AI to think clearly.
 
@@ -26,10 +26,10 @@ I'll show you the exact difference using Claude Code as an example. **Same abili
 
 By the end of this post, you'll understand:
 
-* **Why too much messy information hurts AI performance** (and how to measure it)
-* **When to use slash commands vs subagents** (how to decide for users and builders)
-* **How real systems work** (Claude Code's actual setup)
-* **How to audit your own workflows** (identify subagent candidates in your current systems)
+- **Why too much messy information hurts AI performance** (and how to measure it)
+- **When to use slash commands vs subagents** (how to decide for users and builders)
+- **How real systems work** (Claude Code's actual setup)
+- **How to audit your own workflows** (identify subagent candidates in your current systems)
 
 Any AI tool that handles messy data faces this choice. This includes tools that read logs, process data, check security, or help customers. **Good information management is how you build AI tools that work at scale.**
 
@@ -63,7 +63,7 @@ This diagram shows how tokens accumulate when you use slash commands. You start 
 
 !!! example Context pollution from test failures and logs (click to expand)
 
-```
+`````
 ````text
 FAILED tests/test_refund.py::test_refund_with_none_guard - AssertionError: assert None is not None
 FAILED tests/test_payment.py::test_process_payment_with_refunds - IndexError: list index out of range
@@ -169,7 +169,8 @@ stdout from application logs:
 2025-08-29 10:15:23.447 [http-nio-8080-exec-1] WARN  c.c.p.service.ValidationService - Received null line_items, proceeding anyway
 2025-08-29 10:15:23.461 [http-nio-8080-exec-1] ERROR c.c.p.service.RefundService - NoneType iteration error in process_line_items
 2025-08-29 10:15:23.462 [http-nio-8080-exec-1] ERROR c.c.p.controller.RefundController - HTTP 500: Internal server error during refund processing
-```
+`````
+
 ```
 
 This is context rot in action—the well-documented phenomenon where [AI performance degrades as input length increases](https://research.trychroma.com/context-rot). As the conversation grows, it's hard to figure out what the main goal is. The more irrelevant stuff you add, the worse the AI performs. Your first 5000 words were focused on adding a new feature to the refunds system. Now 95% of your AI's memory looks like diagnostic junk. It's like the reverse of finding a needle in a haystack. You had the needle and then buried it under a pile of hay. How could you possibly go back to working on the feature without strange behavior?
@@ -200,9 +201,11 @@ Your test runner subagent can:
 It might use 180,000 tokens in the process. It reads huge log files, parses long error traces, and checks hundreds of code files. But what comes back to your main AI is a short, clear 5,000-word report:
 
 ```
+
 Tests A, B, C are failing
 Root cause is in refund.py, introduced by PR #123
 Suggested fix: restore the None guard
+
 ```
 
 Now your main context is still tight and focused. It's 21,000 tokens total: clean plan + distilled results.
@@ -275,3 +278,4 @@ The teams that recognize this early will build agents that scale. The teams that
 * * *
 
 _This post is part of the [Context Engineering Series](https://jxnl.co/writing/2025/08/28/context-engineering-index/). For foundational concepts, start with [Beyond Chunks: Context Engineering Tool Response](https://jxnl.co/writing/2025/08/27/facets-context-engineering/). Next up: exploring how enterprise teams are applying these patterns to business-critical agent systems._
+```

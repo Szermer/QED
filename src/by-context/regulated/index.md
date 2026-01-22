@@ -5,6 +5,7 @@ Patterns for organizations in regulated industries (healthcare, finance, governm
 ## Compliance Patterns
 
 Regulated industries require:
+
 - Data residency and sovereignty
 - Audit trails for all operations
 - Strict access controls and data classification
@@ -13,19 +14,23 @@ Regulated industries require:
 ## Recommended Patterns
 
 ### Security & Compliance
+
 - [The Permission System](../../patterns/security/the-permission-system.md) - Mandatory access controls
 - [Authentication and Identity](../../patterns/security/authentication-identity.md) - Multi-factor authentication
 - [Sharing and Permissions](../../patterns/security/sharing-permissions.md) - Data classification enforcement
 
 ### Architecture
+
 - [Core Architecture](../../patterns/architecture/core-architecture.md) - Compliance-ready foundation
 - [Thread Management at Scale](../../patterns/architecture/thread-management.md) - Audit trail preservation
 
 ### Operations
+
 - [Observability and Monitoring](../../patterns/operations/observability-monitoring.md) - Compliance monitoring
 - [Deployment Guide](../../patterns/operations/deployment-guide.md) - Secure deployment practices
 
 ### Quality
+
 - [Risk Assessment](../../patterns/quality/risk-assessment.md) - Regulatory risk evaluation
 
 ## Key Considerations
@@ -39,16 +44,19 @@ Regulated industries require:
 ## Industry-Specific Guidance
 
 ### Healthcare (HIPAA)
+
 - PHI data classification and handling
 - Business Associate Agreements (BAAs)
 - Minimum necessary access principles
 
 ### Financial Services (PCI-DSS, SOX)
+
 - Payment card data isolation
 - Financial audit trails
 - Separation of duties
 
 ### Government (FedRAMP, NIST)
+
 - Security control baselines
 - Continuous monitoring
 - Incident response procedures

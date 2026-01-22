@@ -5,76 +5,92 @@ Searchable index of all Architecture Decision Records for AI development pattern
 ## Active Decisions
 
 ### Framework & Tool Selection
-| ADR | Date | Title | Status | Client Context | Impact |
-|-----|------|-------|--------|----------------|---------|
-| **ADR-2025-09-01** | 2025-09-08 | Claude Code Framework Selection | Accepted | All profiles | High |
-| **ADR-2025-09-08** | 2025-09-08 | Tool-Specific Pattern Evaluation | Accepted | All profiles | High |
-| **ADR-2025-09-08-TAX** | 2025-09-08 | Taxonomy-Based Structure Migration | Implemented | QED Development | Critical |
-| **ADR-2025-01-24-PAGES** | 2025-01-24 | GitHub Pages Deployment Configuration | Implemented | QED Development | Critical |
-| **ADR-2025-01-24-CHAPTERS** | 2025-01-24 | Remove Book-Style Chapter References | Implemented | QED Development | High |
-| **ADR-2025-09-29-TIER1** | 2025-09-29 | Tier 1 Research mdBook Integration | Implemented | QED Development | High |
+
+| ADR                         | Date       | Title                                 | Status      | Client Context  | Impact   |
+| --------------------------- | ---------- | ------------------------------------- | ----------- | --------------- | -------- |
+| **ADR-2025-09-01**          | 2025-09-08 | Claude Code Framework Selection       | Accepted    | All profiles    | High     |
+| **ADR-2025-09-08**          | 2025-09-08 | Tool-Specific Pattern Evaluation      | Accepted    | All profiles    | High     |
+| **ADR-2025-09-08-TAX**      | 2025-09-08 | Taxonomy-Based Structure Migration    | Implemented | QED Development | Critical |
+| **ADR-2025-01-24-PAGES**    | 2025-01-24 | GitHub Pages Deployment Configuration | Implemented | QED Development | Critical |
+| **ADR-2025-01-24-CHAPTERS** | 2025-01-24 | Remove Book-Style Chapter References  | Implemented | QED Development | High     |
+| **ADR-2025-09-29-TIER1**    | 2025-09-29 | Tier 1 Research mdBook Integration    | Implemented | QED Development | High     |
 
 ## By Category
 
 ### 🛠 Framework Selection
+
 - **ADR-2025-09-01**: Claude Code Framework Selection - Choosing framework patterns for client projects
 - **ADR-2025-09-08**: Tool-Specific Pattern Evaluation - Enhanced criteria for vendor-specific AI tools
 
 ### 📚 Documentation Architecture
+
 - **ADR-2025-09-08-TAX**: Taxonomy-Based Structure Migration - Multi-dimensional pattern organization
 - **ADR-2025-01-24-PAGES**: GitHub Pages Deployment Configuration - Actions-based deployment
 - **ADR-2025-01-24-CHAPTERS**: Remove Book-Style Chapter References - Pattern-focused structure
 - **ADR-2025-09-29-TIER1**: Tier 1 Research mdBook Integration - Making all research searchable
 
-### 👥 Client Workflow  
-*No ADRs yet - coming soon*
+### 👥 Client Workflow
+
+_No ADRs yet - coming soon_
 
 ### 🔧 Tool Integration
-*No ADRs yet - coming soon*
+
+_No ADRs yet - coming soon_
 
 ### 📋 Process Decisions
-*No ADRs yet - coming soon*
+
+_No ADRs yet - coming soon_
 
 ## By Client Risk Profile
 
 ### Conservative (Financial, Healthcare, Government)
+
 - **ADR-2025-09-01**: Framework selection emphasizing low-risk patterns
 - **ADR-2025-09-08**: Enhanced vendor risk assessment protecting against lock-in
 
 ### Moderate (Standard Business)
+
 - **ADR-2025-09-01**: Framework selection with balanced risk/benefit approach
 - **ADR-2025-09-08**: Systematic tool evaluation with cost modeling
 
 ### Aggressive (Startups, Internal Tools)
+
 - **ADR-2025-09-01**: Framework selection enabling rapid experimentation
 - **ADR-2025-09-08**: Comprehensive vendor tool assessment including experimental services
 
 ## By Status
 
 ### ✅ Accepted
+
 - ADR-2025-09-01: Claude Code Framework Selection
 - ADR-2025-09-08: Tool-Specific Pattern Evaluation
 
 ### ✅ Implemented
+
 - ADR-2025-09-08-TAX: Taxonomy-Based Structure Migration
 - ADR-2025-01-24-PAGES: GitHub Pages Deployment Configuration
 - ADR-2025-01-24-CHAPTERS: Remove Book-Style Chapter References
 
 ### 🔄 Proposed
-*None currently*
+
+_None currently_
 
 ### 🔄 Under Review
-*None currently*
+
+_None currently_
 
 ### ❌ Superseded
-*None yet*
 
-### ⚠️ Deprecated  
-*None yet*
+_None yet_
+
+### ⚠️ Deprecated
+
+_None yet_
 
 ## Search Index
 
 ### By Technology
+
 - **Claude Code**: ADR-2025-09-01
 - **Framework Wars**: ADR-2025-09-01
 - **Risk Assessment**: ADR-2025-09-01, ADR-2025-09-08
@@ -84,6 +100,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **Documentation Architecture**: ADR-2025-09-08-TAX
 
 ### By Problem Domain
+
 - **Framework Selection**: ADR-2025-09-01
 - **Client Safety**: ADR-2025-09-01, ADR-2025-09-08
 - **Multi-Agent Systems**: ADR-2025-09-01 (rejection decision)
@@ -96,6 +113,7 @@ Searchable index of all Architecture Decision Records for AI development pattern
 - **Pattern Organization**: ADR-2025-09-08-TAX
 
 ### By Outcome Type
+
 - **Tool Adoption**: ADR-2025-09-01
 - **Risk Mitigation**: ADR-2025-09-01, ADR-2025-09-08
 - **Process Definition**: ADR-2025-09-01, ADR-2025-09-08
@@ -104,15 +122,18 @@ Searchable index of all Architecture Decision Records for AI development pattern
 ## Quick Reference
 
 ### Most Referenced ADRs
+
 1. **ADR-2025-09-01**: Foundation decision for all framework choices
 2. **ADR-2025-09-08**: Tool-specific evaluation methodology
 
 ### Most Impactful Decisions
+
 1. **ADR-2025-09-01**: Defines risk-based approach to AI development patterns
 2. **ADR-2025-09-08**: Establishes vendor risk assessment for tool-specific evaluations
 3. **ADR-2025-09-08-TAX**: Transformed documentation structure for better practitioner usability
 
 ### Recent Updates
+
 - **2025-01-24**: ADR-2025-01-24-PAGES created - GitHub Pages deployment configuration fix
 - **2025-01-24**: ADR-2025-01-24-CHAPTERS created - Removed book-style chapter references
 - **2025-09-09**: Knowledge intake workflow implemented, ADRs cross-linked with intake framework

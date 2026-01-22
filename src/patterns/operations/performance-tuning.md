@@ -81,43 +81,43 @@ Batching reduces per-request overhead and improves throughput:
 // - Handle partial failures
 // - Track batch-level metrics
 // - Support streaming responses
-  
+
   private async processBatch(): Promise<void> {
     if (this.processing || this.queue.length === 0) return;
-    
+
     this.processing = true;
     const batch = this.queue.splice(0, this.BATCH_SIZE);
-    
+
     try {
       // Combine requests for batch processing
       const batchRequest = this.combineBatch(batch);
       const batchResponse = await this.llm.batchComplete(batchRequest);
-      
+
       // Distribute responses
       batch.forEach((item, index) => {
         item.resolve(batchResponse.responses[index]);
       });
-      
+
       // Record metrics
       metrics.record('llm_batch_size', batch.length);
       metrics.record('llm_batch_latency', Date.now() - batch[0].queuedAt);
-      
+
     } catch (error) {
       batch.forEach(item => item.reject(error));
     } finally {
       this.processing = false;
-      
+
       // Process remaining items
       if (this.queue.length > 0) {
         this.scheduleBatch();
       }
     }
   }
-  
+
   private combineBatch(items: QueuedRequest[]): BatchLLMRequest {
     // Group by similar parameters for better caching
     const groups = this.groupBySimilarity(items);
-    
+
     return {
       requests: items.map(item => item.request),
       // Optimize token allocation across batch
@@ -133,68 +133,75 @@ Batching reduces per-request overhead and improves throughput:
 export class ContextWindowOptimizer {
   private readonly MAX_CONTEXT_TOKENS = 200000; // Claude 3 limit
   private readonly RESERVE_OUTPUT_TOKENS = 4000;
-  
+
   async optimizeContext(
     messages: Message[],
-    tools: Tool[]
+    tools: Tool[],
   ): Promise<OptimizedContext> {
     const available = this.MAX_CONTEXT_TOKENS - this.RESERVE_OUTPUT_TOKENS;
-    
+
     // Calculate token usage
     let usage = {
       system: await this.countTokens(this.systemPrompt),
       tools: await this.countTokens(this.formatTools(tools)),
-      messages: 0
+      messages: 0,
     };
-    
+
     // Prioritize recent messages
     const optimizedMessages: Message[] = [];
     const reversedMessages = [...messages].reverse();
-    
+
     for (const message of reversedMessages) {
       const messageTokens = await this.countTokens(message);
-      
-      if (usage.messages + messageTokens > available - usage.system - usage.tools) {
+
+      if (
+        usage.messages + messageTokens >
+        available - usage.system - usage.tools
+      ) {
         // Truncate or summarize older messages
         break;
       }
-      
+
       optimizedMessages.unshift(message);
       usage.messages += messageTokens;
     }
-    
+
     // Add summary of truncated messages if needed
     if (optimizedMessages.length < messages.length) {
-      const truncated = messages.slice(0, messages.length - optimizedMessages.length);
+      const truncated = messages.slice(
+        0,
+        messages.length - optimizedMessages.length,
+      );
       const summary = await this.summarizeMessages(truncated);
-      
+
       optimizedMessages.unshift({
-        role: 'system',
-        content: `Previous conversation summary: ${summary}`
+        role: "system",
+        content: `Previous conversation summary: ${summary}`,
       });
     }
-    
+
     return {
       messages: optimizedMessages,
       tokenUsage: usage,
-      truncated: messages.length - optimizedMessages.length
+      truncated: messages.length - optimizedMessages.length,
     };
   }
-  
+
   private async summarizeMessages(messages: Message[]): Promise<string> {
     // Use a smaller model for summarization
     const response = await this.llm.complete({
-      model: 'claude-3-haiku',
+      model: "claude-3-haiku",
       messages: [
         {
-          role: 'system',
-          content: 'Summarize the key points from this conversation in 2-3 sentences.'
+          role: "system",
+          content:
+            "Summarize the key points from this conversation in 2-3 sentences.",
         },
-        ...messages
+        ...messages,
       ],
-      maxTokens: 200
+      maxTokens: 200,
     });
-    
+
     return response.content;
   }
 }
@@ -205,65 +212,63 @@ export class ContextWindowOptimizer {
 ```typescript
 export class AdaptiveModelSelector {
   private modelStats = new Map<string, ModelStats>();
-  
+
   selectModel(request: ModelSelectionRequest): string {
     const { complexity, urgency, budget } = request;
-    
+
     // Fast path for simple requests
-    if (complexity === 'simple' && urgency === 'high') {
-      return 'claude-3-haiku';
+    if (complexity === "simple" && urgency === "high") {
+      return "claude-3-haiku";
     }
-    
+
     // Complex requests need more capable models
-    if (complexity === 'complex') {
-      return budget === 'unlimited' ? 'claude-3-opus' : 'claude-3.5-sonnet';
+    if (complexity === "complex") {
+      return budget === "unlimited" ? "claude-3-opus" : "claude-3.5-sonnet";
     }
-    
+
     // Adaptive selection based on performance
     const candidates = this.getCandidateModels(request);
     return this.selectBestPerforming(candidates);
   }
-  
+
   private selectBestPerforming(models: string[]): string {
     let bestModel = models[0];
     let bestScore = -Infinity;
-    
+
     for (const model of models) {
       const stats = this.modelStats.get(model);
       if (!stats) continue;
-      
+
       // Score based on success rate and speed
-      const score = stats.successRate * 0.7 + 
-                   (1 / stats.avgLatency) * 0.3;
-      
+      const score = stats.successRate * 0.7 + (1 / stats.avgLatency) * 0.3;
+
       if (score > bestScore) {
         bestScore = score;
         bestModel = model;
       }
     }
-    
+
     return bestModel;
   }
-  
+
   recordResult(model: string, result: ModelResult): void {
     const stats = this.modelStats.get(model) || {
       successRate: 0,
       avgLatency: 0,
-      totalRequests: 0
+      totalRequests: 0,
     };
-    
+
     // Update running averages
     stats.totalRequests++;
-    stats.successRate = (
-      stats.successRate * (stats.totalRequests - 1) + 
-      (result.success ? 1 : 0)
-    ) / stats.totalRequests;
-    
-    stats.avgLatency = (
-      stats.avgLatency * (stats.totalRequests - 1) + 
-      result.latency
-    ) / stats.totalRequests;
-    
+    stats.successRate =
+      (stats.successRate * (stats.totalRequests - 1) +
+        (result.success ? 1 : 0)) /
+      stats.totalRequests;
+
+    stats.avgLatency =
+      (stats.avgLatency * (stats.totalRequests - 1) + result.latency) /
+      stats.totalRequests;
+
     this.modelStats.set(model, stats);
   }
 }
@@ -276,14 +281,14 @@ export class AdaptiveModelSelector {
 ```sql
 -- Optimize thread listing query
 -- Before: Full table scan
-SELECT * FROM threads 
-WHERE user_id = $1 
-ORDER BY updated_at DESC 
+SELECT * FROM threads
+WHERE user_id = $1
+ORDER BY updated_at DESC
 LIMIT 20;
 
 -- After: Use covering index
-CREATE INDEX idx_threads_user_updated 
-ON threads(user_id, updated_at DESC) 
+CREATE INDEX idx_threads_user_updated
+ON threads(user_id, updated_at DESC)
 INCLUDE (id, title, message_count);
 
 -- Optimize message retrieval
@@ -294,7 +299,7 @@ SELECT * FROM tool_results WHERE tool_use_id IN (...);
 
 -- After: Single query with joins
 WITH message_data AS (
-  SELECT 
+  SELECT
     m.*,
     json_agg(
       json_build_object(
@@ -318,52 +323,52 @@ SELECT * FROM message_data ORDER BY created_at;
 ```typescript
 export class OptimizedDatabasePool {
   private pools: Map<string, Pool> = new Map();
-  
+
   constructor(private config: PoolConfig) {
     // Create separate pools for different workloads
-    this.createPool('read', {
+    this.createPool("read", {
       ...config,
       max: config.maxConnections * 0.7,
-      idleTimeoutMillis: 30000
+      idleTimeoutMillis: 30000,
     });
-    
-    this.createPool('write', {
+
+    this.createPool("write", {
       ...config,
       max: config.maxConnections * 0.2,
-      idleTimeoutMillis: 10000
+      idleTimeoutMillis: 10000,
     });
-    
-    this.createPool('analytics', {
+
+    this.createPool("analytics", {
       ...config,
       max: config.maxConnections * 0.1,
       idleTimeoutMillis: 60000,
-      statement_timeout: 300000 // 5 minutes for analytics
+      statement_timeout: 300000, // 5 minutes for analytics
     });
   }
-  
-// Query Routing Strategy
-// Route queries to appropriate pools:
-// - Explicit pool selection for known patterns
-// - SQL analysis for automatic routing
-// - Workload classification (OLTP vs OLAP)
-// - Performance monitoring integration
 
-// Query Instrumentation
-// Add comprehensive monitoring:
-// - Application-level query tagging
-// - Execution time measurement
-// - Resource utilization tracking
-// - Error rate monitoring by pool
+  // Query Routing Strategy
+  // Route queries to appropriate pools:
+  // - Explicit pool selection for known patterns
+  // - SQL analysis for automatic routing
+  // - Workload classification (OLTP vs OLAP)
+  // - Performance monitoring integration
 
-// Automatic Pool Selection
-// Implement intelligent routing:
-// - Parse SQL for operation type
-// - Detect analytics patterns (aggregations)
-// - Route complex queries appropriately
-// - Provide manual override options
+  // Query Instrumentation
+  // Add comprehensive monitoring:
+  // - Application-level query tagging
+  // - Execution time measurement
+  // - Resource utilization tracking
+  // - Error rate monitoring by pool
 
-// This reduces database contention and
-// improves overall system performance.
+  // Automatic Pool Selection
+  // Implement intelligent routing:
+  // - Parse SQL for operation type
+  // - Detect analytics patterns (aggregations)
+  // - Route complex queries appropriately
+  // - Provide manual override options
+
+  // This reduces database contention and
+  // improves overall system performance.
 }
 ```
 
@@ -373,69 +378,74 @@ export class OptimizedDatabasePool {
 export class BatchWriter {
   private writeQueue = new Map<string, WriteOperation[]>();
   private flushTimer?: NodeJS.Timeout;
-  
+
   async write(table: string, data: any): Promise<void> {
     const queue = this.writeQueue.get(table) || [];
     queue.push({ data, promise: defer() });
     this.writeQueue.set(table, queue);
-    
+
     this.scheduleFlush();
-    
+
     return queue[queue.length - 1].promise;
   }
-  
+
   private scheduleFlush(): void {
     if (this.flushTimer) return;
-    
+
     this.flushTimer = setTimeout(() => {
       this.flush();
     }, 100); // 100ms batch window
   }
-  
+
   private async flush(): Promise<void> {
     this.flushTimer = undefined;
-    
+
     for (const [table, operations] of this.writeQueue) {
       if (operations.length === 0) continue;
-      
+
       try {
         // Batch insert
         await this.batchInsert(table, operations);
-        
+
         // Resolve promises
-        operations.forEach(op => op.promise.resolve());
-        
+        operations.forEach((op) => op.promise.resolve());
       } catch (error) {
-        operations.forEach(op => op.promise.reject(error));
+        operations.forEach((op) => op.promise.reject(error));
       }
-      
+
       this.writeQueue.set(table, []);
     }
   }
-  
-  private async batchInsert(table: string, operations: WriteOperation[]): Promise<void> {
+
+  private async batchInsert(
+    table: string,
+    operations: WriteOperation[],
+  ): Promise<void> {
     const columns = Object.keys(operations[0].data);
-    const values = operations.map(op => columns.map(col => op.data[col]));
-    
+    const values = operations.map((op) => columns.map((col) => op.data[col]));
+
     // Build parameterized query
-    const placeholders = values.map((_, rowIndex) => 
-      `(${columns.map((_, colIndex) => `$${rowIndex * columns.length + colIndex + 1}`).join(', ')})`
-    ).join(', ');
-    
+    const placeholders = values
+      .map(
+        (_, rowIndex) =>
+          `(${columns.map((_, colIndex) => `$${rowIndex * columns.length + colIndex + 1}`).join(", ")})`,
+      )
+      .join(", ");
+
     const query = `
-      INSERT INTO ${table} (${columns.join(', ')})
+      INSERT INTO ${table} (${columns.join(", ")})
       VALUES ${placeholders}
       ON CONFLICT (id) DO UPDATE SET
-      ${columns.map(col => `${col} = EXCLUDED.${col}`).join(', ')}
+      ${columns.map((col) => `${col} = EXCLUDED.${col}`).join(", ")}
     `;
-    
+
     const flatValues = values.flat();
     await this.db.query(query, flatValues);
-    
-    metrics.record('batch_insert', {
+
+    metrics.record("batch_insert", {
       table,
       rows: operations.length,
-      columns: columns.length
+      columns: columns.length,
     });
   }
 }
@@ -447,81 +457,79 @@ export class BatchWriter {
 
 ```typescript
 export class TieredCache {
-  private l1Cache: MemoryCache;     // In-process memory
-  private l2Cache: RedisCache;      // Shared Redis
-  private l3Cache?: CDNCache;       // Optional CDN
-  
+  private l1Cache: MemoryCache; // In-process memory
+  private l2Cache: RedisCache; // Shared Redis
+  private l3Cache?: CDNCache; // Optional CDN
+
   constructor(config: CacheConfig) {
     this.l1Cache = new MemoryCache({
       maxSize: config.l1MaxSize || 1000,
-      ttl: config.l1TTL || 60 // 1 minute
+      ttl: config.l1TTL || 60, // 1 minute
     });
-    
+
     this.l2Cache = new RedisCache({
       client: config.redisClient,
       ttl: config.l2TTL || 300, // 5 minutes
-      keyPrefix: config.keyPrefix
+      keyPrefix: config.keyPrefix,
     });
-    
+
     if (config.cdnEnabled) {
       this.l3Cache = new CDNCache(config.cdnConfig);
     }
   }
-  
+
   async get<T>(key: string): Promise<T | null> {
     // Check L1
     const l1Result = this.l1Cache.get<T>(key);
     if (l1Result) {
-      metrics.increment('cache_hit', { level: 'l1' });
+      metrics.increment("cache_hit", { level: "l1" });
       return l1Result;
     }
-    
+
     // Check L2
     const l2Result = await this.l2Cache.get<T>(key);
     if (l2Result) {
-      metrics.increment('cache_hit', { level: 'l2' });
-      
+      metrics.increment("cache_hit", { level: "l2" });
+
       // Promote to L1
       this.l1Cache.set(key, l2Result);
       return l2Result;
     }
-    
+
     // Check L3
     if (this.l3Cache) {
       const l3Result = await this.l3Cache.get<T>(key);
       if (l3Result) {
-        metrics.increment('cache_hit', { level: 'l3' });
-        
+        metrics.increment("cache_hit", { level: "l3" });
+
         // Promote to L1 and L2
         this.l1Cache.set(key, l3Result);
         await this.l2Cache.set(key, l3Result);
         return l3Result;
       }
     }
-    
-    metrics.increment('cache_miss');
+
+    metrics.increment("cache_miss");
     return null;
   }
-  
-  async set<T>(
-    key: string, 
-    value: T, 
-    options?: CacheOptions
-  ): Promise<void> {
+
+  async set<T>(key: string, value: T, options?: CacheOptions): Promise<void> {
     // Write to all layers
     this.l1Cache.set(key, value, options);
-    
-    await Promise.all([
-      this.l2Cache.set(key, value, options),
-      this.l3Cache?.set(key, value, options)
-    ].filter(Boolean));
+
+    await Promise.all(
+      [
+        this.l2Cache.set(key, value, options),
+        this.l3Cache?.set(key, value, options),
+      ].filter(Boolean),
+    );
   }
-  
+
   async invalidate(pattern: string): Promise<void> {
     // Invalidate across all layers
     this.l1Cache.invalidate(pattern);
     await this.l2Cache.invalidate(pattern);
-    
+
     if (this.l3Cache) {
       await this.l3Cache.purge(pattern);
     }
@@ -535,45 +543,45 @@ export class TieredCache {
 export class CacheKeyGenerator {
   generateKey(params: CacheKeyParams): string {
     const parts: string[] = [params.namespace];
-    
+
     // Include version for cache busting
     parts.push(`v${params.version || 1}`);
-    
+
     // Add entity identifiers
     if (params.userId) parts.push(`u:${params.userId}`);
     if (params.teamId) parts.push(`t:${params.teamId}`);
     if (params.threadId) parts.push(`th:${params.threadId}`);
-    
+
     // Add operation
     parts.push(params.operation);
-    
+
     // Add parameters hash
     if (params.args) {
       const hash = this.hashObject(params.args);
       parts.push(hash);
     }
-    
-    return parts.join(':');
+
+    return parts.join(":");
   }
-  
+
   private hashObject(obj: any): string {
     // Stable hash that handles object key ordering
     const sorted = this.sortObject(obj);
     const json = JSON.stringify(sorted);
-    
+
     return crypto
-      .createHash('sha256')
+      .createHash("sha256")
       .update(json)
-      .digest('hex')
+      .digest("hex")
       .substring(0, 8);
   }
-  
+
   private sortObject(obj: any): any {
     if (Array.isArray(obj)) {
-      return obj.map(item => this.sortObject(item));
+      return obj.map((item) => this.sortObject(item));
     }
-    
-    if (obj !== null && typeof obj === 'object') {
+
+    if (obj !== null && typeof obj === "object") {
       return Object.keys(obj)
         .sort()
         .reduce((sorted, key) => {
@@ -581,7 +589,7 @@ export class CacheKeyGenerator {
           return sorted;
         }, {} as any);
     }
-    
+
     return obj;
   }
 }
@@ -594,23 +602,20 @@ export class CacheKeyGenerator {
 ```typescript
 export class RequestDeduplicator {
   private inFlight = new Map<string, Promise<any>>();
-  
-  async execute<T>(
-    key: string,
-    fn: () => Promise<T>
-  ): Promise<T> {
+
+  async execute<T>(key: string, fn: () => Promise<T>): Promise<T> {
     // Check if identical request is in flight
     const existing = this.inFlight.get(key);
     if (existing) {
-      metrics.increment('request_deduplicated');
+      metrics.increment("request_deduplicated");
       return existing as Promise<T>;
     }
-    
+
     // Execute and track
     const promise = fn().finally(() => {
       this.inFlight.delete(key);
     });
-    
+
     this.inFlight.set(key, promise);
     return promise;
   }
@@ -620,10 +625,7 @@ export class RequestDeduplicator {
 const dedup = new RequestDeduplicator();
 
 async function fetchThread(id: string): Promise<Thread> {
-  return dedup.execute(
-    `thread:${id}`,
-    () => api.getThread(id)
-  );
+  return dedup.execute(`thread:${id}`, () => api.getThread(id));
 }
 ```
 
@@ -632,11 +634,11 @@ async function fetchThread(id: string): Promise<Thread> {
 ```typescript
 export class ConnectionPool {
   private agents = new Map<string, http.Agent>();
-  
+
   getAgent(url: string): http.Agent {
     const { protocol, hostname } = new URL(url);
     const key = `${protocol}//${hostname}`;
-    
+
     let agent = this.agents.get(key);
     if (!agent) {
       agent = new http.Agent({
@@ -646,26 +648,26 @@ export class ConnectionPool {
         maxFreeSockets: 10,
         timeout: 30000,
         // Enable TCP_NODELAY for low latency
-        scheduling: 'lifo'
+        scheduling: "lifo",
       });
-      
+
       this.agents.set(key, agent);
     }
-    
+
     return agent;
   }
-  
+
   async request(url: string, options: RequestOptions): Promise<Response> {
     const agent = this.getAgent(url);
-    
+
     return fetch(url, {
       ...options,
       agent,
       // Compression
       headers: {
         ...options.headers,
-        'Accept-Encoding': 'gzip, deflate, br'
-      }
+        "Accept-Encoding": "gzip, deflate, br",
+      },
     });
   }
 }
@@ -679,11 +681,11 @@ export class ConnectionPool {
 export class ObjectPool<T> {
   private pool: T[] = [];
   private created = 0;
-  
+
   constructor(
     private factory: () => T,
     private reset: (obj: T) => void,
-    private options: PoolOptions = {}
+    private options: PoolOptions = {},
   ) {
     // Pre-allocate minimum objects
     const min = options.min || 0;
@@ -692,27 +694,27 @@ export class ObjectPool<T> {
       this.created++;
     }
   }
-  
+
   acquire(): T {
     // Reuse from pool if available
     if (this.pool.length > 0) {
       return this.pool.pop()!;
     }
-    
+
     // Create new if under limit
     if (!this.options.max || this.created < this.options.max) {
       this.created++;
       return this.factory();
     }
-    
+
     // Wait for available object
-    throw new Error('Pool exhausted');
+    throw new Error("Pool exhausted");
   }
-  
+
   release(obj: T): void {
     // Reset and return to pool
     this.reset(obj);
-    
+
     // Only keep up to max idle
     const maxIdle = this.options.maxIdle || this.options.max || Infinity;
     if (this.pool.length < maxIdle) {
@@ -725,7 +727,7 @@ export class ObjectPool<T> {
 const parserPool = new ObjectPool(
   () => new MessageParser(),
   (parser) => parser.reset(),
-  { min: 5, max: 50, maxIdle: 20 }
+  { min: 5, max: 50, maxIdle: 20 },
 );
 
 function parseMessage(raw: string): ParsedMessage {
@@ -745,54 +747,54 @@ export class ResourceManager {
   private resources = new Set<Disposable>();
   private timers = new Set<NodeJS.Timeout>();
   private intervals = new Set<NodeJS.Timeout>();
-  
+
   register(resource: Disposable): void {
     this.resources.add(resource);
   }
-  
+
   setTimeout(fn: () => void, delay: number): NodeJS.Timeout {
     const timer = setTimeout(() => {
       this.timers.delete(timer);
       fn();
     }, delay);
-    
+
     this.timers.add(timer);
     return timer;
   }
-  
+
   setInterval(fn: () => void, delay: number): NodeJS.Timeout {
     const interval = setInterval(fn, delay);
     this.intervals.add(interval);
     return interval;
   }
-  
+
   clearTimeout(timer: NodeJS.Timeout): void {
     clearTimeout(timer);
     this.timers.delete(timer);
   }
-  
+
   clearInterval(interval: NodeJS.Timeout): void {
     clearInterval(interval);
     this.intervals.delete(interval);
   }
-  
+
   dispose(): void {
     // Clean up all resources
     for (const resource of this.resources) {
       try {
         resource.dispose();
       } catch (error) {
-        logger.error('Error disposing resource:', error);
+        logger.error("Error disposing resource:", error);
       }
     }
     this.resources.clear();
-    
+
     // Clear all timers
     for (const timer of this.timers) {
       clearTimeout(timer);
     }
     this.timers.clear();
-    
+
     // Clear all intervals
     for (const interval of this.intervals) {
       clearInterval(interval);
@@ -809,36 +811,35 @@ export class ResourceManager {
 ```typescript
 export class PerformanceMonitor {
   private metrics = new MetricsCollector();
-  
+
   instrumentMethod<T extends (...args: any[]) => any>(
     target: any,
     propertyKey: string,
-    descriptor: PropertyDescriptor
+    descriptor: PropertyDescriptor,
   ): PropertyDescriptor {
     const originalMethod = descriptor.value;
     const className = target.constructor.name;
-    
-    descriptor.value = async function(...args: any[]) {
+
+    descriptor.value = async function (...args: any[]) {
       const timer = metrics.startTimer();
       const labels = {
         class: className,
-        method: propertyKey
+        method: propertyKey,
       };
-      
+
       try {
         const result = await originalMethod.apply(this, args);
-        
-        metrics.record('method_duration', timer.end(), labels);
-        metrics.increment('method_calls', labels);
-        
+
+        metrics.record("method_duration", timer.end(), labels);
+        metrics.increment("method_calls", labels);
+
         return result;
-        
       } catch (error) {
-        metrics.increment('method_errors', labels);
+        metrics.increment("method_errors", labels);
         throw error;
       }
     };
-    
+
     return descriptor;
   }
 }
@@ -848,7 +849,7 @@ class ThreadService {
   @PerformanceMonitor.instrument
   async getThread(id: string): Promise<Thread> {
     // Method is automatically instrumented
-    return this.db.query('SELECT * FROM threads WHERE id = $1', [id]);
+    return this.db.query("SELECT * FROM threads WHERE id = $1", [id]);
   }
 }
 ```

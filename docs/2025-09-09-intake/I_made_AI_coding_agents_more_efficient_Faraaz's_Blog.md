@@ -4,30 +4,30 @@
 
 Table of Contents
 
--   Table of Contents
+- Table of Contents
 
--   [Look, AI coding agents are great](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#look-ai-coding-agents-are-great)
--   [They’re too wasteful.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#theyre-too-wasteful)
+- [Look, AI coding agents are great](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#look-ai-coding-agents-are-great)
+- [They’re too wasteful.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#theyre-too-wasteful)
 
--   [They don’t hold context of the codebase](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#they-dont-hold-context-of-the-codebase)
--   [They only have surface-level understanding.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#they-only-have-surface-level-understanding)
+- [They don’t hold context of the codebase](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#they-dont-hold-context-of-the-codebase)
+- [They only have surface-level understanding.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#they-only-have-surface-level-understanding)
 
--   [They’re susceptible to context rot.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#theyre-susceptible-to-context-rot)
--   [Doing something about it.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#doing-something-about-it)
+- [They’re susceptible to context rot.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#theyre-susceptible-to-context-rot)
+- [Doing something about it.](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#doing-something-about-it)
 
--   [Summarise and remember](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#summarise-and-remember)
--   [Enter vector embeddings](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#enter-vector-embeddings)
+- [Summarise and remember](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#summarise-and-remember)
+- [Enter vector embeddings](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#enter-vector-embeddings)
 
--   [Dependency graphs](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#dependency-graphs)
--   [Using graph databases](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#using-graph-databases)
+- [Dependency graphs](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#dependency-graphs)
+- [Using graph databases](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#using-graph-databases)
 
--   [How much did I save, really?](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#how-much-did-i-save-really)
--   [Savings with vector embeddings](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#savings-with-vector-embeddings)
+- [How much did I save, really?](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#how-much-did-i-save-really)
+- [Savings with vector embeddings](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#savings-with-vector-embeddings)
 
--   [Savings with dependency graphs](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#savings-with-dependency-graphs)
--   [Epilogue](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#epilogue)
+- [Savings with dependency graphs](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#savings-with-dependency-graphs)
+- [Epilogue](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#epilogue)
 
--   [References](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#references)
+- [References](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai#references)
 
 I’ve been using Large Language Models to write a lot of code for the past 6 months, and its led me to a very familiar rabbit hole. Here’s a pattern that keeps recurring:
 
@@ -37,7 +37,7 @@ I’ve been using Large Language Models to write a lot of code for the past 6 mo
 
 **AI Agent:** Great idea! I’ll help you add debug statements to all functions dealing with authentication or authorization. Let me first search for auth-related code in the project.
 
-*…<does some stuff for a few minutes>*
+_…<does some stuff for a few minutes>_
 
 **AI Agent:** Perfect! I’ve successfully added debug statements to all functions that deal with authorization. This should help you see in the logs if something is not being triggered.
 
@@ -55,7 +55,7 @@ But here’s the thing:
 
 ### They’re too wasteful.
 
-If you give a task to your coding agent where the requirements may not be spelled out to a tee, it will spend a lot of time and tokens figuring out what it needs to do. I suppose that’s a good thing, since you need to *measure twice, cut once*. But for every “cut” the AI makes, it takes all the measurements again.
+If you give a task to your coding agent where the requirements may not be spelled out to a tee, it will spend a lot of time and tokens figuring out what it needs to do. I suppose that’s a good thing, since you need to _measure twice, cut once_. But for every “cut” the AI makes, it takes all the measurements again.
 
 ![flowchart of ai agent comparing it to a tailor](https://faraazahmad.github.io/blog/_astro/ai_tailor.BFFMF2DJ_Z1xk8VA.webp)
 
@@ -72,7 +72,7 @@ Have you seen how an agent searches for context in your codebase?
 An agent will run tools like `ls`, `cat` and `grep` to structurally navigate and find keywords within your code that could match what you’ve described. But since this search is purely text-based, it is at the mercy of the codebase being structured and named properly. And lets be real, most programmers are not good at naming things:
 
 > There are only two hard things in Computer Science:
-> 
+>
 > Cache invalidation, naming things, and off-by-one errors.
 
 Let’s say someone has placed a file named `middleware.js` in the `/src/utils/` directory. From the name alone, it’s possible that this file could be handling authorizationn for the routes. So the agent spends time and tokens reading it, only to find out it implements route-level caching turns raw HTTP requests into objects for your web framework, but has no logic related to auth.
@@ -85,11 +85,11 @@ When the agents perform their text-based searching, they dump all the text gener
 
 ---
 
-**\[tool\_use\] grep:** `authorization | authentication | middleware | routes`
+**\[tool_use\] grep:** `authorization | authentication | middleware | routes`
 
 Great! I got results in `middleware.js`, let me read it to see if it implements logic to handle authorization.
 
-**\[tool\_use\] read\_file:** `'/src/middleware.js'`
+**\[tool_use\] read_file:** `'/src/middleware.js'`
 
 ```
 ...100s of lines of middleware.js...
@@ -111,7 +111,7 @@ But wait a second! this paper was published in August, 2024. Even if we assume t
 
 ---
 
-*\[SIDEBAR\]: One decent solution to this context rot issue is [sub-agents](https://ampcode.com/agents-for-the-agent). They quietly do their work in the background and present you with a result, but I digress.*
+_\[SIDEBAR\]: One decent solution to this context rot issue is [sub-agents](https://ampcode.com/agents-for-the-agent). They quietly do their work in the background and present you with a result, but I digress._
 
 ---
 
@@ -139,7 +139,7 @@ The number of elements in the array represents the dimensionality of the vector.
 
 Vector embeddings used in the real world usually have 1024 dimensions, which can carry more nuance. If you want to dive deeper into the algorithms used to calculate these vectors, you can check [this video](https://www.youtube.com/watch?v=ziiF1eFM3_4) out (later!)
 
-Consider the word **authentication** and a corpus that doesn’t contain it. If you run a keyword search on it, you wouldn’t get any results. However, if you perform a similarity search on the vectors using *Cosine similarity*, you get a list of elements that carry similar meaning:
+Consider the word **authentication** and a corpus that doesn’t contain it. If you run a keyword search on it, you wouldn’t get any results. However, if you perform a similarity search on the vectors using _Cosine similarity_, you get a list of elements that carry similar meaning:
 
 Rank
 
@@ -245,7 +245,7 @@ and out pops a result that looks something like this:
 
 name
 
-similarity\_score
+similarity_score
 
 `parseFunctionDeclaration`
 
@@ -372,9 +372,9 @@ It’s a similar story when comparing token usage for getting dependency graphs.
 ![Zed coding agent window trying to get call stacks](https://pbs.twimg.com/media/GzOekpwa8AAXFLV?format=jpg&name=large) ![Neo4j browser screenshot showing all call graphs that lead to a certain functionZed coding agent window trying to get call stacks](https://pbs.twimg.com/media/GzOeqoIaUAAePF0?format=jpg&name=4096x4096)
 
 > Claude Opus 4 with reasoning spent 30k tokens in 3 minutes and didn't even give me a complete answer.
-> 
+>
 > So I added this feature in my code intelligence MCP, it took 63 milliseconds and zero tokens: [pic.twitter.com/IBmOOO0KIy](https://t.co/IBmOOO0KIy)
-> 
+>
 > — Faraaz Ahmad (@Faraaz98) [August 25, 2025](https://twitter.com/Faraaz98/status/1960086112049020977?ref_src=twsrc%5Etfw)
 
 You know how it goes by now, I won’t bore you with even more benchmark data.
@@ -382,17 +382,17 @@ You know how it goes by now, I won’t bore you with even more benchmark data.
 ## Epilogue
 
 > Wife sends her programmer husband grocery shopping, she tells him:
-> 
+>
 > “I need butter, sugar and cooking oil. Also, get a loaf of bread and if they have eggs, get 6.”
-> 
+>
 > The husband returns with the butter, sugar and cooking oil, as well as 6 loaves of bread.
-> 
+>
 > The wife asks: “Why the hell did you get 6 loaves of bread?”
-> 
+>
 > To which the husband replies: “They had eggs.”
-> 
+>
 > Wife sent him back to the store. “Go get 6 eggs, and while you’re there, get some milk.”
-> 
+>
 > He never returned.
 
 **Natural language is non-deterministic by nature**. Combine this with the stochastic nature of LLMs, and you have the perfect breeding ground for LLM hallucinations. Ask an LLM if a function implements animations logic, sometimes it will take into account the animation easing functions like: `linear`, `ease-in`, `cubic-bezier`, etc. and sometimes it won’t. Unfortunately there is no right or wrong answer here. It’s upto the user to decide what they meant in that context. While I don’t have a solution for this annoying lack of determinism, the tools I’ve built will help you get there faster.
@@ -409,4 +409,5 @@ Contribute to faraazahmad/graphsense development by creating an account on GitHu
 2.  [SemTools: Are coding agents all you need?](https://www.llamaindex.ai/blog/semtools-are-coding-agents-all-you-need)
 
 ---
+
 Source: [I made AI coding agents more efficient | Faraaz's Blog](https://faraazahmad.github.io/blog/blog/efficient-coding-agent/?utm_source=tldrai)

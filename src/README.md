@@ -5,17 +5,20 @@ A practitioner's knowledge base for AI-assisted development, organized by risk p
 ## 🎯 Navigate by Your Needs
 
 ### By Risk Level
+
 - 🟢 [**Low Risk Patterns**](by-risk/low-risk/index.md) - Start here for safe adoption
 - 🟡 [**Managed Risk Patterns**](by-risk/managed-risk/index.md) - Requires safeguards
 - 🔴 [**High Risk Patterns**](by-risk/high-risk/index.md) - Critical systems only
 
 ### By Context
+
 - 🚀 [**Startup**](by-context/startup/index.md) - High agility, low process
 - 📈 [**Mid-Market**](by-context/mid-market/index.md) - Scaling patterns
 - 🏢 [**Enterprise**](by-context/enterprise/index.md) - Governance focus
 - 🏛️ [**Regulated**](by-context/regulated/index.md) - Compliance-first
 
 ### By Domain
+
 - [**Architecture**](patterns/architecture/index.md) - System design patterns
 - [**Implementation**](patterns/implementation/index.md) - Development patterns
 - [**Operations**](patterns/operations/index.md) - Deployment and maintenance
@@ -32,7 +35,9 @@ A practitioner's knowledge base for AI-assisted development, organized by risk p
 ## 🔍 Pattern Discovery
 
 ### Multi-Dimensional Classification
+
 Each pattern is tagged with:
+
 - **Domain**: What problem area it addresses
 - **Risk Profile**: Safety level (Green/Yellow/Red)
 - **Maturity**: Experimental → Validated → Standard
@@ -40,7 +45,9 @@ Each pattern is tagged with:
 - **Relationships**: Dependencies and conflicts
 
 ### Pattern Template
+
 All patterns follow a [standard template](PATTERN_TEMPLATE.md) including:
+
 - Executive summary with risk assessment
 - Implementation guide with prerequisites
 - Trade-offs and failure modes
@@ -50,12 +57,15 @@ All patterns follow a [standard template](PATTERN_TEMPLATE.md) including:
 ## 📊 Knowledge Management Tiers
 
 ### Tier 1: Research Collection
+
 Raw articles and resources being evaluated
 
-### Tier 2: Critical Analysis  
+### Tier 2: Critical Analysis
+
 Patterns under professional evaluation with risk assessment
 
 ### Tier 3: Proven Practice
+
 **QED Standard**: Only patterns validated in production with documented outcomes
 
 ## 🎯 Who This Is For
@@ -77,6 +87,7 @@ Patterns under professional evaluation with risk assessment
 ## 🚀 Quick Start
 
 ### For Safe Experimentation
+
 1. Browse [Low-Risk Patterns](by-risk/low-risk/index.md)
 2. Pick one pattern matching your context
 3. Follow the implementation guide
@@ -84,6 +95,7 @@ Patterns under professional evaluation with risk assessment
 5. Share learnings
 
 ### For Production Systems
+
 1. Complete [Risk Assessment](patterns/quality/risk-assessment.md)
 2. Review patterns for your [Context](by-context/index.md)
 3. Check all [Dependencies](PATTERN_TEMPLATE.md#relationships)

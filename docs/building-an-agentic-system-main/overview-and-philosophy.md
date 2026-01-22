@@ -3,6 +3,7 @@
 Modern AI coding assistants combine terminal interfaces with language models and carefully designed tool systems. Their architectures address four key challenges:
 
 1. **Instant results**: Uses async generators to stream output as it's produced.
+
    ```typescript
    // Streaming results with generators instead of waiting
    async function* streamedResponse() {

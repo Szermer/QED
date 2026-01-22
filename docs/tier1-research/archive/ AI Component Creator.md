@@ -25,10 +25,10 @@ Design with interactive components coming from your team’s design system.
 
 1. [What is UXPin’s AI Component Creator?](#toc_What-is-UXPin-s-AI-Component-Creator-)
 2. [Supercharge your Design-to-Development Workflow](#toc_Supercharge-your-Design-to-Development-Workflow)
-    1. [Turn Images into Code-Backed Components](#toc_Turn-Images-into-Code-Backed-Components)
-    2. [Transform UXPin Components into Coded Ones](#toc_Transform-UXPin-Components-into-Coded-Ones)
-    3. [Expanded Support for Code-Backed Libraries](#toc_Expanded-Support-for-Code-Backed-Libraries)
-    4. [Enhanced Theming Options for MUI Components](#toc_Enhanced-Theming-Options-for-MUI-Components)
+   1. [Turn Images into Code-Backed Components](#toc_Turn-Images-into-Code-Backed-Components)
+   2. [Transform UXPin Components into Coded Ones](#toc_Transform-UXPin-Components-into-Coded-Ones)
+   3. [Expanded Support for Code-Backed Libraries](#toc_Expanded-Support-for-Code-Backed-Libraries)
+   4. [Enhanced Theming Options for MUI Components](#toc_Enhanced-Theming-Options-for-MUI-Components)
 3. [AI Use Cases and Benefits for Designers & Developers](#toc_AI-Use-Cases-and-Benefits-for-Designers---Developers)
 4. [How to Access AI Component Creator](#toc_How-to-Access-AI-Component-Creator)
 5. [Further reading on Generating UI with AI](#toc_Further-reading-on-Generating-UI-with-AI)
@@ -72,10 +72,10 @@ AI Component Creator will convert the static UI into a coded element using your 
 
 We’re excited to announce that UXPin’s AI Component Creator now supports a wider range of open-source libraries that teams based their [design systems](https://www.uxpin.com/studio/blog/best-design-system-examples/) on, including:
 
-* MUI,
-* Ant Design,
-* React-Bootstrap,
-* Tailwind UI.
+- MUI,
+- Ant Design,
+- React-Bootstrap,
+- Tailwind UI.
 
 This update allows designers to generate production-ready components using their preferred library, ensuring design consistency and seamless integration with development standards. Choose the desired library, write a prompt or upload an image, and watch as AI creates fully coded components that match your design system.
 
@@ -89,11 +89,11 @@ By applying themes to AI-generated components, designers can maintain a unified 
 
 ## AI Use Cases and Benefits for Designers & Developers
 
-* **Generate UI from Visuals –** Upload images of UI designs and generate fully coded components in seconds. Speed up the transition from concept to interactive prototypes.
-* **Transform Static Elements into Coded Components –** Convert existing UXPin components into code-backed UI elements. Reduce handoffs and keep designs consistent with development standards.
-* **Generate Components Using Most-Documented Libraries –** Choose from MUI, Ant Design, React-Bootstrap, or Tailwind UI to create production-ready components. Maintain design system integrity and facilitate collaboration between design and dev teams.
-* **Apply** **Consistent Theming to MUI Components –** Create components with MUI themes instead of inline CSS styles. Improve scalability, maintain design consistency, and simplify updates.
-* **Bridge the Design-to-Development Gap –** By converting design elements into code-backed components, AI Component Creator minimizes friction between design and engineering. Streamline collaboration, reduce errors, and accelerate development.
+- **Generate UI from Visuals –** Upload images of UI designs and generate fully coded components in seconds. Speed up the transition from concept to interactive prototypes.
+- **Transform Static Elements into Coded Components –** Convert existing UXPin components into code-backed UI elements. Reduce handoffs and keep designs consistent with development standards.
+- **Generate Components Using Most-Documented Libraries –** Choose from MUI, Ant Design, React-Bootstrap, or Tailwind UI to create production-ready components. Maintain design system integrity and facilitate collaboration between design and dev teams.
+- **Apply** **Consistent Theming to MUI Components –** Create components with MUI themes instead of inline CSS styles. Improve scalability, maintain design consistency, and simplify updates.
+- **Bridge the Design-to-Development Gap –** By converting design elements into code-backed components, AI Component Creator minimizes friction between design and engineering. Streamline collaboration, reduce errors, and accelerate development.
 
 ## How to Access AI Component Creator
 
@@ -116,10 +116,10 @@ Watch what Merge AI plan is all about.
 
 Here are our guides for using AI for design and development, as well as using AI Component Creator:
 
-* [AI Tools for Designers](https://www.uxpin.com/studio/blog/ai-tools-for-designers/) – this article outlines the most popular tools that designers use.
-* [Prompt Engineering for Designers](https://www.uxpin.com/studio/blog/prompt-engineering-for-designers/) – write effective text prompts to get the best UI.
-* [ChatGPT in UI Design](https://www.uxpin.com/studio/blog/chatgpt-in-ui-design/) – explore how other designers use ChatGPT.
-* [AI Component Creator documentation](https://www.uxpin.com/docs/merge/ai-component-creator/) – our official documentation for this tool.
+- [AI Tools for Designers](https://www.uxpin.com/studio/blog/ai-tools-for-designers/) – this article outlines the most popular tools that designers use.
+- [Prompt Engineering for Designers](https://www.uxpin.com/studio/blog/prompt-engineering-for-designers/) – write effective text prompts to get the best UI.
+- [ChatGPT in UI Design](https://www.uxpin.com/studio/blog/chatgpt-in-ui-design/) – explore how other designers use ChatGPT.
+- [AI Component Creator documentation](https://www.uxpin.com/docs/merge/ai-component-creator/) – our official documentation for this tool.
 
 ## Generate UI with AI with a Single Click
 

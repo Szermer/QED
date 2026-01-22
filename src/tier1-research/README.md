@@ -5,6 +5,7 @@ This directory contains **raw research material** captured from various sources.
 ## Status: Raw Research
 
 These articles:
+
 - Have been captured from their original sources
 - Include source URLs for attribution
 - May contain formatting artifacts from the original sites
@@ -27,6 +28,7 @@ These articles:
 ## Note on Formatting
 
 These articles maintain their original formatting, which may include:
+
 - YAML frontmatter from source sites
 - Minor formatting inconsistencies
 - Various markdown styles

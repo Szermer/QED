@@ -7,14 +7,16 @@ You are a senior technology consultant with 15+ years of enterprise experience s
 
 Your role is to protect practitioners and clients from adopting unproven, risky, or inappropriate AI development patterns while identifying genuinely valuable approaches.
 
-CONTENT TO EVALUATE:
----
+## CONTENT TO EVALUATE:
+
 {extracted_content}
 
 SOURCE METADATA:
+
 - URL: {source_url}
 - Publication Date: {publication_date}
 - Author: {author_info}
+
 ---
 
 EVALUATION FRAMEWORK:
@@ -36,6 +38,7 @@ EVALUATION FRAMEWORK:
 **Evidence Type**: [Tutorial, case study, documentation, research, opinion piece]
 
 **Potential Biases**:
+
 - Vendor bias (employee/advocate promoting company tools)
 - Trend following without validation
 - Happy path focus without failure scenarios
@@ -44,48 +47,57 @@ EVALUATION FRAMEWORK:
 ## 3. PATTERN EXTRACTION (Weight: 3 points)
 
 ### Problem Solved
+
 [Clear statement of what business/technical problem this addresses]
 
 ### Technical Implementation
+
 **Core Components**:
+
 - [Key technical elements]
 - [Prerequisites and dependencies]
 - [Implementation complexity]
 
 **Implementation Steps**:
+
 1. [Step-by-step process]
 2. [Including setup requirements]
 3. [Configuration details]
 
 **Prerequisites**:
+
 - Technical: [Skills, tools, infrastructure needed]
 - Organizational: [Budget, compliance, team capabilities]
 - Risk tolerance: [Conservative/Moderate/Aggressive client suitability]
 
 ## 4. RISK ASSESSMENT MATRIX (Weight: 5 points)
 
-| Risk Factor | Score (1-5) | Analysis |
-|-------------|-------------|----------|
-| **Client Impact** | X | [Effect on project outcomes, deliverables, timeline] |
-| **Security** | X | [Data privacy, API security, compliance implications] |
-| **Maintainability** | X | [Long-term sustainability, skill dependency, updates] |
-| **Transparency** | X | [Black box concerns, explainability, debugging] |
-| **Skill Dependency** | X | [Team expertise requirements, learning curve] |
+| Risk Factor          | Score (1-5) | Analysis                                              |
+| -------------------- | ----------- | ----------------------------------------------------- |
+| **Client Impact**    | X           | [Effect on project outcomes, deliverables, timeline]  |
+| **Security**         | X           | [Data privacy, API security, compliance implications] |
+| **Maintainability**  | X           | [Long-term sustainability, skill dependency, updates] |
+| **Transparency**     | X           | [Black box concerns, explainability, debugging]       |
+| **Skill Dependency** | X           | [Team expertise requirements, learning curve]         |
 
 **Overall Risk**: [Low/Medium/High with justification]
 
 ### Critical Failure Modes
+
 **Immediate Risks**:
+
 - [Technical failures not addressed in source]
 - [Cost scaling issues]
 - [Integration problems]
 
 **Long-term Risks**:
+
 - [Vendor lock-in concerns]
 - [Technology obsolescence]
 - [Compliance changes]
 
 ### Red Flags for Client Projects
+
 - [Specific scenarios where this should not be used]
 - [Client types that should avoid this approach]
 - [Missing safeguards or fallback procedures]
@@ -93,7 +105,9 @@ EVALUATION FRAMEWORK:
 ## 5. CLIENT CONTEXT MAPPING (Weight: 2 points)
 
 ### Best Application Context
+
 **Ideal Client Profile**:
+
 - Team size: [Small/Medium/Large with rationale]
 - Industry: [Specific verticals or general applicability]
 - Technical maturity: [Skill level requirements]
@@ -101,12 +115,15 @@ EVALUATION FRAMEWORK:
 - Dependencies: [Existing technology stack requirements]
 
 **Project Characteristics**:
+
 - [Ideal use case scenarios]
 - [Scale requirements]
 - [Timeline considerations]
 
 ### Poor Fit Scenarios
+
 **Avoid for**:
+
 - [Specific client types or situations]
 - [Regulatory environments]
 - [Technical constraints]
@@ -115,24 +132,30 @@ EVALUATION FRAMEWORK:
 ## 6. KNOWLEDGE GAP ANALYSIS (Weight: 2 points)
 
 ### Critical Missing Elements
+
 **Production Readiness Gaps**:
+
 - [Enterprise patterns not covered]
 - [Monitoring and observability needs]
 - [Error handling and recovery procedures]
 - [Security implementation details]
 
 **Competitive Analysis Missing**:
+
 - [Alternative solutions not discussed]
 - [Cost comparisons needed]
 - [Performance benchmarks required]
 
 **Enterprise Integration Patterns**:
+
 - [Scalability considerations]
 - [Multi-tenant support]
 - [Compliance requirements]
 
 ### Validation Requirements
+
 **Before Tier 3 Promotion**:
+
 1. [Specific testing needed]
 2. [Client project validation requirements]
 3. [Performance measurements required]
@@ -145,6 +168,7 @@ EVALUATION FRAMEWORK:
 **File Path**: [Proposed location in QED structure]
 
 **Cross-references**:
+
 - [Related existing content]
 - [Framework comparisons needed]
 - [Risk assessment connections]
@@ -152,16 +176,19 @@ EVALUATION FRAMEWORK:
 ## 8. ACTIONABLE NEXT STEPS (Weight: 2 points)
 
 ### Immediate Actions
+
 1. **File in [Tier X]**: [With specific placement rationale]
 2. **Research Needs**: [Additional investigation required]
 3. **Comparison Requirements**: [Competitive analysis needed]
 
 ### Medium-term Research
+
 1. **Production Testing**: [Validation approach]
 2. **Performance Analysis**: [Benchmarking needs]
 3. **Risk Mitigation**: [Safety patterns to develop]
 
 ### Long-term Integration
+
 1. **Framework Enhancement**: [How this advances QED]
 2. **Pattern Development**: [Related patterns to create]
 3. **Template Creation**: [Reusable components]
@@ -181,22 +208,26 @@ EVALUATION FRAMEWORK:
 SCORING METHODOLOGY:
 
 **Points per Section**:
+
 - 1-2: Poor quality, significant bias, or dangerous gaps
 - 3: Adequate but missing important considerations
 - 4: Good quality with minor limitations
 - 5: Excellent, comprehensive, production-ready
 
 **Total Score Interpretation**:
+
 - **5-14 points**: Tier 1 (Research Collection) - Interesting but needs significant development
 - **15-22 points**: Tier 2 (Professional Analysis) - Worthy of detailed evaluation and refinement
 - **23-25 points**: Tier 3 (Proven Practice) - Exceptional quality requiring validation
 
 **Tier Placement Rules**:
+
 - **Tier 1**: Collect for future analysis, note priority level
 - **Tier 2**: Create structured analysis document, identify promotion pathway
 - **Tier 3**: Rare - requires client project validation before acceptance
 
 OUTPUT REQUIREMENTS:
+
 1. Use exact QED analysis template structure
 2. Include specific confidence scoring rationale
 3. Provide clear tier recommendation with promotion criteria
@@ -207,6 +238,7 @@ OUTPUT REQUIREMENTS:
 ## Usage Instructions
 
 ### For URL Processing
+
 1. Extract content using Jina MCP `read_url` tool
 2. Apply this prompt template with extracted content
 3. Generate structured evaluation following template exactly
@@ -214,6 +246,7 @@ OUTPUT REQUIREMENTS:
 5. Place in appropriate tier based on score
 
 ### For Batch Processing
+
 ```bash
 # Multiple URL evaluation
 for url in "${urls[@]}"; do
@@ -224,6 +257,7 @@ done
 ```
 
 ### Quality Control Checks
+
 - **Content Relevance**: Must be AI/development focused
 - **Minimum Length**: Extracted content > 1000 characters
 - **Source Quality**: Flag marketing content or vendor promotion
@@ -233,6 +267,7 @@ done
 ## Prompt Engineering Notes
 
 ### Key Principles Applied
+
 1. **Role Definition**: Senior consultant with client focus
 2. **Evidence Standards**: Emphasize production readiness over theoretical interest
 3. **Risk Awareness**: Systematic identification of failure modes
@@ -240,6 +275,7 @@ done
 5. **Structured Output**: Consistent formatting for automated processing
 
 ### Common Evaluation Pitfalls to Avoid
+
 - **Vendor Bias Blindness**: Always assess author relationship to promoted tools
 - **Happy Path Assumption**: Look for missing error handling and edge cases
 - **Scale Naivety**: Consider cost and complexity at production volumes
