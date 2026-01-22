@@ -66,7 +66,7 @@ Solution: They created a compliance-aware tool that pre-validated changes during
 class ComplianceValidator implements Tool {
   async execute(context: ToolContext): Promise<ValidationResult> {
     const changes = await this.detectChanges(context);
-    
+
     // Check PCI DSS requirements
     if (changes.touchesPaymentFlow) {
       const validations = await this.validatePCIDSS(changes);
@@ -74,7 +74,7 @@ class ComplianceValidator implements Tool {
         return this.suggestCompliantAlternative(validations);
       }
     }
-    
+
     // Generate compliance documentation
     const docs = await this.generateComplianceDocs(changes);
     return { passed: true, documentation: docs };
@@ -163,10 +163,10 @@ interface TransactionAnalysis {
   suggestedSaga: {
     steps: SagaStep[];
     compensations: CompensationAction[];
-    consistencyLevel: 'eventual' | 'strong';
+    consistencyLevel: "eventual" | "strong";
   };
   riskAssessment: {
-    dataInconsistencyRisk: 'low' | 'medium' | 'high';
+    dataInconsistencyRisk: "low" | "medium" | "high";
     performanceImpact: number; // estimated latency increase
   };
 }
@@ -183,11 +183,11 @@ class RegionalContextLoader {
   async loadContext(threadId: string, region: string): Promise<Context> {
     const baseContext = await this.loadSharedContext();
     const regionalOverrides = await this.loadRegionalCustomizations(region);
-    
+
     // Merge with conflict resolution
     return this.mergeContexts(baseContext, regionalOverrides, {
-      conflictResolution: 'regional-priority',
-      warnOnOverride: true
+      conflictResolution: "regional-priority",
+      warnOnOverride: true,
     });
   }
 }
@@ -336,7 +336,7 @@ def sctransform_normalize(adata, n_genes=3000, min_cells=5):
     """
     Implements SCTransform normalization from Smith et al. 2023
     'Improved normalization for single-cell RNA sequencing'
-    
+
     Key innovation: Uses Pearson residuals from regularized negative binomial regression
     """
     # Implementation following paper's Algorithm 1
@@ -372,14 +372,14 @@ Solution: Domain-specific validation tools:
 class BiologyValidator(Tool):
     def validate_analysis(self, code: str) -> ValidationResult:
         warnings = []
-        
+
         # Check for common issues
         if 'gene_name' in code and not 'species' in code:
             warnings.append("Gene names are species-specific. Specify organism.")
-            
+
         if 'p_value' in code and not 'multiple_testing_correction' in code:
             warnings.append("Multiple testing correction recommended for p-values")
-            
+
         return warnings
 ```
 

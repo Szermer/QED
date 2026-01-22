@@ -13,24 +13,24 @@ Plus, I’ll show you what _not_ to do—because nothing tanks a release faster 
 
 I’ll cover:
 
-* What are acceptance criteria?
-* Why are acceptance criteria important?
-* How do acceptance criteria relate to user stories?
-* Acceptance criteria examples for the gherkin-style format
-* AC examples for the checklist-style format
-* AC examples for the rules-based format
-* AC examples for the scenario-based format
-* AC examples for negative paths and edge cases
-* Acceptance criteria for quantitative/measurable targets
-* Acceptance criteria example for B2B SaaS
-* Acceptance criteria example for e-commerce
-* Acceptance criteria example for IoT device
-* Acceptance criteria example for mobile app
-* Acceptance criteria example for fintech
-* Acceptance criteria example for healthcare
-* What does bad acceptance criteria look like? With 4 examples
-* How to write better acceptance criteria
-* Acceptance criteria best practices
+- What are acceptance criteria?
+- Why are acceptance criteria important?
+- How do acceptance criteria relate to user stories?
+- Acceptance criteria examples for the gherkin-style format
+- AC examples for the checklist-style format
+- AC examples for the rules-based format
+- AC examples for the scenario-based format
+- AC examples for negative paths and edge cases
+- Acceptance criteria for quantitative/measurable targets
+- Acceptance criteria example for B2B SaaS
+- Acceptance criteria example for e-commerce
+- Acceptance criteria example for IoT device
+- Acceptance criteria example for mobile app
+- Acceptance criteria example for fintech
+- Acceptance criteria example for healthcare
+- What does bad acceptance criteria look like? With 4 examples
+- How to write better acceptance criteria
+- Acceptance criteria best practices
 
 So, let’s get on with it…
 
@@ -44,14 +44,13 @@ Acceptance criteria are where ambiguity goes to die. They answer the all-importa
 
 If you’ve ever seen a user story that sounded perfect in planning but blew up in [UAT](https://www.techtarget.com/searchsoftwarequality/definition/user-acceptance-testing-UAT), you know why acceptance criteria exist. Here’s what they prevent (or at least, dramatically reduce):
 
-* **Scope Creep:** No more “Couldn’t we just add X while we’re here?” Acceptance criteria draw the line.  
-    
-* **Ambiguity:** They force clarity—no more wishy-washy “Make it better” tickets.  
-    
-* **Testing:** QA gets a checklist for what _actually_ needs to work. No guessing, no “I assumed…”  
-    
-* **Team Alignment:** Engineers, Designers, and PMs can finally speak the same language. Less rework, fewer arguments.  
-    
+- **Scope Creep:** No more “Couldn’t we just add X while we’re here?” Acceptance criteria draw the line.
+
+- **Ambiguity:** They force clarity—no more wishy-washy “Make it better” tickets.
+
+- **Testing:** QA gets a checklist for what _actually_ needs to work. No guessing, no “I assumed…”
+
+- **Team Alignment:** Engineers, Designers, and PMs can finally speak the same language. Less rework, fewer arguments.
 
 **Best practice tip:** Make acceptance criteria mandatory. If you’re shipping user stories without them, you’re gambling with your [roadmap](https://www.prodpad.com/guides/product-roadmaps/).
 
@@ -71,13 +70,13 @@ Here’s an example of a good pairing for a user story example and an acceptance
 
 **Acceptance Criteria Example:**
 
-* * User sees a welcome message after sign-up.
+- - User sees a welcome message after sign-up.
 
-* * System guides the user through a 3-step tutorial.
+- - System guides the user through a 3-step tutorial.
 
-* * “Skip tutorial” is available on every step.
+- - “Skip tutorial” is available on every step.
 
-* * User profile is marked as “onboarded” when tutorial is complete or skipped.
+- - User profile is marked as “onboarded” when tutorial is complete or skipped.
 
 ### Acceptance Criteria Example _with_ User Story Example 2 – (E-commerce)
 
@@ -87,11 +86,11 @@ Next let’s look at an example of a good pairing for a user story example and a
 
 **Acceptance Criteria Example:**
 
-* * Cart contents persist for at least 30 days.
+- - Cart contents persist for at least 30 days.
 
-* * Cart is available across devices when logged in.
+- - Cart is available across devices when logged in.
 
-* * User receives a reminder email after 7 days of inactivity if the cart isn’t checked out.
+- - User receives a reminder email after 7 days of inactivity if the cart isn’t checked out.
 
 **Takeaway:** Without these acceptance criteria examples, both of these user stories leave _way_ too much to interpretation. With the ACs, everyone knows what “done” actually means.
 
@@ -107,13 +106,13 @@ Best for: test automation, detailed scenarios, [BDD](https://agilealliance.org/g
 
 **Acceptance Criteria Example (Given/When/Then):**
 
-* * **Given** I’m on the login page  
-        **When** I click “Forgot password” and enter a registered email  
-        **Then** I receive a reset link within 5 minutes
+- - **Given** I’m on the login page  
+     **When** I click “Forgot password” and enter a registered email  
+     **Then** I receive a reset link within 5 minutes
 
-* * **Given** I use the reset link  
-        **When** I set a new password  
-        **Then** I can log in with the new password
+- - **Given** I use the reset link  
+     **When** I set a new password  
+     **Then** I can log in with the new password
 
 ### 2. Checklist-Style
 
@@ -123,13 +122,13 @@ Best for: simple flows, small features, teams new to acceptance criteria.
 
 **Acceptance Criteria Example (Checklist):**
 
-* * Export includes all active users
+- - Export includes all active users
 
-* * Columns: name, email, signup date, last login
+- - Columns: name, email, signup date, last login
 
-* * File is in CSV format, UTF-8 encoded
+- - File is in CSV format, UTF-8 encoded
 
-* * Exported file downloads in < 5 seconds for up to 10,000 users
+- - Exported file downloads in < 5 seconds for up to 10,000 users
 
 ### 3. Rules-Based (“If X, then Y”)
 
@@ -139,11 +138,11 @@ Best for: business logic, integrations, or edge cases.
 
 **Acceptance Criteria Example (Rules-based):**
 
-* * **If** a payment fails **then** send an alert to the billing team
+- - **If** a payment fails **then** send an alert to the billing team
 
-* * **If** three consecutive failures occur **then** lock the account and notify the user
+- - **If** three consecutive failures occur **then** lock the account and notify the user
 
-* * **If** the payment succeeds after retry, **then** remove any lock and send confirmation
+- - **If** the payment succeeds after retry, **then** remove any lock and send confirmation
 
 ### 4. Scenario-Based
 
@@ -153,11 +152,11 @@ Best for: features with multiple flows, especially e-commerce, onboarding, or se
 
 **Acceptance Criteria Example (Scenarios):**
 
-* * Scenario 1: Address change before shipment updates order and sends confirmation email
+- - Scenario 1: Address change before shipment updates order and sends confirmation email
 
-* * Scenario 2: Address change after shipment not allowed; user sees error message
+- - Scenario 2: Address change after shipment not allowed; user sees error message
 
-* * Scenario 3: Address change available only for orders not yet processed
+- - Scenario 3: Address change available only for orders not yet processed
 
 ### 5. Negative Paths and Edge Cases
 
@@ -167,11 +166,11 @@ Best for: QA, regulated industries, robust products.
 
 **Acceptance Criteria Example (Negative/Edge Cases):**
 
-* * Access is denied if user role ≠ “Provider” (unauthorized roles see error)
+- - Access is denied if user role ≠ “Provider” (unauthorized roles see error)
 
-* * Access is logged for all views and downloads
+- - Access is logged for all views and downloads
 
-* * Access is blocked if patient has revoked consent (show consent error)
+- - Access is blocked if patient has revoked consent (show consent error)
 
 ### 6. Quantitative/Measurable Targets
 
@@ -181,13 +180,13 @@ Best for: performance, security, compliance.
 
 **Acceptance Criteria Example (Quantitative):**
 
-* * Max file size: 5MB
+- - Max file size: 5MB
 
-* * Acceptable formats: JPG, PNG, GIF
+- - Acceptable formats: JPG, PNG, GIF
 
-* * Upload completes in < 3 seconds on standard broadband
+- - Upload completes in < 3 seconds on standard broadband
 
-* * Image appears in profile within 2 seconds after upload
+- - Image appears in profile within 2 seconds after upload
 
 ## Acceptance Criteria Examples by Product Type
 
@@ -199,13 +198,13 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * “Invite team” step is present in onboarding
+- - “Invite team” step is present in onboarding
 
-* * Invites send emails with unique links
+- - Invites send emails with unique links
 
-* * Team members show as “pending” until they accept
+- - Team members show as “pending” until they accept
 
-* * Onboarding can be completed without inviting anyone
+- - Onboarding can be completed without inviting anyone
 
 ### Acceptance Criteria Example: E-commerce – Checkout
 
@@ -213,13 +212,13 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * Valid code applies discount and updates total instantly
+- - Valid code applies discount and updates total instantly
 
-* * Invalid code shows clear error
+- - Invalid code shows clear error
 
-* * Discount applies only to eligible items
+- - Discount applies only to eligible items
 
-* * Only one code can be used per order
+- - Only one code can be used per order
 
 ### Acceptance Criteria Example: IoT Device – Settings
 
@@ -227,13 +226,13 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * User can activate “Vacation Mode” via app or device
+- - User can activate “Vacation Mode” via app or device
 
-* * Confirmation message appears when activated
+- - Confirmation message appears when activated
 
-* * System sets temp to preset “away” value
+- - System sets temp to preset “away” value
 
-* * Device status updates in user dashboard within 1 minute
+- - Device status updates in user dashboard within 1 minute
 
 ### Acceptance Criteria Example: Mobile App – Push Notifications
 
@@ -241,11 +240,11 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * Notification sent within 30 seconds of new message arrival
+- - Notification sent within 30 seconds of new message arrival
 
-* * Notification opens app to message thread
+- - Notification opens app to message thread
 
-* * User can disable notifications in settings
+- - User can disable notifications in settings
 
 ### Acceptance Criteria Example: B2C / Consumer App – Content Upload
 
@@ -253,13 +252,13 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * Videos up to 2GB are accepted
+- - Videos up to 2GB are accepted
 
-* * Upload works on WiFi and mobile data
+- - Upload works on WiFi and mobile data
 
-* * User sees upload progress bar
+- - User sees upload progress bar
 
-* * Failed uploads show retry option
+- - Failed uploads show retry option
 
 ### Acceptance Criteria Example: Regulated Industry – Fintech
 
@@ -267,13 +266,13 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * Only show transactions from the past 24 months
+- - Only show transactions from the past 24 months
 
-* * Downloadable statement available as PDF
+- - Downloadable statement available as PDF
 
-* * Transactions labeled with merchant, amount, date
+- - Transactions labeled with merchant, amount, date
 
-* * Privacy notice appears on first access
+- - Privacy notice appears on first access
 
 ### Acceptance Criteria Example: Healthcare (GovTech/EdTech/Mediatech) – Consent Management
 
@@ -281,19 +280,19 @@ Let’s get real: acceptance criteria _change shape_ depending on your product. 
 
 **Acceptance Criteria Example:**
 
-* * Consent status is clearly visible and editable
+- - Consent status is clearly visible and editable
 
-* * Revoking consent removes access for all providers within 24 hours
+- - Revoking consent removes access for all providers within 24 hours
 
-* * All changes are timestamped and logged
+- - All changes are timestamped and logged
 
-* * User receives confirmation after any change
+- - User receives confirmation after any change
 
 ## What does bad acceptance criteria look like? (And how to fix it)
 
 Let’s be honest: most acceptance criteria mistakes are avoidable. Thanks to our examples so far you now know what good looks like, but it’s equally as important to understand what bad looks like.
 
- ![Acceptance criteria examples showing good versus bad from ProdPad product management software](data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201012%20852'%3E%3C/svg%3E)
+![Acceptance criteria examples showing good versus bad from ProdPad product management software](data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201012%20852'%3E%3C/svg%3E)
 
 Here’s what _not_ to do:
 
@@ -331,29 +330,27 @@ Here’s what _not_ to do:
 
 Writing good ACs isn’t just for the Product Manager. It’s a team sport. Here’s how the best teams do it:
 
-* **Collaborate early:** Bring Product Manager, Developers, and QA Testers together before a story starts. Don’t let one person write all acceptance criteria in a vacuum.  
-    
-* **Align to the outcome:** Acceptance criteria must tie directly to the story’s “so that.” If you can’t trace it, you’re doing it wrong.  
-    
-* **Stay specific, not prescriptive:** Specify what needs to happen—not _how_ it’s implemented.  
-    
-* **Retros are your friend:** Review what’s working and what isn’t. Evolve your acceptance criteria style as your team grows.  
-    
+- **Collaborate early:** Bring Product Manager, Developers, and QA Testers together before a story starts. Don’t let one person write all acceptance criteria in a vacuum.
+
+- **Align to the outcome:** Acceptance criteria must tie directly to the story’s “so that.” If you can’t trace it, you’re doing it wrong.
+
+- **Stay specific, not prescriptive:** Specify what needs to happen—not _how_ it’s implemented.
+
+- **Retros are your friend:** Review what’s working and what isn’t. Evolve your acceptance criteria style as your team grows.
 
 ## Final Tips: Acceptance Criteria Best Practices
 
 Let’s land this with a lightning round of best practices:
 
-* **Keep criteria testable:** If you can’t test it, it’s not done.  
-    
-* **Reuse good formats:** Steal from yourself—if a format works, make it your default.  
-    
-* **Don’t gold-plate:** Focus on outcomes, not endless detail.  
-    
-* **Include edge cases:** QA will love you forever.  
-    
-* **Make acceptance criteria visible:** Don’t hide them in a doc no one reads. Put them on the ticket, the board, within the Idea in ProdPad, wherever your team lives.  
-    
+- **Keep criteria testable:** If you can’t test it, it’s not done.
+
+- **Reuse good formats:** Steal from yourself—if a format works, make it your default.
+
+- **Don’t gold-plate:** Focus on outcomes, not endless detail.
+
+- **Include edge cases:** QA will love you forever.
+
+- **Make acceptance criteria visible:** Don’t hide them in a doc no one reads. Put them on the ticket, the board, within the Idea in ProdPad, wherever your team lives.
 
 Ready to up your user story game? Start every story with clear, shared, and testable acceptance criteria—your users (and your team) will thank you.
 

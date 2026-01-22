@@ -41,6 +41,7 @@ Switch GitHub Pages configuration from branch-based deployment to GitHub Actions
 ## Consequences
 
 ### Positive
+
 - Site deploys correctly from pre-built HTML
 - No Jekyll processing overhead
 - Faster deployments
@@ -48,6 +49,7 @@ Switch GitHub Pages configuration from branch-based deployment to GitHub Actions
 - mdBook features work as intended (search, navigation, etc.)
 
 ### Negative
+
 - Requires manual configuration change in GitHub settings
 - Not captured in version control (GitHub setting)
 - New contributors need to be aware of this requirement

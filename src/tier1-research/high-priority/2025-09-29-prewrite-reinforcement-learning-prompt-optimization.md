@@ -64,14 +64,14 @@ An everyday example of a policy function: crossing the street. You evaluate the 
 
 Talking about rewards: this paper looked at five different ones.
 
--   Exact Match (EM): Used for classifying data where the answer should be exact (e.g., X, Y, or Z).
+- Exact Match (EM): Used for classifying data where the answer should be exact (e.g., X, Y, or Z).
 
--   F1 Score: Combines precision and recall, measuring how often the model gets it correct out of how many times there are actually correct responses.
+- F1 Score: Combines precision and recall, measuring how often the model gets it correct out of how many times there are actually correct responses.
 
--   Perplexity: Measures the model's predictive certainty. Lower values indicate the model was less surprised by the token sequence. For example, "The dog ate a bone" would have low perplexity, while "The dog ate a raccoon with clams" would have high perplexity.
+- Perplexity: Measures the model's predictive certainty. Lower values indicate the model was less surprised by the token sequence. For example, "The dog ate a bone" would have low perplexity, while "The dog ate a raccoon with clams" would have high perplexity.
 
--   Perplexity and F1: A combination of the two.
--   Length Difference: Compares the output length to the ground truth.
+- Perplexity and F1: A combination of the two.
+- Length Difference: Compares the output length to the ground truth.
 
 Here's how it comes together: you start with an initial prompt that gets rewritten by the meta prompt rewriter. Multiple prompt variants are generated, fed into the LLM to produce outputs, which are then judged against the ground truth. The rewards are analyzed, and the prompt writer is continually trained based on those rewards.
 
@@ -79,10 +79,10 @@ This is a Google paper, so the model used was a proprietary model. They tested P
 
 Pre-Write outperformed other automated methods in more complex datasets. Here's a quick example of different prompts optimized for different rewards:
 
--   Initial Prompt: "Answer the question."
+- Initial Prompt: "Answer the question."
 
--   Length Difference: Emphasis on not exceeding 100 characters.
--   Exact Match: Emphasis on composing a short answer (e.g., "Who is the president of the United States?" should be "Joe Biden").
+- Length Difference: Emphasis on not exceeding 100 characters.
+- Exact Match: Emphasis on composing a short answer (e.g., "Who is the president of the United States?" should be "Joe Biden").
 
 This highlights how prompts change based on different reward evaluations, something you can apply to your own prompt engineering.
 
@@ -104,9 +104,9 @@ The policy function is an algorithm that guides the Prompt Rewriter model to mak
 
 For example, let's say you want to cross the street at a busy intersection. This is how your internal policy function would run:
 
--   Evaluate the current state (traffic lights, cars, distance) and potential actions (wait, start walking, speed up, slow down) to maximize safety (the reward in this case).
+- Evaluate the current state (traffic lights, cars, distance) and potential actions (wait, start walking, speed up, slow down) to maximize safety (the reward in this case).
 
--   Through experience you'll learn which actions lead to maximizing safety (the reward) in different traffic conditions. Continually optimizing your policy function over time.
+- Through experience you'll learn which actions lead to maximizing safety (the reward) in different traffic conditions. Continually optimizing your policy function over time.
 
 Back to PRewrite.
 
@@ -118,13 +118,13 @@ The actions to consider are which tokens to add, delete, or modify, based on the
 
 Rewards are used to inform the policy function and Prompt Rewriter about the effectiveness of the newly rewritten prompt, based on the changes made. The researchers explored a few different reward functions:
 
--   **Exact Match (EM):** Checks if the output exactly matches the ground-truth output
+- **Exact Match (EM):** Checks if the output exactly matches the ground-truth output
 
--   **F1:** Combines precision (correct predictions divided by the total number of predictions made) and recall (correct predictions divided by the total number of actual positives) into one metric. For example, with 80% precision (80 correct out of 100 predictions) and approximately 78% recall (70 correct out of 90 positives), the F1 score averages these to evaluate model performance.
--   **Perplexity:** Measures the model's prediction certainty. Lower values indicating the model is less surprised by the sequence of tokens. Low perplexity: "The dog ate a bone". High perplexity "The dog ate rigatoni ragù". Lower perplexity is rewarded.
+- **F1:** Combines precision (correct predictions divided by the total number of predictions made) and recall (correct predictions divided by the total number of actual positives) into one metric. For example, with 80% precision (80 correct out of 100 predictions) and approximately 78% recall (70 correct out of 90 positives), the F1 score averages these to evaluate model performance.
+- **Perplexity:** Measures the model's prediction certainty. Lower values indicating the model is less surprised by the sequence of tokens. Low perplexity: "The dog ate a bone". High perplexity "The dog ate rigatoni ragù". Lower perplexity is rewarded.
 
--   **Perplexity + F1:** Combines perplexity (the unexpectedness of the outputwith F1 (evaluating accuracy and completeness), rewarding outputs that are predictable and precise.
--   **Length difference:** Rewards based on the length difference between the output and ground-truth output.
+- **Perplexity + F1:** Combines perplexity (the unexpectedness of the outputwith F1 (evaluating accuracy and completeness), rewarding outputs that are predictable and precise.
+- **Length difference:** Rewards based on the length difference between the output and ground-truth output.
 
 ‍
 
@@ -159,12 +159,12 @@ Task accuracy percentages across the datasets
 
 Takeaways
 
--   PRewrite outperforms the original prompt for NQ and AG, but not for SST-2. This is most likely due to the fact that the tasks in SST-2 are extremely simple and don't have a lot of room for improvement over the initial prompt
+- PRewrite outperforms the original prompt for NQ and AG, but not for SST-2. This is most likely due to the fact that the tasks in SST-2 are extremely simple and don't have a lot of room for improvement over the initial prompt
 
--   As a point of reference, the SST-2 dataset focuses on sentiment analysis derived from movie reviews, e.g., "contains no wit, only labored gags."
--   **ALL** of the automated methods fail to beat the original prompt on the SST-2 datasets. This goes to show that you can over-engineer prompts.
+- As a point of reference, the SST-2 dataset focuses on sentiment analysis derived from movie reviews, e.g., "contains no wit, only labored gags."
+- **ALL** of the automated methods fail to beat the original prompt on the SST-2 datasets. This goes to show that you can over-engineer prompts.
 
--   PRewrite outperforms all the other automated methods
+- PRewrite outperforms all the other automated methods
 
 ‍
 
@@ -266,12 +266,11 @@ N/A
 
 ‍
 
--   On average, "Perplexity + F1" is the best performing reward for all the datasets
+- On average, "Perplexity + F1" is the best performing reward for all the datasets
 
--   "Perplexity" performs significantly worse compared to "Perplexity + F1" and is even outperformed by the original prompt in the AG's News dataset.
--   Rewarding for perplexity ensures predictability of responses by the model, but incorporating the F1 score guarantees accuracy too. This addresses both the quality and relevance of content effectively.
-
-
+- "Perplexity" performs significantly worse compared to "Perplexity + F1" and is even outperformed by the original prompt in the AG's News dataset.
+- Rewarding for perplexity ensures predictability of responses by the model, but incorporating the F1 score guarantees accuracy too. This addresses both the quality and relevance of content effectively.
 
 ---
+
 Source: [Using Reinforcement Learning and LLMs to Optimize Prompts](https://www.prompthub.us/blog/using-reinforcement-learning-and-llms-to-optimize-prompts)

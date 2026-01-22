@@ -4,7 +4,6 @@
 
 > On the the engineering challenges and lessons learned from building Claude's Research system
 
-
 [Engineering at Anthropic](https://www.anthropic.com/engineering)
 
 Claude now has [Research capabilities](https://www.anthropic.com/news/research) that allow it to search across the web, Google Workspace, and any integrations to accomplish complex tasks.

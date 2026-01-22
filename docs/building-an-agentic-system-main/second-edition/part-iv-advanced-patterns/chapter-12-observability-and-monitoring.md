@@ -42,7 +42,7 @@ interface Span {
     timestamp: number;
     fields: Record<string, any>;
   }>;
-  status: 'ok' | 'error' | 'cancelled';
+  status: "ok" | "error" | "cancelled";
 }
 
 class TracingService {
@@ -51,7 +51,7 @@ class TracingService {
 
   startSpan(
     operationName: string,
-    parent?: TraceContext
+    parent?: TraceContext,
   ): { span: Span; context: TraceContext } {
     const span: Span = {
       traceId: parent?.traceId || generateTraceId(),
@@ -61,7 +61,7 @@ class TracingService {
       startTime: Date.now(),
       tags: {},
       logs: [],
-      status: 'ok'
+      status: "ok",
     };
 
     this.spans.set(span.spanId, span);
@@ -70,13 +70,13 @@ class TracingService {
       traceId: span.traceId,
       spanId: span.spanId,
       parentSpanId: parent?.spanId,
-      baggage: new Map(parent?.baggage || [])
+      baggage: new Map(parent?.baggage || []),
     };
 
     return { span, context };
   }
 
-  finishSpan(spanId: string, status: 'ok' | 'error' | 'cancelled' = 'ok') {
+  finishSpan(spanId: string, status: "ok" | "error" | "cancelled" = "ok") {
     const span = this.spans.get(spanId);
     if (!span) return;
 
@@ -100,7 +100,7 @@ class TracingService {
     if (span) {
       span.logs.push({
         timestamp: Date.now(),
-        fields
+        fields,
       });
     }
   }
@@ -113,62 +113,61 @@ Now let's instrument tool execution with tracing:
 class InstrumentedToolExecutor {
   constructor(
     private toolExecutor: ToolExecutor,
-    private tracing: TracingService
+    private tracing: TracingService,
   ) {}
 
   async executeTool(
     tool: Tool,
     params: any,
-    context: TraceContext
+    context: TraceContext,
   ): Promise<ToolResult> {
     const { span, context: childContext } = this.tracing.startSpan(
       `tool.${tool.name}`,
-      context
+      context,
     );
 
     // Add tool-specific tags
     this.tracing.addTags(span.spanId, {
-      'tool.name': tool.name,
-      'tool.params': JSON.stringify(params),
-      'tool.parallel': tool.parallel || false
+      "tool.name": tool.name,
+      "tool.params": JSON.stringify(params),
+      "tool.parallel": tool.parallel || false,
     });
 
     try {
       // Log tool execution start
       this.tracing.addLog(span.spanId, {
-        event: 'tool.start',
-        params: params
+        event: "tool.start",
+        params: params,
       });
 
       const result = await this.toolExecutor.execute(
         tool,
         params,
-        childContext
+        childContext,
       );
 
       // Log result
       this.tracing.addLog(span.spanId, {
-        event: 'tool.complete',
-        resultSize: JSON.stringify(result).length
+        event: "tool.complete",
+        resultSize: JSON.stringify(result).length,
       });
 
-      this.tracing.finishSpan(span.spanId, 'ok');
+      this.tracing.finishSpan(span.spanId, "ok");
       return result;
-
     } catch (error) {
       // Log error details
       this.tracing.addLog(span.spanId, {
-        event: 'tool.error',
+        event: "tool.error",
         error: error.message,
-        stack: error.stack
+        stack: error.stack,
       });
 
       this.tracing.addTags(span.spanId, {
-        'error': true,
-        'error.type': error.constructor.name
+        error: true,
+        "error.type": error.constructor.name,
       });
 
-      this.tracing.finishSpan(span.spanId, 'error');
+      this.tracing.finishSpan(span.spanId, "error");
       throw error;
     }
   }
@@ -181,30 +180,29 @@ For parallel tool execution, we need to track parent-child relationships:
 class ParallelToolTracer {
   async executeParallel(
     tools: Array<{ tool: Tool; params: any }>,
-    parentContext: TraceContext
+    parentContext: TraceContext,
   ): Promise<ToolResult[]> {
     const { span, context } = this.tracing.startSpan(
-      'tools.parallel_batch',
-      parentContext
+      "tools.parallel_batch",
+      parentContext,
     );
 
     this.tracing.addTags(span.spanId, {
-      'batch.size': tools.length,
-      'batch.tools': tools.map(t => t.tool.name)
+      "batch.size": tools.length,
+      "batch.tools": tools.map((t) => t.tool.name),
     });
 
     try {
       const results = await Promise.all(
         tools.map(({ tool, params }) =>
-          this.instrumentedExecutor.executeTool(tool, params, context)
-        )
+          this.instrumentedExecutor.executeTool(tool, params, context),
+        ),
       );
 
-      this.tracing.finishSpan(span.spanId, 'ok');
+      this.tracing.finishSpan(span.spanId, "ok");
       return results;
-
     } catch (error) {
-      this.tracing.finishSpan(span.spanId, 'error');
+      this.tracing.finishSpan(span.spanId, "error");
       throw error;
     }
   }
@@ -246,15 +244,15 @@ class ErrorAggregator {
       error: {
         type: error.constructor.name,
         message: error.message,
-        stack: error.stack
+        stack: error.stack,
       },
       context: {
-        tool: span.tags['tool.name'],
-        agent: span.tags['agent.id'],
+        tool: span.tags["tool.name"],
+        agent: span.tags["agent.id"],
         userId: context.userId,
-        threadId: context.threadId
+        threadId: context.threadId,
       },
-      metadata: { ...span.tags, ...context }
+      metadata: { ...span.tags, ...context },
     };
 
     this.errors.push(errorContext);
@@ -264,21 +262,21 @@ class ErrorAggregator {
 
   private detectPatterns(error: ErrorContext) {
     // Group errors by type and context
-    const key = `${error.error.type}:${error.context.tool || 'unknown'}`;
-    
+    const key = `${error.error.type}:${error.context.tool || "unknown"}`;
+
     if (!this.patterns.has(key)) {
       this.patterns.set(key, {
         count: 0,
         firstSeen: error.timestamp,
         lastSeen: error.timestamp,
-        examples: []
+        examples: [],
       });
     }
 
     const pattern = this.patterns.get(key)!;
     pattern.count++;
     pattern.lastSeen = error.timestamp;
-    
+
     // Keep recent examples
     if (pattern.examples.length < 10) {
       pattern.examples.push(error);
@@ -287,31 +285,31 @@ class ErrorAggregator {
 
   private maybeAlert(error: ErrorContext) {
     const pattern = this.patterns.get(
-      `${error.error.type}:${error.context.tool || 'unknown'}`
+      `${error.error.type}:${error.context.tool || "unknown"}`,
     );
 
     if (!pattern) return;
 
     // Alert on error spikes
     const recentErrors = this.errors.filter(
-      e => e.timestamp > Date.now() - 60000 // Last minute
+      (e) => e.timestamp > Date.now() - 60000, // Last minute
     );
 
     if (recentErrors.length > 10) {
       this.sendAlert({
-        type: 'error_spike',
+        type: "error_spike",
         count: recentErrors.length,
         pattern: pattern,
-        example: error
+        example: error,
       });
     }
 
     // Alert on new error types
     if (pattern.count === 1) {
       this.sendAlert({
-        type: 'new_error_type',
+        type: "new_error_type",
         pattern: pattern,
-        example: error
+        example: error,
       });
     }
   }
@@ -322,9 +320,13 @@ For debugging AI-specific issues, we need to capture model interactions:
 
 ```typescript
 class ModelInteractionLogger {
-  logInference(request: InferenceRequest, response: InferenceResponse, span: Span) {
+  logInference(
+    request: InferenceRequest,
+    response: InferenceResponse,
+    span: Span,
+  ) {
     this.tracing.addLog(span.spanId, {
-      event: 'model.inference',
+      event: "model.inference",
       model: request.model,
       promptTokens: response.usage?.promptTokens,
       completionTokens: response.usage?.completionTokens,
@@ -332,7 +334,7 @@ class ModelInteractionLogger {
       maxTokens: request.maxTokens,
       stopReason: response.stopReason,
       // Store prompt hash for debugging without exposing content
-      promptHash: this.hashPrompt(request.messages)
+      promptHash: this.hashPrompt(request.messages),
     });
 
     // Sample full prompts for debugging (with PII scrubbing)
@@ -342,14 +344,14 @@ class ModelInteractionLogger {
         spanId: span.spanId,
         request: this.scrubPII(request),
         response: this.scrubPII(response),
-        timestamp: Date.now()
+        timestamp: Date.now(),
       });
     }
   }
 
   private shouldSample(traceId: string): boolean {
     // Sample 1% of traces for detailed debugging
-    return parseInt(traceId.substring(0, 4), 16) < 0xFFFF * 0.01;
+    return parseInt(traceId.substring(0, 4), 16) < 0xffff * 0.01;
   }
 }
 ```
@@ -362,38 +364,38 @@ Not all metrics are equally useful for AI coding assistants. Here are the ones t
 class AIMetricsCollector {
   // User-facing latency metrics
   private latencyHistogram = new Histogram({
-    name: 'ai_operation_duration_seconds',
-    help: 'Duration of AI operations',
-    labelNames: ['operation', 'model', 'status'],
-    buckets: [0.1, 0.5, 1, 2, 5, 10, 30, 60]
+    name: "ai_operation_duration_seconds",
+    help: "Duration of AI operations",
+    labelNames: ["operation", "model", "status"],
+    buckets: [0.1, 0.5, 1, 2, 5, 10, 30, 60],
   });
 
   // Token usage for cost tracking
   private tokenCounter = new Counter({
-    name: 'ai_tokens_total',
-    help: 'Total tokens used',
-    labelNames: ['model', 'type'] // type: prompt or completion
+    name: "ai_tokens_total",
+    help: "Total tokens used",
+    labelNames: ["model", "type"], // type: prompt or completion
   });
 
   // Tool execution metrics
   private toolExecutions = new Counter({
-    name: 'tool_executions_total',
-    help: 'Total tool executions',
-    labelNames: ['tool', 'status', 'parallel']
+    name: "tool_executions_total",
+    help: "Total tool executions",
+    labelNames: ["tool", "status", "parallel"],
   });
 
   // Context window utilization
   private contextUtilization = new Gauge({
-    name: 'context_window_utilization_ratio',
-    help: 'Ratio of context window used',
-    labelNames: ['model']
+    name: "context_window_utilization_ratio",
+    help: "Ratio of context window used",
+    labelNames: ["model"],
   });
 
   recordOperation(
     operation: string,
     duration: number,
     model: string,
-    status: 'success' | 'error' | 'timeout'
+    status: "success" | "error" | "timeout",
   ) {
     this.latencyHistogram
       .labels(operation, model, status)
@@ -403,26 +405,22 @@ class AIMetricsCollector {
   recordTokenUsage(
     model: string,
     promptTokens: number,
-    completionTokens: number
+    completionTokens: number,
   ) {
-    this.tokenCounter.labels(model, 'prompt').inc(promptTokens);
-    this.tokenCounter.labels(model, 'completion').inc(completionTokens);
+    this.tokenCounter.labels(model, "prompt").inc(promptTokens);
+    this.tokenCounter.labels(model, "completion").inc(completionTokens);
   }
 
   recordToolExecution(
     tool: string,
-    status: 'success' | 'error' | 'timeout',
-    parallel: boolean
+    status: "success" | "error" | "timeout",
+    parallel: boolean,
   ) {
-    this.toolExecutions
-      .labels(tool, status, parallel.toString())
-      .inc();
+    this.toolExecutions.labels(tool, status, parallel.toString()).inc();
   }
 
   recordContextUtilization(model: string, used: number, limit: number) {
-    this.contextUtilization
-      .labels(model)
-      .set(used / limit);
+    this.contextUtilization.labels(model).set(used / limit);
   }
 }
 ```
@@ -434,29 +432,29 @@ class AISystemHealthMonitor {
   private metrics = {
     // Concurrent operations
     concurrentTools: new Gauge({
-      name: 'concurrent_tool_executions',
-      help: 'Number of tools currently executing'
+      name: "concurrent_tool_executions",
+      help: "Number of tools currently executing",
     }),
-    
+
     // Queue depths
     pendingOperations: new Gauge({
-      name: 'pending_operations',
-      help: 'Operations waiting to be processed',
-      labelNames: ['type']
+      name: "pending_operations",
+      help: "Operations waiting to be processed",
+      labelNames: ["type"],
     }),
-    
+
     // Model API health
     modelApiErrors: new Counter({
-      name: 'model_api_errors_total',
-      help: 'Model API errors',
-      labelNames: ['model', 'error_type']
+      name: "model_api_errors_total",
+      help: "Model API errors",
+      labelNames: ["model", "error_type"],
     }),
-    
+
     // Memory usage for context
     contextMemoryBytes: new Gauge({
-      name: 'context_memory_bytes',
-      help: 'Memory used for context storage'
-    })
+      name: "context_memory_bytes",
+      help: "Memory used for context storage",
+    }),
   };
 
   trackConcurrency(delta: number) {
@@ -492,7 +490,7 @@ interface UserInteraction {
 
 class UserAnalytics {
   private interactions: UserInteraction[] = [];
-  
+
   // Track user actions
   trackInteraction(action: string, metadata: Record<string, any>) {
     this.interactions.push({
@@ -500,61 +498,60 @@ class UserAnalytics {
       threadId: metadata.threadId,
       timestamp: Date.now(),
       action,
-      metadata
+      metadata,
     });
-    
+
     this.analyzePatterns();
   }
 
   // Common patterns to track
   trackToolUsage(userId: string, tool: string, success: boolean) {
-    this.trackInteraction('tool_used', {
+    this.trackInteraction("tool_used", {
       userId,
       tool,
       success,
       // Track if user immediately uses a different tool
-      followedBy: this.getNextTool(userId)
+      followedBy: this.getNextTool(userId),
     });
   }
 
   trackRetry(userId: string, originalRequest: string, retryRequest: string) {
-    this.trackInteraction('user_retry', {
+    this.trackInteraction("user_retry", {
       userId,
       originalRequest,
       retryRequest,
       // Calculate similarity to understand if it's a clarification
-      similarity: this.calculateSimilarity(originalRequest, retryRequest)
+      similarity: this.calculateSimilarity(originalRequest, retryRequest),
     });
   }
 
   trackContextSwitch(userId: string, fromContext: string, toContext: string) {
-    this.trackInteraction('context_switch', {
+    this.trackInteraction("context_switch", {
       userId,
       fromContext,
       toContext,
       // Track if user returns to previous context
-      switchDuration: this.getContextDuration(userId, fromContext)
+      switchDuration: this.getContextDuration(userId, fromContext),
     });
   }
 
   private analyzePatterns() {
     // Detect frustration signals
     const recentRetries = this.interactions.filter(
-      i => i.action === 'user_retry' && 
-           i.timestamp > Date.now() - 300000 // Last 5 minutes
+      (i) => i.action === "user_retry" && i.timestamp > Date.now() - 300000, // Last 5 minutes
     );
-    
+
     if (recentRetries.length > 3) {
-      this.alertOnPattern('user_frustration', {
+      this.alertOnPattern("user_frustration", {
         userId: recentRetries[0].userId,
-        retryCount: recentRetries.length
+        retryCount: recentRetries.length,
       });
     }
 
     // Detect successful workflows
     const toolSequences = this.extractToolSequences();
     const commonSequences = this.findCommonSequences(toolSequences);
-    
+
     // These could become suggested workflows or macros
     if (commonSequences.length > 0) {
       this.storeWorkflowPattern(commonSequences);
@@ -575,17 +572,18 @@ class DecisionTracker {
       selected: any;
       reasoning?: string;
       confidence?: number;
-    }
+    },
   ) {
     this.tracing.addLog(context.spanId, {
-      event: 'ai.decision',
+      event: "ai.decision",
       decisionType: decision.type,
       optionCount: decision.options.length,
       selectedIndex: decision.options.indexOf(decision.selected),
       confidence: decision.confidence,
       // Hash reasoning to track patterns without storing full text
-      reasoningHash: decision.reasoning ? 
-        this.hashText(decision.reasoning) : null
+      reasoningHash: decision.reasoning
+        ? this.hashText(decision.reasoning)
+        : null,
     });
 
     // Track decision patterns
@@ -593,7 +591,7 @@ class DecisionTracker {
       type: decision.type,
       contextSize: this.estimateContextSize(context),
       confidence: decision.confidence,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     });
   }
 
@@ -601,15 +599,15 @@ class DecisionTracker {
     // Group by decision type and context size buckets
     const bucket = Math.floor(pattern.contextSize / 1000) * 1000;
     const key = `${pattern.type}:${bucket}`;
-    
+
     if (!this.patterns.has(key)) {
       this.patterns.set(key, {
         count: 0,
         totalConfidence: 0,
-        contextSizeBucket: bucket
+        contextSizeBucket: bucket,
       });
     }
-    
+
     const agg = this.patterns.get(key)!;
     agg.count++;
     agg.totalConfidence += pattern.confidence || 0;
@@ -629,14 +627,14 @@ class AIDashboardMetrics {
       // Is the system responsive?
       p95Latency: this.getPercentileLatency(95),
       errorRate: this.getErrorRate(300), // Last 5 minutes
-      
+
       // Are we hitting limits?
       tokenBurnRate: this.getTokensPerMinute(),
       contextUtilization: this.getAvgContextUtilization(),
-      
+
       // Are tools working?
       toolSuccessRate: this.getToolSuccessRate(),
-      parallelExecutionRatio: this.getParallelRatio()
+      parallelExecutionRatio: this.getParallelRatio(),
     };
   }
 
@@ -646,14 +644,14 @@ class AIDashboardMetrics {
       // Task completion
       taskCompletionRate: this.getTaskCompletionRate(),
       averageRetriesPerTask: this.getAvgRetries(),
-      
+
       // User satisfaction proxies
       sessionLength: this.getAvgSessionLength(),
       returnUserRate: this.getReturnRate(7), // 7-day return
-      
+
       // Feature adoption
       toolUsageDistribution: this.getToolUsageStats(),
-      advancedFeatureAdoption: this.getFeatureAdoption()
+      advancedFeatureAdoption: this.getFeatureAdoption(),
     };
   }
 
@@ -663,14 +661,14 @@ class AIDashboardMetrics {
       // Token costs
       tokensPerUser: this.getAvgTokensPerUser(),
       costPerOperation: this.getAvgCostPerOperation(),
-      
+
       // Efficiency
       cacheHitRate: this.getCacheHitRate(),
       duplicateRequestRate: this.getDuplicateRate(),
-      
+
       // Resource usage
       cpuPerRequest: this.getAvgCPUPerRequest(),
-      memoryPerContext: this.getAvgMemoryPerContext()
+      memoryPerContext: this.getAvgMemoryPerContext(),
     };
   }
 }
@@ -685,35 +683,35 @@ class AIAlertingRules {
   defineAlerts() {
     return [
       {
-        name: 'high_error_rate',
+        name: "high_error_rate",
         condition: () => this.metrics.errorRate > 0.05, // 5% errors
-        severity: 'critical',
-        message: 'Error rate exceeds 5%'
+        severity: "critical",
+        message: "Error rate exceeds 5%",
       },
       {
-        name: 'token_budget_exceeded',
+        name: "token_budget_exceeded",
         condition: () => this.metrics.tokenBurnRate > this.budgetLimit,
-        severity: 'warning',
-        message: 'Token usage exceeding budget'
+        severity: "warning",
+        message: "Token usage exceeding budget",
       },
       {
-        name: 'context_overflow',
+        name: "context_overflow",
         condition: () => this.metrics.contextOverflows > 10,
-        severity: 'warning',
-        message: 'Multiple context window overflows'
+        severity: "warning",
+        message: "Multiple context window overflows",
       },
       {
-        name: 'tool_degradation',
+        name: "tool_degradation",
         condition: () => this.metrics.toolSuccessRate < 0.8,
-        severity: 'critical',
-        message: 'Tool success rate below 80%'
+        severity: "critical",
+        message: "Tool success rate below 80%",
       },
       {
-        name: 'user_frustration_spike',
+        name: "user_frustration_spike",
         condition: () => this.metrics.retryRate > 0.3,
-        severity: 'warning',
-        message: 'High user retry rate indicates confusion'
-      }
+        severity: "warning",
+        message: "High user retry rate indicates confusion",
+      },
     ];
   }
 }

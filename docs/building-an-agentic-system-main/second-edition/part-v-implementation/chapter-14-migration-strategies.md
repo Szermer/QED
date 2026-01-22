@@ -47,16 +47,16 @@ Build dedicated infrastructure for the migration process:
 class MigrationService {
   private migrationQueue: Queue<MigrationJob>;
   private rollbackStore: RollbackStore;
-  
+
   async migrate(userId: string): Promise<MigrationResult> {
     const checkpoint = await this.createCheckpoint(userId);
-    
+
     try {
       const localData = await this.extractLocalData(userId);
       const transformed = await this.transformData(localData);
       await this.validateTransformation(transformed);
       await this.uploadToServer(transformed);
-      
+
       return { success: true, checkpoint };
     } catch (error) {
       await this.rollback(checkpoint);
@@ -90,7 +90,7 @@ interface ThreadMigration {
     metadata: Record<string, unknown>;
     createdAt: Date;
   };
-  
+
   // Server thread format
   serverThread: {
     id: string;
@@ -109,32 +109,32 @@ The transformation process:
 async function migrateThread(local: LocalThread): Promise<ServerThread> {
   // Preserve thread identity
   const threadId = generateDeterministicId(local);
-  
+
   // Transform messages
   const messages = await Promise.all(
     local.messages.map(async (msg) => {
       // Handle file references
       const fileRefs = await migrateFileReferences(msg);
-      
+
       // Transform tool calls
       const toolCalls = transformToolCalls(msg.toolCalls);
-      
+
       return {
         ...msg,
         fileRefs,
         toolCalls,
         syncVersion: 1,
       };
-    })
+    }),
   );
-  
+
   // Set initial permissions (private by default)
   const permissions = {
     owner: userId,
-    visibility: 'private',
+    visibility: "private",
     sharedWith: [],
   };
-  
+
   return { id: threadId, messages, permissions };
 }
 ```
@@ -151,13 +151,13 @@ interface SettingsMigration {
     customPrompts: string[];
     shortcuts: KeyboardShortcut[];
   };
-  
+
   nonTransferable: {
     localPaths: string[];
     systemIntegration: SystemConfig;
     hardwareSettings: HardwareConfig;
   };
-  
+
   transformed: {
     teamDefaults: TeamSettings;
     userOverrides: UserSettings;
@@ -171,21 +171,19 @@ Handle non-transferable settings gracefully:
 ```typescript
 function migrateSettings(local: LocalSettings): MigrationResult {
   const warnings: string[] = [];
-  
+
   // Preserve what we can
   const migrated = {
     model: local.model,
     temperature: local.temperature,
     customPrompts: local.customPrompts,
   };
-  
+
   // Flag what we can't
   if (local.localToolPaths?.length > 0) {
-    warnings.push(
-      'Local tool paths need reconfiguration in team settings'
-    );
+    warnings.push("Local tool paths need reconfiguration in team settings");
   }
-  
+
   return { settings: migrated, warnings };
 }
 ```
@@ -198,41 +196,41 @@ File handling requires special attention since local file paths won't work in a 
 class FileReferenceMigrator {
   async migrate(localRef: LocalFileRef): Promise<ServerFileRef> {
     // Check if file still exists
-    if (!await this.fileExists(localRef.path)) {
+    if (!(await this.fileExists(localRef.path))) {
       return this.createPlaceholder(localRef);
     }
-    
+
     // Determine migration strategy
     const strategy = this.selectStrategy(localRef);
-    
+
     switch (strategy) {
-      case 'embed':
+      case "embed":
         // Small files: embed content directly
         return this.embedFile(localRef);
-        
-      case 'upload':
+
+      case "upload":
         // Large files: upload to storage
         return this.uploadFile(localRef);
-        
-      case 'reference':
+
+      case "reference":
         // Version-controlled files: store reference
         return this.createReference(localRef);
-        
-      case 'ignore':
+
+      case "ignore":
         // Temporary files: don't migrate
         return null;
     }
   }
-  
+
   private selectStrategy(ref: LocalFileRef): MigrationStrategy {
     const size = ref.stats.size;
     const isVCS = this.isVersionControlled(ref.path);
     const isTemp = this.isTemporary(ref.path);
-    
-    if (isTemp) return 'ignore';
-    if (isVCS) return 'reference';
-    if (size < 100_000) return 'embed';
-    return 'upload';
+
+    if (isTemp) return "ignore";
+    if (isVCS) return "reference";
+    if (size < 100_000) return "embed";
+    return "upload";
   }
 }
 ```
@@ -249,31 +247,31 @@ Don't overwhelm users with all collaborative features at once:
 class OnboardingFlow {
   private stages = [
     {
-      name: 'migration',
-      description: 'Import your local data',
+      name: "migration",
+      description: "Import your local data",
       required: true,
     },
     {
-      name: 'solo-usage',
-      description: 'Use familiar features with sync',
-      duration: '1 week',
+      name: "solo-usage",
+      description: "Use familiar features with sync",
+      duration: "1 week",
     },
     {
-      name: 'sharing-intro',
-      description: 'Share your first thread',
-      trigger: 'user-initiated',
+      name: "sharing-intro",
+      description: "Share your first thread",
+      trigger: "user-initiated",
     },
     {
-      name: 'team-features',
-      description: 'Explore team workflows',
-      trigger: 'team-invite',
+      name: "team-features",
+      description: "Explore team workflows",
+      trigger: "team-invite",
     },
   ];
-  
+
   async guideUser(userId: string) {
     const progress = await this.getUserProgress(userId);
     const currentStage = this.stages[progress.stageIndex];
-    
+
     return this.renderGuide(currentStage, progress);
   }
 }
@@ -287,29 +285,29 @@ Map local commands to their server equivalents:
 class CommandMigration {
   private mappings = new Map([
     // Direct mappings
-    ['thread.new', 'thread.new'],
-    ['model.set', 'model.set'],
-    
+    ["thread.new", "thread.new"],
+    ["model.set", "model.set"],
+
     // Modified behavior
-    ['file.read', 'file.read --sync'],
-    ['settings.edit', 'settings.edit --scope=user'],
-    
+    ["file.read", "file.read --sync"],
+    ["settings.edit", "settings.edit --scope=user"],
+
     // Deprecated with alternatives
-    ['local.backup', 'sync.snapshot'],
-    ['offline.mode', 'cache.aggressive'],
+    ["local.backup", "sync.snapshot"],
+    ["offline.mode", "cache.aggressive"],
   ]);
-  
+
   async handleCommand(cmd: string, args: string[]) {
     const mapping = this.mappings.get(cmd);
-    
+
     if (!mapping) {
       return this.suggestAlternative(cmd);
     }
-    
-    if (mapping.includes('--')) {
+
+    if (mapping.includes("--")) {
       return this.executeWithDefaults(mapping, args);
     }
-    
+
     return this.executeMapped(mapping, args);
   }
 }
@@ -324,26 +322,26 @@ class SyncIntroduction {
   async enableForUser(userId: string) {
     // Start with read-only sync
     await this.enableReadSync(userId);
-    
+
     // Monitor for comfort signals
-    const metrics = await this.collectUsageMetrics(userId, '1 week');
-    
+    const metrics = await this.collectUsageMetrics(userId, "1 week");
+
     if (metrics.syncConflicts === 0 && metrics.activeUsage > 5) {
       // Graduate to full sync
       await this.enableWriteSync(userId);
-      await this.notifyUser('Full sync enabled - your work is backed up');
+      await this.notifyUser("Full sync enabled - your work is backed up");
     }
   }
-  
+
   private async handleSyncConflict(conflict: SyncConflict) {
     // Always preserve user's local version initially
     await this.preserveLocal(conflict);
-    
+
     // Educate about conflict resolution
     await this.showConflictUI({
-      message: 'Your local changes are safe',
-      options: ['Keep local', 'View differences', 'Merge'],
-      learnMoreUrl: '/docs/sync-conflicts',
+      message: "Your local changes are safe",
+      options: ["Keep local", "View differences", "Merge"],
+      learnMoreUrl: "/docs/sync-conflicts",
     });
   }
 }
@@ -361,32 +359,32 @@ Allow clients to declare their capabilities:
 class ProtocolNegotiator {
   negotiate(clientVersion: string): Protocol {
     const client = parseVersion(clientVersion);
-    
+
     if (client.major < 2) {
       // Legacy protocol: no streaming, simplified responses
       return {
         streaming: false,
-        compression: 'none',
-        syncProtocol: 'v1-compat',
+        compression: "none",
+        syncProtocol: "v1-compat",
         features: this.getLegacyFeatures(),
       };
     }
-    
+
     if (client.minor < 5) {
       // Transitional: streaming but no advanced sync
       return {
         streaming: true,
-        compression: 'gzip',
-        syncProtocol: 'v2-basic',
+        compression: "gzip",
+        syncProtocol: "v2-basic",
         features: this.getBasicFeatures(),
       };
     }
-    
+
     // Modern protocol: all features
     return {
       streaming: true,
-      compression: 'brotli',
-      syncProtocol: 'v3-full',
+      compression: "brotli",
+      syncProtocol: "v3-full",
       features: this.getAllFeatures(),
     };
   }
@@ -402,21 +400,21 @@ class LegacyAdapter {
   async handleRequest(req: LegacyRequest): Promise<LegacyResponse> {
     // Transform to modern format
     const modern = this.transformRequest(req);
-    
+
     // Execute with new system
     const result = await this.modernHandler.handle(modern);
-    
+
     // Transform back to legacy format
     return this.transformResponse(result);
   }
-  
+
   private transformRequest(legacy: LegacyRequest): ModernRequest {
     return {
       ...legacy,
       // Add required new fields with sensible defaults
-      teamId: 'personal',
-      syncMode: 'none',
-      permissions: { visibility: 'private' },
+      teamId: "personal",
+      syncMode: "none",
+      permissions: { visibility: "private" },
     };
   }
 }
@@ -431,28 +429,34 @@ class FeatureGating {
   async isEnabled(userId: string, feature: string): boolean {
     // Check user's migration status
     const migrationStage = await this.getMigrationStage(userId);
-    
+
     // Check feature requirements
     const requirements = this.featureRequirements.get(feature);
-    
+
     if (!requirements.stages.includes(migrationStage)) {
       return false;
     }
-    
+
     // Check rollout percentage
     const rollout = await this.getRolloutConfig(feature);
     return this.isInRollout(userId, rollout);
   }
-  
+
   private featureRequirements = new Map([
-    ['collaborative-editing', {
-      stages: ['fully-migrated'],
-      minVersion: '2.0.0',
-    }],
-    ['thread-sharing', {
-      stages: ['partially-migrated', 'fully-migrated'],
-      minVersion: '1.8.0',
-    }],
+    [
+      "collaborative-editing",
+      {
+        stages: ["fully-migrated"],
+        minVersion: "2.0.0",
+      },
+    ],
+    [
+      "thread-sharing",
+      {
+        stages: ["partially-migrated", "fully-migrated"],
+        minVersion: "1.8.0",
+      },
+    ],
   ]);
 }
 ```
@@ -469,35 +473,35 @@ Divide users into meaningful cohorts:
 class CohortManager {
   async assignCohort(userId: string): Promise<Cohort> {
     const profile = await this.getUserProfile(userId);
-    
+
     // Early adopters: power users who want new features
-    if (profile.featureRequests.includes('collaboration')) {
-      return 'early-adopter';
+    if (profile.featureRequests.includes("collaboration")) {
+      return "early-adopter";
     }
-    
-    // Low-risk: light users with simple workflows  
+
+    // Low-risk: light users with simple workflows
     if (profile.threadCount < 10 && profile.toolUsage.size < 5) {
-      return 'low-risk';
+      return "low-risk";
     }
-    
+
     // High-value: heavy users who need stability
     if (profile.threadCount > 1000 || profile.dailyActiveUse) {
-      return 'high-value-cautious';
+      return "high-value-cautious";
     }
-    
-    return 'standard';
+
+    return "standard";
   }
-  
+
   getCohortStrategy(cohort: Cohort): MigrationStrategy {
     switch (cohort) {
-      case 'early-adopter':
-        return { speed: 'fast', features: 'all', support: 'community' };
-      case 'low-risk':
-        return { speed: 'moderate', features: 'basic', support: 'self-serve' };
-      case 'high-value-cautious':
-        return { speed: 'slow', features: 'gradual', support: 'white-glove' };
+      case "early-adopter":
+        return { speed: "fast", features: "all", support: "community" };
+      case "low-risk":
+        return { speed: "moderate", features: "basic", support: "self-serve" };
+      case "high-value-cautious":
+        return { speed: "slow", features: "gradual", support: "white-glove" };
       default:
-        return { speed: 'moderate', features: 'standard', support: 'standard' };
+        return { speed: "moderate", features: "standard", support: "standard" };
     }
   }
 }
@@ -515,25 +519,26 @@ class MigrationMonitor {
     userSatisfaction: new SurveyTracker(),
     supportTickets: new TicketAnalyzer(),
   };
-  
+
   async checkHealth(): Promise<MigrationHealth> {
     const current = await this.getCurrentMetrics();
-    
+
     // Auto-pause if issues detected
     if (current.successRate < 0.95) {
-      await this.pauseMigration('Success rate below threshold');
+      await this.pauseMigration("Success rate below threshold");
     }
-    
-    if (current.p99MigrationTime > 300_000) { // 5 minutes
-      await this.pauseMigration('Migration taking too long');
+
+    if (current.p99MigrationTime > 300_000) {
+      // 5 minutes
+      await this.pauseMigration("Migration taking too long");
     }
-    
+
     if (current.supportTicketRate > 0.05) {
-      await this.alertTeam('Elevated support tickets');
+      await this.alertTeam("Elevated support tickets");
     }
-    
+
     return {
-      status: 'healthy',
+      status: "healthy",
       metrics: current,
       recommendations: this.generateRecommendations(current),
     };
@@ -559,13 +564,13 @@ class CheckpointManager {
       state: await this.captureState(userId),
       expires: Date.now() + 30 * 24 * 60 * 60 * 1000, // 30 days
     };
-    
+
     await this.storage.save(checkpoint);
-    await this.notifyUser(userId, 'Checkpoint created for your safety');
-    
+    await this.notifyUser(userId, "Checkpoint created for your safety");
+
     return checkpoint;
   }
-  
+
   private async captureState(userId: string): Promise<UserState> {
     return {
       threads: await this.exportThreads(userId),
@@ -574,21 +579,18 @@ class CheckpointManager {
       metadata: await this.exportMetadata(userId),
     };
   }
-  
+
   async rollback(checkpointId: string): Promise<void> {
     const checkpoint = await this.storage.load(checkpointId);
-    
+
     // Pause any active sync
     await this.syncService.pause(checkpoint.userId);
-    
+
     // Restore state
     await this.restoreState(checkpoint.state);
-    
+
     // Mark user as rolled back
-    await this.userService.setMigrationStatus(
-      checkpoint.userId,
-      'rolled-back'
-    );
+    await this.userService.setMigrationStatus(checkpoint.userId, "rolled-back");
   }
 }
 ```
@@ -601,18 +603,18 @@ Sometimes users only want to rollback specific aspects:
 class SelectiveRollback {
   async rollbackFeature(userId: string, feature: string) {
     switch (feature) {
-      case 'sync':
+      case "sync":
         // Disable sync but keep migrated data
         await this.disableSync(userId);
         await this.enableLocalMode(userId);
         break;
-        
-      case 'permissions':
+
+      case "permissions":
         // Reset to private-only mode
         await this.resetPermissions(userId);
         break;
-        
-      case 'collaboration':
+
+      case "collaboration":
         // Remove from teams but keep personal workspace
         await this.removeFromTeams(userId);
         await this.disableSharing(userId);
@@ -635,22 +637,22 @@ class PerformancePreserver {
   async maintainPerformance(operation: Operation) {
     // Measure baseline
     const baseline = await this.measureLocalPerformance(operation);
-    
-    // Set acceptable degradation threshold  
+
+    // Set acceptable degradation threshold
     const threshold = baseline * 1.2; // 20% slower max
-    
+
     // Implement with fallback
     const start = Date.now();
     try {
       const result = await this.executeRemote(operation);
       const duration = Date.now() - start;
-      
+
       if (duration > threshold) {
         // Cache aggressively for next time
         await this.cache.store(operation, result);
         this.metrics.recordSlowOperation(operation, duration);
       }
-      
+
       return result;
     } catch (error) {
       // Fall back to local execution
@@ -673,16 +675,16 @@ class DataAssurance {
       this.createCloudBackup(userId),
       this.createExportArchive(userId),
     ]);
-    
+
     // Give user control
     await this.notifyUser({
-      message: 'Your data is backed up in 3 locations',
+      message: "Your data is backed up in 3 locations",
       actions: [
-        { label: 'Download backup', url: backups[2].downloadUrl },
-        { label: 'Verify backup', command: 'backup.verify' },
+        { label: "Download backup", url: backups[2].downloadUrl },
+        { label: "Verify backup", command: "backup.verify" },
       ],
     });
-    
+
     return backups;
   }
 }
@@ -695,24 +697,24 @@ Define clear metrics for migration success:
 ```typescript
 interface MigrationMetrics {
   // Adoption metrics
-  migrationStartRate: number;      // Users who begin migration
-  migrationCompleteRate: number;    // Users who finish migration
-  timeToFullAdoption: number;       // Days until using all features
-  
-  // Retention metrics  
-  returnRate_1day: number;          // Users who return after 1 day
-  returnRate_7day: number;          // Users who return after 1 week
-  returnRate_30day: number;         // Users who return after 1 month
-  
+  migrationStartRate: number; // Users who begin migration
+  migrationCompleteRate: number; // Users who finish migration
+  timeToFullAdoption: number; // Days until using all features
+
+  // Retention metrics
+  returnRate_1day: number; // Users who return after 1 day
+  returnRate_7day: number; // Users who return after 1 week
+  returnRate_30day: number; // Users who return after 1 month
+
   // Satisfaction metrics
-  npsScore: number;                 // Net promoter score
-  supportTicketsPerUser: number;    // Support burden
-  rollbackRate: number;             // Users who rollback
-  
+  npsScore: number; // Net promoter score
+  supportTicketsPerUser: number; // Support burden
+  rollbackRate: number; // Users who rollback
+
   // Business metrics
-  collaborationAdoption: number;    // Users who share threads
-  teamFormation: number;            // Users who join teams
-  premiumConversion: number;        // Users who upgrade
+  collaborationAdoption: number; // Users who share threads
+  teamFormation: number; // Users who join teams
+  premiumConversion: number; // Users who upgrade
 }
 ```
 

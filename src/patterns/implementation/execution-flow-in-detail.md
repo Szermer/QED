@@ -12,7 +12,7 @@ flowchart TB
     classDef primary fill:#5D8AA8,stroke:#1F456E,stroke-width:2px,color:white;
     classDef secondary fill:#006400,stroke:#004000,stroke-width:2px,color:white;
     classDef highlight fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
-    
+
     A["User Input"] --> B["Input Processing"]
     B --> C["Query Generation"]
     C --> D["API Interaction"]
@@ -20,7 +20,7 @@ flowchart TB
     E -->|"Tool Results"| C
     D --> F["Response Rendering"]
     E --> F
-    
+
     class A,B,C,D primary
     class E highlight
     class F secondary
@@ -40,12 +40,12 @@ flowchart TD
     classDef userAction fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
     classDef component fill:#5D8AA8,stroke:#1F456E,stroke-width:2px,color:white;
     classDef function fill:#006400,stroke:#004000,stroke-width:2px,color:white;
-    
+
     A["🧑‍💻 User types and hits Enter"] --> B["PromptInput.tsx captures input"]
     B --> C["onSubmit() is triggered"]
     C --> D["AbortController created for<br> potential cancellation"]
     C --> E["processUserInput() called"]
-    
+
     class A userAction
     class B component
     class C,D,E function
@@ -69,7 +69,7 @@ flowchart TD
     classDef function fill:#006400,stroke:#004000,stroke-width:2px,color:white;
     classDef decision fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
     classDef action fill:#5D8AA8,stroke:#1F456E,stroke-width:2px,color:white;
-    
+
     A["processUserInput()"] --> B{"What type of input?"}
     B -->|"Bash command (!)"| C["Execute with BashTool"]
     B -->|"Slash command (/)"| D["Process via<br>getMessagesForSlashCommand()"]
@@ -78,7 +78,7 @@ flowchart TD
     D --> F
     E --> F
     F --> G["Pass to onQuery()<br>in REPL.tsx"]
-    
+
     class A,C,D,E,F,G function
     class B decision
 ```
@@ -104,12 +104,12 @@ flowchart TD
     classDef function fill:#006400,stroke:#004000,stroke-width:2px,color:white;
     classDef data fill:#5D8AA8,stroke:#1F456E,stroke-width:2px,color:white;
     classDef core fill:#8A2BE2,stroke:#4B0082,stroke-width:2px,color:white;
-    
+
     A["onQuery() in REPL.tsx"] --> B["Collect system prompt"]
     A --> C["Gather context"]
     A --> D["Get model information"]
     B & C & D --> E["Call query() in query.ts"]
-    
+
     class A function
     class B,C,D data
     class E core
@@ -140,14 +140,14 @@ flowchart TD
     classDef api fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
     classDef decision fill:#FFD700,stroke:#DAA520,stroke-width:2px,color:black;
     classDef function fill:#006400,stroke:#004000,stroke-width:2px,color:white;
-    
+
     A["query() function"] --> B["Format system prompt<br>with context"]
     B --> C["Call LLM API via<br>query function"]
     C --> D["Stream initial response"]
     D --> E{"Contains tool_use?"}
     E -->|"No"| F["Complete response"]
     E -->|"Yes"| G["Process tool use"]
-    
+
     class A,B core
     class C,D api
     class E decision
@@ -188,7 +188,7 @@ flowchart TD
     classDef function fill:#006400,stroke:#004000,stroke-width:2px,color:white;
     classDef permission fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
     classDef result fill:#8A2BE2,stroke:#4B0082,stroke-width:2px,color:white;
-    
+
     A["🔧 Process tool use"] --> B{"Run concurrently?"}
     B -->|"Yes"| C["runToolsConcurrently()"]
     B -->|"No"| D["runToolsSerially()"]
@@ -198,7 +198,7 @@ flowchart TD
     F --> H["Collect tool<br>responses"]
     H --> I["Recursive call to query()<br>with updated messages"]
     I --> J["Continue conversation"]
-    
+
     class A process
     class B decision
     class C,D,F,I function
@@ -231,12 +231,12 @@ flowchart LR
     classDef file fill:#5D8AA8,stroke:#1F456E,stroke-width:2px,color:white;
     classDef function fill:#006400,stroke:#004000,stroke-width:2px,color:white;
     classDef result fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
-    
+
     A["⚙️ Async generators"] --> B["utils/generators.ts"]
     B --> C["lastX(): Get last value"]
     B --> D["all(): Run multiple<br>generators concurrently"]
     C & D --> E["Real-time streaming<br>response handling"]
-    
+
     class A concept
     class B file
     class C,D function
@@ -267,13 +267,13 @@ flowchart TD
     classDef data fill:#5D8AA8,stroke:#1F456E,stroke-width:2px,color:white;
     classDef process fill:#006400,stroke:#004000,stroke-width:2px,color:white;
     classDef ui fill:#FF7F50,stroke:#FF6347,stroke-width:2px,color:white;
-    
+
     A["📊 Responses from generator"] --> B["Collect in messages state"]
     B --> C["Process in REPL.tsx"]
     C --> D["Normalize messages"]
     D --> E["Categorize as<br>static/transient"]
     E --> F["Render in UI"]
-    
+
     class A,B data
     class C,D,E process
     class F ui
@@ -294,4 +294,3 @@ This execution flow illustrates several innovative patterns worth incorporating 
 5. **Composable primitives** - Build with small, focused utilities that can be combined in different ways rather than monolithic functions.
 
 These patterns create a responsive, safe, and flexible agent architecture that scales from simple tasks to complex multi-step operations.
-

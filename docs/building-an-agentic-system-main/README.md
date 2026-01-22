@@ -11,7 +11,8 @@ This series reveals those patterns. It's the missing documentation—a practical
 ## The Three Books
 
 ### Book 1: Building an Agentic System
-*The Foundation*
+
+_The Foundation_
 
 A practical deep dive into building your first AI coding agent. This book analyzes real implementations to extract core patterns:
 
@@ -26,8 +27,9 @@ Perfect for engineers ready to build beyond simple chatbots into production-grad
 
 [**Start with Book 1 →**](introduction.md)
 
-### Book 2: Amping Up an Agentic System  
-*From Local to Collaborative*
+### Book 2: Amping Up an Agentic System
+
+_From Local to Collaborative_
 
 Transforms single-user agents into enterprise-ready collaborative platforms. Based on extensive analysis of production systems:
 
@@ -43,7 +45,8 @@ Essential reading for teams scaling AI assistants from prototype to production c
 [**Continue with Book 2 →**](second-edition/README.md)
 
 ### Book 3: Contextualizing an Agentic System
-*Advanced Tools and Context*
+
+_Advanced Tools and Context_
 
 Deep dive into advanced tool systems and context management for agentic systems. This book covers:
 
@@ -59,7 +62,7 @@ Perfect for engineers building sophisticated agent capabilities and context-awar
 ## Who This Is For
 
 - **Systems Engineers** building AI-powered development tools
-- **Platform Teams** integrating AI assistants into existing workflows  
+- **Platform Teams** integrating AI assistants into existing workflows
 - **Technical Leaders** evaluating architectures for coding assistants
 - **Researchers** studying practical AI system implementation
 - **Anyone** curious about how production AI coding tools actually work
@@ -88,7 +91,7 @@ The content is based on extensive analysis of production systems, with patterns 
 Hi! I'm Gerred. I'm a systems engineer with deep experience in AI and infrastructure at global scale. My background includes:
 
 - Early work on CNCF projects and Kubernetes ecosystem
-- Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)  
+- Creator of [KUDO](https://kudo.dev) (Kubernetes Universal Declarative Operator)
 - Deploying GPU infrastructure for AI/AR applications
 - Building data systems at scale (Mesosphere → Kubernetes migrations)
 - Early work on [Platform One](https://p1.dso.mil/) (DoD DevSecOps platform)

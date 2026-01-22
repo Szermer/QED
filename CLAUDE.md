@@ -25,25 +25,29 @@ mdbook test         # Test code examples in documentation
 QED uses a structured knowledge management approach:
 
 ### Core Directories:
+
 - `src/` - Book content (Tier 3: Proven practices only)
 - `src/analysis/` - Critical analysis documents (Tier 2: Under evaluation)
 - `docs/` - Research collection (Tier 1: Raw material)
 - `decisions/` - Architecture Decision Records with full rationale
 
 ### Key Files:
+
 - `src/SUMMARY.md` - Navigation structure for three-book series
 - `book.toml` - mdBook configuration for GitHub Pages
 - `KNOWLEDGE_INTAKE.md` - Framework for evaluating new patterns
 - `decisions/DECISION_REGISTRY.md` - Searchable index of all ADRs
 
 ### Content Structure:
+
 - **Book 1**: Foundation Patterns - Client-safe AI integration strategies
-- **Book 2**: Production Frameworks - Risk assessment and selection guidance  
+- **Book 2**: Production Frameworks - Risk assessment and selection guidance
 - **Book 3**: Advanced Integration - Enterprise patterns and scaling
 
 ## Writing Guidelines
 
 ### Style
+
 - **Practitioner-focused**: Written by consultants for consultants, addressing real client work constraints
 - **Evidence-based**: Every recommendation backed by documented client project outcomes
 - **Risk-aware**: Explicit discussion of trade-offs, limitations, and failure modes
@@ -53,6 +57,7 @@ QED uses a structured knowledge management approach:
 - **Transparent**: Document reasoning behind all framework choices and tool selections
 
 ### Hard Rules
+
 - **NO unproven claims**: Only document patterns successfully used in client projects
 - **NO framework evangelism**: Present objective analysis, not advocacy for specific tools
 - **NO theoretical patterns**: If it hasn't been tested with real clients, it doesn't belong in Tier 3
@@ -66,24 +71,28 @@ QED uses a structured knowledge management approach:
 QED uses a systematic four-tier approach to knowledge management:
 
 ### Tier 1: Research Collection (`docs/`)
+
 - Raw articles, blog posts, framework documentation
 - No editorial filter - collect everything potentially relevant
 - Priority tagging for analysis queue management
 - Source attribution and capture context
 
-### Tier 2: Critical Analysis (`src/analysis/`)  
+### Tier 2: Critical Analysis (`src/analysis/`)
+
 - Professional evaluation using risk assessment matrices
 - Client context analysis (Conservative/Moderate/Aggressive profiles)
 - Implementation feasibility and ROI projections
 - Structured analysis templates with clear recommendations
 
 ### Tier 3: Proven Practice (`src/` main content)
+
 - Only patterns successfully used in client projects
 - Documented outcomes, metrics, and lessons learned
 - Risk-mitigated approaches with known limitations
 - QED standard: "that which is demonstrated"
 
 ### Decision Records (`decisions/`)
+
 - Architecture Decision Records (ADRs) for QED application development only
 - Decisions about mdBook, GitHub Pages, project structure, etc.
 - NOT for evaluating content (articles, frameworks, patterns) being documented
@@ -99,6 +108,7 @@ QED uses a systematic four-tier approach to knowledge management:
 5. **Continuous review**: Update based on new project outcomes and client feedback
 
 ### Important Distinction
+
 - **ADRs** (`decisions/`): Only for QED application architecture (mdBook setup, CI/CD, project structure)
 - **Content evaluation**: Use Tier 2 analysis documents in `src/analysis/`
 - Example: Choosing mdBook = ADR; Evaluating Google Nano Banana = Analysis document

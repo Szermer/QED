@@ -90,11 +90,11 @@ This series explores practical approaches to context engineering across differen
 
 **Topics include:**
 
-* Moving beyond chunks to structured information landscapes
-* Multi-level response architectures that provide navigational context
-* Agent-friendly data organization patterns
-* Performance optimization for agentic workloads
-* Business metrics and ROI measurement strategies
+- Moving beyond chunks to structured information landscapes
+- Multi-level response architectures that provide navigational context
+- Agent-friendly data organization patterns
+- Performance optimization for agentic workloads
+- Business metrics and ROI measurement strategies
 
 ## Posts in This Series[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#posts-in-this-series "Permanent link")
 
@@ -120,10 +120,10 @@ This series explores practical approaches to context engineering across differen
 
 ## Who This Series Is For[¶](https://jxnl.co/writing/2025/08/28/context-engineering-index/#who-this-series-is-for "Permanent link")
 
-* **Engineering teams** building agentic RAG systems
-* **Product leaders** evaluating the ROI of agent implementations
-* **AI researchers** interested in tool design and agent cognition
-* **Anyone** curious about how agents actually work with structured data
+- **Engineering teams** building agentic RAG systems
+- **Product leaders** evaluating the ROI of agent implementations
+- **AI researchers** interested in tool design and agent cognition
+- **Anyone** curious about how agents actually work with structured data
 
 Each post includes practical code examples, implementation strategies, and real business metrics from companies that have made this transition.
 

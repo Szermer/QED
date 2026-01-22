@@ -15,19 +15,19 @@ Here's how this works in practice:
 const EditTool: Tool = {
   name: "Edit",
   /* other properties */
-  
+
   // Each tool decides when it needs permission
   needsPermissions: (input: EditParams): boolean => {
     const { file_path } = input;
     return !hasPermissionForPath(file_path, "write");
   },
-  
+
   async *call(input: EditParams, context: ToolContext) {
     const { file_path, old_string, new_string } = input;
-    
+
     // Access will be automatically checked by the framework
     // If permission is needed but not granted, this code won't run
-    
+
     // Perform the edit operation...
     const result = await modifyFile(file_path, old_string, new_string);
     yield { success: true, message: `Modified ${file_path}` };
@@ -38,33 +38,33 @@ const EditTool: Tool = {
 function hasPermissionForPath(path: string, access: "read" | "write"): boolean {
   // Check cached permissions first
   const permissions = getPermissions();
-  
+
   // Try to match permissions with path prefix
   for (const perm of permissions) {
     if (
-      perm.type === "path" && 
+      perm.type === "path" &&
       perm.access === access &&
       path.startsWith(perm.path)
     ) {
       return true;
     }
   }
-  
+
   return false;
 }
 
 // Rendering permission requests to the user
-function PermissionRequest({ 
-  tool, 
+function PermissionRequest({
+  tool,
   params,
-  onApprove, 
-  onDeny 
+  onApprove,
+  onDeny
 }: PermissionProps) {
   return (
     <Box flexDirection="column" borderStyle="round" padding={1}>
       <Text>Claude wants to use {tool.name} to modify</Text>
       <Text bold>{params.file_path}</Text>
-      
+
       <Box marginTop={1}>
         <Button onPress={() => {
           // Save permission for future use
@@ -72,13 +72,13 @@ function PermissionRequest({
             type: "path",
             path: params.file_path,
             access: "write",
-            permanent: true 
+            permanent: true
           });
           onApprove();
         }}>
           Allow
         </Button>
-        
+
         <Box marginLeft={2}>
           <Button onPress={onDeny}>Deny</Button>
         </Box>
@@ -91,7 +91,7 @@ function PermissionRequest({
 The system has specialized handling for different permission types:
 
 - **Tool Permissions**: General permissions for using specific tools
-- **Bash Command Permissions**: Fine-grained control over shell commands 
+- **Bash Command Permissions**: Fine-grained control over shell commands
 - **Filesystem Permissions**: Separate read/write permissions for directories
 
 ### Path-Based Permission Model
@@ -123,4 +123,3 @@ Additional security features include:
 - **Safe commands list**: Pre-approves common dev operations (ls, git status, etc.)
 
 The permission system is the primary safety mechanism that lets users confidently interact with an AI that has direct access to their filesystem and terminal.
-

@@ -7,6 +7,7 @@ This section explores the initialization process of an AI coding assistant from 
 When a user runs the CLI tool, this sequence triggers:
 
 The startup process follows these steps:
+
 1. CLI invocation
 2. Parse arguments
 3. Validate configuration
@@ -34,8 +35,8 @@ The initialization typically starts in two key files:
 
 ```javascript
 #!/usr/bin/env node
-import 'source-map-support/register.js'
-import './src/entrypoints/cli.js'
+import "source-map-support/register.js";
+import "./src/entrypoints/cli.js";
 ```
 
 ### Main Bootstrap (cli.tsx)
@@ -52,24 +53,24 @@ async function main(): Promise<void> {
     .option('-c, --cwd <cwd>', 'set working directory')
     .option('-d, --debug', 'enable debug mode')
     // ... other options
-    
+
   program.parse(process.argv)
   const options = program.opts()
-  
+
   // Set up environment
   const cwd = options.cwd ? path.resolve(options.cwd) : process.cwd()
   process.chdir(cwd)
-  
+
   // Load configurations and check permissions
   await showSetupScreens(dangerouslySkipPermissions, print)
   await setup(cwd, dangerouslySkipPermissions)
-  
+
   // Load tools
   const [tools, mcpClients] = await Promise.all([
     getTools(enableArchitect ?? getCurrentProjectConfig().enableArchitectTool),
     getClients(),
   ])
-  
+
   // Render REPL interface
   render(
     <REPL
@@ -110,20 +111,24 @@ main().catch(error => {
 Early in the process, configs are validated and loaded:
 
 1. **Enable Configuration**:
+
    ```javascript
-   enableConfigs()
+   enableConfigs();
    ```
+
    Ensures config files exist, are valid JSON, and initializes the config system.
 
 2. **Load Global Config**:
+
    ```javascript
-   const config = getConfig(GLOBAL_CLAUDE_FILE, DEFAULT_GLOBAL_CONFIG)
+   const config = getConfig(GLOBAL_CLAUDE_FILE, DEFAULT_GLOBAL_CONFIG);
    ```
+
    Loads user's global config with defaults where needed.
 
 3. **Load Project Config**:
    ```javascript
-   getCurrentProjectConfig()
+   getCurrentProjectConfig();
    ```
    Gets project-specific settings for the current directory.
 
@@ -168,15 +173,14 @@ The system performs three main types of checks:
 1. **Doctor**
    - Environment check
    - Dependency check
-   
 2. **Permissions**
    - Trust dialog
    - File permissions
-   
 3. **Auto-updater**
    - Updater configuration
 
-1. **Doctor Check**:
+4. **Doctor Check**:
+
    ```javascript
    async function runDoctor(): Promise<void> {
      await new Promise<void>(resolve => {
@@ -184,29 +188,32 @@ The system performs three main types of checks:
      })
    }
    ```
+
    The Doctor component checks:
    - Node.js version
    - Required executables
    - Environment setup
    - Workspace permissions
 
-2. **Permission Checks**:
+5. **Permission Checks**:
+
    ```javascript
    // Check trust dialog
-   const hasTrustDialogAccepted = checkHasTrustDialogAccepted()
+   const hasTrustDialogAccepted = checkHasTrustDialogAccepted();
    if (!hasTrustDialogAccepted) {
-     await showTrustDialog()
+     await showTrustDialog();
    }
-   
-   // Grant filesystem permissions 
-   await grantReadPermissionForOriginalDir()
+
+   // Grant filesystem permissions
+   await grantReadPermissionForOriginalDir();
    ```
+
    Ensures user accepted trust dialog and granted needed permissions.
 
-3. **Auto-updater Check**:
+6. **Auto-updater Check**:
    ```javascript
-   const autoUpdaterStatus = globalConfig.autoUpdaterStatus ?? 'not_configured'
-   if (autoUpdaterStatus === 'not_configured') {
+   const autoUpdaterStatus = globalConfig.autoUpdaterStatus ?? "not_configured";
+   if (autoUpdaterStatus === "not_configured") {
      // Initialize auto-updater
    }
    ```
@@ -233,17 +240,18 @@ async function getTools(enableArchitectTool: boolean = false): Promise<Tool[]> {
     new AgentTool(),
     new ThinkTool(),
   ]
-  
+
   // Add conditional tools
   if (enableArchitectTool) {
     tools.push(new ArchitectTool())
   }
-  
+
   return tools
 }
 ```
 
 This makes various tools available:
+
 - File tools (Read, Edit, Write)
 - Search tools (Glob, Grep, ls)
 - Agent tools (Agent, Architect)
@@ -263,15 +271,12 @@ The REPL initialization process involves several parallel steps:
 1. **Load system prompt**
    - Base prompt
    - Environment info
-   
 2. **Set up context**
    - Working directory
    - Git context
-   
 3. **Configure model**
    - Model parameters
    - Token limits
-   
 4. **Initialize message handlers**
    - Message renderer
    - Input handlers
@@ -283,23 +288,25 @@ The REPL component handles interactive sessions:
 useEffect(() => {
   async function init() {
     // Load prompt, context, model and token limits
-    const [systemPrompt, context, model, maxThinkingTokens] = await Promise.all([
-      getSystemPrompt(),
-      getContext(),
-      getSlowAndCapableModel(),
-      getMaxThinkingTokens(
-        getGlobalConfig().largeModelMaxTokens,
-        history.length > 0
-      ),
-    ])
-    
+    const [systemPrompt, context, model, maxThinkingTokens] = await Promise.all(
+      [
+        getSystemPrompt(),
+        getContext(),
+        getSlowAndCapableModel(),
+        getMaxThinkingTokens(
+          getGlobalConfig().largeModelMaxTokens,
+          history.length > 0,
+        ),
+      ],
+    );
+
     // Set up message handlers
     setMessageHandlers({
       onNewMessage: handleNewMessage,
       onUserMessage: handleUserMessage,
       // ... other handlers
-    })
-    
+    });
+
     // Initialize model params
     setModelParams({
       systemPrompt,
@@ -307,17 +314,18 @@ useEffect(() => {
       model,
       maxThinkingTokens,
       // ... other parameters
-    })
-    
+    });
+
     // Ready for input
-    setIsModelReady(true)
+    setIsModelReady(true);
   }
-  
-  init()
-}, [])
+
+  init();
+}, []);
 ```
 
 The REPL component manages:
+
 1. User interface rendering
 2. Message flow between user and AI
 3. User input and command processing
@@ -332,13 +340,13 @@ The context gathering process builds AI information:
 async function getContext(): Promise<Record<string, unknown>> {
   // Directory context
   const directoryStructure = await getDirectoryStructure()
-  
+
   // Git status
   const gitContext = await getGitContext()
-  
+
   // User context from project context file
   const userContext = await loadUserContext()
-  
+
   return {
     directoryStructure,
     gitStatus: gitContext,
@@ -349,6 +357,7 @@ async function getContext(): Promise<Record<string, unknown>> {
 ```
 
 This includes:
+
 - Directory structure
 - Git repo status and history
 - User-defined context from project context file
@@ -381,9 +390,9 @@ Each command implements a standard interface:
 
 ```typescript
 interface Command {
-  name: string
-  description: string
-  execute: (args: string[], messages: Message[]) => Promise<CommandResult>
+  name: string;
+  description: string;
+  execute: (args: string[], messages: Message[]) => Promise<CommandResult>;
   // ... other properties
 }
 ```

@@ -13,10 +13,10 @@ _This is the first post in a series on context engineering. I'm starting here be
 
 **Key Terms:**
 
-* **Context Engineering:** Structuring tool responses and information flow to give agents the right data in the right format for effective reasoning
-* **Faceted Search:** Exposing metadata aggregations (counts, categories, filters) alongside search results to reveal the data landscape
-* **Agent Peripheral Vision:** Providing agents with structured metadata about the broader information space beyond just the top-k results
-* **Tool Response as Prompt Engineering:** Using XML structure, metadata, and system instructions in tool outputs to guide future agent behavior
+- **Context Engineering:** Structuring tool responses and information flow to give agents the right data in the right format for effective reasoning
+- **Faceted Search:** Exposing metadata aggregations (counts, categories, filters) alongside search results to reveal the data landscape
+- **Agent Peripheral Vision:** Providing agents with structured metadata about the broader information space beyond just the top-k results
+- **Tool Response as Prompt Engineering:** Using XML structure, metadata, and system instructions in tool outputs to guide future agent behavior
 
 RAG worked brilliantly for the past few years. You'd embed documents, search for relevant chunks, stuff them into a prompt, and get surprisingly good answers. Simple, effective, solved real problems. I've written extensively about [systematically improving RAG applications](https://jxnl.co/writing/2025/05/29/systematically-improving-rag-with-raindrop-and-oleve/) and [common RAG anti-patterns](https://jxnl.co/writing/2025/06/11/rag-anti-patterns-with-skylar-payne/) to avoid.
 

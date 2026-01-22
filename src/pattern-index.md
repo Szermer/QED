@@ -5,61 +5,75 @@ Comprehensive index of all QED patterns organized alphabetically and by category
 ## Alphabetical Index
 
 ### A
+
 - [AMP Architecture Overview](patterns/architecture/amp-architecture.md) - Architecture, Managed Risk
 - [Authentication and Identity](patterns/security/authentication-identity.md) - Security, Managed Risk
 
 ### B
+
 - [Building Your Own AMP](patterns/implementation/building-amp.md) - Implementation, High Risk
 
 ### C
+
 - [Claude Code vs Anon Kode](patterns/implementation/claude-code-vs-anon-kode.md) - Implementation, Low Risk
 - [Collaborative AI Ecosystem](patterns/architecture/collaborative-ai-ecosystem.md) - Architecture, Emerging
 - [Core Architecture](patterns/architecture/core-architecture.md) - Architecture, Managed Risk
 
 ### D
+
 - [Deployment Guide](patterns/operations/deployment-guide.md) - Operations, High Risk
 
 ### E
+
 - [Emerging Patterns](patterns/architecture/emerging-patterns.md) - Architecture, Experimental
 - [Enterprise Integration](patterns/team/enterprise-integration.md) - Team, High Risk
 - [Execution Flow in Detail](patterns/implementation/execution-flow-in-detail.md) - Implementation, Validated
 
 ### F
+
 - [Feature Flag Integration](patterns/implementation/feature-flag-integration.md) - Implementation, Managed Risk
 - [Framework Selection Guide](patterns/implementation/framework-selection-guide.md) - Implementation, Low Risk
 - [Framework Wars Analysis](patterns/implementation/framework-wars-analysis.md) - Implementation, Low Risk
 - [From Local to Collaborative](patterns/team/local-to-collaborative.md) - Team, Managed Risk
 
 ### I
+
 - [Initialization Process](patterns/implementation/initialization-process.md) - Implementation, Validated
 - [Ink Yoga Reactive UI](patterns/architecture/ink-yoga-reactive-ui.md) - Architecture, Experimental
 
 ### L
+
 - [Lessons Learned](patterns/operations/lessons-learned-and-implementation-challenges.md) - Operations, Validated
 
 ### M
+
 - [Migration Strategies](patterns/implementation/migration-strategies.md) - Implementation, Managed Risk
 - [Multi-Agent Orchestration](patterns/architecture/multi-agent-orchestration.md) - Architecture, High Risk
 
 ### O
+
 - [Observability and Monitoring](patterns/operations/observability-monitoring.md) - Operations, Managed Risk
 
 ### P
+
 - [Parallel Tool Execution](patterns/operations/parallel-tool-execution.md) - Operations, Managed Risk
 - [Performance at Scale](patterns/operations/performance-at-scale.md) - Operations, High Risk
 - [Performance Tuning](patterns/operations/performance-tuning.md) - Operations, Managed Risk
 
 ### R
+
 - [Real-Time Synchronization](patterns/architecture/real-time-sync.md) - Architecture, High Risk
 - [Real World Examples](patterns/implementation/real-world-examples.md) - Implementation, Validated
 - [Risk Assessment](patterns/quality/risk-assessment.md) - Quality, Low Risk
 
 ### S
+
 - [Sharing and Permissions](patterns/security/sharing-permissions.md) - Security, High Risk
 - [System Architecture Diagram](patterns/architecture/system-architecture-diagram.md) - Architecture, Validated
 - [System Prompts and Model Settings](patterns/implementation/system-prompts-and-model-settings.md) - Implementation, Managed Risk
 
 ### T
+
 - [Team Workflows](patterns/team/team-workflows.md) - Team, Managed Risk
 - [The Permission System](patterns/security/the-permission-system.md) - Security, High Risk
 - [Thread Management at Scale](patterns/architecture/thread-management.md) - Architecture, Managed Risk
@@ -68,6 +82,7 @@ Comprehensive index of all QED patterns organized alphabetically and by category
 ## By Domain
 
 ### Architecture & Design (12 patterns)
+
 - [AMP Architecture Overview](patterns/architecture/amp-architecture.md)
 - [Collaborative AI Ecosystem](patterns/architecture/collaborative-ai-ecosystem.md)
 - [Core Architecture](patterns/architecture/core-architecture.md)
@@ -80,6 +95,7 @@ Comprehensive index of all QED patterns organized alphabetically and by category
 - [Tool System Evolution](patterns/architecture/tool-system-evolution.md)
 
 ### Implementation & Development (10 patterns)
+
 - [Building Your Own AMP](patterns/implementation/building-amp.md)
 - [Claude Code vs Anon Kode](patterns/implementation/claude-code-vs-anon-kode.md)
 - [Execution Flow in Detail](patterns/implementation/execution-flow-in-detail.md)
@@ -92,6 +108,7 @@ Comprehensive index of all QED patterns organized alphabetically and by category
 - [System Prompts and Model Settings](patterns/implementation/system-prompts-and-model-settings.md)
 
 ### Operations & Maintenance (6 patterns)
+
 - [Deployment Guide](patterns/operations/deployment-guide.md)
 - [Lessons Learned](patterns/operations/lessons-learned-and-implementation-challenges.md)
 - [Observability and Monitoring](patterns/operations/observability-monitoring.md)
@@ -100,29 +117,36 @@ Comprehensive index of all QED patterns organized alphabetically and by category
 - [Performance Tuning](patterns/operations/performance-tuning.md)
 
 ### Security & Compliance (3 patterns)
+
 - [Authentication and Identity](patterns/security/authentication-identity.md)
 - [Sharing and Permissions](patterns/security/sharing-permissions.md)
 - [The Permission System](patterns/security/the-permission-system.md)
 
 ### Team & Process (4 patterns)
+
 - [Enterprise Integration](patterns/team/enterprise-integration.md)
 - [From Local to Collaborative](patterns/team/local-to-collaborative.md)
 - [Team Workflows](patterns/team/team-workflows.md)
 
 ### Quality & Validation (1 pattern)
+
 - [Risk Assessment](patterns/quality/risk-assessment.md)
 
 ## By Risk Profile
 
 ### 🟢 Low Risk Patterns (6)
+
 Safe for immediate adoption:
+
 - [Claude Code vs Anon Kode](patterns/implementation/claude-code-vs-anon-kode.md)
 - [Framework Selection Guide](patterns/implementation/framework-selection-guide.md)
 - [Framework Wars Analysis](patterns/implementation/framework-wars-analysis.md)
 - [Risk Assessment](patterns/quality/risk-assessment.md)
 
 ### 🟡 Managed Risk Patterns (14)
+
 Require safeguards and expertise:
+
 - [AMP Architecture Overview](patterns/architecture/amp-architecture.md)
 - [Authentication and Identity](patterns/security/authentication-identity.md)
 - [Core Architecture](patterns/architecture/core-architecture.md)
@@ -137,7 +161,9 @@ Require safeguards and expertise:
 - [Thread Management at Scale](patterns/architecture/thread-management.md)
 
 ### 🔴 High Risk Patterns (6)
+
 Critical patterns requiring extensive validation:
+
 - [Building Your Own AMP](patterns/implementation/building-amp.md)
 - [Deployment Guide](patterns/operations/deployment-guide.md)
 - [Enterprise Integration](patterns/team/enterprise-integration.md)
@@ -150,14 +176,17 @@ Critical patterns requiring extensive validation:
 ## By Maturity
 
 ### Experimental (2)
+
 - [Emerging Patterns](patterns/architecture/emerging-patterns.md)
 - [Ink Yoga Reactive UI](patterns/architecture/ink-yoga-reactive-ui.md)
 
 ### Emerging (2)
+
 - [Collaborative AI Ecosystem](patterns/architecture/collaborative-ai-ecosystem.md)
 - [Tool System Evolution](patterns/architecture/tool-system-evolution.md)
 
 ### Validated (7)
+
 - [Execution Flow in Detail](patterns/implementation/execution-flow-in-detail.md)
 - [Initialization Process](patterns/implementation/initialization-process.md)
 - [Lessons Learned](patterns/operations/lessons-learned-and-implementation-challenges.md)
@@ -165,30 +194,39 @@ Critical patterns requiring extensive validation:
 - [System Architecture Diagram](patterns/architecture/system-architecture-diagram.md)
 
 ### Mature (0)
-*No patterns have reached full maturity status yet*
+
+_No patterns have reached full maturity status yet_
 
 ## Quick Selection Guide
 
 ### For Startups
+
 Start here:
+
 1. [Framework Selection Guide](patterns/implementation/framework-selection-guide.md)
 2. [Core Architecture](patterns/architecture/core-architecture.md)
 3. [Parallel Tool Execution](patterns/operations/parallel-tool-execution.md)
 
 ### For Mid-Market
+
 Focus on:
+
 1. [Team Workflows](patterns/team/team-workflows.md)
 2. [From Local to Collaborative](patterns/team/local-to-collaborative.md)
 3. [Authentication and Identity](patterns/security/authentication-identity.md)
 
 ### For Enterprise
+
 Prioritize:
+
 1. [Enterprise Integration](patterns/team/enterprise-integration.md)
 2. [The Permission System](patterns/security/the-permission-system.md)
 3. [Performance at Scale](patterns/operations/performance-at-scale.md)
 
 ### For Regulated Industries
+
 Essential patterns:
+
 1. [Risk Assessment](patterns/quality/risk-assessment.md)
 2. [Sharing and Permissions](patterns/security/sharing-permissions.md)
 3. [Observability and Monitoring](patterns/operations/observability-monitoring.md)

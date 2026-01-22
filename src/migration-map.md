@@ -1,6 +1,7 @@
 # QED Content Migration Map
 
 ## Architecture & Design
+
 - core-architecture.md → patterns/architecture/
 - system-architecture-diagram.md → patterns/architecture/
 - second-edition/part-i-foundations/chapter-2-amp-architecture-overview.md → patterns/architecture/amp-architecture.md
@@ -11,6 +12,7 @@
 - ink-yoga-reactive-ui.md → patterns/architecture/
 
 ## Implementation & Development
+
 - execution-flow-in-detail.md → patterns/implementation/
 - initialization-process.md → patterns/implementation/
 - real-world-examples.md → patterns/implementation/
@@ -23,6 +25,7 @@
 - second-edition/part-v-implementation/chapter-14-migration-strategies.md → patterns/implementation/migration-strategies.md
 
 ## Operations & Maintenance
+
 - parallel-tool-execution.md → patterns/operations/
 - lessons-learned-and-implementation-challenges.md → patterns/operations/
 - second-edition/part-iv-advanced-patterns/chapter-11-performance-at-scale.md → patterns/operations/performance-at-scale.md
@@ -31,22 +34,27 @@
 - second-edition/appendices/appendix-c-performance-tuning.md → patterns/operations/performance-tuning.md
 
 ## Security & Compliance
+
 - the-permission-system.md → patterns/security/
 - second-edition/part-i-foundations/chapter-3-authentication-and-identity.md → patterns/security/authentication-identity.md
 - second-edition/part-iii-collaboration/chapter-7-sharing-and-permissions.md → patterns/security/sharing-permissions.md
 
 ## Team & Process
+
 - second-edition/part-iii-collaboration/chapter-8-team-workflows.md → patterns/team/team-workflows.md
 - second-edition/part-iii-collaboration/chapter-9-enterprise-integration.md → patterns/team/enterprise-integration.md
 - second-edition/part-i-foundations/chapter-1-from-local-to-collaborative.md → patterns/team/local-to-collaborative.md
 
 ## Quality & Validation
+
 - risk-assessment.md → patterns/quality/
 
 ## Case Studies
+
 - second-edition/part-v-implementation/chapter-15-case-studies.md → case-studies/
 
 ## Overview/Meta Documents
+
 - overview-and-philosophy.md → keep in root
 - introduction.md → keep in root
 - arming-introduction.md → keep in root
@@ -57,8 +65,10 @@
 - tier3-proven/README.md → archive
 
 ## Future/Emerging
+
 - second-edition/part-vi-future/chapter-16-emerging-patterns.md → patterns/architecture/emerging-patterns.md
 - second-edition/part-vi-future/chapter-17-collaborative-ai-ecosystem.md → patterns/architecture/collaborative-ai-ecosystem.md
 
 ## Reference
+
 - second-edition/appendices/appendix-a-api-reference.md → reference/api-reference.md

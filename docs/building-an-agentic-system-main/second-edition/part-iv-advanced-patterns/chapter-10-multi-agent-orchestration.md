@@ -44,19 +44,19 @@ graph TD
     A --> C[Communication Overhead]
     A --> D[Error Propagation]
     A --> E[State Synchronization]
-    
+
     B --> B1[File Lock Contention]
     B --> B2[API Rate Limits]
     B --> B3[Memory/CPU Usage]
-    
+
     C --> C1[Progress Reporting]
     C --> C2[Task Dependencies]
     C --> C3[Result Aggregation]
-    
+
     D --> D1[Cascading Failures]
     D --> D2[Partial Completions]
     D --> D3[Rollback Complexity]
-    
+
     E --> E1[Shared State Updates]
     E --> E2[Consistency Requirements]
     E --> E3[Race Conditions]
@@ -76,19 +76,19 @@ graph TB
         CO --> RM[Resource Manager]
         CO --> CM[Communication Bus]
     end
-    
+
     subgraph "Execution Layer"
         CO --> SA1[Specialized Agent 1<br/>Frontend Expert]
         CO --> SA2[Specialized Agent 2<br/>Backend Expert]
         CO --> SA3[Specialized Agent 3<br/>Database Expert]
     end
-    
+
     subgraph "Tool Layer"
         SA1 --> T1[File Tools<br/>Browser Tools]
         SA2 --> T2[API Tools<br/>Server Tools]
         SA3 --> T3[Schema Tools<br/>Query Tools]
     end
-    
+
     subgraph "Resource Layer"
         RM --> R1[Model API Limits]
         RM --> R2[File Lock Registry]
@@ -101,9 +101,9 @@ This architecture provides clear separation of concerns while enabling efficient
 ```typescript
 // Core interface defining the hierarchical structure of our multi-agent system
 interface AgentHierarchy {
-  coordinator: ParentAgent;        // Top-level agent that orchestrates the workflow
-  workers: SpecializedAgent[];     // Child agents with specific domain expertise
-  communication: MessageBus;       // Handles inter-agent messaging and status updates
+  coordinator: ParentAgent; // Top-level agent that orchestrates the workflow
+  workers: SpecializedAgent[]; // Child agents with specific domain expertise
+  communication: MessageBus; // Handles inter-agent messaging and status updates
   resourceManager: ResourceManager; // Prevents conflicts and manages resource allocation
 }
 
@@ -114,14 +114,14 @@ class SpecializedAgent {
   private toolRegistry: ToolRegistry;
   // Resource limits prevent any single agent from consuming excessive resources
   private resourceLimits: ResourceLimits;
-  
+
   constructor(config: AgentConfiguration) {
     // Create an isolated execution environment for security and reliability
     this.capabilities = config.allowedCapabilities;
     this.toolRegistry = this.createIsolatedTools(config.tools);
     this.resourceLimits = config.limits;
   }
-  
+
   /**
    * Creates a sandboxed tool registry for this agent
    * This prevents agents from accessing tools they shouldn't have
@@ -129,10 +129,10 @@ class SpecializedAgent {
    */
   private createIsolatedTools(allowedTools: ToolDefinition[]): ToolRegistry {
     const registry = new ToolRegistry();
-    
+
     // Only register tools explicitly allowed for this agent's role
-    allowedTools.forEach(tool => registry.register(tool));
-    
+    allowedTools.forEach((tool) => registry.register(tool));
+
     // Critically important: No access to parent's tool registry
     // This prevents privilege escalation and maintains security boundaries
     return registry;
@@ -153,12 +153,12 @@ Effective multi-agent systems require thoughtful task decomposition. The key is 
 
 ### Choosing Your Decomposition Strategy
 
-| Pattern | Best For | Avoid When | Example Use Case |
-|---------|----------|------------|------------------|
-| **Functional** | Multi-domain tasks | Tight coupling between domains | Full-stack feature implementation |
-| **Spatial** | File/directory-based work | Complex dependencies | Large-scale refactoring |
-| **Temporal** | Phase-dependent processes | Parallel opportunities exist | Framework migrations |
-| **Data-driven** | Processing large datasets | Small, cohesive data | Log analysis, batch processing |
+| Pattern         | Best For                  | Avoid When                     | Example Use Case                  |
+| --------------- | ------------------------- | ------------------------------ | --------------------------------- |
+| **Functional**  | Multi-domain tasks        | Tight coupling between domains | Full-stack feature implementation |
+| **Spatial**     | File/directory-based work | Complex dependencies           | Large-scale refactoring           |
+| **Temporal**    | Phase-dependent processes | Parallel opportunities exist   | Framework migrations              |
+| **Data-driven** | Processing large datasets | Small, cohesive data           | Log analysis, batch processing    |
 
 ### Pattern 1: Functional Decomposition
 
@@ -178,48 +178,49 @@ class FeatureImplementationCoordinator {
     // Step 1: Analyze what the feature needs across different domains
     // This determines which specialized agents we'll need to spawn
     const analysis = await this.analyzeFeature(description);
-    
+
     // Step 2: Build configurations for each required domain agent
     // Each agent gets only the tools and context it needs for its domain
     const agentConfigurations: AgentConfig[] = [];
-    
+
     // Frontend agent: Handles UI components, routing, state management
     if (analysis.requiresFrontend) {
       agentConfigurations.push({
-        domain: 'frontend',
+        domain: "frontend",
         task: `Implement frontend for: ${description}`,
         focus: analysis.frontendRequirements,
-        toolset: this.getFrontendTools(),  // Only React/Vue/Angular tools
-        systemContext: this.getFrontendContext()  // Component patterns, styling guides
+        toolset: this.getFrontendTools(), // Only React/Vue/Angular tools
+        systemContext: this.getFrontendContext(), // Component patterns, styling guides
       });
     }
-    
+
     // Backend agent: Handles APIs, business logic, authentication
     if (analysis.requiresBackend) {
       agentConfigurations.push({
-        domain: 'backend',
+        domain: "backend",
         task: `Implement backend for: ${description}`,
         focus: analysis.backendRequirements,
-        toolset: this.getBackendTools(),  // Only server-side tools (Node.js, databases)
-        systemContext: this.getBackendContext()  // API patterns, security guidelines
+        toolset: this.getBackendTools(), // Only server-side tools (Node.js, databases)
+        systemContext: this.getBackendContext(), // API patterns, security guidelines
       });
     }
-    
+
     // Database agent: Handles schema changes, migrations, indexing
     if (analysis.requiresDatabase) {
       agentConfigurations.push({
-        domain: 'database',
+        domain: "database",
         task: `Implement database changes for: ${description}`,
         focus: analysis.databaseRequirements,
-        toolset: this.getDatabaseTools(),  // Only DB tools (SQL, migrations, schema)
-        systemContext: this.getDatabaseContext()  // Data patterns, performance rules
+        toolset: this.getDatabaseTools(), // Only DB tools (SQL, migrations, schema)
+        systemContext: this.getDatabaseContext(), // Data patterns, performance rules
       });
     }
-    
+
     // Step 3: Execute all domain agents in parallel
     // This is safe because they work on different parts of the system
-    const results = await this.orchestrator.executeParallel(agentConfigurations);
-    
+    const results =
+      await this.orchestrator.executeParallel(agentConfigurations);
+
     // Step 4: Integrate the results from all domains
     // This ensures the frontend can talk to the backend, etc.
     await this.integrateResults(results);
@@ -233,15 +234,15 @@ class FeatureImplementationCoordinator {
 sequenceDiagram
     participant C as Coordinator
     participant F as Frontend Agent
-    participant B as Backend Agent  
+    participant B as Backend Agent
     participant D as Database Agent
     participant I as Integration Agent
-    
+
     C->>C: Analyze Feature Requirements
     C->>F: Implement UI Components
     C->>B: Implement API Endpoints
     C->>D: Create Database Schema
-    
+
     par Frontend Work
         F->>F: Create Components
         F->>F: Add Routing
@@ -255,11 +256,11 @@ sequenceDiagram
         D->>D: Create Migrations
         D->>D: Add Indexes
     end
-    
+
     F-->>C: Frontend Complete
     B-->>C: Backend Complete
     D-->>C: Database Complete
-    
+
     C->>I: Integrate All Layers
     I->>I: Connect Frontend to API
     I->>I: Test End-to-End Flow
@@ -280,28 +281,31 @@ class CodebaseRefactoringAgent {
    * Refactors a codebase by dividing work spatially (by files/directories)
    * This approach ensures agents don't conflict by working on different files
    */
-  async refactorCodebase(pattern: string, transformation: string): Promise<void> {
+  async refactorCodebase(
+    pattern: string,
+    transformation: string,
+  ): Promise<void> {
     // Step 1: Find all files that match our refactoring pattern
     // Example: "**/*.ts" finds all TypeScript files
     const files = await this.glob(pattern);
-    
+
     // Step 2: Intelligently group files to minimize conflicts
     // Files that import each other should be in the same group
     const fileGroups = this.groupFilesByDependency(files);
-    
+
     // Step 3: Process each group with a dedicated agent
     // Sequential processing ensures no file lock conflicts
     for (const group of fileGroups) {
       await this.spawnAgent({
-        prompt: `Apply transformation to files: ${group.join(', ')}
+        prompt: `Apply transformation to files: ${group.join(", ")}
                  Transformation: ${transformation}
                  Ensure changes are consistent across all files.`,
-        tools: [readFileTool, editFileTool, grepTool],  // Minimal toolset for safety
-        systemPrompt: REFACTORING_SYSTEM_PROMPT
+        tools: [readFileTool, editFileTool, grepTool], // Minimal toolset for safety
+        systemPrompt: REFACTORING_SYSTEM_PROMPT,
       });
     }
   }
-  
+
   /**
    * Groups files by their dependencies to avoid breaking changes
    * Files that import each other are processed together for consistency
@@ -310,29 +314,29 @@ class CodebaseRefactoringAgent {
     // Track which files we've already assigned to groups
     const groups: string[][] = [];
     const processed = new Set<string>();
-    
+
     // Process each file and its dependencies together
     for (const file of files) {
-      if (processed.has(file)) continue;  // Skip if already in a group
-      
+      if (processed.has(file)) continue; // Skip if already in a group
+
       // Start a new group with this file
       const group = [file];
-      
+
       // Find all dependencies of this file
       const deps = this.findDependencies(file);
-      
+
       // Add dependencies to the same group if they're in our file list
       for (const dep of deps) {
         if (files.includes(dep) && !processed.has(dep)) {
           group.push(dep);
-          processed.add(dep);  // Mark as processed
+          processed.add(dep); // Mark as processed
         }
       }
-      
-      processed.add(file);  // Mark the original file as processed
-      groups.push(group);   // Add this group to our list
+
+      processed.add(file); // Mark the original file as processed
+      groups.push(group); // Add this group to our list
     }
-    
+
     return groups;
   }
 }
@@ -364,50 +368,50 @@ class MigrationAgent {
       prompt: `Analyze codebase for ${from} usage patterns.
                Document all framework-specific code.
                Identify migration risks and dependencies.`,
-      tools: [readFileTool, grepTool, globTool],  // Read-only tools for safety
-      systemPrompt: ANALYSIS_SYSTEM_PROMPT
+      tools: [readFileTool, grepTool, globTool], // Read-only tools for safety
+      systemPrompt: ANALYSIS_SYSTEM_PROMPT,
     });
-    
+
     // Wait for analysis to complete before proceeding
     // This ensures we have a complete understanding before making changes
     const analysis = await analysisAgent.waitForCompletion();
-    
+
     // Phase 2: Preparation - Set up the codebase for migration
     // Creates safety nets and abstraction layers before the real migration
     const prepAgent = await this.spawnAgent({
       prompt: `Prepare codebase for migration based on analysis:
                ${analysis.summary}
                Create compatibility shims and abstraction layers.`,
-      tools: [readFileTool, editFileTool, createFileTool],  // Can create files but limited scope
-      systemPrompt: PREPARATION_SYSTEM_PROMPT
+      tools: [readFileTool, editFileTool, createFileTool], // Can create files but limited scope
+      systemPrompt: PREPARATION_SYSTEM_PROMPT,
     });
-    
+
     // Must complete preparation before starting actual migration
     await prepAgent.waitForCompletion();
-    
+
     // Phase 3: Migration - The main migration work
     // Now we can safely migrate each component in parallel
     // This is possible because Phase 2 prepared abstraction layers
-    const migrationAgents = analysis.components.map(component =>
+    const migrationAgents = analysis.components.map((component) =>
       this.spawnAgent({
         prompt: `Migrate ${component.name} from ${from} to ${to}.
                  Maintain functionality while updating syntax.`,
-        tools: ALL_TOOLS,  // Full tool access needed for comprehensive migration
-        systemPrompt: MIGRATION_SYSTEM_PROMPT
-      })
+        tools: ALL_TOOLS, // Full tool access needed for comprehensive migration
+        systemPrompt: MIGRATION_SYSTEM_PROMPT,
+      }),
     );
-    
+
     // Wait for all migration agents to complete
     await Promise.all(migrationAgents);
-    
+
     // Phase 4: Verification - Ensure everything works
     // This phase validates the migration and fixes any issues
     const verifyAgent = await this.spawnAgent({
       prompt: `Verify migration success. Run tests and fix any issues.`,
-      tools: [bashTool, editFileTool, readFileTool],  // Needs bash to run tests
-      systemPrompt: VERIFICATION_SYSTEM_PROMPT
+      tools: [bashTool, editFileTool, readFileTool], // Needs bash to run tests
+      systemPrompt: VERIFICATION_SYSTEM_PROMPT,
     });
-    
+
     // Final verification must complete for migration to be considered successful
     await verifyAgent.waitForCompletion();
   }
@@ -420,7 +424,7 @@ Effective multi-agent systems require structured communication protocols:
 
 ```typescript
 interface AgentStatus {
-  state: 'initializing' | 'active' | 'completed' | 'failed';
+  state: "initializing" | "active" | "completed" | "failed";
   progress: AgentProgress;
   currentTask?: string;
   error?: ErrorContext;
@@ -435,33 +439,33 @@ interface AgentProgress {
 
 interface ExecutionStep {
   description: string;
-  status: 'pending' | 'active' | 'completed' | 'failed';
+  status: "pending" | "active" | "completed" | "failed";
   tools: ToolExecution[];
 }
 
 class AgentCoordinator {
   private monitorAgent(agent: ManagedAgent): void {
-    agent.subscribe(status => {
+    agent.subscribe((status) => {
       switch (status.state) {
-        case 'active':
+        case "active":
           this.handleProgress(agent.id, status);
           break;
-          
-        case 'completed':
+
+        case "completed":
           this.handleCompletion(agent.id, status);
           break;
-          
-        case 'failed':
+
+        case "failed":
           this.handleFailure(agent.id, status);
           break;
       }
     });
   }
-  
+
   private handleProgress(agentId: string, status: AgentStatus): void {
     // Track progress for coordination
     this.progressTracker.update(agentId, status.progress);
-    
+
     // Monitor for coordination opportunities
     if (status.progress.currentStep) {
       const step = status.progress.steps[status.progress.currentStep];
@@ -483,26 +487,26 @@ export const ANALYSIS_TOOLS: ToolRegistration[] = [
   readFileToolReg,
   grepToolReg,
   globToolReg,
-  listDirectoryToolReg
+  listDirectoryToolReg,
 ];
 
 export const MODIFICATION_TOOLS: ToolRegistration[] = [
   ...ANALYSIS_TOOLS,
   editFileToolReg,
   createFileToolReg,
-  deleteFileToolReg
+  deleteFileToolReg,
 ];
 
 export const EXECUTION_TOOLS: ToolRegistration[] = [
   ...MODIFICATION_TOOLS,
-  bashToolReg // Dangerous - only for trusted agents
+  bashToolReg, // Dangerous - only for trusted agents
 ];
 
 // Sub-agents get minimal tools by default
 export const DEFAULT_SUBAGENT_TOOLS: ToolRegistration[] = [
   readFileToolReg,
   editFileToolReg,
-  grepToolReg
+  grepToolReg,
 ];
 ```
 
@@ -518,24 +522,24 @@ class ConcurrencyManager {
   private activeAgents = new Map<string, SubAgent>();
   // Track which agent has a lock on which file (prevents concurrent edits)
   private fileLocksMap = new Map<string, string>(); // file -> agentId
-  
+
   /**
    * Attempts to acquire an exclusive lock on a file for an agent
    * Returns true if the lock was acquired, false if another agent has it
    */
   async acquireFileLock(agentId: string, file: string): Promise<boolean> {
     const existingLock = this.fileLocksMap.get(file);
-    
+
     // Check if another agent already has this file locked
     if (existingLock && existingLock !== agentId) {
       return false; // Another agent has the lock - cannot proceed
     }
-    
+
     // Grant the lock to this agent
     this.fileLocksMap.set(file, agentId);
     return true;
   }
-  
+
   /**
    * Releases all file locks held by a specific agent
    * Called when an agent completes or fails
@@ -543,11 +547,11 @@ class ConcurrencyManager {
   releaseFileLocks(agentId: string): void {
     for (const [file, owner] of this.fileLocksMap.entries()) {
       if (owner === agentId) {
-        this.fileLocksMap.delete(file);  // Release this lock
+        this.fileLocksMap.delete(file); // Release this lock
       }
     }
   }
-  
+
   /**
    * Spawns a new agent with built-in concurrency controls
    * Automatically handles file locking and cleanup
@@ -555,9 +559,9 @@ class ConcurrencyManager {
   async spawnAgent(config: AgentConfig): Promise<SubAgent> {
     // Prevent system overload by limiting concurrent agents
     if (this.activeAgents.size >= MAX_CONCURRENT_AGENTS) {
-      throw new Error('Maximum concurrent agents reached');
+      throw new Error("Maximum concurrent agents reached");
     }
-    
+
     const agentId = generateId();
     const agent = new SubAgent(
       config.tools,
@@ -571,21 +575,21 @@ class ConcurrencyManager {
           if (!acquired) {
             throw new Error(`File ${file} is locked by another agent`);
           }
-        }
-      }
+        },
+      },
     );
-    
+
     // Track this agent as active
     this.activeAgents.set(agentId, agent);
-    
+
     // Set up automatic cleanup when agent completes
-    agent.subscribe(status => {
-      if (status.status === 'done' || status.status === 'error') {
-        this.releaseFileLocks(agentId);    // Release all file locks
+    agent.subscribe((status) => {
+      if (status.status === "done" || status.status === "error") {
+        this.releaseFileLocks(agentId); // Release all file locks
         this.activeAgents.delete(agentId); // Remove from active tracking
       }
     });
-    
+
     return agent;
   }
 }
@@ -596,48 +600,57 @@ class ConcurrencyManager {
 ```typescript
 class ResourceAwareOrchestrator {
   private resourceBudget: ResourceBudget;
-  
-  async executeWithBudget(task: string, maxResources: ResourceLimits): Promise<void> {
+
+  async executeWithBudget(
+    task: string,
+    maxResources: ResourceLimits,
+  ): Promise<void> {
     this.resourceBudget = new ResourceBudget(maxResources);
-    
+
     // Use efficient models for planning
     const analysisAgent = await this.spawnAgent({
-      tier: 'efficient', // Fast, cost-effective for analysis
+      tier: "efficient", // Fast, cost-effective for analysis
       prompt: `Analyze and plan: ${task}`,
-      resources: this.allocateForPlanning(maxResources)
+      resources: this.allocateForPlanning(maxResources),
     });
-    
+
     const plan = await analysisAgent.complete();
-    
+
     // Allocate remaining resources across implementation agents
     const remainingBudget = this.resourceBudget.remaining();
     const subtasks = plan.subtasks.length;
-    const resourcesPerTask = this.distributeResources(remainingBudget, subtasks);
-    
+    const resourcesPerTask = this.distributeResources(
+      remainingBudget,
+      subtasks,
+    );
+
     // Spawn implementation agents with resource constraints
-    const agents = plan.subtasks.map(subtask => 
+    const agents = plan.subtasks.map((subtask) =>
       this.spawnAgent({
         tier: this.selectTierForTask(subtask, resourcesPerTask),
         prompt: subtask.prompt,
         resources: resourcesPerTask,
-        budgetAware: true
-      })
+        budgetAware: true,
+      }),
     );
-    
+
     await Promise.all(agents);
   }
-  
-  private selectTierForTask(task: TaskDescription, budget: ResourceAllocation): ModelTier {
+
+  private selectTierForTask(
+    task: TaskDescription,
+    budget: ResourceAllocation,
+  ): ModelTier {
     // Select appropriate model tier based on task complexity and budget
     const complexity = this.assessComplexity(task);
     const criticalPath = this.isCriticalPath(task);
-    
+
     if (criticalPath && budget.allowsPremium) {
-      return 'premium'; // Most capable for critical tasks
-    } else if (complexity === 'high' && budget.allowsStandard) {
-      return 'standard'; // Balanced performance
+      return "premium"; // Most capable for critical tasks
+    } else if (complexity === "high" && budget.allowsStandard) {
+      return "standard"; // Balanced performance
     } else {
-      return 'efficient'; // Cost-optimized
+      return "efficient"; // Cost-optimized
     }
   }
 }
@@ -649,12 +662,12 @@ Effective multi-agent systems require sophisticated coordination. The choice of 
 
 ### Coordination Pattern Selection Matrix
 
-| Pattern | Latency | Throughput | Complexity | Fault Tolerance | Use When |
-|---------|---------|------------|------------|-----------------|----------|
-| **Pipeline** | High | Medium | Low | Poor | Sequential dependencies |
-| **MapReduce** | Medium | High | Medium | Good | Parallel processing + aggregation |
-| **Consensus** | High | Low | High | Excellent | Critical accuracy required |
-| **Event-driven** | Low | High | High | Good | Real-time coordination needed |
+| Pattern          | Latency | Throughput | Complexity | Fault Tolerance | Use When                          |
+| ---------------- | ------- | ---------- | ---------- | --------------- | --------------------------------- |
+| **Pipeline**     | High    | Medium     | Low        | Poor            | Sequential dependencies           |
+| **MapReduce**    | Medium  | High       | Medium     | Good            | Parallel processing + aggregation |
+| **Consensus**    | High    | Low        | High       | Excellent       | Critical accuracy required        |
+| **Event-driven** | Low     | High       | High       | Good            | Real-time coordination needed     |
 
 ### Pattern 1: Pipeline Coordination
 
@@ -671,31 +684,31 @@ class PipelineCoordinator {
    * Use this when later stages require the complete output of earlier stages
    */
   async runPipeline(stages: PipelineStage[]): Promise<any> {
-    let result = null;  // Start with no input for the first stage
-    
+    let result = null; // Start with no input for the first stage
+
     // Process each stage sequentially - no parallelism here
     for (const stage of stages) {
       // Spawn an agent for this specific stage of the pipeline
       const agent = await this.spawnAgent({
         prompt: stage.prompt,
         tools: stage.tools,
-        input: result,  // Pass the previous stage's output as input
+        input: result, // Pass the previous stage's output as input
         systemPrompt: `You are part of a pipeline. 
                        Your input: ${JSON.stringify(result)}
-                       ${stage.systemPrompt}`
+                       ${stage.systemPrompt}`,
       });
-      
+
       // Wait for this stage to complete before moving to the next
       // This is the key characteristic of pipeline coordination
       result = await agent.complete();
-      
+
       // Validate the output before passing it to the next stage
       // This prevents cascading errors through the pipeline
       if (!stage.outputSchema.validate(result)) {
         throw new Error(`Stage ${stage.name} produced invalid output`);
       }
     }
-    
+
     // Return the final result from the last stage
     return result;
   }
@@ -716,7 +729,7 @@ graph TB
         I --> M3[Map Agent 3]
         I --> M4[Map Agent 4]
     end
-    
+
     subgraph "Reduce Phase (Sequential)"
         M1 --> R[Reduce Agent]
         M2 --> R
@@ -724,7 +737,7 @@ graph TB
         M4 --> R
         R --> O[Final Output]
     end
-    
+
     style I fill:#e1f5fe
     style O fill:#c8e6c9
     style R fill:#fff3e0
@@ -739,55 +752,55 @@ class MapReduceCoordinator {
    * Map phase: Process items in parallel, Reduce phase: Aggregate results
    */
   async mapReduce<T, R>(
-    items: T[],                                    // Input data to process
-    mapPrompt: (item: T) => string,               // How to process each item
-    reducePrompt: (results: R[]) => string        // How to aggregate results
+    items: T[], // Input data to process
+    mapPrompt: (item: T) => string, // How to process each item
+    reducePrompt: (results: R[]) => string, // How to aggregate results
   ): Promise<R> {
     // Map phase - process all items in parallel for maximum throughput
     // Each agent gets one item and processes it independently
-    const mapAgents = items.map(item =>
+    const mapAgents = items.map((item) =>
       this.spawnAgent({
         prompt: mapPrompt(item),
-        tools: MAP_PHASE_TOOLS,     // Limited tools for map phase (usually read-only)
-        systemPrompt: MAP_AGENT_PROMPT
-      })
+        tools: MAP_PHASE_TOOLS, // Limited tools for map phase (usually read-only)
+        systemPrompt: MAP_AGENT_PROMPT,
+      }),
     );
-    
+
     // Wait for all map agents to complete
     // This is the synchronization point between map and reduce phases
     const mapResults = await Promise.all(
-      mapAgents.map(agent => agent.complete<R>())
+      mapAgents.map((agent) => agent.complete<R>()),
     );
-    
+
     // Reduce phase - single agent aggregates all the map results
     // This phase requires more sophisticated reasoning to combine results
     const reduceAgent = await this.spawnAgent({
       prompt: reducePrompt(mapResults),
-      tools: REDUCE_PHASE_TOOLS,   // May need more tools for analysis and output formatting
-      systemPrompt: REDUCE_AGENT_PROMPT
+      tools: REDUCE_PHASE_TOOLS, // May need more tools for analysis and output formatting
+      systemPrompt: REDUCE_AGENT_PROMPT,
     });
-    
+
     // Return the final aggregated result
     return reduceAgent.complete<R>();
   }
-  
+
   // Example usage: Analyze all test files in a codebase
   // This demonstrates how MapReduce scales to handle large numbers of files
   async analyzeTests(): Promise<TestAnalysis> {
     // Find all test files in the codebase
-    const testFiles = await glob('**/*.test.ts');
-    
+    const testFiles = await glob("**/*.test.ts");
+
     return this.mapReduce(
       testFiles,
       // Map function: Analyze each test file individually
-      file => `Analyze test file ${file} for:
+      (file) => `Analyze test file ${file} for:
                - Test coverage
                - Performance issues  
                - Best practice violations`,
       // Reduce function: Aggregate all individual analyses into a summary
-      results => `Aggregate test analysis results:
+      (results) => `Aggregate test analysis results:
                   ${JSON.stringify(results)}
-                  Provide overall codebase test health summary.`
+                  Provide overall codebase test health summary.`,
     );
   }
 }
@@ -802,7 +815,7 @@ class MapReduceCoordinator {
 **Real-world applications:**
 
 - Security-sensitive code changes
-- Production deployment decisions  
+- Production deployment decisions
 - Critical bug fixes
 - Compliance-related modifications
 
@@ -812,10 +825,10 @@ Multiple agents verify each other's work:
 class ConsensusCoordinator {
   async executeWithConsensus(
     task: string,
-    requiredAgreement: number = 2
+    requiredAgreement: number = 2,
   ): Promise<any> {
     const NUM_AGENTS = 3;
-    
+
     // Spawn multiple agents for same task
     const agents = Array.from({ length: NUM_AGENTS }, (_, i) =>
       this.spawnAgent({
@@ -823,30 +836,30 @@ class ConsensusCoordinator {
         tools: CONSENSUS_TOOLS,
         systemPrompt: `${CONSENSUS_SYSTEM_PROMPT}
                        You are agent ${i + 1} of ${NUM_AGENTS}.
-                       Provide your independent solution.`
-      })
+                       Provide your independent solution.`,
+      }),
     );
-    
+
     const solutions = await Promise.all(
-      agents.map(agent => agent.complete())
+      agents.map((agent) => agent.complete()),
     );
-    
+
     // Check for consensus
     const consensusGroups = this.groupBySimilarity(solutions);
     const largestGroup = consensusGroups.sort((a, b) => b.length - a.length)[0];
-    
+
     if (largestGroup.length >= requiredAgreement) {
       return largestGroup[0]; // Return consensus solution
     }
-    
+
     // No consensus - spawn arbitrator
     const arbitrator = await this.spawnAgent({
       prompt: `Review these solutions and determine the best approach:
-               ${solutions.map((s, i) => `Solution ${i + 1}: ${s}`).join('\n')}`,
+               ${solutions.map((s, i) => `Solution ${i + 1}: ${s}`).join("\n")}`,
       tools: ARBITRATOR_TOOLS,
-      systemPrompt: ARBITRATOR_SYSTEM_PROMPT
+      systemPrompt: ARBITRATOR_SYSTEM_PROMPT,
     });
-    
+
     return arbitrator.complete();
   }
 }
@@ -860,53 +873,53 @@ Multi-agent systems need robust error handling:
 class ResilientOrchestrator {
   async executeWithRetry(config: AgentConfig, maxRetries = 2): Promise<any> {
     let lastError: Error | null = null;
-    
+
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const agent = await this.spawnAgent(config);
         return await agent.complete();
-        
       } catch (error) {
         lastError = error as Error;
         logger.warn(`Agent attempt ${attempt + 1} failed: ${error.message}`);
-        
+
         // Enhance prompt with error context for retry
         config = {
           ...config,
           prompt: `${config.prompt}
                    
                    Previous attempt failed with: ${error.message}
-                   Please try a different approach.`
+                   Please try a different approach.`,
         };
-        
+
         // Exponential backoff
         if (attempt < maxRetries) {
           await sleep(Math.pow(2, attempt) * 1000);
         }
       }
     }
-    
-    throw new Error(`Failed after ${maxRetries + 1} attempts: ${lastError?.message}`);
+
+    throw new Error(
+      `Failed after ${maxRetries + 1} attempts: ${lastError?.message}`,
+    );
   }
-  
+
   async executeWithFallback(
     primary: AgentConfig,
-    fallback: AgentConfig
+    fallback: AgentConfig,
   ): Promise<any> {
     try {
       const primaryAgent = await this.spawnAgent(primary);
       return await primaryAgent.complete();
-      
     } catch (error) {
       logger.warn(`Primary agent failed: ${error.message}, trying fallback`);
-      
+
       const fallbackAgent = await this.spawnAgent({
         ...fallback,
         prompt: `${fallback.prompt}
                  
-                 Context: The primary approach failed with: ${error.message}`
+                 Context: The primary approach failed with: ${error.message}`,
       });
-      
+
       return fallbackAgent.complete();
     }
   }
@@ -920,25 +933,23 @@ Multi-agent systems must balance parallelism with resource constraints:
 ```typescript
 class PerformanceOptimizedOrchestrator {
   private executionMetrics = new Map<string, AgentMetrics>();
-  
+
   async optimizeExecution(tasks: Task[]): Promise<void> {
     // Sort tasks by estimated complexity
     const sortedTasks = this.sortByComplexity(tasks);
-    
+
     // Dynamic batching based on system load
     const systemLoad = await this.getSystemLoad();
     const batchSize = this.calculateOptimalBatchSize(systemLoad);
-    
+
     // Process in batches
     for (let i = 0; i < sortedTasks.length; i += batchSize) {
       const batch = sortedTasks.slice(i, i + batchSize);
-      
-      const agents = batch.map(task => 
-        this.spawnOptimizedAgent(task)
-      );
-      
+
+      const agents = batch.map((task) => this.spawnOptimizedAgent(task));
+
       await Promise.all(agents);
-      
+
       // Adjust batch size based on performance
       const avgExecutionTime = this.calculateAverageExecutionTime();
       if (avgExecutionTime > TARGET_EXECUTION_TIME) {
@@ -946,10 +957,10 @@ class PerformanceOptimizedOrchestrator {
       }
     }
   }
-  
+
   private async spawnOptimizedAgent(task: Task): Promise<SubAgent> {
     const startTime = Date.now();
-    
+
     const agent = await this.spawnAgent({
       ...task,
       // Optimize model selection based on task complexity
@@ -957,19 +968,19 @@ class PerformanceOptimizedOrchestrator {
       // Set aggressive timeouts for simple tasks
       timeout: this.calculateTimeout(task),
       // Limit token usage for efficiency
-      maxTokens: this.calculateTokenBudget(task)
+      maxTokens: this.calculateTokenBudget(task),
     });
-    
-    agent.subscribe(status => {
-      if (status.status === 'done') {
+
+    agent.subscribe((status) => {
+      if (status.status === "done") {
         this.executionMetrics.set(task.id, {
           duration: Date.now() - startTime,
           tokensUsed: status.metrics?.tokensUsed || 0,
-          success: true
+          success: true,
         });
       }
     });
-    
+
     return agent;
   }
 }
@@ -988,46 +999,46 @@ class FullStackFeatureAgent {
     const planner = await this.spawnAgent({
       prompt: `Create implementation plan for: ${spec.description}`,
       tools: [readFileTool, grepTool],
-      systemPrompt: PLANNING_PROMPT
+      systemPrompt: PLANNING_PROMPT,
     });
-    
+
     const plan = await planner.complete<ImplementationPlan>();
-    
+
     // Phase 2: Parallel implementation by layer
     const dbAgent = this.spawnAgent({
       prompt: `Implement database schema: ${plan.database}`,
-      tools: DATABASE_TOOLS
+      tools: DATABASE_TOOLS,
     });
-    
+
     const apiAgent = this.spawnAgent({
       prompt: `Implement API endpoints: ${plan.api}`,
-      tools: BACKEND_TOOLS  
+      tools: BACKEND_TOOLS,
     });
-    
+
     const uiAgent = this.spawnAgent({
       prompt: `Implement UI components: ${plan.ui}`,
-      tools: FRONTEND_TOOLS
+      tools: FRONTEND_TOOLS,
     });
-    
+
     // Wait for all layers
     await Promise.all([dbAgent, apiAgent, uiAgent]);
-    
+
     // Phase 3: Integration agent connects the layers
     const integrator = await this.spawnAgent({
       prompt: `Integrate the implemented layers and ensure they work together`,
       tools: ALL_TOOLS,
-      systemPrompt: INTEGRATION_PROMPT
+      systemPrompt: INTEGRATION_PROMPT,
     });
-    
+
     await integrator.complete();
-    
+
     // Phase 4: Test agent verifies everything works
     const tester = await this.spawnAgent({
       prompt: `Write and run tests for the new feature`,
       tools: [bashTool, editFileTool, createFileTool],
-      systemPrompt: TESTING_PROMPT
+      systemPrompt: TESTING_PROMPT,
     });
-    
+
     await tester.complete();
   }
 }
@@ -1037,32 +1048,29 @@ class FullStackFeatureAgent {
 
 ```typescript
 class RefactoringOrchestrator {
-  async refactorArchitecture(
-    pattern: string,
-    target: string
-  ): Promise<void> {
+  async refactorArchitecture(pattern: string, target: string): Promise<void> {
     // Analyze impact across codebase
     const analyzer = await this.spawnAgent({
       prompt: `Analyze all usages of ${pattern} pattern in codebase`,
-      tools: ANALYSIS_TOOLS
+      tools: ANALYSIS_TOOLS,
     });
-    
+
     const impact = await analyzer.complete<ImpactAnalysis>();
-    
+
     // Create refactoring agents for each component
-    const refactoringAgents = impact.components.map(component => ({
+    const refactoringAgents = impact.components.map((component) => ({
       agent: this.spawnAgent({
         prompt: `Refactor ${component.path} from ${pattern} to ${target}`,
         tools: MODIFICATION_TOOLS,
-        maxRetries: 2 // Refactoring might need retries
+        maxRetries: 2, // Refactoring might need retries
       }),
-      component
+      component,
     }));
-    
+
     // Execute with progress tracking
     for (const { agent, component } of refactoringAgents) {
       logger.info(`Refactoring ${component.path}...`);
-      
+
       try {
         await agent;
         logger.info(`✓ Completed ${component.path}`);
@@ -1071,13 +1079,13 @@ class RefactoringOrchestrator {
         // Continue with other components
       }
     }
-    
+
     // Verification agent ensures consistency
     const verifier = await this.spawnAgent({
       prompt: `Verify refactoring consistency and fix any issues`,
-      tools: ALL_TOOLS
+      tools: ALL_TOOLS,
     });
-    
+
     await verifier.complete();
   }
 }
@@ -1104,17 +1112,17 @@ class RefactoringOrchestrator {
 
 ### Measuring Success
 
-| Metric | Single Agent | Multi-Agent | Improvement |
-|--------|--------------|-------------|-------------|
-| **Task Completion Rate** | 65% | 87% | +34% |
-| **Time to Resolution** | 45 min | 28 min | -38% |
-| **Code Quality Score** | 7.2/10 | 8.8/10 | +22% |
-| **Resource Efficiency** | Baseline | 2.3x better | +130% |
+| Metric                   | Single Agent | Multi-Agent | Improvement |
+| ------------------------ | ------------ | ----------- | ----------- |
+| **Task Completion Rate** | 65%          | 87%         | +34%        |
+| **Time to Resolution**   | 45 min       | 28 min      | -38%        |
+| **Code Quality Score**   | 7.2/10       | 8.8/10      | +22%        |
+| **Resource Efficiency**  | Baseline     | 2.3x better | +130%       |
 
 ### Adoption Patterns by Company Size
 
 - **Startups (< 50 devs):** Focus on functional decomposition for full-stack features
-- **Mid-size (50-500 devs):** Spatial decomposition for microservice architectures  
+- **Mid-size (50-500 devs):** Spatial decomposition for microservice architectures
 - **Enterprise (500+ devs):** All patterns with emphasis on consensus for critical paths
 
 ## Best Practices

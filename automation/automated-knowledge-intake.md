@@ -25,6 +25,7 @@ flowchart TD
 ## Process Steps
 
 ### 1. URL Ingestion
+
 ```bash
 # Input: URL to analyze
 INPUT_URL="https://example.com/ai-development-post"
@@ -32,22 +33,26 @@ JINA_API_KEY="jina_7b89ae8875af4efcac0f91d53919599eN4yvsi-s-25_CAJjqSPPj1stySUC"
 ```
 
 ### 2. Content Extraction (Jina MCP)
+
 - Use `read_url` tool to extract clean markdown
-- Apply `guess_datetime_url` for publication metadata  
+- Apply `guess_datetime_url` for publication metadata
 - Capture source attribution and author information
 
 ### 3. QED Evaluation Pipeline
+
 - Apply systematic evaluation prompt template
 - Generate confidence score (X/25)
 - Determine appropriate tier placement
 - Create structured analysis document
 
 ### 4. Automated Filing
+
 - **Tier 1 (Score < 15)**: File in `docs/tier1-research/` by priority
 - **Tier 2 (Score 15-22)**: Create analysis document in `src/analysis/`
 - **Tier 3 (Score 23+)**: Rare - requires manual validation for main content
 
 ### 5. Knowledge Integration
+
 - Update README files and indexes
 - Create cross-references where applicable
 - Generate git commit with structured message
@@ -112,12 +117,14 @@ Apply these 10 evaluation criteria and provide scores (1-5 scale):
     - One-paragraph professional assessment
 
 SCORING GUIDELINES:
+
 - 1-2: Poor quality, biased, or incomplete
 - 3: Adequate but with significant gaps
 - 4: Good quality with minor gaps
 - 5: Excellent, comprehensive, actionable
 
 TIER PLACEMENT:
+
 - Tier 1 (< 15/25): Raw research collection
 - Tier 2 (15-22/25): Professional analysis track
 - Tier 3 (23-25/25): Proven practice (rare, requires validation)
@@ -189,6 +196,7 @@ echo "Knowledge intake complete: $URL processed"
 ## Quality Controls
 
 ### Automated Validation Checks
+
 1. **Content Length**: Minimum 1000 characters for meaningful analysis
 2. **Technical Relevance**: Must contain AI/development keywords
 3. **Recency**: Prefer content < 1 year old (flagged if older)
@@ -196,6 +204,7 @@ echo "Knowledge intake complete: $URL processed"
 5. **Source Quality**: Flag low-credibility sources
 
 ### Manual Review Triggers
+
 - Confidence score 22+ (potential Tier 3)
 - Vendor-specific tools with high lock-in risk
 - Regulatory/compliance implications
@@ -206,21 +215,25 @@ echo "Knowledge intake complete: $URL processed"
 ### Sample URLs for Validation
 
 **High-Quality Technical Content** (Expected Tier 2):
+
 - Thoughtworks Technology Radar entries
 - Martin Fowler blog posts on AI patterns
 - Google AI research documentation
 
 **Medium-Quality Content** (Expected Tier 1):
+
 - Dev.to tutorial posts
 - Medium AI development articles
 - Vendor documentation with bias
 
 **Low-Quality Content** (Expected filtering):
+
 - Marketing-heavy vendor blogs
 - Unsubstantiated trend pieces
 - AI hype articles without technical depth
 
 ### Success Metrics
+
 - **Accuracy**: Manual review matches automated tier placement 85%+
 - **Processing Time**: URL to final document < 5 minutes
 - **Quality Consistency**: Confidence scoring within ±2 points of manual evaluation
@@ -229,16 +242,19 @@ echo "Knowledge intake complete: $URL processed"
 ## Rollout Plan
 
 ### Phase 1: Manual Testing (1 week)
+
 - Process 10 sample URLs manually using framework
 - Refine evaluation prompt based on results
 - Validate MCP integration setup
 
-### Phase 2: Semi-Automated (2 weeks) 
+### Phase 2: Semi-Automated (2 weeks)
+
 - Implement extraction + evaluation pipeline
 - Manual review of all outputs
 - Iterate on prompt engineering
 
 ### Phase 3: Full Automation (Ongoing)
+
 - Deploy complete workflow
 - Implement quality monitoring
 - Scale to batch processing capabilities
@@ -246,16 +262,19 @@ echo "Knowledge intake complete: $URL processed"
 ## Benefits
 
 ### Efficiency Gains
+
 - **10x faster** than manual process (5 minutes vs 45+ minutes)
 - **Consistent evaluation** criteria application
 - **Automatic documentation** structure and cross-references
 
 ### Quality Improvements
+
 - **Systematic bias detection** through template application
 - **Standardized risk assessment** for all tools and patterns
 - **Complete traceability** from URL to final analysis
 
 ### Scaling Enablement
+
 - **Batch processing** of multiple URLs
 - **Continuous monitoring** of key AI development sources
 - **Rapid response** to new pattern emergence in the field

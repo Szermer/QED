@@ -27,26 +27,26 @@ flowchart TB
     TOOL --> PAR[Parallel Execution]
     PAR --> API
     API --> MSG
-    
+
     %% Group components into domains
     subgraph "User-Facing Layer"
         UI
     end
-    
+
     subgraph "Conversation Management"
         MSG
         QRY
     end
-    
+
     subgraph "Claude AI Integration"
         API
     end
-    
+
     subgraph "External World Interaction"
         TOOL
         PAR
     end
-    
+
     %% Distinct styling for each component with improved text contrast
     classDef uiStyle fill:#d9f7be,stroke:#389e0d,stroke-width:2px,color:#000000
     classDef msgStyle fill:#d6e4ff,stroke:#1d39c4,stroke-width:2px,color:#000000
@@ -54,7 +54,7 @@ flowchart TB
     classDef apiStyle fill:#ffd6e7,stroke:#c41d7f,stroke-width:2px,color:#000000
     classDef toolStyle fill:#fff2e8,stroke:#d4380d,stroke-width:2px,color:#000000
     classDef parStyle fill:#f5f5f5,stroke:#434343,stroke-width:2px,color:#000000
-    
+
     %% Apply styles to components
     class UI uiStyle
     class MSG msgStyle
@@ -77,11 +77,11 @@ flowchart TB
     UI_Input["PromptInput.tsx\nUser Input Capture"]
     UI_Messages["Message Components\nText, Tool Use, Results"]
     UI_REPL["REPL.tsx\nMain UI Loop"]
-    
+
     UI_Input --> UI_REPL
     UI_REPL --> UI_Messages
     UI_Messages --> UI_REPL
-    
+
     classDef UI fill:#d9f7be,stroke:#389e0d,color:#000000
     class UI_Input,UI_Messages,UI_REPL UI
 ```
@@ -101,10 +101,10 @@ flowchart TB
     MSG_Process["processUserInput()\nCommand Detection"]
     MSG_Format["Message Normalization"]
     MSG_State["messages.ts\nMessage State"]
-    
+
     MSG_Process --> MSG_Format
     MSG_Format --> MSG_State
-    
+
     classDef MSG fill:#d6e4ff,stroke:#1d39c4,color:#000000
     class MSG_Process,MSG_Format,MSG_State MSG
 ```
@@ -124,10 +124,10 @@ flowchart TB
     QRY_Main["query.ts\nMain Query Logic"]
     QRY_Format["Message Formatting"]
     QRY_Generator["async generators\nStreaming Results"]
-    
+
     QRY_Main --> QRY_Format
     QRY_Format --> QRY_Generator
-    
+
     classDef QRY fill:#fff1b8,stroke:#d48806,color:#000000
     class QRY_Main,QRY_Format,QRY_Generator QRY
 ```
@@ -148,7 +148,7 @@ The tool system lets Claude interact with your environment - reading files, runn
 flowchart TB
     TOOL_Manager["Tool Management"]
     TOOL_Permission["Permission System"]
-    
+
     subgraph "Read-Only Tools"
         TOOL_Glob["GlobTool\nFile Pattern Matching"]
         TOOL_Grep["GrepTool\nContent Searching"]
@@ -165,7 +165,7 @@ flowchart TB
     TOOL_Manager --> TOOL_Permission
     TOOL_Permission --> Read-Only-Tools
     TOOL_Permission --> Non-Read-Only-Tools
-    
+
     classDef TOOL fill:#fff2e8,stroke:#d4380d,color:#000000
     class TOOL_Manager,TOOL_Glob,TOOL_Grep,TOOL_View,TOOL_LS,TOOL_Edit,TOOL_Bash,TOOL_Write,TOOL_Permission TOOL
 ```
@@ -185,9 +185,9 @@ This component handles communication with Claude's API endpoints to get language
 flowchart TB
     API_Claude["services/claude.ts\nAPI Client"]
     API_Format["Request/Response Formatting"]
-    
+
     API_Claude --> API_Format
-    
+
     classDef API fill:#ffd6e7,stroke:#c41d7f,color:#000000
     class API_Claude,API_Format API
 ```
@@ -206,12 +206,12 @@ flowchart TB
     PAR_Serial["runToolsSerially()"]
     PAR_Generator["generators.all()\nConcurrency Control"]
     PAR_Sort["Result Sorting"]
-    
+
     PAR_Check -->|"All Read-Only"| PAR_Concurrent
     PAR_Check -->|"Any Non-Read-Only"| PAR_Serial
     PAR_Concurrent & PAR_Serial --> PAR_Generator
     PAR_Generator --> PAR_Sort
-    
+
     classDef PAR fill:#f5f5f5,stroke:#434343,color:#000000
     class PAR_Check,PAR_Concurrent,PAR_Serial,PAR_Generator,PAR_Sort PAR
 ```
@@ -233,30 +233,30 @@ Now that we've seen each component, here's how they all work together in practic
 ```mermaid
 flowchart TB
     User([Human User]) -->|Types request| UI
-    
+
     subgraph "User-Facing Layer"
         UI -->|Shows results| User
     end
-    
+
     subgraph "Conversation Management"
         UI -->|Processes input| MSG
         MSG -->|Maintains context| QRY
         QRY -->|Returns response| MSG
         MSG -->|Displays output| UI
     end
-    
+
     subgraph "Claude AI Integration"
         QRY -->|Sends request| API
         API -->|Returns response| QRY
     end
-    
+
     subgraph "External World Interaction"
         API -->|Requests tool use| TOOL
         TOOL -->|Runs operations| PAR
         PAR -->|Returns results| TOOL
         TOOL -->|Provides results| API
     end
-    
+
     classDef system fill:#f9f9f9,stroke:#333333,color:#000000
     classDef external fill:#e6f7ff,stroke:#1890ff,stroke-width:2px,color:#000000
     class UI,MSG,QRY,API,TOOL,PAR system
@@ -266,15 +266,15 @@ flowchart TB
 This diagram shows four key interaction patterns:
 
 1. **Human-System Loop**: You type a request, and Claude Code processes it and shows results
-   * _Example: You ask "How does this code work?" and get an explanation_
+   - _Example: You ask "How does this code work?" and get an explanation_
 
 2. **AI Consultation**: Your request gets sent to Claude for analysis
-   * _Example: Claude analyzes code structure and identifies design patterns_
+   - _Example: Claude analyzes code structure and identifies design patterns_
 
 3. **Environment Interaction**: Claude uses tools to interact with your files and system
-   * _Example: Claude searches for relevant files, reads them, and makes changes_
+   - _Example: Claude searches for relevant files, reads them, and makes changes_
 
 4. **Feedback Cycle**: Results from tools feed back into Claude's thinking
-   * _Example: After reading a file, Claude refines its explanation based on what it found_
+   - _Example: After reading a file, Claude refines its explanation based on what it found_
 
 What makes Claude Code powerful is that these patterns work together seamlessly. Instead of just chatting about code, Claude can actively explore, understand, and modify it in real-time.

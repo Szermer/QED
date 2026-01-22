@@ -4,7 +4,6 @@
 
 > Exploring the architecture, challenges, and implementation patterns for building AI agents with small language models (270M-32B parameters) that can run on consumer hardware
 
-
 Aug 27, 2025 · 3777 words · 18 minute read
 
 The landscape of AI agents has been dominated by large language models (LLMs) like GPT-4 and Claude, but a new frontier is opening up: lightweight, open-source, locally-deployable agents that can run on consumer hardware. This post shares internal notes and discoveries from my journey building agents for small language models (SLMs) – models ranging from 270M to 32B parameters that run efficiently on CPUs or modest GPUs. These are lessons learned from hands-on experimentation, debugging, and optimizing inference pipelines.
@@ -13,12 +12,12 @@ SLMs offer immense potential: privacy through local deployment, predictable cost
 
 ### Key Takeaways
 
-* **Embrace Constraints:** SLM agent design is driven by resource limitations (memory, CPU speed). Stability is more important than features.
-* **Simplicity is Key:** Move complex logic from prompts to external code. Use simple, direct prompts.
-* **Safety First:** Implement a multi-layer safety architecture to handle crashes and errors gracefully.
-* **Structured I/O:** Use structured data formats like JSON or XML for reliable tool calling, as small models struggle with free-form generation.
-* **Avoid Complex Reasoning:** Chain-of-Thought (CoT) prompting often fails with SLMs. Use alternative techniques like direct prompting with external verification or decomposed mini-chains.
-* **The 270M Sweet Spot:** Ultra-small models (around 270M parameters) are surprisingly capable for specific tasks and can run on edge devices.
+- **Embrace Constraints:** SLM agent design is driven by resource limitations (memory, CPU speed). Stability is more important than features.
+- **Simplicity is Key:** Move complex logic from prompts to external code. Use simple, direct prompts.
+- **Safety First:** Implement a multi-layer safety architecture to handle crashes and errors gracefully.
+- **Structured I/O:** Use structured data formats like JSON or XML for reliable tool calling, as small models struggle with free-form generation.
+- **Avoid Complex Reasoning:** Chain-of-Thought (CoT) prompting often fails with SLMs. Use alternative techniques like direct prompting with external verification or decomposed mini-chains.
+- **The 270M Sweet Spot:** Ultra-small models (around 270M parameters) are surprisingly capable for specific tasks and can run on edge devices.
 
 ## Part 1: Fundamentals of SLM Agent Architecture
 
@@ -28,27 +27,27 @@ SLMs offer immense potential: privacy through local deployment, predictable cost
 
 Unlike cloud-based LLMs with near-infinite compute, SLMs operate within strict boundaries:
 
-* **Memory:** Models must fit in RAM (typically 8-32GB).
-* **Inference Speed:** CPU-only inference is significantly slower than GPU.
-* **Context Windows:** 4K-32K tokens is common, compared to 128K+ for large models.
-* **Batch Processing:** Small batch sizes (e.g., 512 tokens) are necessary to prevent crashes.
+- **Memory:** Models must fit in RAM (typically 8-32GB).
+- **Inference Speed:** CPU-only inference is significantly slower than GPU.
+- **Context Windows:** 4K-32K tokens is common, compared to 128K+ for large models.
+- **Batch Processing:** Small batch sizes (e.g., 512 tokens) are necessary to prevent crashes.
 
 #### 2. Stability Over Features
 
 A stable, reliable agent is infinitely more valuable than a feature-rich one that crashes. This means:
 
-* Extensive error handling.
-* Process isolation for risky operations.
-* Conservative resource allocation.
-* Graceful degradation when limits are reached.
+- Extensive error handling.
+- Process isolation for risky operations.
+- Conservative resource allocation.
+- Graceful degradation when limits are reached.
 
 #### 3. Model-Specific Optimizations
 
 Each model family (e.g., Llama, Qwen, Gemma) has unique characteristics:
 
-* Prompt formatting dramatically affects output quality.
-* Temperature and sampling parameters require model-specific tuning.
-* Context sizing must align with the model’s training.
+- Prompt formatting dramatically affects output quality.
+- Temperature and sampling parameters require model-specific tuning.
+- Context sizing must align with the model’s training.
 
 ### Reference Architecture
 
@@ -103,14 +102,14 @@ HTTP API
 
 #### Performance and Capability Trade-offs
 
-| Aspect | Cloud LLMs | Local SLMs |
-| --- | --- | --- |
-| **Latency** | Network dependent (50-500ms) | Consistent (10-100ms first token) |
-| **Throughput** | 50-200 tokens/sec | 2-20 tokens/sec |
-| **Context** | 128K-1M tokens | 4K-32K tokens |
-| **Availability** | Subject to rate limits | Always available |
-| **Privacy** | Data leaves premises | Complete data control |
-| **Cost Model** | Per-token pricing | One-time hardware cost |
+| Aspect           | Cloud LLMs                   | Local SLMs                        |
+| ---------------- | ---------------------------- | --------------------------------- |
+| **Latency**      | Network dependent (50-500ms) | Consistent (10-100ms first token) |
+| **Throughput**   | 50-200 tokens/sec            | 2-20 tokens/sec                   |
+| **Context**      | 128K-1M tokens               | 4K-32K tokens                     |
+| **Availability** | Subject to rate limits       | Always available                  |
+| **Privacy**      | Data leaves premises         | Complete data control             |
+| **Cost Model**   | Per-token pricing            | One-time hardware cost            |
 
 #### Architectural Implications
 
@@ -126,30 +125,29 @@ Hardware
 
 Cloud architectures can rely on elastic scaling and retry logic, while local architectures must:
 
-* Pre-allocate resources carefully
-* Implement defensive programming patterns
-* Handle hardware limitations gracefully
-* Optimize for single-instance performance
+- Pre-allocate resources carefully
+- Implement defensive programming patterns
+- Handle hardware limitations gracefully
+- Optimize for single-instance performance
 
 ### Essential Tooling for Open Source SLM Development
 
 #### Required Tools and Frameworks
 
 1. **Open Source Model Formats & Runtimes**
-    
-    * **[GGUF](https://ggml.ai/)**: The successor to GGML, a quantized format for CPU inference.
-    * **[llama.cpp](https://github.com/ggerganov/llama.cpp)**: A high-performance C++ inference engine that supports various model architectures.
+   - **[GGUF](https://ggml.ai/)**: The successor to GGML, a quantized format for CPU inference.
+   - **[llama.cpp](https://github.com/ggerganov/llama.cpp)**: A high-performance C++ inference engine that supports various model architectures.
+
 2. **Development Tools**
-    
-    * **Model Quantization**: Convert and compress models (llama.cpp quantize)
-    * **Prompt Testing**: Iterate on prompt formats quickly
-    * **Memory Profiling**: Track RAM usage patterns
-    * **Crash Handlers**: Catch segfaults and assertion failures
+   - **Model Quantization**: Convert and compress models (llama.cpp quantize)
+   - **Prompt Testing**: Iterate on prompt formats quickly
+   - **Memory Profiling**: Track RAM usage patterns
+   - **Crash Handlers**: Catch segfaults and assertion failures
+
 3. **IDE Integration Examples**
-    
-    * **llama.vim to Qt Creator**: Cristian Adam’s work on [integrating AI assistance from llama.vim to Qt Creator](https://cristianadam.eu/20250817/from-llama-dot-vim-to-qt-creator-using-ai/) demonstrates how small models can enhance development workflows
-    * **VSCode Extensions**: Local model integration for code completion
-    * **Neovim Plugins**: Direct model interaction within text editors
+   - **llama.vim to Qt Creator**: Cristian Adam’s work on [integrating AI assistance from llama.vim to Qt Creator](https://cristianadam.eu/20250817/from-llama-dot-vim-to-qt-creator-using-ai/) demonstrates how small models can enhance development workflows
+   - **VSCode Extensions**: Local model integration for code completion
+   - **Neovim Plugins**: Direct model interaction within text editors
 
 #### Model Management Pipeline
 
@@ -174,25 +172,25 @@ Inference
 
 Small models struggle with limited context, requiring creative solutions:
 
-* **Sliding window approaches**: Maintain only recent context
-* **Compression techniques**: Summarize older interactions
-* **Selective memory**: Store only critical information
+- **Sliding window approaches**: Maintain only recent context
+- **Compression techniques**: Summarize older interactions
+- **Selective memory**: Store only critical information
 
 #### 2. Reasoning Capabilities
 
 SLMs often lack the deep reasoning of larger models:
 
-* **Challenge**: Complex multi-step logic
-* **Solution**: Break tasks into smaller, guided steps
-* **Trade-off**: More prompting overhead
+- **Challenge**: Complex multi-step logic
+- **Solution**: Break tasks into smaller, guided steps
+- **Trade-off**: More prompting overhead
 
 #### 3. Consistency and Hallucination
 
 Smaller models are more prone to inconsistent outputs:
 
-* **Challenge**: Maintaining coherent long-form responses
-* **Solution**: Structured prompting and validation layers
-* **Reality**: Accept limitations for certain use cases
+- **Challenge**: Maintaining coherent long-form responses
+- **Solution**: Structured prompting and validation layers
+- **Reality**: Accept limitations for certain use cases
 
 #### 4. Performance vs Quality
 
@@ -222,19 +220,19 @@ Broader Knowledge
 
 Getting models to run reliably across different hardware:
 
-* **macOS**: Metal framework conflicts requiring `GGML_METAL=0`
-* **Linux**: CUDA version mismatches
-* **Windows**: Inconsistent BLAS support
-* **Solution**: CPU-only fallback for maximum compatibility
+- **macOS**: Metal framework conflicts requiring `GGML_METAL=0`
+- **Linux**: CUDA version mismatches
+- **Windows**: Inconsistent BLAS support
+- **Solution**: CPU-only fallback for maximum compatibility
 
 #### 6. Error Recovery
 
 Unlike cloud APIs with automatic retries, local agents must handle:
 
-* Out-of-memory errors
-* Assertion failures in native code
-* Incomplete UTF-8 sequences
-* Model loading failures
+- Out-of-memory errors
+- Assertion failures in native code
+- Incomplete UTF-8 sequences
+- Model loading failures
 
 ### Conclusion: Embracing Constraints
 
@@ -250,7 +248,7 @@ The next section dives deeper into specific implementation patterns, exploring a
 
 The future of AI agents isn’t just in the cloud - it’s also in the millions of devices running lightweight, specialized models tailored to specific tasks. Understanding how to build for this paradigm opens up new possibilities for privacy-preserving, always-available AI assistance.
 
-* * *
+---
 
 ## Part 2: Practical Implementation with Ultra-Small Open Source Models
 
@@ -291,11 +289,11 @@ impl AgentRouter {
         let intent = self.intent_classifier.classify(input);
         // 2. Select a response template based on the intent.
         let template = self.response_templates.get(&intent);
-        
+
         // 3. Generate a minimal prompt for the model.
         let prompt = format("{}: {}", template.prefix, input);
         let response = self.model.generate(prompt, MAX_TOKENS);
-        
+
         // 4. Post-process and validate the model's response externally.
         self.validate_and_format(response)
     }
@@ -328,10 +326,10 @@ struct OptimizedAgent {
 fn process_batch(queries: Vec<String>) -> Vec<Response> {
     // 1. Tokenize all queries at once.
     let all_tokens = batch_tokenize(&queries);
-    
+
     // 2. Make a single model call for the entire batch.
     let responses = model.generate_batch(all_tokens);
-    
+
     // 3. Use parallel processing for post-processing.
     responses.par_iter()
         .map(|r| post_process(r))
@@ -346,23 +344,23 @@ With only 2-4K tokens of context, every token must count:
 ```
 struct ContextOptimizer {
     max_context: usize,  // e.g., 2048 tokens
-    
+
     fn optimize_prompt(&self, user_input: &str, history: &[Message]) -> String {
         // 1. No system prompt: Embed behavior in the agent's code, not the prompt.
-        
+
         // 2. Compress the conversation history aggressively.
         let compressed_history = self.compress_messages(history);
-        
+
         // 3. Use the shortest possible instructions for the model.
         format!("Q: {}\nA:", user_input)  // Instead of "Question: ... Assistant Response:"
     }
-    
+
     fn compress_messages(&self, messages: &[Message]) -> String {
         // Keep only the most essential information from the conversation history.
         messages.iter()
             .rev()
             .take(2)  // Only include the last 2 exchanges.
-            .map(|m| format!("{}: {}", 
+            .map(|m| format!("{}: {}",
                 m.role.as_str().chars().next().unwrap(),  // Use "U:" instead of "User:".
                 truncate(&m.content, 50)))  // Truncate long messages.
             .collect::<Vec<_>>()
@@ -418,16 +416,16 @@ fn get_safe_batch_size() -> usize {
 fn prepare_batch_with_safety(tokens: &[i32], context_size: usize) -> Result<(LlamaBatch, usize)> {
     let safe_size = get_safe_batch_size();
     let actual_size = tokens.len().min(safe_size);
-    
+
     if tokens.len() > safe_size {
         warn!("Truncating {} tokens to {} for safety", tokens.len(), safe_size);
     }
-    
+
     let mut batch = LlamaBatch::new(actual_size, 1);
     for (i, &token) in tokens[..actual_size].iter().enumerate() {
         batch.add(token, i as i32, &[0], false)?;
     }
-    
+
     Ok((batch, actual_size))
 }
 ```
@@ -482,7 +480,7 @@ impl Utf8Buffer {
         // 1. Combine the new bytes with any incomplete bytes from the previous chunk.
         let mut combined = std::mem::take(&mut self.incomplete);
         combined.extend_from_slice(new_bytes);
-        
+
         // 2. Try to convert the combined bytes to a UTF-8 string.
         match String::from_utf8(combined) {
             // If successful, the buffer is cleared.
@@ -556,7 +554,7 @@ impl ContextManager {
     fn compress_context(&mut self) -> String {
         let mut token_budget = self.max_tokens;
         let mut compressed = String::new();
-        
+
         // Keep only the most recent and relevant messages
         while let Some(msg) = self.history.pop_front() {
             let msg_tokens = estimate_tokens(&msg.content);
@@ -569,7 +567,7 @@ impl ContextManager {
                 break;
             }
         }
-        
+
         compressed
     }
 }
@@ -583,9 +581,9 @@ Small models struggle with complex reasoning and tool selection. Here’s how to
 
 Chain-of-Thought (CoT) prompting, which asks models to “think step-by-step,” is highly effective for large models but often fails with SLMs. Small models lack the working memory to maintain coherent reasoning chains, leading to:
 
-* Lost context and nonsensical steps.
-* Wasted tokens on broken logic.
-* Hallucinated reasoning that sounds plausible but is incorrect.
+- Lost context and nonsensical steps.
+- Wasted tokens on broken logic.
+- Hallucinated reasoning that sounds plausible but is incorrect.
 
 Instead of CoT, use these alternatives:
 
@@ -598,7 +596,7 @@ fn solve_with_verification(question: &str) -> Result<Answer> {
     // Simple, direct prompt
     let prompt = format!("Answer: {}", question);
     let raw_answer = model.generate(prompt, 20); // Expect a short response
-    
+
     // Verify the answer externally
     let parsed = parse_answer(&raw_answer)?;
     if validate_answer(&parsed, &question) {
@@ -622,17 +620,17 @@ struct MiniChainExecutor {
 impl MiniChainExecutor {
     fn execute(&self, input: &str) -> Result<String> {
         let mut context = input.to_string();
-        
+
         for step in &self.steps {
             // Each step is a single, simple operation
             let prompt = step.build_prompt(&context);
             let result = model.generate(&prompt, 30);
-            
+
             // Validate and extract only the necessary information
             let extracted = step.extract_value(&result)?;
             context = format!("{}\n{}: {}", context, step.name, extracted);
         }
-        
+
         Ok(context)
     }
 }
@@ -667,13 +665,13 @@ XML is often more reliable than JSON for small models due to its explicit closin
 fn extract_xml_content(response: &str) -> HashMap<String, String> {
     let mut result = HashMap::new();
     let tag_pattern = Regex::new(r"<(\w+)>(.*?)</\1>").unwrap();
-    
+
     for caps in tag_pattern.captures_iter(response) {
         let tag = caps.get(1).map_or("", |m| m.as_str());
         let content = caps.get(2).map_or("", |m| m.as_str());
         result.insert(tag.to_string(), content.to_string());
     }
-    
+
     result
 }
 
@@ -697,13 +695,13 @@ impl AdvancedXMLParser {
             let name_end = xml_str[name_start..].find(">")
                 .ok_or("Invalid function tag")?;
             let function_name = &xml_str[name_start..name_start + name_end];
-            
+
             // Extract parameters between function tags
             let params_start = name_start + name_end + 1;
             let params_end = xml_str.find(&self.function_end)
                 .ok_or("Missing function end tag")?;
             let params_section = &xml_str[params_start..params_end];
-            
+
             // Parse individual parameters
             let mut parameters = HashMap::new();
             let param_regex = Regex::new(&format!(
@@ -711,22 +709,22 @@ impl AdvancedXMLParser {
                 regex::escape(&self.parameter_prefix),
                 regex::escape(&self.parameter_end)
             ))?;
-            
+
             for cap in param_regex.captures_iter(params_section) {
                 let param_name = cap.get(1).map_or("", |m| m.as_str());
                 let param_value = cap.get(2).map_or("", |m| m.as_str())
                     .trim_start_matches('\n')
                     .trim_end_matches('\n');
-                
+
                 // Type conversion based on parameter schema
                 let converted_value = self.convert_param_value(
-                    param_value, 
-                    param_name, 
+                    param_value,
+                    param_name,
                     function_name
                 );
                 parameters.insert(param_name.to_string(), converted_value);
             }
-            
+
             Ok(ParsedFunction {
                 name: function_name.to_string(),
                 arguments: parameters,
@@ -735,18 +733,18 @@ impl AdvancedXMLParser {
             Err(anyhow::anyhow!("No function tag found"))
         }
     }
-    
+
     fn convert_param_value(&self, value: &str, param: &str, func: &str) -> serde_json::Value {
         // Handle null values
         if value.to_lowercase() == "null" {
             return serde_json::Value::Null;
         }
-        
+
         // Try to parse as JSON first (for objects/arrays)
         if let Ok(json_val) = serde_json::from_str(value) {
             return json_val;
         }
-        
+
         // Try to parse as number
         if let Ok(num) = value.parse::<f64>() {
             if num.fract() == 0.0 {
@@ -754,12 +752,12 @@ impl AdvancedXMLParser {
             }
             return serde_json::json!(num);
         }
-        
+
         // Try to parse as boolean
         if value == "true" || value == "false" {
             return serde_json::json!(value == "true");
         }
-        
+
         // Default to string
         serde_json::json!(value)
     }
@@ -778,7 +776,7 @@ enum ToolCall {
 impl ToolCall {
     fn from_xml_data(data: HashMap<String, String>) -> Result<Self> {
         let tool_type = data.get("tool").ok_or("Missing tool type")?;
-        
+
         match tool_type.as_str() {
             "filesystem" => Ok(ToolCall::FileSystem {
                 action: data.get("action").cloned().unwrap_or_default(),
@@ -840,13 +838,13 @@ fn parse_tool_call(response: &str) -> Result<ToolCall> {
             return Ok(tool_call);
         }
     }
-    
+
     // 2. Try XML parsing
     let xml_data = extract_xml_content(response);
     if !xml_data.is_empty() {
         return ToolCall::from_xml_data(xml_data);
     }
-    
+
     // 3. Fallback to keyword extraction
     extract_with_keywords(response)
 }
@@ -938,26 +936,26 @@ async fn hybrid_inference(query: &str) -> Result<String> {
 
 Ultra-small open source models around 270M parameters (like Gemma 3, Qwen-Nano, and TinyLlama) are ideal for edge deployment:
 
-* **Fast Inference:** Achieves high token-per-second rates on modern mobile devices.
-* **Minimal Footprint:** Low memory usage with quantization.
-* **Low Power Consumption:** Suitable for battery-powered devices.
-* **Basic Capabilities:** Reliably handles completion, simple Q&A, and instruction following.
+- **Fast Inference:** Achieves high token-per-second rates on modern mobile devices.
+- **Minimal Footprint:** Low memory usage with quantization.
+- **Low Power Consumption:** Suitable for battery-powered devices.
+- **Basic Capabilities:** Reliably handles completion, simple Q&A, and instruction following.
 
 #### Key Takeaways: What Works and What Doesn’t
 
 **What Works:**
 
-* **Aggressive Caching:** Cache everything you can (tokens, embeddings, responses).
-* **Fail Fast:** Use tight timeouts and have robust fallback mechanisms.
-* **Structured I/O:** Force model outputs into parseable formats like XML or JSON.
-* **Hardware Awareness:** Design your agent to adapt to available resources.
+- **Aggressive Caching:** Cache everything you can (tokens, embeddings, responses).
+- **Fail Fast:** Use tight timeouts and have robust fallback mechanisms.
+- **Structured I/O:** Force model outputs into parseable formats like XML or JSON.
+- **Hardware Awareness:** Design your agent to adapt to available resources.
 
 **What Doesn’t Work:**
 
-* **Complex, Multi-Step Reasoning:** SLMs fail at this. Keep it simple.
-* **Long Contexts:** Performance degrades quickly. Be ruthless with context management.
-* **Free-Form Tool Use:** Don’t let the model choose from many tools. Guide it.
-* **Nuanced Responses:** SLMs are not subtle. Be direct in your prompts.
+- **Complex, Multi-Step Reasoning:** SLMs fail at this. Keep it simple.
+- **Long Contexts:** Performance degrades quickly. Be ruthless with context management.
+- **Free-Form Tool Use:** Don’t let the model choose from many tools. Guide it.
+- **Nuanced Responses:** SLMs are not subtle. Be direct in your prompts.
 
 ### Future Directions and Conclusion
 
@@ -967,6 +965,6 @@ The key insight from building production SLM agents is that **constraints breed 
 
 The next frontier isn’t making small models act like large ones—it’s discovering the unique capabilities that emerge when we design specifically for them.
 
-* * *
+---
 
 **Let’s Connect**: If you’re exploring small language models and building agents for edge deployment, I’d love to brainstorm. The SLM space is evolving rapidly. Reach out via email or on X ([@msuiche](https://x.com/msuiche)).

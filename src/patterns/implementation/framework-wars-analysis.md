@@ -9,11 +9,13 @@ Every AI development framework must address these fundamental architectural choi
 ### 1. Task Management: Where Tasks Live
 
 **Options:**
+
 - **Markdown Backlogs**: Simple todo lists in markdown files
-- **Structured Text**: Product specs converted to tasks  
+- **Structured Text**: Product specs converted to tasks
 - **Issue/Ticket Systems**: GitHub Issues, Jira integration
 
 **Client Work Implications:**
+
 - Markdown works for solo developers but lacks client visibility
 - Structured text requires upfront specification discipline
 - Issue systems provide audit trails clients expect
@@ -23,12 +25,14 @@ Every AI development framework must address these fundamental architectural choi
 ### 2. AI Guidance: Replacing Ambiguous Prompts
 
 **Options:**
+
 - **Command Libraries**: Prebuilt slash commands
 - **Coding Standards**: Tech stack and style guidelines
 - **Definition of Done**: Explicit completion criteria
 - **Validation Hooks**: Automated testing integration
 
 **Client Work Implications:**
+
 - Commands reduce inconsistency but require team training
 - Standards prevent AI from making inappropriate technology choices
 - Definition of Done protects against scope creep
@@ -39,11 +43,13 @@ Every AI development framework must address these fundamental architectural choi
 ### 3. Multi-Agent Coordination
 
 **Options:**
+
 - **Role Simulation**: AI as PM, architect, developer, tester
 - **Swarm Parallelism**: Multiple agents in structured flows
 - **Repo-Native Artifacts**: Tasks and logs stored in codebase
 
 **Client Work Implications:**
+
 - Role simulation can obscure accountability
 - Swarm parallelism introduces complexity and debugging challenges
 - Repo artifacts provide transparency but clutter the codebase
@@ -53,11 +59,13 @@ Every AI development framework must address these fundamental architectural choi
 ### 4. Session Management
 
 **Options:**
+
 - **Terminal Orchestration**: AI controls commands and logs
 - **Parallel Worktrees**: Multiple Git branches simultaneously
 - **Parallel Containers**: Isolated execution environments
 
 **Client Work Implications:**
+
 - Terminal orchestration works well for development workflows
 - Parallel worktrees enable rapid iteration without conflicts
 - Containers provide isolation but add operational complexity
@@ -67,12 +75,14 @@ Every AI development framework must address these fundamental architectural choi
 ### 5. Tool Integration
 
 **Options:**
+
 - **MCP Integrations**: Model Context Protocol servers
 - **Custom Tool Libraries**: Shell scripts and commands
 - **Database Accessors**: Direct database integration
 - **Testing Hooks**: Automated validation
 
 **Client Work Implications:**
+
 - MCP provides standardized tool access but adds dependencies
 - Custom tools offer flexibility but require maintenance
 - Database access raises security concerns
@@ -83,12 +93,14 @@ Every AI development framework must address these fundamental architectural choi
 ### 6. Development Roles
 
 **Options:**
+
 - **Project Manager**: Specs to tasks conversion
 - **Architect**: Structure and interface design
 - **Implementer**: Code generation within guardrails
 - **QA/Reviewer**: Quality and risk assessment
 
 **Client Work Implications:**
+
 - AI as PM can miss business context
 - AI architecture decisions may not align with client constraints
 - AI implementation works well within defined boundaries
@@ -99,11 +111,13 @@ Every AI development framework must address these fundamental architectural choi
 ### 7. Code Delivery
 
 **Options:**
+
 - **Small Diffs**: AI creates focused PRs for review
 - **Feature Flags**: Deploy changes behind toggles
 - **Full App Scaffolds**: End-to-end application generation
 
 **Client Work Implications:**
+
 - Small diffs maintain code quality and review processes
 - Feature flags enable safe experimentation
 - Full scaffolds risk over-engineering without business validation
@@ -113,11 +127,13 @@ Every AI development framework must address these fundamental architectural choi
 ### 8. Context Preservation
 
 **Options:**
+
 - **Documentation**: CLAUDE.md, architecture notes, journals
 - **Persistent Memory**: Project health checks, decision storage
 - **Session Continuity**: Cross-session state management
 
 **Client Work Implications:**
+
 - Documentation provides client handoff materials
 - Persistent memory reduces repeated explanations
 - Session continuity improves development efficiency
@@ -129,16 +145,19 @@ Every AI development framework must address these fundamental architectural choi
 Based on GitHub activity and production adoption:
 
 **Production Ready:**
+
 - CLAUDE.md documentation patterns
 - Small diff workflows
 - Basic tool integration
 
 **Experimental (Use with Caution):**
+
 - Multi-agent orchestration
 - Full app scaffolding
 - Complex MCP integrations
 
 **Early Stage (Avoid for Client Work):**
+
 - Swarm parallelism
 - AI as primary reviewer
 - Autonomous deployment

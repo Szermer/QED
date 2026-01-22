@@ -15,9 +15,9 @@ This guide will cover:
 7.  Conversational image editing
 8.  Best practices and effective prompting
 9.  Community examples and inspiration
-10.  Resources
+10. Resources
 
-Here's an example of what you'll build in this tutorial:  
+Here's an example of what you'll build in this tutorial:
 
 ```
 prompt = "Restore and colorize this image from 1932"
@@ -54,19 +54,19 @@ For direct access, use this link to start a new session with the model:
 
 To follow this guide, you will need the following:
 
--   An API key from [Google AI Studio](https://aistudio.google.com/).
+- An API key from [Google AI Studio](https://aistudio.google.com/).
 
--   Billing set up for your project.
--   The Google Gen AI SDK for [Python](https://github.com/googleapis/python-genai) or [JavaScript/TypeScript](https://github.com/googleapis/js-genai).
+- Billing set up for your project.
+- The Google Gen AI SDK for [Python](https://github.com/googleapis/python-genai) or [JavaScript/TypeScript](https://github.com/googleapis/js-genai).
 
 ### [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#step-a-generate-an-api-key)Step A: Generate an API Key
 
 Follow these steps:
 
--   In Google AI Studio, click **Get API key** in the left navigation panel.
+- In Google AI Studio, click **Get API key** in the left navigation panel.
 
--   On the next page, click **Create API key**.
--   Select an existing Google Cloud project or create a new one. This project is used to manage billing for API usage.
+- On the next page, click **Create API key**.
+- Select an existing Google Cloud project or create a new one. This project is used to manage billing for API usage.
 
 Once the process is complete, your API key will be displayed. Copy and store it securely.
 
@@ -88,7 +88,7 @@ Image generation with Nano Banana costs **$0.039 per image** \*. For $1, you can
 
 Choose the SDK for your preferred language.
 
-**Python:**  
+**Python:**
 
 ```
 pip install -U google-genai
@@ -100,7 +100,7 @@ pip install Pillow
 
 Enter fullscreen mode Exit fullscreen mode
 
-**JavaScript / TypeScript:**  
+**JavaScript / TypeScript:**
 
 ```
 npm install @google/genai
@@ -112,7 +112,7 @@ Enter fullscreen mode Exit fullscreen mode
 
 ## [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#3-image-generation-from-text)3) Image Generation from Text
 
-Use Nano Banana to generate one or more images from a descriptive text prompt. Use the model ID `gemini-2.5-flash-image-preview` for all API requests.  
+Use Nano Banana to generate one or more images from a descriptive text prompt. Use the model ID `gemini-2.5-flash-image-preview` for all API requests.
 
 ```
 from google import genai
@@ -153,7 +153,7 @@ The model is multimodal, so the response is structured as a list of `parts` that
 
 ## [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#4-image-editing-with-text-and-image-inputs)4) Image Editing with Text and Image Inputs
 
-Provide an existing image along with a text prompt to perform edits. The model excels at maintaining character and content consistency from the input image.  
+Provide an existing image along with a text prompt to perform edits. The model excels at maintaining character and content consistency from the input image.
 
 ```
 from google import genai
@@ -191,7 +191,7 @@ Input and Output:
 
 ## [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#5-photo-restoration-with-nano-banana)5) Photo restoration with Nano Banana
 
-One of the model's powerful applications is photo restoration. With a simple prompt, it can restore and colorize old photographs with impressive results.  
+One of the model's powerful applications is photo restoration. With a simple prompt, it can restore and colorize old photographs with impressive results.
 
 ```
 from google import genai
@@ -225,7 +225,7 @@ Original and Output:
 
 ## [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#6-working-with-multiple-input-images)6) Working with Multiple Input Images
 
-You can provide multiple images as input for more complex editing tasks.  
+You can provide multiple images as input for more complex editing tasks.
 
 ```
 from google import genai
@@ -260,7 +260,7 @@ Inputs 1 & 2 and Output:
 
 ## [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#7-conversational-image-editing)7) Conversational Image Editing
 
-For iterative refinement, you can use a `chats` session to maintain context across multiple requests. This allows you to edit images conversationally.  
+For iterative refinement, you can use a `chats` session to maintain context across multiple requests. This allows you to edit images conversationally.
 
 ```
 from google import genai
@@ -304,15 +304,15 @@ Input and Outputs 1 & 2:
 
 To achieve the best results with Nano Banana, follow these prompting guidelines:
 
--   **Be Hyper-Specific:** The more detail you provide about subjects, colors, lighting, and composition, the more control you have over the output.
+- **Be Hyper-Specific:** The more detail you provide about subjects, colors, lighting, and composition, the more control you have over the output.
 
--   **Provide Context and Intent:** Explain the purpose or desired mood of the image. The model's understanding of context will influence its creative choices.
--   **Iterate and Refine:** Don't expect perfection on the first try. Use the model's conversational ability to make incremental changes and refine your image.
+- **Provide Context and Intent:** Explain the purpose or desired mood of the image. The model's understanding of context will influence its creative choices.
+- **Iterate and Refine:** Don't expect perfection on the first try. Use the model's conversational ability to make incremental changes and refine your image.
 
--   **Use Step-by-Step Instructions:** For complex scenes, break your prompt into a series of clear, sequential instructions.
--   **Use Positive Framing:** Instead of negative prompts like "no cars," describe the desired scene positively: "an empty, deserted street with no signs of traffic."
+- **Use Step-by-Step Instructions:** For complex scenes, break your prompt into a series of clear, sequential instructions.
+- **Use Positive Framing:** Instead of negative prompts like "no cars," describe the desired scene positively: "an empty, deserted street with no signs of traffic."
 
--   **Control the Camera:** Use photographic and cinematic terms to direct the composition, such as "wide-angle shot", "macro shot", or "low-angle perspective".
+- **Control the Camera:** Use photographic and cinematic terms to direct the composition, such as "wide-angle shot", "macro shot", or "low-angle perspective".
 
 For a deeper dive into best practices, review the official blog post on [prompting best practices](https://developers.googleblog.com/en/how-to-prompt-gemini-2-5-flash-image-generation-for-the-best-results/) and the [prompting guide](https://ai.google.dev/gemini-api/docs/image-generation#prompt-guide) in the documentation.
 
@@ -320,16 +320,16 @@ For a deeper dive into best practices, review the official blog post on [prompti
 
 Explore what the community is building with Nano Banana:
 
--   Shifting camera perspective by **@henrydaubrez**: [X post](https://x.com/henrydaubrez/status/1960382130107580739)
+- Shifting camera perspective by **@henrydaubrez**: [X post](https://x.com/henrydaubrez/status/1960382130107580739)
 
--   Few-shot learning for consistent character design by **@multimodalart**: [X post](https://x.com/multimodalart/status/1960466141035528428)
--   "What does the red arrow see" Google Maps transforms by **@tokumin**: [X post](https://x.com/tokumin/status/1960583251460022626)
+- Few-shot learning for consistent character design by **@multimodalart**: [X post](https://x.com/multimodalart/status/1960466141035528428)
+- "What does the red arrow see" Google Maps transforms by **@tokumin**: [X post](https://x.com/tokumin/status/1960583251460022626)
 
--   Generating images from stick figure annotations by **@yachimat\_manga**: [X post](https://x.com/yachimat_manga/status/1960471174758195494)
--   Creating 3D models from still images by **@deedydas**: [X post](https://x.com/deedydas/status/1960523596054585593)
+- Generating images from stick figure annotations by **@yachimat_manga**: [X post](https://x.com/yachimat_manga/status/1960471174758195494)
+- Creating 3D models from still images by **@deedydas**: [X post](https://x.com/deedydas/status/1960523596054585593)
 
--   Generating location-based AR experiences by **@bilawalsidhu**: [X post](https://x.com/bilawalsidhu/status/1960529167742853378)
--   Converting a 2D map into a 3D graphic by **@demishassabis**: [X post](https://x.com/demishassabis/status/1961077016830083103)
+- Generating location-based AR experiences by **@bilawalsidhu**: [X post](https://x.com/bilawalsidhu/status/1960529167742853378)
+- Converting a 2D map into a 3D graphic by **@demishassabis**: [X post](https://x.com/demishassabis/status/1961077016830083103)
 
 ## [](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646#10-resources-and-next-steps)10) Resources and Next Steps
 
@@ -337,17 +337,18 @@ This guide has covered the fundamentals of building with Nano Banana aka Gemini 
 
 For further reading, check out the official resources:
 
--   [Google AI Studio](https://aistudio.google.com/)
+- [Google AI Studio](https://aistudio.google.com/)
 
--   [Gemini API docs](https://ai.google.dev/gemini-api/docs)
--   [Nano Banana Gemini API docs](https://ai.google.dev/gemini-api/docs/image-generation)
+- [Gemini API docs](https://ai.google.dev/gemini-api/docs)
+- [Nano Banana Gemini API docs](https://ai.google.dev/gemini-api/docs/image-generation)
 
--   [How to prompt Gemini 2.5 Flash Image Generation for the best results](https://developers.googleblog.com/en/how-to-prompt-gemini-2-5-flash-image-generation-for-the-best-results/)
--   [Nano Banana docs prompting guide](https://ai.google.dev/gemini-api/docs/image-generation#prompt-guide).
+- [How to prompt Gemini 2.5 Flash Image Generation for the best results](https://developers.googleblog.com/en/how-to-prompt-gemini-2-5-flash-image-generation-for-the-best-results/)
+- [Nano Banana docs prompting guide](https://ai.google.dev/gemini-api/docs/image-generation#prompt-guide).
 
--   [Pixshop app](https://ai.studio/apps/bundled/pixshop) in AI Studio
+- [Pixshop app](https://ai.studio/apps/bundled/pixshop) in AI Studio
 
 If you're building something cool with this, I'd love to see it! Feel free to DM or tag me on X: [@patloeber](https://x.com/patloeber).
 
 ---
+
 Source: [How to build with Nano Banana: Complete Developer Tutorial - DEV Community](https://dev.to/googleai/how-to-build-with-nano-banana-complete-developer-tutorial-646)

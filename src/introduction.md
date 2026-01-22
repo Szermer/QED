@@ -2,7 +2,7 @@
 
 When you're responsible for delivering AI solutions to clients, every pattern recommendation carries professional liability. This is QED: AI Development Patterns - a practitioner's knowledge base built on evidence-based methodology and systematic risk assessment.
 
-**QED** stands for "Quod Erat Demonstrandum" - *that which is demonstrated*. In mathematics, it marks the completion of a proof. In consulting practice, it represents patterns that have been tested in real client environments and proven to deliver measurable outcomes.
+**QED** stands for "Quod Erat Demonstrandum" - _that which is demonstrated_. In mathematics, it marks the completion of a proof. In consulting practice, it represents patterns that have been tested in real client environments and proven to deliver measurable outcomes.
 
 This guide emerged from a critical gap in AI development resources: the disconnect between impressive demos and production-ready implementations that actually work in enterprise environments. While the internet overflows with AI tutorials and framework evangelism, practitioners need systematic guidance for making architecture decisions that won't compromise client projects.
 
@@ -11,7 +11,7 @@ This guide emerged from a critical gap in AI development resources: the disconne
 Building AI-powered systems for clients requires more than technical proficiency. You're accountable for:
 
 - **Security decisions** that protect client data and intellectual property
-- **Architecture choices** that scale with business requirements  
+- **Architecture choices** that scale with business requirements
 - **Risk assessments** that prevent costly implementation failures
 - **Framework selections** that maintain long-term viability
 - **Performance guarantees** that meet enterprise expectations
@@ -45,20 +45,23 @@ This multidimensional approach ensures patterns can be discovered through the le
 ## Navigation by Purpose
 
 **Domain-First Navigation** (`patterns/`) - When you know what technical area you're working on:
+
 - **Architecture** - System design, component structure, integration patterns
-- **Implementation** - Coding approaches, framework selection, development workflows  
+- **Implementation** - Coding approaches, framework selection, development workflows
 - **Operations** - Deployment, monitoring, performance optimization
 - **Security** - Authentication, permissions, data protection
 - **Team** - Collaboration patterns, enterprise integration, knowledge sharing
 - **Quality** - Testing strategies, risk assessment, validation approaches
 
 **Context-First Navigation** (`by-context/`, `by-risk/`) - When your constraints drive decisions:
+
 - **Startup** - Resource-conscious patterns for rapid iteration
 - **Enterprise** - Governance-compliant patterns for scale
 - **Regulated** - Compliance-first patterns for sensitive industries
 - **Low/Managed/High Risk** - Patterns categorized by implementation complexity
 
 **Learning-First Navigation** (`learning-paths/`) - When you need structured guidance:
+
 - **Getting Started** - Foundation patterns for AI development newcomers
 - **Enterprise Adoption** - Systematic rollout for large organizations
 - **Agency Playbook** - Client-focused patterns for consulting work
@@ -69,7 +72,7 @@ This multidimensional approach ensures patterns can be discovered through the le
 Unlike typical AI development resources, QED provides:
 
 - **Evidence-based recommendations** with documented client outcomes
-- **Risk assessment frameworks** for enterprise architecture decisions  
+- **Risk assessment frameworks** for enterprise architecture decisions
 - **Client context considerations** (security, privacy, compliance requirements)
 - **Professional liability awareness** in every pattern recommendation
 - **Systematic evaluation methodology** rather than framework evangelism
@@ -80,28 +83,35 @@ Unlike typical AI development resources, QED provides:
 Choose your entry point based on your current context:
 
 ### New to AI Development?
+
 Start with the [Getting Started Learning Path](learning-paths/getting-started.md) which provides:
+
 - Foundation concepts and philosophy
-- Step-by-step pattern implementation  
+- Step-by-step pattern implementation
 - Progressive skill building over 4 weeks
 - Hands-on exercises with real projects
 
 ### Have Specific Technical Questions?
+
 Navigate by domain in the Patterns section to find:
+
 - Architecture patterns for system design
 - Implementation guides for specific frameworks
 - Security patterns for enterprise requirements
 - Team collaboration patterns for organizational adoption
 
 ### Working Within Constraints?
+
 Use context-driven navigation:
+
 - By Business Context - Find patterns for your organizational type
-- By Risk Profile - Match patterns to your risk tolerance  
+- By Risk Profile - Match patterns to your risk tolerance
 - Migration Guidance - Transition from current to AI-augmented workflows
 
 Each pattern includes:
+
 - **Risk assessment** with specific mitigation strategies
-- **Context applicability** matrix showing best-fit scenarios  
+- **Context applicability** matrix showing best-fit scenarios
 - **Implementation roadmap** with validation checkpoints
 - **Trade-off analysis** comparing alternatives
 - **Real deployment outcomes** with measurable results

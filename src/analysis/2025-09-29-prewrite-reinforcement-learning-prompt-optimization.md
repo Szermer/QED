@@ -11,29 +11,32 @@ PRewrite represents a sophisticated approach to automated prompt optimization us
 
 ## Risk Assessment Matrix
 
-| Dimension | Conservative | Moderate | Aggressive |
-|-----------|--------------|----------|------------|
-| **Implementation Complexity** | ⚠️ High | ⚠️ High | ✓ Manageable |
-| **Resource Requirements** | ❌ Prohibitive | ⚠️ Significant | ⚠️ Significant |
-| **ROI Timeline** | ❌ Negative | ⚠️ 6-12 months | ✓ 3-6 months |
-| **Client Readiness** | ❌ Not ready | ⚠️ Limited cases | ✓ Select clients |
-| **Maintenance Burden** | ⚠️ High | ⚠️ High | ⚠️ High |
+| Dimension                     | Conservative   | Moderate         | Aggressive       |
+| ----------------------------- | -------------- | ---------------- | ---------------- |
+| **Implementation Complexity** | ⚠️ High        | ⚠️ High          | ✓ Manageable     |
+| **Resource Requirements**     | ❌ Prohibitive | ⚠️ Significant   | ⚠️ Significant   |
+| **ROI Timeline**              | ❌ Negative    | ⚠️ 6-12 months   | ✓ 3-6 months     |
+| **Client Readiness**          | ❌ Not ready   | ⚠️ Limited cases | ✓ Select clients |
+| **Maintenance Burden**        | ⚠️ High        | ⚠️ High          | ⚠️ High          |
 
 ## Technical Evaluation
 
 ### Strengths
+
 - **Measurable improvements**: 8-10% accuracy gains on complex tasks
 - **Adaptive optimization**: Learns from specific task requirements
 - **Multiple reward functions**: Can optimize for different objectives
 - **Evidence-based**: Google paper with quantitative results
 
 ### Limitations
+
 - **Simple task failure**: No improvement on SST-2 (sentiment analysis)
 - **Proprietary dependencies**: Built on Google's PaLM 2-S
 - **Training overhead**: Requires RL loop and ground truth data
 - **Complexity barrier**: Significantly more complex than static prompt optimization
 
 ### Critical Findings
+
 1. **Over-engineering risk**: ALL automated methods failed on simple tasks
 2. **Subtle differences matter**: Minor prompt changes yielded 10% improvements
 3. **Reward function critical**: Perplexity+F1 consistently outperformed others
@@ -44,12 +47,14 @@ PRewrite represents a sophisticated approach to automated prompt optimization us
 ### Use Case Fit
 
 **Good Fit:**
+
 - High-volume, repetitive classification tasks
 - Well-defined ground truth available
 - Complex queries with measurable accuracy metrics
 - Organizations with ML infrastructure
 
 **Poor Fit:**
+
 - Simple sentiment or classification tasks
 - Creative or open-ended generation
 - Low-volume or diverse query patterns
@@ -58,12 +63,14 @@ PRewrite represents a sophisticated approach to automated prompt optimization us
 ### Implementation Considerations
 
 **Prerequisites:**
+
 - Access to fine-tunable LLM
 - Ground truth dataset creation
 - RL infrastructure setup
 - Evaluation metric definition
 
 **Estimated Effort:**
+
 - Initial setup: 2-4 weeks
 - Training cycles: 1-2 weeks per domain
 - Maintenance: Ongoing monitoring required
@@ -71,19 +78,25 @@ PRewrite represents a sophisticated approach to automated prompt optimization us
 ## Practitioner Recommendations
 
 ### Conservative Profile
+
 **Recommendation**: AVOID
+
 - Complexity outweighs benefits for most use cases
 - Simpler prompt optimization methods sufficient
 - Consider manual prompt engineering with LLM assistance
 
 ### Moderate Profile
+
 **Recommendation**: EVALUATE
+
 - Test on high-value, high-volume classification tasks
 - Start with simpler automated methods first
 - Build internal expertise before commitment
 
 ### Aggressive Profile
+
 **Recommendation**: PILOT
+
 - Ideal for organizations with existing ML pipelines
 - Focus on complex, measurable tasks with clear ROI
 - Consider as part of broader automation strategy
@@ -91,11 +104,13 @@ PRewrite represents a sophisticated approach to automated prompt optimization us
 ## Evidence Quality
 
 **Strengths:**
+
 - Published research from Google
 - Quantitative comparisons provided
 - Multiple datasets tested
 
 **Weaknesses:**
+
 - Limited to specific task types
 - No production deployment data
 - Resource requirements not disclosed
@@ -110,12 +125,14 @@ PRewrite represents a sophisticated approach to automated prompt optimization us
 ## Decision Framework
 
 Before considering PRewrite:
+
 1. Can simpler methods achieve acceptable results?
 2. Do you have ground truth data at scale?
 3. Is 8-10% improvement worth the complexity?
 4. Do you have RL infrastructure and expertise?
 
 If any answer is "no", consider alternatives:
+
 - Manual prompt engineering with LLM assistance
 - Template-based approaches
 - Simpler automated methods without RL
@@ -129,4 +146,5 @@ PRewrite demonstrates academic merit but lacks production evidence. The framewor
 For most client contexts, human-guided prompt optimization with LLM assistance remains the pragmatic choice, offering better ROI with manageable complexity.
 
 ---
-*Analysis framework: QED Evidence-Based Assessment v1.0*
+
+_Analysis framework: QED Evidence-Based Assessment v1.0_

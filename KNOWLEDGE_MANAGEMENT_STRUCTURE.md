@@ -13,6 +13,7 @@
 ## Tier 1: Research Collection (`docs/tier1-research/`)
 
 ### By Priority (Workflow Management)
+
 ```
 docs/tier1-research/
 ├── high-priority/           # Immediate analysis candidates
@@ -22,11 +23,12 @@ docs/tier1-research/
 ```
 
 ### By Topic (Content Organization)
+
 ```
 docs/tier1-research/by-topic/
 ├── ai-architecture/        # System designs, patterns
 ├── framework-analysis/     # Tool comparisons
-├── tooling-patterns/      # Implementation practices  
+├── tooling-patterns/      # Implementation practices
 ├── client-patterns/       # Engagement strategies
 └── security-compliance/   # Privacy, regulatory
 ```
@@ -34,6 +36,7 @@ docs/tier1-research/by-topic/
 ## Tier 2: Critical Analysis (`src/tier2-analysis/`)
 
 ### Kanban Status Workflow
+
 ```
 src/tier2-analysis/
 ├── in-review/             # Currently being analyzed
@@ -44,6 +47,7 @@ src/tier2-analysis/
 ```
 
 ### By Client Risk Profile
+
 ```
 src/tier2-analysis/by-risk-profile/
 ├── conservative-clients/   # Low-risk, proven patterns
@@ -54,6 +58,7 @@ src/tier2-analysis/by-risk-profile/
 ## Tier 3: Proven Practice (`src/tier3-proven/`)
 
 ### By Book Integration Target
+
 ```
 src/tier3-proven/
 ├── book1-foundation/      # Foundation Patterns
@@ -65,11 +70,13 @@ src/tier3-proven/
 ## Knowledge Flow Examples
 
 ### Example 1: Context Engineering Pattern
+
 1. **Tier 1**: `high-priority/JasonLiu_Context_Engineering_2025-08.md`
-2. **Tier 2**: `ready-for-experiment/analysis-context-engineering-slash-commands-2025-09.md`  
+2. **Tier 2**: `ready-for-experiment/analysis-context-engineering-slash-commands-2025-09.md`
 3. **Tier 3**: (Pending client validation) → `book2-production/context-engineering-proven.md`
 
 ### Example 2: Framework Selection
+
 1. **Tier 1**: `medium-priority/Framework_Comparison_Article.md`
 2. **Tier 2**: `needs-validation/analysis-framework-selection-2025-09.md`
 3. **Tier 3**: (After testing) → `book1-foundation/framework-selection-criteria.md`
@@ -77,11 +84,13 @@ src/tier3-proven/
 ## Quality Gates
 
 ### Tier 1 → Tier 2
+
 - ✅ Relevant to client work
 - ✅ Credible source
 - ✅ Novel insights or patterns
 
-### Tier 2 → Tier 3  
+### Tier 2 → Tier 3
+
 - ✅ Successfully used in client project
 - ✅ Measurable positive outcomes
 - ✅ Reproducible by others
@@ -90,6 +99,7 @@ src/tier3-proven/
 ## Workflow Commands
 
 ### Daily Research Collection
+
 ```bash
 # Save article to appropriate priority
 cp "New_Pattern_Article.md" docs/tier1-research/high-priority/
@@ -99,6 +109,7 @@ echo "$(date): New AI pattern - potential for React project" >> docs/tier1-resea
 ```
 
 ### Weekly Analysis Review
+
 ```bash
 # Check high priority items needing analysis
 ls docs/tier1-research/high-priority/
@@ -108,11 +119,12 @@ touch src/tier2-analysis/in-review/analysis-new-pattern-$(date +%Y-%m).md
 ```
 
 ### Monthly Practice Updates
+
 ```bash
 # Review items ready for promotion
 ls src/tier2-analysis/ready-for-experiment/
 
-# Check proven practices ready for book integration  
+# Check proven practices ready for book integration
 ls src/tier3-proven/ready-for-integration/
 ```
 

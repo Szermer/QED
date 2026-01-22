@@ -7,37 +7,49 @@ Comprehensive classification system for AI development patterns.
 Patterns are organized by functional domain:
 
 ### Architecture & Design
+
 Core system design patterns and architectural decisions.
+
 - System structure and components
 - Design patterns and principles
 - Scalability and performance architecture
 
 ### Implementation & Development
+
 Practical implementation patterns and development practices.
+
 - Coding patterns and techniques
 - Framework usage and integration
 - Development workflows
 
 ### Operations & Maintenance
+
 Production operations and system maintenance patterns.
+
 - Deployment and scaling
 - Monitoring and observability
 - Performance optimization
 
 ### Security & Compliance
+
 Security patterns and compliance requirements.
+
 - Authentication and authorization
 - Data protection and privacy
 - Regulatory compliance
 
 ### Team & Process
+
 Collaboration patterns and team processes.
+
 - Team workflows and communication
 - Knowledge sharing and documentation
 - Organizational integration
 
 ### Quality & Validation
+
 Quality assurance and validation patterns.
+
 - Testing strategies
 - Risk assessment and mitigation
 - Quality metrics and standards
@@ -47,37 +59,46 @@ Quality assurance and validation patterns.
 Patterns are classified by risk level using a traffic light system:
 
 ### 🟢 Low Risk (Green)
+
 **Characteristics:**
+
 - Well-established patterns
 - Minimal security implications
 - Easy to reverse or modify
 - Suitable for all contexts
 
 **Examples:**
+
 - Documentation generation
 - Code formatting
 - Simple refactoring
 
 ### 🟡 Managed Risk (Yellow)
+
 **Characteristics:**
+
 - Requires some expertise
 - Moderate security considerations
 - Needs monitoring and controls
 - Context-dependent implementation
 
 **Examples:**
+
 - Team collaboration patterns
 - Integration with existing systems
 - Performance optimization
 
 ### 🔴 High Risk (Red)
+
 **Characteristics:**
+
 - Complex implementation
 - Significant security implications
 - Difficult to reverse
 - Requires extensive validation
 
 **Examples:**
+
 - Multi-agent orchestration
 - Production deployment patterns
 - Compliance implementations
@@ -87,52 +108,64 @@ Patterns are classified by risk level using a traffic light system:
 Patterns are tagged for organizational context:
 
 ### Startup Context
+
 **Characteristics:**
+
 - Rapid iteration focus
 - Minimal governance
 - Resource constraints
 - High risk tolerance
 
 **Pattern Selection:**
+
 - Prioritize velocity
 - Minimize overhead
 - Focus on MVP
 - Embrace experimentation
 
 ### Mid-Market Context
+
 **Characteristics:**
+
 - Balancing growth and stability
 - Emerging governance needs
 - Team scaling challenges
 - Moderate risk tolerance
 
 **Pattern Selection:**
+
 - Gradual process introduction
 - Team collaboration focus
 - Scalability planning
 - Selective governance
 
 ### Enterprise Context
+
 **Characteristics:**
+
 - Complex governance requirements
 - Multiple stakeholder management
 - Integration complexity
 - Low risk tolerance
 
 **Pattern Selection:**
+
 - Compliance first
 - Comprehensive documentation
 - Change management focus
 - Proven patterns only
 
 ### Regulated Industries
+
 **Characteristics:**
+
 - Strict compliance requirements
 - Audit trail necessity
 - Data sovereignty concerns
 - Zero risk tolerance
 
 **Pattern Selection:**
+
 - Regulatory compliance mandatory
 - Security by default
 - Extensive validation
@@ -143,28 +176,36 @@ Patterns are tagged for organizational context:
 Patterns progress through maturity levels:
 
 ### Experimental
+
 **Status:** Under active development
+
 - Limited production usage
 - Rapid changes expected
 - Early adopter feedback
 - High uncertainty
 
 ### Emerging
+
 **Status:** Gaining adoption
+
 - Some production usage
 - Stabilizing interfaces
 - Growing community
 - Moderate confidence
 
 ### Validated
+
 **Status:** Production proven
+
 - Widespread usage
 - Stable interfaces
 - Well-documented
 - High confidence
 
 ### Mature
+
 **Status:** Industry standard
+
 - Universal adoption
 - Extensive tooling
 - Best practices established
@@ -240,6 +281,7 @@ version: 1.0.0
 ### Classification Updates
 
 Taxonomy classifications are updated based on:
+
 - Production usage evidence
 - Community feedback
 - Security assessments
@@ -249,6 +291,7 @@ Taxonomy classifications are updated based on:
 ### Contribution Guidelines
 
 When contributing patterns:
+
 1. Use standardized metadata format
 2. Provide evidence for classifications
 3. Include implementation examples
@@ -260,16 +303,19 @@ When contributing patterns:
 ### By Risk Tolerance
 
 **Conservative (Regulated/Enterprise):**
+
 - Low risk patterns only
 - Mature/Validated maturity
 - Extensive documentation required
 
 **Moderate (Mid-Market):**
+
 - Low and Managed risk patterns
 - Validated/Emerging maturity
 - Balanced documentation
 
 **Aggressive (Startup):**
+
 - All risk levels acceptable
 - Any maturity level
 - Minimal documentation

@@ -21,16 +21,16 @@ export class FileSystemServer extends MCPServer {
         inputSchema: {
           type: "object",
           properties: {
-            path: { type: "string" }
-          }
-        }
-      }
+            path: { type: "string" },
+          },
+        },
+      },
     ];
   }
-  
+
   async callTool(name: string, args: any) {
     if (name === "read_file") {
-      return await fs.readFile(args.path, 'utf-8');
+      return await fs.readFile(args.path, "utf-8");
     }
   }
 }
@@ -60,17 +60,17 @@ The evolution from terminal-based interfaces to IDE integration represents a nat
 // VS Code extension integration
 export function activate(context: vscode.ExtensionContext) {
   const provider = new AIAssistantProvider();
-  
+
   // Register inline completion provider
   vscode.languages.registerInlineCompletionItemProvider(
-    { pattern: '**/*' },
-    provider
+    { pattern: "**/*" },
+    provider,
   );
-  
+
   // Register code actions
   vscode.languages.registerCodeActionsProvider(
-    { pattern: '**/*' },
-    new AICodeActionProvider()
+    { pattern: "**/*" },
+    new AICodeActionProvider(),
   );
 }
 ```
@@ -86,20 +86,21 @@ Git integration extends beyond simple commit operations. Modern AI assistants un
 async function reviewPullRequest(pr: PullRequest) {
   const changes = await getPRChanges(pr);
   const context = await buildContextFromChanges(changes);
-  
+
   // Generate contextual review comments
   const suggestions = await ai.analyze({
     changes,
     context,
-    projectGuidelines: await loadProjectGuidelines()
+    projectGuidelines: await loadProjectGuidelines(),
   });
-  
+
   // Post as review comments, not direct changes
   await postReviewComments(pr, suggestions);
 }
 ```
 
 This integration goes deeper than automated reviews. AI assistants can:
+
 - Suggest commit message improvements based on project conventions
 - Identify potential conflicts before they occur
 - Generate PR descriptions that actually explain the "why"
@@ -143,17 +144,15 @@ Traditional development often follows a linear path: design, implement, test, de
 async function exploreImplementation(requirement: string) {
   // Generate multiple implementation approaches
   const approaches = await ai.generateApproaches(requirement);
-  
+
   // Create temporary branches for each approach
   const branches = await Promise.all(
-    approaches.map(approach => 
-      createExperimentalBranch(approach)
-    )
+    approaches.map((approach) => createExperimentalBranch(approach)),
   );
-  
+
   // Run tests and benchmarks on each
   const results = await evaluateApproaches(branches);
-  
+
   // Let developer choose based on real data
   return presentComparison(results);
 }
@@ -172,16 +171,16 @@ class AIDebugger {
     const stackTrace = error.stack;
     const localVariables = context.getLocalVariables();
     const recentChanges = await this.getRecentChanges();
-    
+
     // AI analyzes the full picture
     const analysis = await this.ai.analyze({
       error,
       stackTrace,
       localVariables,
       recentChanges,
-      similarErrors: await this.findSimilarErrors(error)
+      similarErrors: await this.findSimilarErrors(error),
     });
-    
+
     // Present findings conversationally
     return this.formatDebugConversation(analysis);
   }
@@ -197,8 +196,8 @@ AI assistants are changing how we think about documentation:
 ```typescript
 // Self-documenting code with AI assistance
 @AIDocumented({
-  updateOn: ['change', 'deploy'],
-  includeExamples: true
+  updateOn: ["change", "deploy"],
+  includeExamples: true,
 })
 export class PaymentProcessor {
   async processPayment(payment: Payment) {
@@ -249,16 +248,16 @@ class PrivacyAwareAssistant {
   async processCode(code: string, context: Context) {
     // Detect and redact sensitive information
     const sanitized = await this.sanitizer.process(code);
-    
+
     // Use local models for sensitive operations
     if (context.sensitivity === "high") {
       return this.localModel.process(sanitized);
     }
-    
+
     // Clear audit trail for cloud processing
     return this.cloudModel.process(sanitized, {
       retentionPolicy: context.retentionPolicy,
-      purpose: context.purpose
+      purpose: context.purpose,
     });
   }
 }
@@ -280,16 +279,16 @@ Addressing these biases requires ongoing effort:
 class BiasAwareAssistant {
   async generateSuggestion(context: Context) {
     const candidates = await this.model.generate(context);
-    
+
     // Evaluate suggestions for potential bias
     const evaluated = await Promise.all(
       candidates.map(async (suggestion) => ({
         suggestion,
         biasScore: await this.biasDetector.evaluate(suggestion),
-        diversityScore: await this.diversityAnalyzer.score(suggestion)
-      }))
+        diversityScore: await this.diversityAnalyzer.score(suggestion),
+      })),
     );
-    
+
     // Prefer diverse, unbiased suggestions
     return this.selectBest(evaluated);
   }
@@ -304,14 +303,14 @@ Perhaps the most important ethical consideration is maintaining human agency and
 class HumanCentricAssistant {
   async suggestImplementation(task: Task) {
     const suggestion = await this.generateSuggestion(task);
-    
+
     return {
       suggestion,
       explanation: await this.explainReasoning(suggestion),
       alternatives: await this.generateAlternatives(suggestion),
       tradeoffs: await this.analyzeTradeoffs(suggestion),
       // Always empower human decision-making
-      finalDecision: "human"
+      finalDecision: "human",
     };
   }
 }
@@ -332,14 +331,14 @@ class HybridAssistant {
     if (request.containsSensitiveData()) {
       return this.localModel.process(request);
     }
-    
+
     // Complex analysis might use cloud resources
     if (request.complexity > this.localModel.capacity) {
       return this.cloudModel.process(request, {
-        purpose: "complexity_handling"
+        purpose: "complexity_handling",
       });
     }
-    
+
     // Default to local for speed and privacy
     return this.localModel.process(request);
   }
@@ -362,13 +361,13 @@ The future isn't human vs. AI or even human with AI—it's networks of humans an
 ```typescript
 class CollaborativeNetwork {
   participants: (Human | AIAssistant)[];
-  
+
   async solveChallenge(challenge: Challenge) {
     // Each participant contributes their strengths
     const contributions = await Promise.all(
-      this.participants.map(p => p.contribute(challenge))
+      this.participants.map((p) => p.contribute(challenge)),
     );
-    
+
     // Synthesis happens through structured dialogue
     return this.facilitateDialogue(contributions);
   }

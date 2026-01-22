@@ -4,9 +4,6 @@
 
 > If in-context learning is gradient descent, then compaction is momentum. Here are two research directions that could transform how we understand and optimize agentic systems.
 
-
-
-
 **Two core insights:**
 
 1. If in-context learning is gradient descent, then compaction is momentum.
@@ -60,16 +57,16 @@ But we do have examples of long trajectories. Take the [Claude plays Pokemon](ht
 
 **Key Metrics**:
 
-* Task completion success rate
-* Time to completion
-* Number of backtracking steps after compaction
-* Quality of final deliverable
+- Task completion success rate
+- Time to completion
+- Number of backtracking steps after compaction
+- Quality of final deliverable
 
 **Research Questions**:
 
-* Does compaction timing affect success rates?
-* Can agents learn to self-compact at optimal moments?
-* How does compaction quality correlate with momentum preservation?
+- Does compaction timing affect success rates?
+- Can agents learn to self-compact at optimal moments?
+- How does compaction quality correlate with momentum preservation?
 
 Does compaction timing affect how well agents maintain their learning trajectory? Can agents learn to self-compact at optimal moments?
 
@@ -104,10 +101,10 @@ workflow interruptions, and satisfaction indicators.
 
 I suspect we'd find things like:
 
-* 6% of coding trajectories get stuck with linters (I see this constantly in Cursor)
-* A bunch of agents recreate code that was just deleted
-* Excessive subprocess cycling when language servers act up
-* Patterns around when users start giving lots of corrective feedback
+- 6% of coding trajectories get stuck with linters (I see this constantly in Cursor)
+- A bunch of agents recreate code that was just deleted
+- Excessive subprocess cycling when language servers act up
+- Patterns around when users start giving lots of corrective feedback
 
 These failure modes mirror the [common anti-patterns in RAG systems](https://jxnl.co/writing/2025/06/11/rag-anti-patterns-with-skylar-payne/) but at the trajectory level rather than the retrieval level.
 
@@ -146,8 +143,8 @@ If you're working with agents at scale and want to explore these directions, [I'
 
 The future isn't just about better models. It's about understanding how agents actually learn and optimize over time. Compaction might be the key.
 
-* * *
+---
 
-_This post is part of the [Context Engineering Series](https://jxnl.co/writing/2025/08/28/context-engineering-index/). For foundational concepts, start with [Beyond Chunks: Context Engineering Tool Response](https://jxnl.co/writing/2025/08/27/facets-context-engineering/). To understand how context pollution affects agent performance, read [Slash Commands vs Subagents](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/).
+\_This post is part of the [Context Engineering Series](https://jxnl.co/writing/2025/08/28/context-engineering-index/). For foundational concepts, start with [Beyond Chunks: Context Engineering Tool Response](https://jxnl.co/writing/2025/08/27/facets-context-engineering/). To understand how context pollution affects agent performance, read [Slash Commands vs Subagents](https://jxnl.co/writing/2025/08/29/context-engineering-slash-commands-subagents/).
 
-For related concepts on AI system evaluation and improvement, explore [RAG system optimization techniques](https://jxnl.co/writing/2024/08/19/rag-flywheel/) and [systematic approaches to AI monitoring](https://jxnl.co/writing/2025/05/29/systematically-improving-rag-with-raindrop-and-oleve/)._
+For related concepts on AI system evaluation and improvement, explore [RAG system optimization techniques](https://jxnl.co/writing/2024/08/19/rag-flywheel/) and [systematic approaches to AI monitoring](https://jxnl.co/writing/2025/05/29/systematically-improving-rag-with-raindrop-and-oleve/).\_

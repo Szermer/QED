@@ -3,6 +3,7 @@
 ## Current Status: Taxonomy Migration Complete (2025-09-09)
 
 ### Recently Completed ✅
+
 - [x] **MAJOR: Integrated Tier 1 research into mdBook** (2025-09-29)
   - Moved all Tier 1 articles from docs/ to src/tier1-research/ for accessibility
   - Converted YAML frontmatter to markdown headers for mdBook compatibility
@@ -59,30 +60,35 @@
   - Created ADR-2025-09-08-TAX for taxonomy migration
 
 ### In Progress 🔄
+
 - [ ] Apply GitHub Issue labels for project management
 - [ ] Monitor GitHub Actions workflows for stability
 
 ## Current Project Priorities
 
 ### High Priority
+
 1. **Continue systematic knowledge intake** - Build on established workflow with regular intake processing
 2. **Expand Tier 2 analysis collection** - Continue systematic evaluation of AI development patterns
 3. **Experiment with Faraaz AI optimization** - Implement vector embeddings for AI coding agent efficiency
 
 ### Medium Priority
+
 1. **Enhance knowledge management workflow** - Improve tier progression processes
 2. **Expand proven practices** - Add more validated client patterns
 3. **Improve navigation and cross-references** - Better linking between concepts
 
 ### Low Priority
+
 1. **Visual design improvements** - Enhanced CSS and layout
 2. **Interactive features** - Search, filtering, tagging
 3. **Community features** - Contribution guidelines, feedback mechanisms
 
 ## Recent Major Changes
+
 - **Knowledge intake workflow implementation** (2025-09-09)
   - Processed first batch of articles through systematic workflow
-  - Created Faraaz AI efficiency analysis as exemplar Tier 2 evaluation  
+  - Created Faraaz AI efficiency analysis as exemplar Tier 2 evaluation
   - Established dated intake folder structure for batch processing
   - Cross-linked ADRs with knowledge management framework
   - Updated documentation to reflect new workflow capabilities
@@ -102,12 +108,14 @@
   - Client-safe patterns with explicit risk profiles
 
 ## Next Sprint Goals
+
 1. Expand Tier 2 analysis collection with more tool evaluations
 2. Add more validated patterns from recent client projects
 3. Enhance search and filtering capabilities
 4. Create interactive pattern relationship diagrams
 
 ## Architecture Notes
+
 - QED uses 4-tier knowledge management: Research → Analysis → Decision → Practice
 - All recommendations must be backed by client project evidence
 - Risk-aware approach with explicit trade-off discussions
@@ -115,9 +123,11 @@
 - Mermaid diagrams for architecture visualization
 
 ## Dependencies
+
 - mdBook 0.4.36+ with linkcheck and Mermaid preprocessor
 - GitHub Actions for automated deployment
 - Live site deployment to szermer.github.io/QED
 
 ---
-*Last updated: 2025-09-29*
+
+_Last updated: 2025-09-29_

@@ -64,7 +64,7 @@ const ExampleTool = {
   needsPermissions: (input) => true,
   async *call(input) {
     // Execute and yield results
-  }
+  },
 } satisfies Tool;
 ```
 
@@ -81,18 +81,18 @@ The fundamental pattern powering this flow uses generators:
 async function* query(input: string): AsyncGenerator<Message> {
   // Show user's message immediately
   yield createUserMessage(input);
-  
+
   // Stream AI response as it arrives
   for await (const chunk of aiStream) {
     yield chunk;
-    
+
     // Process tool use requests
     if (detectToolUse(chunk)) {
       // Execute tools and yield results
       for await (const result of executeTool(chunk)) {
         yield result;
       }
-      
+
       // Continue conversation with tool results
       yield* continueWithToolResults(chunk);
     }
@@ -108,13 +108,13 @@ Complete query functions in production systems handle all aspects of the convers
 
 ```typescript
 async function* query(
-  input: string, 
-  context: QueryContext
+  input: string,
+  context: QueryContext,
 ): AsyncGenerator<Message> {
   // Process user input
   const userMessage = createUserMessage(input);
   yield userMessage;
-  
+
   // Get streaming AI response
   const aiResponseGenerator = queryLLM(
     normalizeMessagesForAPI([...existingMessages, userMessage]),
@@ -122,34 +122,34 @@ async function* query(
     context.maxTokens,
     context.tools,
     context.abortSignal,
-    { dangerouslySkipPermissions: false }
+    { dangerouslySkipPermissions: false },
   );
-  
+
   // Stream response chunks
   for await (const chunk of aiResponseGenerator) {
     yield chunk;
-    
+
     // Handle tool use requests
-    if (chunk.message.content.some(c => c.type === 'tool_use')) {
+    if (chunk.message.content.some((c) => c.type === "tool_use")) {
       const toolUses = extractToolUses(chunk.message.content);
-      
+
       // Execute tools (potentially in parallel)
       const toolResults = await executeTools(toolUses, context);
-      
+
       // Yield tool results
       for (const result of toolResults) {
         yield result;
       }
-      
+
       // Continue conversation recursively
       const continuationGenerator = query(
         null, // No new user input
-        { 
+        {
           ...context,
-          messages: [...existingMessages, userMessage, chunk, ...toolResults]
-        }
+          messages: [...existingMessages, userMessage, chunk, ...toolResults],
+        },
       );
-      
+
       // Yield continuation messages
       yield* continuationGenerator;
     }
@@ -182,26 +182,26 @@ The core implementation breaks down into several manageable concepts:
 ```typescript
 // Each generator has a state object tracking its progress
 type GeneratorState<T> = {
-  generator: AsyncGenerator<T>    // The generator itself
-  lastYield: Promise<IteratorResult<T>>  // Its next pending result
-  done: boolean                   // Whether it's finished
-}
+  generator: AsyncGenerator<T>; // The generator itself
+  lastYield: Promise<IteratorResult<T>>; // Its next pending result
+  done: boolean; // Whether it's finished
+};
 
 // Track all active generators in a map
-const generatorStates = new Map<number, GeneratorState<T>>()
+const generatorStates = new Map<number, GeneratorState<T>>();
 
 // Track which generators are still running
-const remaining = new Set(generators.map((_, i) => i))
+const remaining = new Set(generators.map((_, i) => i));
 ```
 
 #### 2. Concurrency Management
 
 ```typescript
-// Control how many generators run simultaneously 
-const { signal, maxConcurrency = MAX_CONCURRENCY } = options
+// Control how many generators run simultaneously
+const { signal, maxConcurrency = MAX_CONCURRENCY } = options;
 
 // Start only a limited batch initially
-const initialBatchSize = Math.min(generators.length, maxConcurrency)
+const initialBatchSize = Math.min(generators.length, maxConcurrency);
 for (let i = 0; i < initialBatchSize; i++) {
   if (generators[i]) {
     // Initialize each generator and start its first operation
@@ -209,7 +209,7 @@ for (let i = 0; i < initialBatchSize; i++) {
       generator: generators[i],
       lastYield: generators[i].next(),
       done: false,
-    })
+    });
   }
 }
 ```
@@ -232,7 +232,7 @@ const { index, result } = nextResults
 // Immediately yield that result with tracking info
 if (!result.done) {
   yield { ...result.value, generatorIndex: index }
-  
+
   // Queue the next value from this generator without waiting
   const state = generatorStates.get(index)!
   state.lastYield = state.generator.next()
@@ -244,15 +244,15 @@ if (!result.done) {
 ```typescript
 // When a generator finishes, remove it
 if (result.done) {
-  remaining.delete(index)
-  generatorStates.delete(index)
-  
+  remaining.delete(index);
+  generatorStates.delete(index);
+
   // Calculate the next generator to start
   const nextGeneratorIndex = Math.min(
     generators.length - 1,
-    Math.max(...Array.from(generatorStates.keys())) + 1
-  )
-  
+    Math.max(...Array.from(generatorStates.keys())) + 1,
+  );
+
   // If there's another generator waiting, start it
   if (
     nextGeneratorIndex >= 0 &&
@@ -263,7 +263,7 @@ if (result.done) {
       generator: generators[nextGeneratorIndex],
       lastYield: generators[nextGeneratorIndex].next(),
       done: false,
-    })
+    });
   }
 }
 ```
@@ -273,7 +273,7 @@ if (result.done) {
 ```typescript
 // Check for cancellation on every iteration
 if (signal?.aborted) {
-  throw new AbortError()
+  throw new AbortError();
 }
 ```
 
@@ -300,13 +300,13 @@ Tool executors in production systems make important distinctions:
 ```typescript
 async function executeTools(toolUses: ToolUseRequest[], context: QueryContext) {
   // First, check if all requested tools are read-only
-  const allReadOnly = toolUses.every(toolUse => {
+  const allReadOnly = toolUses.every((toolUse) => {
     const tool = findToolByName(toolUse.name);
     return tool && tool.isReadOnly();
   });
-  
+
   let results: ToolResult[] = [];
-  
+
   // Choose execution strategy based on tool types
   if (allReadOnly) {
     // Safe to run in parallel when all tools just read
@@ -315,7 +315,7 @@ async function executeTools(toolUses: ToolUseRequest[], context: QueryContext) {
     // Run one at a time when any tool might modify state
     results = await runToolsSerially(toolUses, context);
   }
-  
+
   // Ensure results match the original request order
   return sortToolResultsByRequestOrder(results, toolUses);
 }
@@ -334,16 +334,16 @@ Each tool declares whether it's read-only through an `isReadOnly()` method:
 const ViewFileTool = {
   name: "View",
   // Marked as read-only - can run in parallel
-  isReadOnly: () => true, 
+  isReadOnly: () => true,
   // Implementation...
-}
+};
 
 const EditFileTool = {
   name: "Edit",
   // Marked as write - must run sequentially
   isReadOnly: () => false,
   // Implementation...
-}
+};
 ```
 
 #### Smart Concurrency Control
@@ -366,14 +366,14 @@ Despite parallel execution, results maintain a predictable order:
 
 ```typescript
 function sortToolResultsByRequestOrder(
-  results: ToolResult[], 
-  originalRequests: ToolUseRequest[]
+  results: ToolResult[],
+  originalRequests: ToolUseRequest[],
 ): ToolResult[] {
   // Create mapping of tool IDs to their original position
   const orderMap = new Map(
-    originalRequests.map((req, index) => [req.id, index])
+    originalRequests.map((req, index) => [req.id, index]),
   );
-  
+
   // Sort results to match original request order
   return [...results].sort((a, b) => {
     return orderMap.get(a.id)! - orderMap.get(b.id)!;

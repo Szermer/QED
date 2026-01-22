@@ -1,10 +1,10 @@
 # How I Run Three AI Models in Parallel Without Losing My Mind
 
-*Was this newsletter forwarded to you? [Sign up](https://every.to/account) to get it in your inbox.*
+_Was this newsletter forwarded to you? [Sign up](https://every.to/account) to get it in your inbox._
 
 ---
 
-There’s a video game called *[Overcooked](https://en.wikipedia.org/wiki/Overcooked)* that feels a lot like my workday with AI. You play line cooks in a chaotic kitchen, sprinting between stations while orders pile up and the clock ticks down. One player chops onions, another stirs soup, a third dashes to the sink for clean dishes—all while the printer keeps spitting out new tickets. Just thinking about it makes my heart rate spike.
+There’s a video game called _[Overcooked](https://en.wikipedia.org/wiki/Overcooked)_ that feels a lot like my workday with AI. You play line cooks in a chaotic kitchen, sprinting between stations while orders pile up and the clock ticks down. One player chops onions, another stirs soup, a third dashes to the sink for clean dishes—all while the printer keeps spitting out new tickets. Just thinking about it makes my heart rate spike.
 
 It’s also how I feel managing multiple models.
 
@@ -41,4 +41,5 @@ But model management scrambles these neat categories...
 Thanks for rating this post—join the conversation by commenting below.
 
 ---
+
 Source: [How I Run Three AI Models in Parallel Without Losing My Mind](https://every.to/working-overtime/how-i-run-three-ai-models-in-parallel-without-losing-my-mind?metered_paywall=1&ph_email=szermer%40gmail.com)

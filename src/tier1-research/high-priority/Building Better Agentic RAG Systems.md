@@ -4,9 +4,6 @@
 
 > A comprehensive guide to moving beyond chunks toward structured tool responses that teach agents how to navigate data landscapes. Learn from real implementations across coding agents and enterprise systems.
 
-
-
-
 I've been helping companies build agentic RAG systems and studying coding agents from Cognition, Claude Code, Cursor, and others. These coding agents are probably unlocking a trillion-dollar industry—making them the most economically viable agents to date.
 
 This series shares what I've learned from these teams and conversations with professional developers using these systems daily, exploring what we can apply to other industries.
@@ -90,11 +87,11 @@ This series explores practical approaches to context engineering across differen
 
 **Topics include:**
 
-* Moving beyond chunks to structured information landscapes
-* Multi-level response architectures that provide navigational context
-* Agent-friendly data organization patterns
-* Performance optimization for agentic workloads
-* Business metrics and ROI measurement strategies
+- Moving beyond chunks to structured information landscapes
+- Multi-level response architectures that provide navigational context
+- Agent-friendly data organization patterns
+- Performance optimization for agentic workloads
+- Business metrics and ROI measurement strategies
 
 ## Posts in This Series
 
@@ -120,10 +117,10 @@ This series explores practical approaches to context engineering across differen
 
 ## Who This Series Is For
 
-* **Engineering teams** building agentic RAG systems
-* **Product leaders** evaluating the ROI of agent implementations
-* **AI researchers** interested in tool design and agent cognition
-* **Anyone** curious about how agents actually work with structured data
+- **Engineering teams** building agentic RAG systems
+- **Product leaders** evaluating the ROI of agent implementations
+- **AI researchers** interested in tool design and agent cognition
+- **Anyone** curious about how agents actually work with structured data
 
 Each post includes practical code examples, implementation strategies, and real business metrics from companies that have made this transition.
 

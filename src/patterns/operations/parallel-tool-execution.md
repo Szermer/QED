@@ -17,6 +17,7 @@ flowchart TD
 ```
 
 This approach balances performance with safety:
+
 - **Read operations** run in parallel (file reads, searches) with no risk of conflicts
 - **Write operations** execute sequentially (file edits, bash commands) to avoid race conditions
 
@@ -28,8 +29,8 @@ The system divides tools into two categories that determine their execution beha
 
 These tools only read data and never modify state, making them safe to run simultaneously:
 
-- `GlobTool` - Finds files matching patterns like "src/**/*.ts"
-- `GrepTool` - Searches file contents for text patterns 
+- `GlobTool` - Finds files matching patterns like "src/\*_/_.ts"
+- `GrepTool` - Searches file contents for text patterns
 - `View` - Reads file content
 - `LS` - Lists directory contents
 - `ReadNotebook` - Extracts cells from Jupyter notebooks
@@ -54,20 +55,23 @@ The system manages multiple async generators through a central coordination func
 ```typescript
 export async function* all<T>(
   generators: Array<AsyncGenerator<T>>,
-  options: { signal?: AbortSignal; maxConcurrency?: number } = {}
+  options: { signal?: AbortSignal; maxConcurrency?: number } = {},
 ): AsyncGenerator<T & { generatorIndex: number }> {
   const { signal, maxConcurrency = 10 } = options;
-  
+
   // Track active generators
   const remaining = new Set(generators.map((_, i) => i));
-  
+
   // Map tracks generator state
-  const genStates = new Map<number, {
-    generator: AsyncGenerator<T>,
-    nextPromise: Promise<IteratorResult<T>>,
-    done: boolean
-  }>();
-  
+  const genStates = new Map<
+    number,
+    {
+      generator: AsyncGenerator<T>;
+      nextPromise: Promise<IteratorResult<T>>;
+      done: boolean;
+    }
+  >();
+
   // More implementation details...
 }
 ```
@@ -83,7 +87,7 @@ for (let i = 0; i < initialBatchSize; i++) {
   genStates.set(i, {
     generator: generators[i],
     nextPromise: generators[i].next(),
-    done: false
+    done: false,
   });
 }
 ```
@@ -97,18 +101,18 @@ The system uses Promise.race to process whichever generator completes next:
 while (remaining.size > 0) {
   // Check for cancellation
   if (signal?.aborted) {
-    throw new Error('Operation aborted');
+    throw new Error("Operation aborted");
   }
-  
+
   // Wait for next result from any generator
   const entries = Array.from(genStates.entries());
   const { index, result } = await Promise.race(
     entries.map(async ([index, state]) => {
       const result = await state.nextPromise;
       return { index, result };
-    })
+    }),
   );
-  
+
   // Process result...
 }
 ```
@@ -122,11 +126,11 @@ if (result.done) {
   // This generator is finished
   remaining.delete(index);
   genStates.delete(index);
-  
+
   // Start another generator if available
-  const nextIndex = generators.findIndex((_, i) => 
+  const nextIndex = generators.findIndex((_, i) =>
     i >= initialBatchSize && !genStates.has(i));
-  
+
   if (nextIndex >= 0) {
     genStates.set(nextIndex, {
       generator: generators[nextIndex],
@@ -137,7 +141,7 @@ if (result.done) {
 } else {
   // Yield this result with its origin
   yield { ...result.value, generatorIndex: index };
-  
+
   // Queue next value from this generator
   const state = genStates.get(index)!;
   state.nextPromise = state.generator.next();
@@ -151,11 +155,11 @@ The execution strategy adapts based on the tools' characteristics:
 ```typescript
 async function executeTools(toolUses: ToolUseRequest[]) {
   // Check if all tools are read-only
-  const allReadOnly = toolUses.every(toolUse => {
+  const allReadOnly = toolUses.every((toolUse) => {
     const tool = findToolByName(toolUse.name);
     return tool?.isReadOnly();
   });
-  
+
   if (allReadOnly) {
     // Run concurrently for read-only tools
     return runConcurrently(toolUses);
@@ -173,20 +177,20 @@ For read-only operations, the system runs everything in parallel:
 ```typescript
 async function runConcurrently(toolUses) {
   // Convert tool requests to generators
-  const generators = toolUses.map(toolUse => {
+  const generators = toolUses.map((toolUse) => {
     const tool = findToolByName(toolUse.name)!;
     return tool.call(toolUse.parameters);
   });
-  
+
   // Collect results with origin tracking
   const results = [];
   for await (const result of all(generators)) {
     results.push({
       ...result,
-      toolIndex: result.generatorIndex
+      toolIndex: result.generatorIndex,
     });
   }
-  
+
   // Sort to match original request order
   return results.sort((a, b) => a.toolIndex - b.toolIndex);
 }
@@ -202,7 +206,7 @@ async function runSequentially(toolUses) {
   for (const toolUse of toolUses) {
     const tool = findToolByName(toolUse.name)!;
     const generator = tool.call(toolUse.parameters);
-    
+
     // Get all results from this tool before continuing
     for await (const result of generator) {
       results.push(result);

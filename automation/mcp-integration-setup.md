@@ -5,6 +5,7 @@
 Add to your Claude Code MCP configuration file:
 
 ### Option 1: Remote MCP Server (Recommended)
+
 ```json
 {
   "mcpServers": {
@@ -19,6 +20,7 @@ Add to your Claude Code MCP configuration file:
 ```
 
 ### Option 2: Local Proxy (if remote not supported)
+
 ```json
 {
   "mcpServers": {
@@ -38,12 +40,14 @@ Add to your Claude Code MCP configuration file:
 Once configured, these Jina tools will be available:
 
 ### Content Extraction
+
 - **`read_url`** - Extract clean markdown from web pages
-- **`parallel_read_url`** - Process multiple URLs simultaneously  
+- **`parallel_read_url`** - Process multiple URLs simultaneously
 - **`capture_screenshot_url`** - Visual capture of web pages
 - **`guess_datetime_url`** - Extract publication dates
 
 ### Search & Research
+
 - **`web_search`** - Search across the web
 - **`academic_search`** - Scholar and academic sources
 - **`image_search`** - Visual content discovery
@@ -51,19 +55,23 @@ Once configured, these Jina tools will be available:
 ## Testing the Integration
 
 ### 1. Verify MCP Connection
+
 ```bash
 # Check if Jina tools are available
 claude-code --list-tools | grep jina
 ```
 
 ### 2. Test URL Extraction
+
 ```bash
 # Test with a sample URL
 claude-code --tool read_url --url "https://example.com/blog-post"
 ```
 
 ### 3. Validate Output Quality
+
 Ensure extracted markdown includes:
+
 - Clean text without HTML artifacts
 - Proper heading structure
 - Code blocks preserved
@@ -72,6 +80,7 @@ Ensure extracted markdown includes:
 ## Workflow Integration
 
 ### Automated Knowledge Intake Command
+
 ```bash
 #!/bin/bash
 # qed-intake.sh
@@ -88,7 +97,7 @@ echo "🔄 Starting QED automated knowledge intake for: $URL"
 echo "📖 Extracting content with Jina..."
 CONTENT=$(claude-code --tool read_url --url "$URL" --format markdown)
 
-# Step 2: Get publication metadata  
+# Step 2: Get publication metadata
 echo "📅 Getting publication date..."
 PUB_DATE=$(claude-code --tool guess_datetime_url --url "$URL")
 
@@ -139,6 +148,7 @@ echo "📋 Tier Placement: $TIER"
 ## Quality Control Automation
 
 ### Content Validation Script
+
 ```bash
 #!/bin/bash
 # validate-extraction.sh
@@ -176,6 +186,7 @@ echo "✅ Content validation passed"
 ```
 
 ### Duplicate Detection
+
 ```bash
 #!/bin/bash
 # check-duplicates.sh
@@ -193,6 +204,7 @@ fi
 ## Batch Processing Capabilities
 
 ### Multiple URL Processing
+
 ```bash
 #!/bin/bash
 # batch-intake.sh
@@ -217,6 +229,7 @@ echo "🎉 Batch processing complete"
 ```
 
 ### Source Monitoring
+
 ```bash
 #!/bin/bash
 # monitor-sources.sh
@@ -240,15 +253,16 @@ done
 ## Error Handling and Recovery
 
 ### Extraction Failure Recovery
+
 ```bash
 # In qed-intake.sh, add error handling:
 
 if [ -z "$CONTENT" ] || [ ${#CONTENT} -lt 100 ]; then
     echo "❌ Content extraction failed, trying alternative method..."
-    
+
     # Fallback to screenshot + OCR
     SCREENSHOT=$(claude-code --tool capture_screenshot_url --url "$URL")
-    
+
     # Or manual intervention trigger
     echo "Manual extraction required for: $URL" >> manual_queue.txt
     exit 1
@@ -256,6 +270,7 @@ fi
 ```
 
 ### API Rate Limiting
+
 ```bash
 # Add rate limiting between requests
 sleep_duration=2
@@ -279,6 +294,7 @@ done
 ## Performance Monitoring
 
 ### Processing Metrics
+
 ```bash
 #!/bin/bash
 # metrics.sh

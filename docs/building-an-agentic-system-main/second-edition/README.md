@@ -52,7 +52,7 @@ All code examples are drawn from Amp's actual implementation, available in the `
 // Observable-based state management
 export class ThreadService {
   private threads$ = new BehaviorSubject<Thread[]>([]);
-  
+
   getThreads(): Observable<Thread[]> {
     return this.threads$.asObservable();
   }

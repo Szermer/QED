@@ -24,20 +24,25 @@ Core system design patterns and architectural decisions for AI coding assistants
 ## Key Architectural Decisions
 
 ### Layered Architecture
+
 Separation of concerns through distinct layers:
+
 - Presentation Layer (UI/CLI)
 - Application Layer (Business Logic)
 - Domain Layer (Core Models)
 - Infrastructure Layer (External Services)
 
 ### Event-Driven Design
+
 Asynchronous communication patterns:
+
 - Command/Query Separation
 - Event Sourcing
 - Message Queuing
 - Real-time Subscriptions
 
 ### Scalability Patterns
+
 - Horizontal scaling through stateless services
 - Caching strategies for performance
 - Database sharding for large datasets

@@ -7,19 +7,25 @@ Previous documentation structures and deprecated patterns preserved for historic
 Before the taxonomy-based reorganization on 2025-09-08, QED used a three-book structure:
 
 ### Book 1: Foundation Patterns
+
 Focused on client-safe AI integration strategies for consultants.
+
 - Basic patterns and principles
 - Low-risk implementations
 - Getting started guides
 
 ### Book 2: Production Frameworks
+
 Provided risk assessment and framework selection guidance.
+
 - Framework comparisons
 - Production deployment patterns
 - Scaling strategies
 
 ### Book 3: Advanced Integration
+
 Covered enterprise patterns and complex scaling scenarios.
+
 - Multi-agent systems
 - Enterprise integration
 - Advanced architectures
@@ -38,16 +44,19 @@ See ADR: Taxonomy-Based Structure (decisions/2025-09-08-taxonomy-based-structure
 ## Deprecated Patterns
 
 ### Pattern: Monolithic AI Assistant
+
 **Deprecated**: January 2025
 **Reason**: Replaced by modular, composable patterns
 **Replacement**: [Multi-Agent Orchestration](../patterns/architecture/multi-agent-orchestration.md)
 
 ### Pattern: Direct API Key Management
+
 **Deprecated**: December 2024
 **Reason**: Security and scalability concerns
 **Replacement**: [Authentication and Identity](../patterns/security/authentication-identity.md)
 
 ### Pattern: Local-Only Development
+
 **Deprecated**: November 2024
 **Reason**: Team collaboration requirements
 **Replacement**: [From Local to Collaborative](../patterns/team/local-to-collaborative.md)
@@ -55,25 +64,31 @@ See ADR: Taxonomy-Based Structure (decisions/2025-09-08-taxonomy-based-structure
 ## Historical Documents
 
 ### Original Manifesto (September 2024)
+
 The original QED vision document emphasized:
+
 - Practitioner-first approach
 - Evidence-based methodology
 - Client safety and risk awareness
 - No framework evangelism
 
 These principles remain core to QED but are now expressed through:
+
 - [Philosophy and Mindset](../overview-and-philosophy.md)
 - [Risk Assessment](../patterns/quality/risk-assessment.md)
 - [Pattern Template](../PATTERN_TEMPLATE.md)
 
 ### Early Evaluation Framework (October 2024)
+
 The initial four-tier knowledge management system:
+
 1. Research Collection
-2. Critical Analysis  
+2. Critical Analysis
 3. Proven Practice
 4. Decision Records
 
 This framework evolved into the current taxonomy system with:
+
 - Domain classification
 - Risk profiles
 - Context tags
@@ -82,17 +97,20 @@ This framework evolved into the current taxonomy system with:
 ## Lessons from Previous Structures
 
 ### What Worked
+
 - Clear progression path for beginners
 - Separation of concerns by complexity
 - Strong emphasis on evidence
 
 ### What Didn't Work
+
 - Rigid linear structure
 - Difficult cross-referencing
 - Inconsistent risk classification
 - Poor discoverability
 
 ### What We Learned
+
 - Users need multiple navigation paths
 - Context matters more than complexity
 - Risk should be explicitly classified
@@ -118,12 +136,14 @@ git diff 667e726^ HEAD -- src/SUMMARY.md
 As QED continues to evolve, we anticipate:
 
 ### Potential Enhancements
+
 - Interactive pattern discovery tools
 - Automated pattern recommendations
 - Dynamic risk assessment calculators
 - Pattern dependency visualization
 
 ### Structural Evolution
+
 - Graph-based navigation
 - AI-powered search and filtering
 - Personalized learning paths
@@ -132,6 +152,7 @@ As QED continues to evolve, we anticipate:
 ## Contributing Historical Context
 
 If you have historical context about QED's evolution:
+
 1. Document specific dates and decisions
 2. Provide evidence and rationale
 3. Link to relevant commits or issues
@@ -139,4 +160,4 @@ If you have historical context about QED's evolution:
 
 ---
 
-*This archive preserves QED's evolution for future reference and learning.*
+_This archive preserves QED's evolution for future reference and learning._

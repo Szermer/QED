@@ -1,12 +1,12 @@
 # Silicon Valley’s Top Coaches Want You to Stop Fearing AI
 
-*Was this newsletter forwarded to you? [Sign up](https://every.to/account) to get it in your inbox.*
+_Was this newsletter forwarded to you? [Sign up](https://every.to/account) to get it in your inbox._
 
 ---
 
 My fears of being replaced by AI have crowded out reflections about who I want to be.
 
-That’s what I realized this week listening to **[Joe Hudson](https://x.com/FU_joehudson?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)**, **[Jonny Miller](https://x.com/jonnym1ller)**, and **[Steve Schlafman](https://www.steveschlafman.com/)** in their conversations with Every CEO **Dan Shipper** on our podcast *[AI & I](https://every.to/podcast)*.
+That’s what I realized this week listening to **[Joe Hudson](https://x.com/FU_joehudson?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)**, **[Jonny Miller](https://x.com/jonnym1ller)**, and **[Steve Schlafman](https://www.steveschlafman.com/)** in their conversations with Every CEO **Dan Shipper** on our podcast _[AI & I](https://every.to/podcast)_.
 
 Hudson is an executive coach whose clients include the leaders [building AGI](https://every.to/chain-of-thought/toward-a-definition-of-agi) at OpenAI. Miller is the founder of [Nervous System Mastery](http://nsmastery.com/), a boot camp that shares protocols for cultivating calm, resilience, and energy with founders and executives. Schlafman is the founder of [Downshift](https://www.downshift.me/), a “deaccelerator” committed to helping founders and executives navigate career transitions with intention.
 
@@ -66,7 +66,7 @@ For him, the key move is cultivating self-trust and consciousness around the too
 
 #### The centaur model of coaching
 
-Miller draws on founding editor of *Wired* magazine **[Kevin Kelly](https://every.to/podcast/how-to-predict-the-future-like-kevin-kelly)**’s concept of centaurs—the idea that human-AI teams can outperform either humans or AI alone—to describe the future of coaching. He sees this model as especially powerful because clients can use AI between sessions to implement what they’ve learned, reflect further, and even bring new insights back into the coaching relationship.
+Miller draws on founding editor of _Wired_ magazine **[Kevin Kelly](https://every.to/podcast/how-to-predict-the-future-like-kevin-kelly)**’s concept of centaurs—the idea that human-AI teams can outperform either humans or AI alone—to describe the future of coaching. He sees this model as especially powerful because clients can use AI between sessions to implement what they’ve learned, reflect further, and even bring new insights back into the coaching relationship.
 
 In his vision, the collaboration could evolve into a three-way dynamic: client, coach, and AI. Imagine a shared chat thread where clients interact with the AI for ongoing support, while Miller can step in to correct hallucinations or add nuance.
 
@@ -80,7 +80,7 @@ You can check out the episodes in full here:
 
 What do you use AI for? Have you found any interesting or surprising use cases? We want to hear from you—and we might even interview you.
 
-Miss an episode? Catch up on Dan’s recent conversations with star podcaster **[Dwarkesh Patel](https://every.to/chain-of-thought/dwarkesh-patel-s-quest-to-learn-everything)**, LinkedIn cofounder **[Reid Hoffman](https://every.to/chain-of-thought/reid-hoffman-on-how-ai-might-answer-our-biggest-questions)**, ChatPRD founder **[Claire Vo](https://every.to/podcast/she-built-an-ai-product-manager-bringing-in-six-figures-as-a-side-hustle-e46be9bc-f426-424d-992d-5a71fd7ac5e4)**, economist **[Tyler Cowen](https://every.to/chain-of-thought/economist-tyler-cowen-on-how-chatgpt-is-changing-your-job)**, writer and entrepreneur **[David Perell](https://every.to/chain-of-thought/how-david-perell-uses-chatgpt-to-write-for-millions)**, founder and newsletter operator **[Ben Tossell](https://every.to/chain-of-thought/how-to-run-a-profitable-one-person-internet-business-using-ai)**, and others, and learn how *they* use AI to think, create, and relate.
+Miss an episode? Catch up on Dan’s recent conversations with star podcaster **[Dwarkesh Patel](https://every.to/chain-of-thought/dwarkesh-patel-s-quest-to-learn-everything)**, LinkedIn cofounder **[Reid Hoffman](https://every.to/chain-of-thought/reid-hoffman-on-how-ai-might-answer-our-biggest-questions)**, ChatPRD founder **[Claire Vo](https://every.to/podcast/she-built-an-ai-product-manager-bringing-in-six-figures-as-a-side-hustle-e46be9bc-f426-424d-992d-5a71fd7ac5e4)**, economist **[Tyler Cowen](https://every.to/chain-of-thought/economist-tyler-cowen-on-how-chatgpt-is-changing-your-job)**, writer and entrepreneur **[David Perell](https://every.to/chain-of-thought/how-david-perell-uses-chatgpt-to-write-for-millions)**, founder and newsletter operator **[Ben Tossell](https://every.to/chain-of-thought/how-to-run-a-profitable-one-person-internet-business-using-ai)**, and others, and learn how _they_ use AI to think, create, and relate.
 
 If you’re enjoying the podcast, here are a few things I recommend:
 
@@ -90,13 +90,14 @@ If you’re enjoying the podcast, here are a few things I recommend:
 
 ---
 
-***Rhea Purohit*** *is a contributing writer for Every focused on research-driven storytelling in tech. You can follow her on X at [@RheaPurohit1](https://twitter.com/RheaPurohit1) and on [LinkedIn](https://www.linkedin.com/in/rhea-purohit-517441198/), and Every on X at [@every](https://twitter.com/every) and on [LinkedIn](https://www.linkedin.com/company/everyinc/).*
+**_Rhea Purohit_** _is a contributing writer for Every focused on research-driven storytelling in tech. You can follow her on X at [@RheaPurohit1](https://twitter.com/RheaPurohit1) and on [LinkedIn](https://www.linkedin.com/in/rhea-purohit-517441198/), and Every on X at [@every](https://twitter.com/every) and on [LinkedIn](https://www.linkedin.com/company/everyinc/)._
 
-*We [build AI tools](https://every.to/studio) for readers like you. Write brilliantly with* ***[Spiral](https://spiral.computer/?utm_source=everyfooter)****. Organize files automatically with* ***[Sparkle](https://makeitsparkle.co/?utm_source=everyfooter)****. Deliver yourself from email with* ***[Cora](https://cora.computer/)****.*
+_We [build AI tools](https://every.to/studio) for readers like you. Write brilliantly with_ **\*[Spiral](https://spiral.computer/?utm_source=everyfooter)\*\***. Organize files automatically with\* **\*[Sparkle](https://makeitsparkle.co/?utm_source=everyfooter)\*\***. Deliver yourself from email with\* **\*[Cora](https://cora.computer/)\*\***.\*
 
-*We also do AI training, adoption, and innovation for companies. [Work with us](https://every.to/consulting?utm_source=emailfooter) to bring AI into your organization.*
+_We also do AI training, adoption, and innovation for companies. [Work with us](https://every.to/consulting?utm_source=emailfooter) to bring AI into your organization._
 
-*Get paid for sharing Every with your friends. Join our [referral program](https://every.getrewardful.com/signup).*
+_Get paid for sharing Every with your friends. Join our [referral program](https://every.getrewardful.com/signup)._
 
 ---
+
 Source: [Silicon Valley’s Top Coaches Want You to Stop Fearing AI](https://every.to/podcast/silicon-valley-s-top-coaches-want-you-to-stop-fearing-ai?ph_email=szermer%40gmail.com)

@@ -18,15 +18,15 @@ The local-first pattern typically implements these core components:
 ```typescript
 // Local-first storage pattern
 interface LocalStorage {
-  save(conversation: Conversation): Promise<void>
-  load(id: string): Promise<Conversation>
-  list(): Promise<ConversationSummary[]>
+  save(conversation: Conversation): Promise<void>;
+  load(id: string): Promise<Conversation>;
+  list(): Promise<ConversationSummary[]>;
 }
 
-// Direct API authentication pattern  
+// Direct API authentication pattern
 interface DirectAuth {
-  authenticate(apiKey: string): Promise<AuthToken>
-  makeRequest(token: AuthToken, request: any): Promise<Response>
+  authenticate(apiKey: string): Promise<AuthToken>;
+  makeRequest(token: AuthToken, request: any): Promise<Response>;
 }
 ```
 
@@ -85,18 +85,20 @@ graph LR
     User[Developer] --> CLI[Local CLI]
     CLI --> LocalFiles[Local Storage]
     CLI --> LLMAPI[LLM API]
-    
+
     style LocalFiles fill:#f9f,stroke:#333,stroke-width:2px
     style LLMAPI fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 **Advantages:**
+
 - Complete privacy
 - No infrastructure costs
 - Simple implementation
 - User control
 
 **Limitations:**
+
 - No collaboration
 - No shared context
 - Distributed API keys
@@ -112,7 +114,7 @@ graph LR
     CLI --> LocalFiles[Local Storage]
     CLI --> LLMAPI[LLM API]
     LocalFiles -.->|Optional Sync| CloudStorage[Cloud Storage]
-    
+
     style LocalFiles fill:#f9f,stroke:#333,stroke-width:2px
     style CloudStorage fill:#9f9,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
 ```
@@ -130,36 +132,37 @@ graph TB
         Extension[IDE Extension]
         Web[Web Interface]
     end
-    
+
     subgraph "Server Layer"
         API[API Gateway]
         Auth[Auth Service]
         Threads[Thread Service]
         Sync[Sync Service]
     end
-    
+
     subgraph "Storage Layer"
         DB[(Database)]
         Cache[(Cache)]
         CDN[CDN]
     end
-    
+
     CLI --> API
     Extension --> API
     Web --> API
-    
+
     API --> Auth
     API --> Threads
     Threads --> Sync
-    
+
     Sync --> DB
     Sync --> Cache
-    
+
     style API fill:#bbf,stroke:#333,stroke-width:2px
     style Threads fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
 **Advantages:**
+
 - Real-time collaboration
 - Shared team context
 - Centralized management
@@ -167,6 +170,7 @@ graph TB
 - Cross-device sync
 
 **Trade-offs:**
+
 - Requires internet connection
 - Data leaves user's machine
 - Infrastructure complexity
@@ -184,13 +188,16 @@ Server-first systems typically implement a three-tier approach:
 // Synchronized storage pattern
 interface SynchronizedStorage {
   // Local cache for performance
-  saveLocal(data: ConversationData): Promise<void>
-  
-  // Server sync for collaboration  
-  syncToServer(data: ConversationData): Promise<void>
-  
+  saveLocal(data: ConversationData): Promise<void>;
+
+  // Server sync for collaboration
+  syncToServer(data: ConversationData): Promise<void>;
+
   // Conflict resolution
-  resolveConflicts(local: ConversationData, remote: ConversationData): ConversationData
+  resolveConflicts(
+    local: ConversationData,
+    remote: ConversationData,
+  ): ConversationData;
 }
 ```
 
@@ -202,6 +209,7 @@ This pattern provides:
 4. **Offline capability** - Continues working when network is unavailable
 
 **When to use this pattern:**
+
 - Multiple users need to see the same data
 - Real-time collaboration is important
 - Users work across multiple devices
@@ -215,30 +223,33 @@ Real-time collaboration requires event-driven updates. The common pattern uses W
 // Event-driven sync pattern
 interface RealtimeSync {
   // Subscribe to changes for a specific resource
-  subscribe(resourceType: string, resourceId: string): Observable<UpdateEvent>
-  
+  subscribe(resourceType: string, resourceId: string): Observable<UpdateEvent>;
+
   // Broadcast changes to other clients
-  broadcast(event: UpdateEvent): Promise<void>
-  
+  broadcast(event: UpdateEvent): Promise<void>;
+
   // Handle connection management
-  connect(): Promise<void>
-  disconnect(): Promise<void>
+  connect(): Promise<void>;
+  disconnect(): Promise<void>;
 }
 ```
 
 Key considerations for real-time sync:
 
 **Connection Management:**
+
 - Automatic reconnection on network failures
 - Graceful handling of temporary disconnects
 - Efficient subscription management
 
 **Update Distribution:**
+
 - Delta-based updates to minimize bandwidth
 - Conflict-free merge strategies
 - Ordered message delivery
 
 **When to implement real-time sync:**
+
 - Users collaborate simultaneously
 - Changes need immediate visibility
 - User presence awareness is important
@@ -252,35 +263,43 @@ Collaborative systems require centralized identity management with team-based pe
 // Centralized auth pattern
 interface CollaborativeAuth {
   // Identity management
-  authenticate(provider: AuthProvider): Promise<UserSession>
-  
+  authenticate(provider: AuthProvider): Promise<UserSession>;
+
   // Team-based permissions
-  checkPermission(user: User, resource: Resource, action: Action): Promise<boolean>
-  
+  checkPermission(
+    user: User,
+    resource: Resource,
+    action: Action,
+  ): Promise<boolean>;
+
   // Session management
-  refreshSession(session: UserSession): Promise<UserSession>
-  invalidateSession(sessionId: string): Promise<void>
+  refreshSession(session: UserSession): Promise<UserSession>;
+  invalidateSession(sessionId: string): Promise<void>;
 }
 ```
 
 Key authentication considerations:
 
 **Identity Integration:**
+
 - Single Sign-On (SSO) for enterprise environments
 - Social auth for individual users
 - Multi-factor authentication for security
 
 **Permission Models:**
+
 - Role-Based Access Control (RBAC) for simple hierarchies
 - Attribute-Based Access Control (ABAC) for complex policies
 - Resource-level permissions for fine-grained control
 
 **Session Management:**
+
 - Secure token storage and transmission
 - Automatic session refresh
 - Graceful handling of expired sessions
 
 **When to implement centralized auth:**
+
 - Multiple users share resources
 - Different permission levels needed
 - Compliance or audit requirements exist
@@ -316,22 +335,24 @@ Teams need mechanisms to share knowledge and maintain consistency:
 // Shared knowledge pattern
 interface TeamKnowledge {
   // Shared patterns and conventions
-  getPatterns(): Promise<Pattern[]>
-  savePattern(pattern: Pattern): Promise<void>
-  
+  getPatterns(): Promise<Pattern[]>;
+  savePattern(pattern: Pattern): Promise<void>;
+
   // Team-specific context
-  getContext(contextType: string): Promise<ContextData>
-  updateContext(contextType: string, data: ContextData): Promise<void>
+  getContext(contextType: string): Promise<ContextData>;
+  updateContext(contextType: string, data: ContextData): Promise<void>;
 }
 ```
 
 Benefits of shared context:
+
 - **Consistency** - Team members use the same patterns and conventions
 - **Knowledge preservation** - Best practices don't get lost
 - **Onboarding** - New team members learn established patterns
 - **Evolution** - Patterns improve through collective experience
 
 **Implementation considerations:**
+
 - Version control for patterns and conventions
 - Search and discovery mechanisms
 - Automatic suggestion of relevant patterns
@@ -345,17 +366,18 @@ Real-time collaboration benefits from user presence information:
 // Presence awareness pattern
 interface PresenceSystem {
   // Track user activity
-  updatePresence(userId: string, activity: ActivityInfo): Promise<void>
-  
+  updatePresence(userId: string, activity: ActivityInfo): Promise<void>;
+
   // Observe presence changes
-  observePresence(resourceId: string): Observable<PresenceInfo[]>
-  
+  observePresence(resourceId: string): Observable<PresenceInfo[]>;
+
   // Handle disconnections
-  handleDisconnect(userId: string): Promise<void>
+  handleDisconnect(userId: string): Promise<void>;
 }
 ```
 
 Presence features enable:
+
 - **Collision avoidance** - Users see when others are active
 - **Coordination** - Teams know who's working on what
 - **Context awareness** - Understanding current activity levels
@@ -368,17 +390,18 @@ Collaborative systems often need approval processes:
 // Review workflow pattern
 interface ReviewSystem {
   // Request review
-  requestReview(resourceId: string, reviewType: ReviewType): Promise<Review>
-  
+  requestReview(resourceId: string, reviewType: ReviewType): Promise<Review>;
+
   // Approve or reject
-  submitReview(reviewId: string, decision: ReviewDecision): Promise<void>
-  
+  submitReview(reviewId: string, decision: ReviewDecision): Promise<void>;
+
   // Track review status
-  getReviewStatus(resourceId: string): Promise<ReviewStatus>
+  getReviewStatus(resourceId: string): Promise<ReviewStatus>;
 }
 ```
 
 Review patterns provide:
+
 - **Quality control** - Changes can be reviewed before implementation
 - **Knowledge sharing** - Team members learn from each other
 - **Compliance** - Audit trail for sensitive changes
@@ -393,7 +416,7 @@ The transition from local to collaborative AI assistants taught valuable lessons
 While privacy concerns are real, teams consistently chose productivity when given proper controls:
 
 - Clear data retention policies
-- Granular permission models  
+- Granular permission models
 - Self-hosted options for sensitive environments
 - SOC2 compliance and security audits
 
@@ -429,6 +452,7 @@ Moving from local to server-based tools requires careful planning:
 The transition from local to collaborative isn't automatic. Use this framework to evaluate when the complexity is justified:
 
 ### Stay Local When:
+
 - Individual or small team usage (< 3 people)
 - No shared context needed
 - Security/privacy constraints prevent cloud usage
@@ -436,6 +460,7 @@ The transition from local to collaborative isn't automatic. Use this framework t
 - Limited budget for infrastructure
 
 ### Go Collaborative When:
+
 - Teams need shared knowledge and patterns
 - Real-time collaboration provides value
 - Usage tracking and cost management required
@@ -443,6 +468,7 @@ The transition from local to collaborative isn't automatic. Use this framework t
 - Multiple devices/locations access needed
 
 ### Hybrid Approach When:
+
 - Transitioning from local to collaborative
 - Testing collaborative features with subset of users
 - Supporting both individual and team workflows
