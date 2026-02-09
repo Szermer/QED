@@ -12,6 +12,18 @@
 
 ---
 
+# The Six Laws of AI-Era Software Engineering
+
+- [Overview](six-laws/overview.md)
+- [Law 1: Context Is the Universal Bottleneck](six-laws/law-1-context.md)
+- [Law 2: Human Judgment Remains the Integration Layer](six-laws/law-2-judgment.md)
+- [Law 3: Architecture Matters More Than Model Selection](six-laws/law-3-architecture.md)
+- [Law 4: Build Infrastructure to Delete](six-laws/law-4-delete.md)
+- [Law 5: Orchestration Is the New Core Skill](six-laws/law-5-orchestration.md)
+- [Law 6: Speed and Knowledge Are Orthogonal](six-laws/law-6-speed-knowledge.md)
+
+---
+
 # Patterns by Domain
 
 ## Architecture & Design
