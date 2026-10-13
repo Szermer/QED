@@ -8,7 +8,7 @@ Consider a team that just upgraded from a mid-tier model to the most capable fro
 
 This scenario plays out constantly across the industry. Teams optimize prompts when they should be optimizing context flow. They benchmark models when they should be benchmarking what information those models can actually access. The highest-leverage improvement you can make to any AI system is not selecting a better model --- it is ensuring the right information reaches whatever model you are already using.
 
-Context is the universal bottleneck because every other capability --- reasoning, code generation, planning, debugging --- operates on whatever context the system provides. A brilliant model with poor context will underperform a mediocre model with excellent context. This has been measured: the same model with better context architecture achieves a **25 percentage-point accuracy improvement** (from 49% to 74%) with no other changes. No prompt rewrite, no model upgrade, no parameter tuning. Just better context.
+Context is the universal bottleneck because every other capability --- reasoning, code generation, planning, debugging --- operates on whatever context the system provides. A brilliant model with poor context will underperform a mediocre model with excellent context. Anthropic has measured one version of this: on internal MCP evaluations with large tool libraries, loading tools on demand instead of all up front took Claude Opus 4 from **49% to 74%** accuracy, a 25 percentage-point gain on the same model.
 
 ## The Core Insight
 
@@ -85,13 +85,13 @@ Same model, same prompt, same codebase. The difference is entirely in what infor
 
 ### The Empirical Hierarchy
 
-Not all surfaces are equal. Measured data from production tool-search benchmarks shows a clear ordering:
+Not all surfaces are equal. The ordering below is QED's synthesis, not a measured ranking; the one hard number in it comes from Anthropic's tool-search evaluation:
 
 ```
-PREVENT  (+25pp accuracy)  >>>  ISOLATE  >  COMPRESS  >  EXTEND
+PREVENT  >>>  ISOLATE  >  COMPRESS  >  EXTEND
 ```
 
-Prevention dominates because it operates upstream of everything else. If the wrong information never enters the context window, you never have to compress it, isolate it, or work around it. The same model --- with zero configuration changes --- jumps from 49% to 74% accuracy simply by loading the right files first.
+Prevention dominates because it operates upstream of everything else. If the wrong information never enters the context window, you never have to compress it, isolate it, or work around it. In Anthropic's tool-search evaluation, the same model went from 49% to 74% accuracy when tool definitions were searched and loaded on demand rather than all placed in context up front.
 
 This hierarchy has a direct implication for where you spend engineering effort: **invest in input-side filtering before you invest in anything else.**
 
@@ -150,13 +150,13 @@ Each tier down reduces the context burden on every session that does not need th
 
 ## Evidence
 
-### Evidence 1: Same Model, Better Context, Dramatically Better Results
+### Evidence 1: Same Model, On-Demand Tool Loading, Better Results
 
-In production benchmarking of tool-search capabilities, a prevention-focused context architecture improved accuracy from 49% to 74% --- a 25 percentage-point gain. No prompt changes. No model upgrade. No parameter tuning. The only variable was how information was loaded into context.
+In Anthropic's internal testing on MCP evaluations with large tool libraries, enabling the Tool Search Tool, which loads tool definitions on demand instead of all up front, improved Claude Opus 4 from 49% to 74% and Claude Opus 4.5 from 79.5% to 88.1% ([Anthropic, "Introducing advanced tool use on the Claude Developer Platform," Nov 24, 2025](https://www.anthropic.com/engineering/advanced-tool-use)). The model was the same in each comparison; what changed was how tool definitions entered context.
 
-Consider what this means in practice. A team debating whether to pay 3x more for a frontier model could achieve a larger improvement --- for free --- by restructuring how files are loaded into context. The 25pp gain from context architecture exceeds the typical accuracy difference between model generations.
+Two cautions. First, the gain is specific to tool loading with large tool libraries, and Anthropic doesn't publish the benchmark's design, so treat it as strong evidence for on-demand tool loading rather than a general number for "context architecture." Second, the same results show that model choice still matters: the model upgrade alone (49% to 79.5%) was larger than the tool-search gain on the older model. The lesson is that context loading is a lever of the same order as a model upgrade, and the gains stack (Opus 4.5 with tool search reached 88.1%).
 
-This is the strongest evidence that context architecture, not model selection, is the primary lever for AI system performance.
+This figure was earlier circulated in a community guide labeled "Claude Code V4" without a source; the numbers above are taken from Anthropic's post directly.
 
 ### Evidence 2: Token Reduction Through Dynamic Loading
 
@@ -244,7 +244,7 @@ Walk through your system prompt and supporting context. For each piece of inform
 
 **Symptom**: The team spends weeks iterating on prompt wording, instruction ordering, and few-shot examples while ignoring what files and data are actually loaded into context.
 
-**Why it fails**: A perfectly crafted prompt operating on incomplete or noisy context will still produce poor results. Prompt optimization has diminishing returns once context architecture is neglected. The 25pp accuracy gain from better context dwarfs what most prompt rewrites achieve.
+**Why it fails**: A perfectly crafted prompt operating on incomplete or noisy context will still produce poor results. Prompt optimization has diminishing returns once context architecture is neglected. In Anthropic's tool-search evaluation, changing how tool definitions were loaded was worth 25 percentage points on the same model, more than most prompt rewrites achieve.
 
 **Fix**: Treat context architecture as the first-class engineering problem. Only optimize prompts after the right information is reliably reaching the model.
 
