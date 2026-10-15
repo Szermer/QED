@@ -29,7 +29,7 @@ flowchart TD
 ```bash
 # Input: URL to analyze
 INPUT_URL="https://example.com/ai-development-post"
-JINA_API_KEY="***REMOVED***"
+: "${JINA_API_KEY:?JINA_API_KEY is not set}"  # from Doppler / env, never hardcode
 ```
 
 ### 2. Content Extraction (Jina MCP)
@@ -146,7 +146,7 @@ Add to Claude Code's MCP configuration:
       "command": "npx",
       "args": ["-y", "@jina-ai/mcp-server"],
       "env": {
-        "JINA_API_KEY": "***REMOVED***"
+        "JINA_API_KEY": "${JINA_API_KEY}"
       }
     }
   }

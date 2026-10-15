@@ -23,7 +23,7 @@ flowchart TD
 # extract-content.sh
 
 URL="$1"
-JINA_API_KEY="***REMOVED***"
+: "${JINA_API_KEY:?JINA_API_KEY is not set}"  # from Doppler / env, never hardcode
 
 # Extract clean markdown using Jina Reader
 CONTENT=$(curl -s "https://r.jina.ai/$URL" \
@@ -41,7 +41,7 @@ echo "$CONTENT"
 set -e  # Exit on any error
 
 # Configuration
-JINA_API_KEY="***REMOVED***"
+: "${JINA_API_KEY:?JINA_API_KEY is not set}"  # from Doppler / env, never hardcode
 QED_ROOT="/Users/stephenszermer/Dev/QED"
 
 # Input validation
