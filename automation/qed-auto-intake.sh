@@ -5,7 +5,8 @@
 set -e  # Exit on any error
 
 # Configuration
-JINA_API_KEY="jina_7b89ae8875af4efcac0f91d53919599eN4yvsi-s-25_CAJjqSPPj1stySUC"
+# Read from the environment (Doppler: `doppler run -- ./qed-auto-intake.sh <URL>`)
+: "${JINA_API_KEY:?JINA_API_KEY is not set; run via doppler run or export it}"
 QED_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 # Input validation

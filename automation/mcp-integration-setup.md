@@ -12,7 +12,7 @@ Add to your Claude Code MCP configuration file:
     "jina": {
       "url": "https://mcp.jina.ai/sse",
       "headers": {
-        "Authorization": "Bearer jina_7b89ae8875af4efcac0f91d53919599eN4yvsi-s-25_CAJjqSPPj1stySUC"
+        "Authorization": "Bearer ${JINA_API_KEY}"
       }
     }
   }
@@ -28,7 +28,7 @@ Add to your Claude Code MCP configuration file:
       "command": "npx",
       "args": ["-y", "@jina-ai/mcp-server"],
       "env": {
-        "JINA_API_KEY": "jina_7b89ae8875af4efcac0f91d53919599eN4yvsi-s-25_CAJjqSPPj1stySUC"
+        "JINA_API_KEY": "${JINA_API_KEY}"
       }
     }
   }
